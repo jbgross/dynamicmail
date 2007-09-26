@@ -13,13 +13,22 @@ namespace OutlookAddin2
         private Indexes InvertedIndexes = new Indexes();
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
-            indexInboxEmail();
+            //indexInboxEmail();
             //indexSentEmail();
             //indexContacts();
-            InvertedIndexes.saveTxt();
+            getSortedEmailIDs();
+            //InvertedIndexes.saveTxt();
             MessageBox.Show("Indexing Completed");
         }
 
+        /// <summary>
+        /// Indexes Email in Inbox
+        /// Populates inboxEmail index with keys(email addresses of people who sent email to you)
+        /// and values (arraylist of email entryIDs sent by the email address)
+        /// 
+        /// Also populates contact inded with keys (contactIDs) and values(Email entryIDs of emails
+        /// sent by that contact
+        /// </summary>
         private void indexInboxEmail()
         {
             
@@ -33,16 +42,10 @@ namespace OutlookAddin2
             int lookedAt = 1;                   //email items looked at so far    
             
             
-
-
-            //temporary hashtable for index and arrayList for values
-            //Hashtable inboxIndex = new Hashtable();
-            ArrayList emailIDs = new ArrayList();
-
             //variables to hold found email data
             string foundSender, foundEmailEntryID, foundSubject;
 
-            //does this for every item in the searchFolder (inbox)
+            //do this for every item in the searchFolder (inbox)
             while (lookedAt < total)
             {
                
@@ -58,94 +61,27 @@ namespace OutlookAddin2
                     foundEmailEntryID = foundEmail.EntryID;
                     //subject of current email
                     foundSubject = foundEmail.Subject;
-                    //clear the array list for storage
-                    emailIDs = new ArrayList(); 
+
 
                     //Dave, this breaks because stoplist.txt is unavailable or in the wrong directory
-                    Stemmer SubjectStemmer = new Stemmer();
-                    SubjectStemmer.stemSubject(foundSubject, foundEmailEntryID);
+                    //Stemmer SubjectStemmer = new Stemmer();
+                    //SubjectStemmer.stemSubject(foundSubject, foundEmailEntryID);
 
 
-                    //**********************************************************************************
-                    //To populate the index of email addresses.  
-                    //Key = email address
-                    //Value = ArrayList of Email EntryIDs that were sent by the email address
-                    //**********************************************************************************
-                    //if sender email address is NOT already in the index
-                    if (InvertedIndexes.receivedEmailIndex.Contains(foundSender) == false)
-                    {
-                        
-                        //put the emailID into an ArrayList
-                        emailIDs.Add(foundEmailEntryID);
-                        //add sender email address (key) and ArrayList of Email Entry ID (value) to the index
-                        InvertedIndexes.receivedEmailIndex.Add(foundSender, emailIDs);
+                    //add email address and emailID to the received email index
+                    addToReceivedEmailIndex(foundSender, foundEmailEntryID);
 
-                    }
-                    else //sender email address is already in the index
-                    {
-                        //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
-                        emailIDs = (ArrayList)InvertedIndexes.receivedEmailIndex[foundSender];
-
-                        //add the found Emails ID to the array
-                        emailIDs.Add(foundEmailEntryID);
-
-                        //put the array back into the index, overwriting the old one
-                        InvertedIndexes.receivedEmailIndex[foundSender] = emailIDs ;
-
-                    }
-                    //**********************************************************************************
-                    //**********************************************************************************
-
-
-
-
-
-                    //**********************************************************************************
-                    //To populate the index of contacts
-                    //Key = contact EntryID
-                    //Value = ArrayList of Email EntryIDs that were sent by the contact
-                    //**********************************************************************************
                     
-                    //contactID = null if email address is not in contacts
-                    //string contactID = this.checkContacts(foundEmail.SenderEmailAddress);
-
-                    //if (contactID != null) //if email address belongs to a contact
-                    //{
-                    //    //if contact is NOT already index
-                    //    if (InvertedIndexes.contactsIndex.Contains(contactID) == false)
-                    //    {
-                    //        //clears the email ID arrayList
-                    //        emailIDs.Clear();
-                    //        //put the emailID into an ArrayList
-                    //        emailIDs.Add(foundEmailEntryID);
-                    //        //add contactID (key) and ArrayList of Email Entry ID (value) to the index
-                    //        InvertedIndexes.contactsIndex.Add(contactID, emailIDs);
-                    //    }
-                    //    else //contact is already in the index
-                    //    {
-                    //        //get the ArrayList containing the Email Entry IDs for the key (contact EntryID)
-                    //        emailIDs = (ArrayList)InvertedIndexes.contactsIndex[contactID];
-
-                    //        //add the found emails ID to the array
-                    //        emailIDs.Add(foundEmailEntryID);
-
-                    //        //put the array back into the index, overwriting the old one
-                    //        InvertedIndexes.contactsIndex[contactID] = emailIDs;
-                    //    }
-           
-
-                    //}
-                    //else, do nothing because the address is not a contact
-
-                    //**********************************************************************************
-                    //**********************************************************************************
-
+                    
+                   
+                    
+                    
                    
                 }
                 catch (Exception e) //catches items that are not emails
                 {
 
-                    //MessageBox.Show(e.Message + "\n" + lookedAt);
+                    MessageBox.Show(e.Message + "\n" + lookedAt);
                 }
 
 
@@ -159,14 +95,77 @@ namespace OutlookAddin2
 
         }
 
+ 
 
+
+        /// <summary>
+        /// Indexes Email in "Sent" box
+        /// Populates SentEmail index with keys(addresses you sent to) and values (arraylist of email entryIDs
+        /// you sent to that address
+        /// </summary>
         private void indexSentEmail()
         {
-            //sorry dave, I screwed this up while I was working on it, and do not have a earlier 
-            //version to revert to.  Also, the earlier version was not complete... 
-            //I need to stop coding late at night
+            //gets the contents of the inbox and puts them in searchFolder
+            Outlook.MAPIFolder sentBox = this.ActiveExplorer().
+                Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+            Outlook.Items searchFolder = sentBox.Items;
 
+
+            int total = searchFolder.Count;     //total items in mailbox
+            int lookedAt = 1;                   //email items looked at so far    
+
+
+
+
+            //arraylist to hold email entryIDs
+            ArrayList emailIDs = new ArrayList();
+
+            //variables to hold found email data
+            string foundEmailEntryID, foundSubject;
+            Outlook.Recipients foundRecipients;
+
+
+            //do this for every item in the searchFolder (inbox)
+            while (lookedAt <= total)
+            {
+
+
+                try
+                {
+                    Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
+
+
+                    //email entry ID of current email
+                    foundEmailEntryID = foundEmail.EntryID;
+                    //subject of current email
+                    foundSubject = foundEmail.Subject;
+                    //clear the array list for storage
+                    emailIDs = new ArrayList();
+
+                    //get all email recipients (individuals you sent the email to)
+                    foundRecipients = foundEmail.Recipients;
+
+                    addtoSentEmailIndex(foundRecipients, foundEmailEntryID);
+                    
+                    
+
+                    
+
+
+                }
+                catch (Exception e) //catch items that arenot emails
+                {
+                    MessageBox.Show("Exception: " + e);
+
+                }
+
+                lookedAt++;
+            }
+    
         }
+
+
+           
 
         /// <summary>
         /// creates an index of email addresses and all of the contacts associated with them
@@ -205,6 +204,8 @@ namespace OutlookAddin2
 
 
         }
+
+
 
         /// <summary>
         /// Adds the contactID (value) and emailAddress(key) to the index
@@ -277,6 +278,172 @@ namespace OutlookAddin2
 
             return contactID;
 
+        }
+
+        public void addToReceivedEmailIndex(string senderAddress, string emailID)
+        {
+            //Key = email address (senderAddress)
+            //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
+            ArrayList emailIDs = new ArrayList();
+
+
+            //if sender email address is NOT already in the index
+            if (InvertedIndexes.receivedEmailIndex.Contains(senderAddress) == false)
+            {
+
+                //put the emailID into an ArrayList
+                emailIDs.Add(emailID);
+                //add sender email address (key) and ArrayList of Email Entry ID (value) to the index
+                InvertedIndexes.receivedEmailIndex.Add(senderAddress, emailIDs);
+
+            }
+            else //sender email address is already in the index
+            {
+                //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
+                emailIDs = (ArrayList)InvertedIndexes.receivedEmailIndex[senderAddress];
+
+                //add the found Emails ID to the array
+                emailIDs.Add(emailID);
+
+                //put the array back into the index, overwriting the old one
+                InvertedIndexes.receivedEmailIndex[senderAddress] = emailIDs;
+
+            }
+
+            //gets the contact ID. (contactID is null if email address is not in contacts)
+            string contactID = this.checkContacts(senderAddress);
+
+            if (contactID == null)
+            {
+                //do nothing, because the address does not belong to a contact
+            }
+            else //address does belong to a contact
+            {
+                //add contact and email to index
+                addToContactsEmailIndex(contactID, emailID);
+            }
+
+
+        }
+
+        public void addToContactsEmailIndex(string contactID, string emailID)
+        {
+            //Key = contact EntryID
+            //Value = ArrayList of Email EntryIDs that were sent by the contact
+            ArrayList emailIDs = new ArrayList();
+
+
+            //if contact is NOT already index
+            if (InvertedIndexes.contactsIndex.Contains(contactID) == false)
+            {
+                //put the emailID into an ArrayList
+                emailIDs.Add(emailID);
+                //add contactID (key) and ArrayList of Email Entry ID (value) to the index
+                InvertedIndexes.contactsIndex.Add(contactID, emailIDs);
+            }
+            else //contact is already in the index
+            {
+                //get the ArrayList containing the Email Entry IDs for the key (contact EntryID)
+                emailIDs = (ArrayList)InvertedIndexes.contactsIndex[contactID];
+
+                //add the found emails ID to the array
+                emailIDs.Add(emailID);
+
+                //put the array back into the index, overwriting the old one
+                InvertedIndexes.contactsIndex[contactID] = emailIDs;
+            }
+
+        }
+
+        public void addtoSentEmailIndex(Outlook.Recipients foundRecipients, string emailID)
+        {
+            ArrayList emailIDs = new ArrayList();
+
+            //do this for all recipients of the email
+            foreach (Outlook.Recipient recipient in foundRecipients)
+            {
+                //testing purposes
+                MessageBox.Show("recipient: " + recipient.Address);
+
+                //clear the array of entryIDs
+                emailIDs.Clear();
+
+                //if recipient address is already in index
+                if (InvertedIndexes.sentEmailIndex.Contains(recipient.Address) == true)
+                {
+                    //get listarray of email entryIDs associated with the email address
+                    emailIDs = (ArrayList)InvertedIndexes.sentEmailIndex[recipient.Address];
+
+                    //if this email entryID is not already in the array of values
+                    if (emailIDs.Contains(emailID) == false)
+                    {
+                        //add it to the array
+                        emailIDs.Add(emailID);
+
+                        //put the array back into the index, overwriting the previous one
+                        InvertedIndexes.sentEmailIndex[recipient.Address] = emailIDs;
+                    }
+                    //else this email entryID is already in the arraylist, do nothing
+                }
+                else //recipient address is NOT already in the index
+                {
+                    //add the email entryID to the array of entryIDs
+                    emailIDs.Add(emailID);
+
+                    //put the arraylist of values and the key (address)into the index
+                    InvertedIndexes.sentEmailIndex.Add(recipient.Address, emailIDs);
+                }
+
+
+                //gets the contact ID. (contactID is null if email address is not in contacts)
+                string contactID = checkContacts(recipient.Address);
+
+                if (contactID == null)
+                {
+                    //do nothing, because the address does not belong to a contact
+                }
+                else //address does belong to a contact
+                {
+                    //add contact and email to index
+                    addToContactsEmailIndex(contactID, emailID);
+                }
+            }
+
+
+        }
+
+        public ArrayList getSortedEmailIDs()
+        {
+            ArrayList emailIDs = new ArrayList();
+
+            //gets the contents of the inbox and puts them in searchFolder
+            Outlook.MAPIFolder inbox = this.ActiveExplorer().
+                Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+            Outlook.Items searchFolder = inbox.Items;
+
+            foreach (Outlook.MailItem foundEmail in searchFolder)
+            {
+                try
+                {
+                    emailIDs.Add(foundEmail.EntryID);
+                }
+                catch (Exception e)
+                {
+
+                }
+
+            }
+
+            emailIDs.Sort();
+
+            //testing
+            foreach (string id in emailIDs)
+            {
+                MessageBox.Show(id);
+            }
+
+
+            return emailIDs;
         }
 
 

@@ -9,5 +9,4 @@ obj\Debug\OutlookAddin2.dll
 obj\Debug\OutlookAddin2.pdb
 obj\Debug\Interop.Microsoft.Office.Core.dll
 .\bin\Debug\Interop.Microsoft.Office.Core.dll
-.\bin\Debug\nunit.framework.dll
 .\bin\Debug\nunit.framework.xml
