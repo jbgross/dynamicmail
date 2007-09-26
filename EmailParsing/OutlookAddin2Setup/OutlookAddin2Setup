@@ -39,7 +39,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ACAD31539F57BC4886D6DD54F6EC4096"
+        "MsmKey" = "8:_AF40AF21E0CC5CDA9A4FC41D85E217EB"
         "OwnerKey" = "8:_95563D93BB5046AA985EFF04EB6F26CC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,7 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_FEB7CEBE237486E05E7B7036D14FCC20"
-        "OwnerKey" = "8:_ACAD31539F57BC4886D6DD54F6EC4096"
+        "OwnerKey" = "8:_FF1B61DDC3E75616A9C6157DA27D179A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FF1B61DDC3E75616A9C6157DA27D179A"
+        "OwnerKey" = "8:_95563D93BB5046AA985EFF04EB6F26CC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,7 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ACAD31539F57BC4886D6DD54F6EC4096"
+        "OwnerKey" = "8:_FF1B61DDC3E75616A9C6157DA27D179A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AF40AF21E0CC5CDA9A4FC41D85E217EB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -268,20 +280,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACAD31539F57BC4886D6DD54F6EC4096"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AF40AF21E0CC5CDA9A4FC41D85E217EB"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Interop.Microsoft.Office.Core, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_ACAD31539F57BC4886D6DD54F6EC4096"
+                    "_AF40AF21E0CC5CDA9A4FC41D85E217EB"
                     {
-                    "Name" = "8:Interop.Microsoft.Office.Core.dll"
+                    "Name" = "8:nunit.framework.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Interop.Microsoft.Office.Core.dll"
+            "SourcePath" = "8:nunit.framework.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_20E25822E73443AD853D2A10E7D6C621"
@@ -385,6 +397,37 @@
             {
             "SourcePath" = "8:MSO.DLL"
             "TargetName" = "8:MSO.DLL"
+            "Tag" = "8:"
+            "Folder" = "8:_20E25822E73443AD853D2A10E7D6C621"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FF1B61DDC3E75616A9C6157DA27D179A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.Microsoft.Office.Core, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_FF1B61DDC3E75616A9C6157DA27D179A"
+                    {
+                    "Name" = "8:Interop.Microsoft.Office.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.Microsoft.Office.Core.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_20E25822E73443AD853D2A10E7D6C621"
             "Condition" = "8:"
