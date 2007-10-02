@@ -14,9 +14,9 @@ namespace OutlookAddin2
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
             //indexInboxEmail();
-            //indexSentEmail();
+            indexSentEmail();
             //indexContacts();
-            getSortedEmailIDs();
+            //getSortedEmailIDs();
             //InvertedIndexes.saveTxt();
             MessageBox.Show("Indexing Completed");
         }
@@ -29,7 +29,7 @@ namespace OutlookAddin2
         /// Also populates contact inded with keys (contactIDs) and values(Email entryIDs of emails
         /// sent by that contact
         /// </summary>
-        private void indexInboxEmail()
+        private Hashtable indexInboxEmail()
         {
             
             //gets the contents of the inbox and puts them in searchFolder
@@ -83,16 +83,10 @@ namespace OutlookAddin2
 
                     MessageBox.Show(e.Message + "\n" + lookedAt);
                 }
-
-
                 lookedAt++;
-
-
             }
-            
- 
 
-
+            return InvertedIndexes.receivedEmailIndex;
         }
 
  
@@ -115,8 +109,6 @@ namespace OutlookAddin2
             int lookedAt = 1;                   //email items looked at so far    
 
 
-
-
             //arraylist to hold email entryIDs
             ArrayList emailIDs = new ArrayList();
 
@@ -134,6 +126,8 @@ namespace OutlookAddin2
                 {
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
 
+                    MessageBox.Show("entryID: " + foundEmail.EntryID);
+
 
                     //email entry ID of current email
                     foundEmailEntryID = foundEmail.EntryID;
@@ -147,10 +141,6 @@ namespace OutlookAddin2
 
                     addtoSentEmailIndex(foundRecipients, foundEmailEntryID);
                     
-                    
-
-                    
-
 
                 }
                 catch (Exception e) //catch items that arenot emails
