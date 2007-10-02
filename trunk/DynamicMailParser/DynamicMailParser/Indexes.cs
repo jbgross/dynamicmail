@@ -15,6 +15,10 @@ namespace Edu.Psu.Ist.DynamicMail
         private static Indexes instance=null;
         private static readonly object padlock = new object();
 
+        //arraylist to store all of the entry ids that have been indexed
+        private ArrayList AlreadyIndexed = new ArrayList();
+        
+
         //hashtable to hold the inverted index of subject words
         public Hashtable SubjectIndex = new Hashtable();
         //hashtable to hold the inverted index of received emails
@@ -32,6 +36,7 @@ namespace Edu.Psu.Ist.DynamicMail
         //public constructor
         public Indexes()
         {
+            
         }
 
         //method to get the singelton instance of indexes
@@ -56,6 +61,24 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 instance = value;
             }
+        }
+
+        //Method to search for an index and return a boolean whether or not it is indexed
+        public bool SearchAlreadyIndexed(String SearchIndex)
+        {
+            //to a binary search and get the index
+            int i = AlreadyIndexed.BinarySearch(SearchIndex);
+            //if there is an index return true
+            if (i >= 0)
+                return true;
+            //if there is no index the return false
+            return false;
+        }
+
+        //method to add a new indexid to the Already Indexed arraylist
+        public void AddIndexedID(String NewIndex)
+        {
+            AlreadyIndexed.Add(NewIndex);
         }
 
         //method to save the singelton instace as a serialized object

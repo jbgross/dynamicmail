@@ -73,8 +73,19 @@ namespace Edu.Psu.Ist.DynamicMail
 
         }
 
-        //Unit test to verify that the serialization save and load methods work
         [Test]
+        public void BianarySearch()
+        {
+            testIndexes.AddIndexedID("12r489ia");
+            testIndexes.AddIndexedID("112kr500kda5");
+
+            Assert.IsTrue(testIndexes.SearchAlreadyIndexed("12r489ia"));
+            Assert.IsTrue(!testIndexes.SearchAlreadyIndexed("11222ddsa"));
+        }
+
+        //Unit test to verify that the serialization save and load methods work
+        //currently serialization is not used
+        /*[Test]
         public void TestSerialize()
         {
             Indexes InvertedIndexes = new Indexes();
@@ -140,6 +151,6 @@ namespace Edu.Psu.Ist.DynamicMail
 
             
 
-        }
+        }*/
     }
 }
