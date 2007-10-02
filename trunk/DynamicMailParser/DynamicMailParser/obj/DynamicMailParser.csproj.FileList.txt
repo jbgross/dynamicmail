@@ -5,3 +5,4 @@ bin\Debug\nunit.framework.dll
 bin\Debug\nunit.framework.xml
 obj\Debug\DynamicMailParser.dll
 obj\Debug\DynamicMailParser.pdb
+obj\Debug\DynamicMailParser.csproj.ResolveComReference.cache
