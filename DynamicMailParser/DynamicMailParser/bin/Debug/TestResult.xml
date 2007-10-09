@@ -1,23 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" total="3" failures="0" not-run="0" date="2007-10-02" time="13:30:53">
-  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug" machine-name="DAVID-PC" user="David" user-domain="DAVID-PC" />
+<test-results name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" total="4" failures="0" not-run="0" date="2007-10-09" time="13:31:13">
+  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Program Files\NUnit 2.4.3\bin" machine-name="DAVID-PC" user="David" user-domain="DAVID-PC" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" success="True" time="0.375" asserts="0">
+  <test-suite name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" success="True" time="0.297" asserts="0">
     <results>
-      <test-suite name="Edu" success="True" time="0.375" asserts="0">
+      <test-suite name="Edu" success="True" time="0.281" asserts="0">
         <results>
-          <test-suite name="Psu" success="True" time="0.375" asserts="0">
+          <test-suite name="Psu" success="True" time="0.266" asserts="0">
             <results>
-              <test-suite name="Ist" success="True" time="0.344" asserts="0">
+              <test-suite name="Ist" success="True" time="0.266" asserts="0">
                 <results>
-                  <test-suite name="DynamicMail" success="True" time="0.344" asserts="0">
+                  <test-suite name="DynamicMail" success="True" time="0.266" asserts="0">
                     <results>
-                      <test-suite name="UnitTest" success="True" time="0.234" asserts="0">
+                      <test-suite name="UnitTest" success="True" time="0.156" asserts="0">
                         <results>
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.BianarySearch" executed="True" success="True" time="0.031" asserts="2" />
+                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.BianarySearch" executed="True" success="True" time="0.047" asserts="2" />
+                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestIndexSort" executed="True" success="True" time="0.000" asserts="2" />
                           <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestStemmer" executed="True" success="True" time="0.016" asserts="1" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem" executed="True" success="True" time="0.047" asserts="0" />
+                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem" executed="True" success="True" time="0.016" asserts="0" />
                         </results>
                       </test-suite>
                     </results>

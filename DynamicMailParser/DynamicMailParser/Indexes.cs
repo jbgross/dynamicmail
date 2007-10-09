@@ -79,6 +79,13 @@ namespace Edu.Psu.Ist.DynamicMail
         public void AddIndexedID(String NewIndex)
         {
             AlreadyIndexed.Add(NewIndex);
+            AlreadyIndexed.Sort();
+        }
+
+        //method to get the arraylist of already indexed emails
+        public ArrayList GetAllIndexed()
+        {
+            return AlreadyIndexed;
         }
 
         //method to save the singelton instace as a serialized object
