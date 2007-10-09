@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
+using Edu.Psu.Ist.DynamicMail;
 
 namespace Dynamic_Mail
 {
@@ -35,8 +36,7 @@ namespace Dynamic_Mail
 
             if (newToolBar == null)
             {
-                Office.CommandBars cmdBars =
-                    this.ActiveExplorer().CommandBars;
+                Office.CommandBars cmdBars = this.ActiveExplorer().CommandBars;
                 newToolBar = cmdBars.Add("Dynamic Mail Toolbar",
                     Office.MsoBarPosition.msoBarTop, false, true);
             }
@@ -83,7 +83,7 @@ namespace Dynamic_Mail
                 newToolBar.Visible = true;
                 if (this.thirdButton == null)
                 {
-                    this.thirdButton = button_2;
+                    this.thirdButton = button_3;
                     thirdButton.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
@@ -98,7 +98,33 @@ namespace Dynamic_Mail
         private void ButtonClick(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
+            //get the inbox
+            Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.
+                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+            Outlook.Items inboxItems = inbox.Items;
+
+            //get the contacts folder
+            Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.
+                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
+            Outlook.Items c = contacts.Items;
+
+            //get the sent mail folder
+            Outlook.MAPIFolder sentMail = this.ActiveExplorer().Session.
+                GetDegaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+            Outlook.Items sentItems = sentMail.Items;
+
+            //create a new parser
+            Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
+
+            //display what button was clicked
             MessageBox.Show("You clicked: " + ctrl.Caption);
+
+            //if
+            if (ctrl.Caption = "InboxIndexer")
+            {
+
+                newParser.InboxIndexer(inboxItems, contactItems);
+            }
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)

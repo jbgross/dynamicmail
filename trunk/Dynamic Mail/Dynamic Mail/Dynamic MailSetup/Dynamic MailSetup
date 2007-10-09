@@ -40,25 +40,25 @@
         "Entry"
         {
         "MsmKey" = "8:_B2B1349799500D84A8440D2DE6DC2956"
-        "OwnerKey" = "8:_8DFC4D14BC1D4BA2AE4381DD96F40D61"
+        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B2B1349799500D84A8440D2DE6DC2956"
-        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E4D7DC3DFAF8F97BA6C2EC1E55E13884"
-        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
+        "OwnerKey" = "8:_8DFC4D14BC1D4BA2AE4381DD96F40D61"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E4D7DC3DFAF8F97BA6C2EC1E55E13884"
         "OwnerKey" = "8:_8DFC4D14BC1D4BA2AE4381DD96F40D61"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E4D7DC3DFAF8F97BA6C2EC1E55E13884"
+        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,19 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E95D013101B343B79B83CCD50813052F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8DFC4D14BC1D4BA2AE4381DD96F40D61"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
+        "OwnerKey" = "8:_B2B1349799500D84A8440D2DE6DC2956"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +88,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B2B1349799500D84A8440D2DE6DC2956"
+        "OwnerKey" = "8:_8DFC4D14BC1D4BA2AE4381DD96F40D61"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6B635B578BD8693A5156BBEF8A74259B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E95D013101B343B79B83CCD50813052F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -121,6 +121,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
         "Release"
         {
@@ -137,6 +148,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
     }
     "Deployable"
@@ -226,11 +248,11 @@
                 {
                     "_B2B1349799500D84A8440D2DE6DC2956"
                     {
-                    "Name" = "8:Office.dll"
+                    "Name" = "8:office.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Office.dll"
+            "SourcePath" = "8:office.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_879B49B3934146D78E80733B85A25373"
