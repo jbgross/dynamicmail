@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1004]C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll</TopNode>
+  <TopNode>[0-1005]C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll</TopNode>
   <SelectedNode>[0-1000]Edu.Psu.Ist.DynamicMail.UnitTest</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1004]C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" Expanded="true">
+    <Node UniqueName="[0-1005]C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" Expanded="true">
       <Nodes>
-        <Node UniqueName="[0-1005]Edu" Expanded="true">
+        <Node UniqueName="[0-1006]Edu" Expanded="true">
           <Nodes>
-            <Node UniqueName="[0-1006]Edu.Psu" Expanded="true">
+            <Node UniqueName="[0-1007]Edu.Psu" Expanded="true">
               <Nodes>
-                <Node UniqueName="[0-1007]Edu.Psu.Ist" Expanded="true">
+                <Node UniqueName="[0-1008]Edu.Psu.Ist" Expanded="true">
                   <Nodes>
-                    <Node UniqueName="[0-1008]Edu.Psu.Ist.DynamicMail" Expanded="true">
+                    <Node UniqueName="[0-1009]Edu.Psu.Ist.DynamicMail" Expanded="true">
                       <Nodes>
                         <Node UniqueName="[0-1000]Edu.Psu.Ist.DynamicMail.UnitTest" Expanded="true">
                           <Nodes>
                             <Node UniqueName="[0-1003]Edu.Psu.Ist.DynamicMail.UnitTest.BianarySearch" />
+                            <Node UniqueName="[0-1004]Edu.Psu.Ist.DynamicMail.UnitTest.TestIndexSort" />
                             <Node UniqueName="[0-1001]Edu.Psu.Ist.DynamicMail.UnitTest.TestStemmer" />
                             <Node UniqueName="[0-1002]Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem" />
                           </Nodes>

@@ -32,23 +32,27 @@ namespace Edu.Psu.Ist.DynamicMail
         [Test]
         public void TestSubjectStem()
         {
+            //reset the inverted indexes
             Indexes InvertedIndexes = new Indexes();
             InvertedIndexes.receivedEmailIndex.Clear();
             InvertedIndexes.sentEmailIndex.Clear();
             InvertedIndexes.SubjectIndex.Clear();
 
-
+            //create subject lines to stem
             String subject1 = "Dave.:; is cool";
             String emailID1 = "12345";
 
+            //test the stemming of the subject
             testStemmer.stemSubject(subject1, emailID1);
 
+            //create a hashtable of how the stemmer should have processed the subject line
             Hashtable compareTable = new Hashtable();
             ArrayList emailIDs = new ArrayList();
             emailIDs.Add(emailID1);
             compareTable.Add("Dave", emailIDs.Clone());
             compareTable.Add("cool", emailIDs.Clone());
 
+            //add another subject and email to the stemmer and add the correct output to the test hashtable
             String subject2 = "Dave is awesome";
             String emailID2 = "11111";
             testStemmer.stemSubject(subject2, emailID2);
@@ -57,6 +61,7 @@ namespace Edu.Psu.Ist.DynamicMail
             emailIDs.Remove(emailID1);
             compareTable.Add("awesom", emailIDs.Clone());
 
+            //go through the test table and the indexes and make sure that they are equal
             foreach (object keys in InvertedIndexes.SubjectIndex.Keys)
             {
                 Assert.Contains(keys, compareTable.Keys);
@@ -68,19 +73,40 @@ namespace Edu.Psu.Ist.DynamicMail
                     Console.WriteLine(ids);
                 }
             }
-
+            //save the indexes to a test file
             InvertedIndexes.saveTxt();
 
         }
 
+        //unit test to verify that the binary search is working
         [Test]
         public void BianarySearch()
         {
+            //add indexes to the aleardy indexed array
             testIndexes.AddIndexedID("12r489ia");
             testIndexes.AddIndexedID("112kr500kda5");
 
+            //verify that the two indexes are found
             Assert.IsTrue(testIndexes.SearchAlreadyIndexed("12r489ia"));
             Assert.IsTrue(!testIndexes.SearchAlreadyIndexed("11222ddsa"));
+        }
+
+        //unit test to verify that the indexes for already indexed emails is sorting
+        [Test]
+        public void TestIndexSort()
+        {
+            //add indexs to the already indexed array
+            testIndexes.AddIndexedID("111111d");
+            testIndexes.AddIndexedID("111111c");
+            testIndexes.AddIndexedID("11111a1");
+            testIndexes.AddIndexedID("111111a");
+
+            //get the arraylist of all the indexed emails
+            ArrayList TestIndexSortArray = testIndexes.GetAllIndexed();
+
+            //validate that they are indexed
+            Assert.AreEqual("111111d", TestIndexSortArray[2]);
+            Assert.AreEqual("111111a", TestIndexSortArray[0]);
         }
 
         //Unit test to verify that the serialization save and load methods work

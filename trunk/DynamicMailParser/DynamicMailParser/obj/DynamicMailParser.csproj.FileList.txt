@@ -6,3 +6,6 @@ bin\Debug\nunit.framework.xml
 obj\Debug\DynamicMailParser.dll
 obj\Debug\DynamicMailParser.pdb
 obj\Debug\DynamicMailParser.csproj.ResolveComReference.cache
+obj\Debug\Interop.Microsoft.Office.Core.dll
+bin\Debug\stoplist.txt
+bin\Debug\Interop.Microsoft.Office.Core.dll
