@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
-    class DynamicMailParser
+    public class DynamicMailParser
     {
         //Singelton Instance of indexes
         private Indexes InvertedIndexes;
@@ -21,7 +21,7 @@ namespace Edu.Psu.Ist.DynamicMail
             InvertedIndexes = new Indexes();
         }
 
-        public void InboxIndexer(Outlook.Items inbox)
+        public void InboxIndexer(Outlook.Items inbox, Outlook.MAPIFolder contacts)
         {
             Outlook.Items searchFolder = inbox;
 
@@ -56,7 +56,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
 
                     //add email address and emailID to the received email index
-                    addToReceivedEmailIndex(foundSender, foundEmailEntryID);
+                    addToReceivedEmailIndex(foundSender, foundEmailEntryID, contacts);
                 }
                 catch (Exception e) //catches items that are not emails
                 {
@@ -66,7 +66,7 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
-        public void sentBoxIndexer(Outlook.Items sentMail)
+        public void sentBoxIndexer(Outlook.Items sentMail, Outlook.MAPIFolder contacts)
         {
             Outlook.Items searchFolder = sentMail;
             
@@ -102,7 +102,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     //get all email recipients (individuals you sent the email to)
                     foundRecipients = foundEmail.Recipients;
 
-                    addtoSentEmailIndex(foundRecipients, foundEmailEntryID);
+                    addtoSentEmailIndex(foundRecipients, foundEmailEntryID, contacts);
 
 
                 }
@@ -275,7 +275,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
         }
 
-        public void addtoSentEmailIndex(Outlook.Recipients foundRecipients, string emailID)
+        public void addtoSentEmailIndex(Outlook.Recipients foundRecipients, string emailID, Outlook.MAPIFolder contacts)
         {
             ArrayList emailIDs = new ArrayList();
 
@@ -314,7 +314,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
 
                 //gets the contact ID. (contactID is null if email address is not in contacts)
-                string contactID = checkContacts(recipient.Address);
+                string contactID = contactChecker(contacts, recipient.Address);
 
                 if (contactID == null)
                 {

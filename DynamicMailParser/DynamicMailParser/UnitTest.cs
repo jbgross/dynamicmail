@@ -3,12 +3,24 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 using NUnit.Framework;
+using Office = Microsoft.Office.Core;
+using System.Runtime.InteropServices;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
     [TestFixture]
     public class UnitTest
     {
+        //test inbox
+        Outlook.Items inbox;
+        
+        //test sentBox
+        private Outlook.Items sentBox;
+
+        //test contacts
+        private Outlook.MAPIFolder contacts;
+
         //test stemmer object
         private Stemmer testStemmer = new Stemmer();
 
@@ -178,5 +190,16 @@ namespace Edu.Psu.Ist.DynamicMail
             
 
         }*/
+
+        [Test]
+        public void TestInboxIndexer()
+        {
+            //Outlook.MailItem email1 = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
+            //email1.Subject = "This is the subject";
+            
+            
+
+        }
+
     }
 }

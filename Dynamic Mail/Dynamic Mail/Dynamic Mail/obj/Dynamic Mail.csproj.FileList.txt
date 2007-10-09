@@ -7,3 +7,7 @@ obj\Debug\Dynamic Mail.csproj.GenerateResource.Cache
 .\bin\Debug\Dynamic Mail.dll.manifest
 obj\Debug\Dynamic Mail.dll
 obj\Debug\Dynamic Mail.pdb
+.\bin\Debug\DynamicMailParser.dll
+.\bin\Debug\nunit.framework.dll
+.\bin\Debug\nunit.framework.xml
+.\bin\Debug\DynamicMailParser.pdb
