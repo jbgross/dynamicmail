@@ -5,7 +5,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using Edu.Psu.Ist.DynamicMail;
 
-namespace Dynamic_Mail
+namespace Edu.Psu.Ist.DynamicMail
 {
     public partial class ThisApplication
     {
@@ -106,25 +106,25 @@ namespace Dynamic_Mail
             //get the contacts folder
             Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.
                 GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
-            Outlook.Items c = contacts.Items;
+            Outlook.Items contactItems = contacts.Items;
 
             //get the sent mail folder
             Outlook.MAPIFolder sentMail = this.ActiveExplorer().Session.
-                GetDegaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
             Outlook.Items sentItems = sentMail.Items;
 
             //create a new parser
-            Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
+            //Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
 
             //display what button was clicked
             MessageBox.Show("You clicked: " + ctrl.Caption);
 
-            //if
-            if (ctrl.Caption = "InboxIndexer")
-            {
+            ////if
+            //if (ctrl.Caption == "InboxIndexer")
+            //{
 
-                newParser.InboxIndexer(inboxItems, contactItems);
-            }
+            //    newParser.InboxIndexer(inboxItems, contacts);
+            //}
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
