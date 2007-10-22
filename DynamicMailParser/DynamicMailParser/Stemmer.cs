@@ -55,7 +55,7 @@ namespace Edu.Psu.Ist.DynamicMail
         class Stemmer
         {
             //Indexes instance
-            private Indexes InvertedIndexes = new Indexes();
+            private Indexes InvertedIndexes = Indexes.Instance;
 
             //array list to hold the stop list
             public static ArrayList StopList = new ArrayList();

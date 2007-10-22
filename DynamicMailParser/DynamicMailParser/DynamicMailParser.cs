@@ -18,7 +18,7 @@ namespace Edu.Psu.Ist.DynamicMail
         //public default constructor
         public DynamicMailParser()
         {
-            InvertedIndexes = new Indexes();
+            InvertedIndexes = Indexes.Instance;
         }
 
         public void InboxIndexer(Outlook.Items inbox, Outlook.MAPIFolder contacts)

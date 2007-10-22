@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Office = Microsoft.Office.Core;
 using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
+using System.IO;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -25,7 +26,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private Stemmer testStemmer = new Stemmer();
 
         //Test index object
-        private Indexes testIndexes = new Indexes();
+        private Indexes testIndexes = Indexes.Instance;
 
         //Unit test to verify that the stemmer can accept a string and then stemm it
         //Pass it Testing and should return Test
@@ -45,7 +46,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void TestSubjectStem()
         {
             //reset the inverted indexes
-            Indexes InvertedIndexes = new Indexes();
+            Indexes InvertedIndexes = Indexes.Instance;
             InvertedIndexes.receivedEmailIndex.Clear();
             InvertedIndexes.sentEmailIndex.Clear();
             InvertedIndexes.SubjectIndex.Clear();
@@ -119,6 +120,50 @@ namespace Edu.Psu.Ist.DynamicMail
             //validate that they are indexed
             Assert.AreEqual("111111d", TestIndexSortArray[2]);
             Assert.AreEqual("111111a", TestIndexSortArray[0]);
+        }
+
+        //Unit test to verify that the logging is working
+        [Test]
+        public void TestLogger()
+        {
+            //get the Instance of logger
+            Logger testLogger = Logger.Instance;
+
+            //String to store the message to be logged
+            String message = "Unit testing the dynamic mail logger";
+            //string to store the last line of the reader
+            String ReadLine = "";
+
+            //write  message through the log file
+            testLogger.logMessage(message);
+
+            //read through the log file to get the last line in the file
+            using (StreamReader sr = new StreamReader(testLogger.LogLocation + testLogger.LogFileName))
+            {
+                String line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    ReadLine = line;
+                }
+
+            }
+
+            //verify that the message was written
+            Assert.IsTrue(ReadLine.Contains(message));
+
+            //verify that the date and time the log was written is less than or equal to the current time
+            char[] denom = { '\t', '-', ':' };
+
+            String[] time = ReadLine.Split(denom);
+
+            Assert.LessOrEqual(Convert.ToInt32(time[0]),DateTime.Now.Year);
+            Assert.LessOrEqual(Convert.ToInt32(time[1]), DateTime.Now.Month);
+            Assert.LessOrEqual(Convert.ToInt32(time[2]), DateTime.Now.Day);
+            Assert.LessOrEqual(Convert.ToInt32(time[3]), DateTime.Now.Hour);
+            Assert.LessOrEqual(Convert.ToInt32(time[4]), DateTime.Now.Minute);
+            Assert.LessOrEqual(Convert.ToInt32(time[5]), DateTime.Now.Second);
+            
         }
 
         //Unit test to verify that the serialization save and load methods work
