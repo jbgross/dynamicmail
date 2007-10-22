@@ -34,7 +34,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private String Location = "C:\\Documents and Settings\\David\\Desktop\\Fall07\\IST496\\OutlookAddin2\\OutlookAddin2\\bin\\Debug\\";
         
         //public constructor
-        public Indexes()
+        private Indexes()
         {
             
         }
