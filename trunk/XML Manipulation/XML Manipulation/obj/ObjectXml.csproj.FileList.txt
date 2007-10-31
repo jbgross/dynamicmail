@@ -1,0 +1,5 @@
+bin\Debug\ObjectXml.dll
+bin\Debug\ObjectXml.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\ObjectXml.dll
+obj\Debug\ObjectXml.pdb
