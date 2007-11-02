@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IndexObjectXMLConverter.cs" />
     <Compile Include="IObjectXmlConverter.cs" />
     <Compile Include="ObjectXmlConverterRegistry.cs" />
     <Compile Include="ObjectXmlExceptions.cs" />

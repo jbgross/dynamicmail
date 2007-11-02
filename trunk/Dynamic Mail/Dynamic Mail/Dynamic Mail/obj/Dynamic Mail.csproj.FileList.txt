@@ -11,3 +11,4 @@ obj\Debug\Dynamic Mail.pdb
 .\bin\Debug\nunit.framework.dll
 .\bin\Debug\nunit.framework.xml
 .\bin\Debug\DynamicMailParser.pdb
+obj\Debug\Interop.Microsoft.Office.Core.dll

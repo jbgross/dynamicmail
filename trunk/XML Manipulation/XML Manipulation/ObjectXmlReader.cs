@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace ObjectXml
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// This class generates objects from ObjectXml Xml files.  The input uses 

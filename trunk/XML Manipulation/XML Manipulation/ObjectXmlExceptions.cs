@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace ObjectXml
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// This is the base exception for all ObjectXml exceptions

@@ -64,6 +64,9 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
                 lookedAt++;
             }
+            Indexes SaveIndexes = Indexes.Instance;
+
+            SaveIndexes.WriteIndexToXML();
         }
 
         public void sentBoxIndexer(Outlook.Items sentMail, Outlook.MAPIFolder contacts)
