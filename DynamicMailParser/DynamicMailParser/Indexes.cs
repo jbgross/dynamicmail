@@ -5,7 +5,6 @@ using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using ObjectXml;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -77,6 +76,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     if (instance == null)
                     {
                         instance = new Indexes();
+                        instance.ReadIndexFromXML();
                     }
                     //return the sigelton instance
                     return instance;

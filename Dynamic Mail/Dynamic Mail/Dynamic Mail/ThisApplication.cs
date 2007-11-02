@@ -114,10 +114,12 @@ namespace Edu.Psu.Ist.DynamicMail
             Outlook.Items sentItems = sentMail.Items;
 
             //create a new parser
-            //Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
+            Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
 
             //display what button was clicked
             MessageBox.Show("You clicked: " + ctrl.Caption);
+
+            newParser.InboxIndexer(inboxItems, contacts);
 
             ////if
             //if (ctrl.Caption == "InboxIndexer")

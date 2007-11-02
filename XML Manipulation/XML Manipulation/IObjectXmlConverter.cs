@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ObjectXml
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// This is the interface that all converters for object to ObjectXml transformation

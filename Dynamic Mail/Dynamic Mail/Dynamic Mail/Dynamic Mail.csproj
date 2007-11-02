@@ -106,7 +106,9 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>3</VersionMinor>
-      <WrapperTool>primary</WrapperTool>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
     </COMReference>
     <COMReference Include="Outlook">
       <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>

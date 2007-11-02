@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 
-namespace ObjectXml
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// This class is a singleton registry of all IObjectXmlConverter implementation
@@ -106,7 +107,7 @@ namespace ObjectXml
         /// </remarks>
         private void LoadConvertersFromStatic()
         {
-
+            converters.Add(typeof(Hashtable), new IndexObjectXMLConverter());
         }
     }
 }
