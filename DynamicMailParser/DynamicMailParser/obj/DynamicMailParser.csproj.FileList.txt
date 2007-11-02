@@ -9,3 +9,5 @@ obj\Debug\DynamicMailParser.csproj.ResolveComReference.cache
 obj\Debug\Interop.Microsoft.Office.Core.dll
 bin\Debug\stoplist.txt
 bin\Debug\Interop.Microsoft.Office.Core.dll
+bin\Debug\ObjectXml.dll
+bin\Debug\ObjectXml.pdb

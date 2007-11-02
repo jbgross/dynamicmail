@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using ObjectXml;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -37,6 +38,31 @@ namespace Edu.Psu.Ist.DynamicMail
         private Indexes()
         {
             
+        }
+
+        public void WriteIndexToXML()
+        {
+            ObjectXmlWriter WriteXML = new ObjectXmlWriter();
+            List<Hashtable> IndexList = new List<Hashtable>();
+            IndexList.Add(SubjectIndex);
+            IndexList.Add(receivedEmailIndex);
+            IndexList.Add(sentEmailIndex);
+            IndexList.Add(contactsIndex);
+            IndexList.Add(contactsAddresses);
+
+            WriteXML.WriteObjectXml(IndexList, "emailparse.xml");
+        }
+
+        public void ReadIndexFromXML()
+        {
+            ObjectXmlReader ReadXML = new ObjectXmlReader();
+            List<Object> IndexList = ReadXML.ReadObjectXml("emailparse.xml");
+
+            SubjectIndex = (Hashtable)IndexList[0];
+            receivedEmailIndex = (Hashtable)IndexList[1];
+            sentEmailIndex = (Hashtable)IndexList[2];
+            contactsIndex = (Hashtable)IndexList[3];
+            contactsAddresses = (Hashtable)IndexList[4];
         }
 
         //method to get the singelton instance of indexes
