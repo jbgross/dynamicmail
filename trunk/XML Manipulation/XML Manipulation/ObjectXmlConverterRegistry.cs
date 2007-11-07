@@ -109,5 +109,13 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             converters.Add(typeof(Hashtable), new IndexObjectXMLConverter());
         }
+
+        public void RegisterConverter(Type t, IObjectXmlConverter converter)
+        {
+            if (converters.ContainsKey(t))
+                if (converters[t].GetType() == converter.GetType())
+                    return;
+            converters.Add(t, converter);
+        }
     }
 }

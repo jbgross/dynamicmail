@@ -194,7 +194,7 @@ namespace Edu.Psu.Ist.DynamicMail
             Dictionary<String, String> primitives, Dictionary<String, Object> references)
         {
             writeStream.WriteStartElement("Object");
-            writeStream.WriteAttributeString("Class", objectToWrite.GetType().Name);
+            writeStream.WriteAttributeString("Class", objectToWrite.GetType().AssemblyQualifiedName);
             writeStream.WriteAttributeString("ObjectID", objectIDLookupTable[objectToWrite].ToString());
             writeStream.WriteAttributeString("RootObject", rootObjects.Contains(objectToWrite).ToString());
             foreach (String key in primitives.Keys)
