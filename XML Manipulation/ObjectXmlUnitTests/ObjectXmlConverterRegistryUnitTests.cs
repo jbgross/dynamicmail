@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using ObjectXml;
+using Edu.Psu.Ist.DynamicMail;
 
-namespace ObjectXmlUnitTests
+namespace Edu.Psu.Ist.DynamicMail.UnitTests
 {
     [TestFixture]
     public class ObjectXmlConverterRegistryUnitTests

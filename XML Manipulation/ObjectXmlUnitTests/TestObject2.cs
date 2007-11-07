@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ObjectXmlUnitTests
+namespace Edu.Psu.Ist.DynamicMail.UnitTests
 {
     public class TestObject2
     {

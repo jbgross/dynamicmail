@@ -2,7 +2,7 @@
 <SavedObjects xmlns="ObjectXml"
               xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="ObjectXml ObjectXML.xsd">
-  <Object Class="ObjectXmlUnitTests.TestObject1, ObjectXmlUnitTests" RootObject="true" ObjectID="1">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject1, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="true" ObjectID="1">
     <Primitive VariableName="A" Value="1"/>
     <Primitive VariableName="B" Value="2"/>
     <Primitive VariableName="C" Value="3"/>
@@ -11,7 +11,7 @@
     <Primitive VariableName="F" Value="h"/>
     <Primitive VariableName="G" Value="ijklmnop"/>
   </Object>
-  <Object Class="ObjectXmlUnitTests.TestObject1, ObjectXmlUnitTests" RootObject="false" ObjectID="2">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject1, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="false" ObjectID="2">
     <Primitive VariableName="A" Value="2"/>
     <Primitive VariableName="B" Value="3"/>
     <Primitive VariableName="C" Value="4"/>
@@ -20,13 +20,13 @@
     <Primitive VariableName="F" Value="d"/>
     <Primitive VariableName="G" Value="sub1"/>
   </Object>
-  <Object Class="ObjectXmlUnitTests.TestObject2, ObjectXmlUnitTests" RootObject="true" ObjectID="6">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject2, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="true" ObjectID="6">
     <Reference VariableName="A" ObjectID="2"/>
     <Reference VariableName="B" ObjectID="3"/>
     <Reference VariableName="C" ObjectID="4"/>
     <Reference VariableName="D" ObjectID="5"/>
   </Object>
-  <Object Class="ObjectXmlUnitTests.TestObject1, ObjectXmlUnitTests" RootObject="false" ObjectID="3">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject1, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="false" ObjectID="3">
     <Primitive VariableName="A" Value="6"/>
     <Primitive VariableName="B" Value="2"/>
     <Primitive VariableName="C" Value="3"/>
@@ -35,7 +35,7 @@
     <Primitive VariableName="F" Value="k"/>
     <Primitive VariableName="G" Value="sub2"/>
   </Object>
-  <Object Class="ObjectXmlUnitTests.TestObject1, ObjectXmlUnitTests" RootObject="false" ObjectID="4">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject1, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="false" ObjectID="4">
     <Primitive VariableName="A" Value="8"/>
     <Primitive VariableName="B" Value="1"/>
     <Primitive VariableName="C" Value="4"/>
@@ -44,7 +44,7 @@
     <Primitive VariableName="F" Value="o"/>
     <Primitive VariableName="G" Value="sub3"/>
   </Object>
-  <Object Class="ObjectXmlUnitTests.TestObject1, ObjectXmlUnitTests" RootObject="false" ObjectID="5">
+  <Object Class="Edu.Psu.Ist.DynamicMail.UnitTests.TestObject1, Edu.Psu.Ist.DynamicMail.UnitTests" RootObject="false" ObjectID="5">
     <Primitive VariableName="A" Value="0"/>
     <Primitive VariableName="B" Value="5"/>
     <Primitive VariableName="C" Value="2"/>

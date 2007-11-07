@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ObjectXml;
+using Edu.Psu.Ist.DynamicMail;
 using NUnit.Framework;
 
-namespace ObjectXmlUnitTests
+namespace Edu.Psu.Ist.DynamicMail.UnitTests
 {
     [TestFixture]
     public class ObjectXmlReaderUnitTests
