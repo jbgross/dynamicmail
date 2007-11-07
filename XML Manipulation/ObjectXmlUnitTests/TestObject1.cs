@@ -66,15 +66,16 @@ namespace ObjectXmlUnitTests
             this.f = f;
             this.g = g;
         }
-        public bool Equals(Object obj)
+        override public bool Equals(Object obj)
         {
-            TestObject1 o = obj as TestObject1; 
+            if (obj == null || !Type.Equals(obj.GetType(), this.GetType())) return false;
+            TestObject1 o = obj as TestObject1;
             return
                 this.a == o.a &&
                 this.b == o.b &&
                 this.c == o.c &&
-                this.d == o.d &&
-                this.e == o.e &&
+                Math.Abs(this.d - o.d) < 0.1 &&
+                Math.Abs(this.e - o.e) < 0.1 &&
                 this.f == o.f &&
                 this.g.Equals(o.g);
         }
