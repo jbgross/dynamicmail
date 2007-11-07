@@ -14,6 +14,8 @@ namespace Edu.Psu.Ist.DynamicMail
         Office.CommandBarButton thirdButton;
         Outlook.Explorers selectExplorers;
 
+        //DynamicMailParser parser = new DynamicMailParser();
+
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
 
@@ -21,6 +23,8 @@ namespace Edu.Psu.Ist.DynamicMail
             selectExplorers.NewExplorer += new Outlook
                 .ExplorersEvents_NewExplorerEventHandler(newExplorer_Event);
             AddToolbar();
+
+            
         }
 
         private void newExplorer_Event(Outlook.Explorer new_Explorer)
@@ -62,8 +66,8 @@ namespace Edu.Psu.Ist.DynamicMail
                     (1, missing, missing, missing, missing);
                 button_2.Style = Office
                     .MsoButtonStyle.msoButtonCaption;
-                button_2.Caption = "Nokia N800 Project";
-                button_2.Tag = "IST412";
+                button_2.Caption = "Index Sent Mail";
+                button_2.Tag = "sent";
                 newToolBar.Visible = true;
                 if (this.secondButton == null)
                 {
@@ -78,8 +82,8 @@ namespace Edu.Psu.Ist.DynamicMail
                     (1, missing, missing, missing, missing);
                 button_3.Style = Office
                     .MsoButtonStyle.msoButtonCaption;
-                button_3.Caption = "Disney Project";
-                button_3.Tag = "IST443";
+                button_3.Caption = "Index Contacts";
+                button_3.Tag = "contacts";
                 newToolBar.Visible = true;
                 if (this.thirdButton == null)
                 {
@@ -98,10 +102,26 @@ namespace Edu.Psu.Ist.DynamicMail
         private void ButtonClick(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
-            if (ctrl.Tag == "inbox")
-            {
+            //Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+            //Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+            //Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
 
-            }
+            //if (ctrl.Tag == "inbox")
+            //{
+
+            //    parser.InboxIndexer(inbox, contacts);
+
+            //}
+            //if (ctrl.Tag == "sent")
+            //{
+            //    parser.sentBoxIndexer(sentBox, contacts);
+
+            //}
+            //if (ctrl.Tag == "contacts")
+            //{
+            //    parser.contactsIndexer(contacts);
+            //}
+
             MessageBox.Show("You clicked: " + ctrl.Caption);
         }
 

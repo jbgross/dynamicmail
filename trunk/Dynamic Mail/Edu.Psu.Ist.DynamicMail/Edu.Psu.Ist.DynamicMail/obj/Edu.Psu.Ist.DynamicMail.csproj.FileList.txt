@@ -7,3 +7,9 @@ obj\Debug\Edu.Psu.Ist.DynamicMail.Properties.Resources.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.csproj.GenerateResource.Cache
 obj\Debug\Edu.Psu.Ist.DynamicMail.dll
 obj\Debug\Edu.Psu.Ist.DynamicMail.pdb
+.\bin\Debug\DynamicMailParser.dll
+.\bin\Debug\nunit.framework.dll
+.\bin\Debug\ObjectXml.dll
+.\bin\Debug\nunit.framework.xml
+.\bin\Debug\DynamicMailParser.pdb
+.\bin\Debug\ObjectXml.pdb

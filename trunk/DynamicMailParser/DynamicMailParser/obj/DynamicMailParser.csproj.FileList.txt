@@ -1,7 +1,6 @@
 obj\Debug\ResolveAssemblyReference.cache
 bin\Debug\DynamicMailParser.dll
 bin\Debug\DynamicMailParser.pdb
-bin\Debug\nunit.framework.dll
 bin\Debug\nunit.framework.xml
 obj\Debug\DynamicMailParser.dll
 obj\Debug\DynamicMailParser.pdb
