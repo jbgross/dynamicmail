@@ -49,7 +49,7 @@ namespace Edu.Psu.Ist.DynamicMail
             IndexList.Add(contactsIndex);
             IndexList.Add(contactsAddresses);
 
-            WriteXML.WriteObjectXml(IndexList, "emailparse.xml");
+            WriteXML.WriteObjectXml(IndexList, "c:\\emailparse.xml");
         }
 
         public void ReadIndexFromXML()
@@ -76,7 +76,11 @@ namespace Edu.Psu.Ist.DynamicMail
                     if (instance == null)
                     {
                         instance = new Indexes();
-                        instance.ReadIndexFromXML();
+                        try
+                        {
+                            instance.ReadIndexFromXML();
+                        }catch(Exception e){
+                        }
                     }
                     //return the sigelton instance
                     return instance;
