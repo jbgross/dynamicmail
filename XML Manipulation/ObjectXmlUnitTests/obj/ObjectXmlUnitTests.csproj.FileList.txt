@@ -1,9 +1,0 @@
-bin\Debug\ObjectXmlUnitTests.dll
-bin\Debug\ObjectXmlUnitTests.pdb
-bin\Debug\nunit.framework.dll
-bin\Debug\ObjectXml.dll
-bin\Debug\ObjectXml.pdb
-bin\Debug\nunit.framework.xml
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\ObjectXmlUnitTests.dll
-obj\Debug\ObjectXmlUnitTests.pdb
