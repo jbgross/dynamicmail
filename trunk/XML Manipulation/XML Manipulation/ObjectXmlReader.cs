@@ -112,7 +112,7 @@ namespace Edu.Psu.Ist.DynamicMail
                             String name = reader.GetAttribute(VARIABLE_NAME);
                             int rid = Int32.Parse(reader.GetAttribute(OBJECT_ID));
                             if (!readObjects.ContainsKey(rid)) throw new InvalidObjectIDException(rid.ToString());
-                            references.Add(name, readObjects[id]);
+                            references.Add(name, readObjects[rid]);
                         }
                         reader.Read();
                     }

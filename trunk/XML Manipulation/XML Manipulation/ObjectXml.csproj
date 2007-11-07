@@ -7,8 +7,8 @@
     <ProjectGuid>{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ObjectXml</RootNamespace>
-    <AssemblyName>ObjectXml</AssemblyName>
+    <RootNamespace>Edu.Psu.Ist.DynamicMail</RootNamespace>
+    <AssemblyName>Edu.Psu.Ist.DynamicMail</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ObjectXml;
+using Edu.Psu.Ist.DynamicMail;
 
-namespace ObjectXmlUnitTests
+namespace Edu.Psu.Ist.DynamicMail.UnitTests
 {
     public class TestObject2Converter : IObjectXmlConverter
     {

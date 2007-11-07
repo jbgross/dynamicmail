@@ -7,8 +7,8 @@
     <ProjectGuid>{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ObjectXmlUnitTests</RootNamespace>
-    <AssemblyName>ObjectXmlUnitTests</AssemblyName>
+    <RootNamespace>Edu.Psu.Ist.DynamicMail.UnitTests</RootNamespace>
+    <AssemblyName>Edu.Psu.Ist.DynamicMail.UnitTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,12 +46,6 @@
     <Compile Include="TestObject3Converter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XML Manipulation\ObjectXml.csproj">
-      <Project>{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}</Project>
-      <Name>ObjectXml</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="InvalidRead.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -68,6 +62,12 @@
       <DependentUpon>ObjectXML.xsd</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XML Manipulation\ObjectXml.csproj">
+      <Project>{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}</Project>
+      <Name>ObjectXml</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
