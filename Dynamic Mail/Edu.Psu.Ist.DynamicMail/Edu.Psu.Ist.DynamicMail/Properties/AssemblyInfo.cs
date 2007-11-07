@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OutlookAddin1")]
+[assembly: AssemblyTitle("Edu.Psu.Ist.DynamicMail")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OutlookAddin1")]
+[assembly: AssemblyProduct("Edu.Psu.Ist.DynamicMail")]
 [assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0056a389-b4c2-46f8-a574-1d188a283b53")]
+[assembly: Guid("542f4b84-7542-4e55-a96d-1920c6c2f9d5")]
 
 // Version information for an assembly consists of the following four values:
 //
