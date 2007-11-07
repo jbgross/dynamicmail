@@ -3,9 +3,8 @@ using System.Windows.Forms;
 using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
-using Edu.Psu.Ist.DynamicMail;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace OutlookAddin1
 {
     public partial class ThisApplication
     {
@@ -36,8 +35,9 @@ namespace Edu.Psu.Ist.DynamicMail
 
             if (newToolBar == null)
             {
-                Office.CommandBars cmdBars = this.ActiveExplorer().CommandBars;
-                newToolBar = cmdBars.Add("Dynamic Mail Toolbar",
+                Office.CommandBars cmdBars =
+                    this.ActiveExplorer().CommandBars;
+                newToolBar = cmdBars.Add("Email Groups",
                     Office.MsoBarPosition.msoBarTop, false, true);
             }
             try
@@ -48,7 +48,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 button_1.Style = Office
                     .MsoButtonStyle.msoButtonCaption;
                 button_1.Caption = "Index Inbox";
-                button_1.Tag = "InboxIndexer";
+                button_1.Tag = "inbox";
                 if (this.firstButton == null)
                 {
                     this.firstButton = button_1;
@@ -62,8 +62,8 @@ namespace Edu.Psu.Ist.DynamicMail
                     (1, missing, missing, missing, missing);
                 button_2.Style = Office
                     .MsoButtonStyle.msoButtonCaption;
-                button_2.Caption = "Index Sent Mail";
-                button_2.Tag = "SentMailIndexer";
+                button_2.Caption = "Nokia N800 Project";
+                button_2.Tag = "IST412";
                 newToolBar.Visible = true;
                 if (this.secondButton == null)
                 {
@@ -78,8 +78,8 @@ namespace Edu.Psu.Ist.DynamicMail
                     (1, missing, missing, missing, missing);
                 button_3.Style = Office
                     .MsoButtonStyle.msoButtonCaption;
-                button_3.Caption = "Index Contacts";
-                button_3.Tag = "ContactsIndexer";
+                button_3.Caption = "Disney Project";
+                button_3.Tag = "IST443";
                 newToolBar.Visible = true;
                 if (this.thirdButton == null)
                 {
@@ -98,37 +98,12 @@ namespace Edu.Psu.Ist.DynamicMail
         private void ButtonClick(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
-            //get the inbox
-            Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.
-                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-            Outlook.Items inboxItems = inbox.Items;
-
-            //get the contacts folder
-            Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.
-                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
-            Outlook.Items contactItems = contacts.Items;
-
-            //get the sent mail folder
-            Outlook.MAPIFolder sentMail = this.ActiveExplorer().Session.
-                GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
-            Outlook.Items sentItems = sentMail.Items;
-
-            //create a new parser
-            Edu.Psu.Ist.DynamicMail.DynamicMailParser newParser;
-
-            //display what button was clicked
+            if (ctrl.Tag == "inbox")
+            {
+                
+            }
             MessageBox.Show("You clicked: " + ctrl.Caption);
-
-            newParser.InboxIndexer(inboxItems, contacts);
-
-            ////if
-            //if (ctrl.Caption == "InboxIndexer")
-            //{
-
-            //    newParser.InboxIndexer(inboxItems, contacts);
-            //}
         }
-
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
         {
         }

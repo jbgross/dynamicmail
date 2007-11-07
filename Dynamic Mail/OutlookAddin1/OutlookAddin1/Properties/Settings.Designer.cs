@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dynamic_Mail.Properties
+namespace OutlookAddin1.Properties
 {
 
 
