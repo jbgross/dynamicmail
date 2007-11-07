@@ -39,24 +39,35 @@ namespace Edu.Psu.Ist.DynamicMail
             
         }
 
+        //public method to write the indexes to XML
         public void WriteIndexToXML()
         {
+            //create an XML writer object
             ObjectXmlWriter WriteXML = new ObjectXmlWriter();
-            List<Hashtable> IndexList = new List<Hashtable>();
-            IndexList.Add(SubjectIndex);
-            IndexList.Add(receivedEmailIndex);
-            IndexList.Add(sentEmailIndex);
-            IndexList.Add(contactsIndex);
-            IndexList.Add(contactsAddresses);
 
-            WriteXML.WriteObjectXml(IndexList, "c:\\emailparse.xml");
+            //creata list of all the indexes and add each index to it
+            List<Hashtable> IndexList = new List<Hashtable>();
+            //IndexList.Add(SubjectIndex);
+            //IndexList.Add(receivedEmailIndex);
+            //IndexList.Add(sentEmailIndex);
+            //IndexList.Add(contactsIndex);
+            //IndexList.Add(contactsAddresses);
+
+            //Send the list the the XML writer in order to write it to the specified file
+            WriteXML.WriteObjectXml(SubjectIndex, "c:\\emailparse.xml");
         }
 
+
+        //public method to read the XML datafile and place the data within the indexes
         public void ReadIndexFromXML()
         {
+            //create an XML reader object
             ObjectXmlReader ReadXML = new ObjectXmlReader();
-            List<Object> IndexList = ReadXML.ReadObjectXml("emailparse.xml");
+            //get a list of all the Hashtables within the XML file
+            List<Object> IndexList = ReadXML.ReadObjectXml("c:\\emailparse.xml");
 
+            //assign each hashtable to the proper index based on the order that they were saved
+            //within the write method
             SubjectIndex = (Hashtable)IndexList[0];
             receivedEmailIndex = (Hashtable)IndexList[1];
             sentEmailIndex = (Hashtable)IndexList[2];
@@ -73,6 +84,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 lock (padlock)
                 {
                     //if there is no current instance create a new one
+                    //Try to read the XML file to import any saved indexes
                     if (instance == null)
                     {
                         instance = new Indexes();
