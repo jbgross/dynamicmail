@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dynamic_Mail
+namespace OutlookAddin1
 {
 
 
