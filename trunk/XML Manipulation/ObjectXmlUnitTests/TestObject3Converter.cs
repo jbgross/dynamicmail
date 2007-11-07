@@ -23,7 +23,7 @@ namespace ObjectXmlUnitTests
             r.Add("D", obj.D);
             r.Add("E", obj.E);
             r.Add("F", obj.F);
-            r.Add("F", obj.G);
+            r.Add("G", obj.G);
             return r;
         }
         public Object GenerateInstance(Dictionary<String, String> primitives, Dictionary<String, Object> references)

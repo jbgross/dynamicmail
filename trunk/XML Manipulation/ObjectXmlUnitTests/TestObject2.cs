@@ -38,8 +38,9 @@ namespace ObjectXmlUnitTests
             this.c = c;
             this.d = d;
         }
-        public bool Equals(Object obj)
+        override public bool Equals(Object obj)
         {
+            if (obj == null || !Type.Equals(obj.GetType(), this.GetType())) return false;
             TestObject2 o = obj as TestObject2;
             return
                 this.a.Equals(o.a) &&
