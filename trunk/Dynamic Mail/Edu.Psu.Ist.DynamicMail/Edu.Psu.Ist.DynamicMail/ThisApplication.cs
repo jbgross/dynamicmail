@@ -14,7 +14,7 @@ namespace Edu.Psu.Ist.DynamicMail
         Office.CommandBarButton thirdButton;
         Outlook.Explorers selectExplorers;
 
-        //DynamicMailParser parser = new DynamicMailParser();
+        DynamicMailParser parser = new DynamicMailParser();
 
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
@@ -102,26 +102,27 @@ namespace Edu.Psu.Ist.DynamicMail
         private void ButtonClick(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
-            //Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-            //Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
-            //Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
+            Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+            Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+            Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
 
-            //if (ctrl.Tag == "inbox")
-            //{
+            if (ctrl.Tag == "inbox")
+            {
 
-            //    parser.InboxIndexer(inbox, contacts);
+                parser.InboxIndexer(inbox, contacts);
 
-            //}
-            //if (ctrl.Tag == "sent")
-            //{
-            //    parser.sentBoxIndexer(sentBox, contacts);
+            }
+            if (ctrl.Tag == "sent")
+            {
+                parser.sentBoxIndexer(sentBox, contacts);
 
-            //}
-            //if (ctrl.Tag == "contacts")
-            //{
-            //    parser.contactsIndexer(contacts);
-            //}
+            }
+            if (ctrl.Tag == "contacts")
+            {
+                parser.contactsIndexer(contacts);
+            }
 
+            Indexes.Instance.WriteIndexToXML();
             MessageBox.Show("You clicked: " + ctrl.Caption);
         }
 
