@@ -88,6 +88,7 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             List<Object> rootObjects = new List<Object>();
             Dictionary<Int32, Object> readObjects = new Dictionary<Int32, Object>();
+            reader.Read();
             if (!(reader.Read() && reader.Name.Equals(ROOT_ELEMENT)))
                 throw new MalformedXmlException();
             ObjectXmlConverterRegistry registry = ObjectXmlConverterRegistry.Instance;
@@ -113,6 +114,7 @@ namespace Edu.Psu.Ist.DynamicMail
                             if (!readObjects.ContainsKey(rid)) throw new InvalidObjectIDException(rid.ToString());
                             references.Add(name, readObjects[id]);
                         }
+                        reader.Read();
                     }
                     IObjectXmlConverter converter = registry.LookUpConverter(Type.GetType(classType));
                     Object o = converter.GenerateInstance(primitives, references);
@@ -135,12 +137,13 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <returns>A ObjectXml schema validating XmlReader</returns>
         private XmlReader SetupXmlReadStream(String file)
         {
-            XmlReader reader = XmlReader.Create(file);
-            reader.Settings.IgnoreComments = true;
-            reader.Settings.IgnoreProcessingInstructions = true;
-            reader.Settings.IgnoreWhitespace = true;
-            reader.Settings.ValidationFlags = System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation;
-            reader.Settings.ValidationType = ValidationType.Schema;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreComments = true;
+            settings.IgnoreProcessingInstructions = true;
+            settings.IgnoreWhitespace = true;
+            settings.ValidationFlags = System.Xml.Schema.XmlSchemaValidationFlags.ProcessSchemaLocation;
+            settings.ValidationType = ValidationType.Schema;
+            XmlReader reader = XmlReader.Create(file, settings);
             return reader;
         }
 
