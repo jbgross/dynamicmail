@@ -83,6 +83,10 @@
      This sections specifies references for the project.
   -->
   <ItemGroup>
+    <Reference Include="DynamicMailParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
@@ -174,7 +178,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Outlook" HostPackage="{8D6BBC0F-05A7-47D3-8C64-E77868110656}" ApplicationType="outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\11.0\outlook\InstallRoot\Path#Outlook.exe" />
         <Host Name="Outlook" GeneratedCodeNamespace="Edu.Psu.Ist.DynamicMail" IconIndex="0">
-          <HostItem Name="ThisApplication" Code="ThisApplication.cs" CanonicalName="ThisApplication" CanActivate="false" IconIndex="1" Blueprint="ThisApplication.Designer.xml" GeneratedCode="ThisApplication.Designer.cs" />
+          <HostItem Name="ThisApplication" Code="ThisApplication.cs" CanonicalName="Application" CanActivate="false" IconIndex="1" Blueprint="ThisApplication.Designer.xml" GeneratedCode="ThisApplication.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

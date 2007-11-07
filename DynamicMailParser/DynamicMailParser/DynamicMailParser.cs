@@ -21,9 +21,9 @@ namespace Edu.Psu.Ist.DynamicMail
             InvertedIndexes = Indexes.Instance;
         }
 
-        public void InboxIndexer(Outlook.Items inbox, Outlook.MAPIFolder contacts)
+        public void InboxIndexer(Outlook.MAPIFolder inbox, Outlook.MAPIFolder contacts)
         {
-            Outlook.Items searchFolder = inbox;
+            Outlook.Items searchFolder = inbox.Items;
 
             int total = searchFolder.Count;     //total items in mailbox
             int lookedAt = 1;                   //email items looked at so far    
@@ -69,9 +69,9 @@ namespace Edu.Psu.Ist.DynamicMail
             SaveIndexes.WriteIndexToXML();
         }
 
-        public void sentBoxIndexer(Outlook.Items sentMail, Outlook.MAPIFolder contacts)
+        public void sentBoxIndexer(Outlook.MAPIFolder sentMail, Outlook.MAPIFolder contacts)
         {
-            Outlook.Items searchFolder = sentMail;
+            Outlook.Items searchFolder = sentMail.Items;
             
             int total = searchFolder.Count;     //total items in mailbox
             int lookedAt = 1;                   //email items looked at so far    
@@ -118,9 +118,9 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
-        public void contactsIndexer(Outlook.Items contacts)
+        public void contactsIndexer(Outlook.MAPIFolder contacts)
         {
-            Outlook.Items searchFolder = contacts;
+            Outlook.Items searchFolder = contacts.Items;
 
             string foundContactID, foundEmail1, foundEmail2, foundEmail3;
 
