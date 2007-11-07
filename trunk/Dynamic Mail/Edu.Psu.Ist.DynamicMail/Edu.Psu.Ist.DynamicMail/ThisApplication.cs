@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 
-namespace OutlookAddin1
+namespace Edu.Psu.Ist.DynamicMail
 {
     public partial class ThisApplication
     {
@@ -100,10 +100,11 @@ namespace OutlookAddin1
         {
             if (ctrl.Tag == "inbox")
             {
-                
+
             }
             MessageBox.Show("You clicked: " + ctrl.Caption);
         }
+
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
         {
         }

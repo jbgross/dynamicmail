@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:OutlookAddin1Setup"
+"ProjectName" = "8:Edu.Psu.Ist"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,92 +15,92 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0691353866D2695775E89839E8EA2A07"
-        "OwnerKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
+        "MsmKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_36D240A2191019CF71E6470D19ABD6A2"
-        "OwnerKey" = "8:_0691353866D2695775E89839E8EA2A07"
+        "MsmKey" = "8:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
+        "OwnerKey" = "8:_D08F70E75A6E8A45D508F47322834633"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_36D240A2191019CF71E6470D19ABD6A2"
-        "OwnerKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
+        "MsmKey" = "8:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_412533ED10E58883FC4AF61175E30354"
-        "OwnerKey" = "8:_548E428C13C3033DCAFD7FB9E7CACDE8"
+        "MsmKey" = "8:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
+        "OwnerKey" = "8:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_412533ED10E58883FC4AF61175E30354"
-        "OwnerKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
+        "MsmKey" = "8:_A3D2A4FD189B1C377A6A1287FA2378DF"
+        "OwnerKey" = "8:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_412533ED10E58883FC4AF61175E30354"
-        "OwnerKey" = "8:_0691353866D2695775E89839E8EA2A07"
+        "MsmKey" = "8:_A3D2A4FD189B1C377A6A1287FA2378DF"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_548E428C13C3033DCAFD7FB9E7CACDE8"
-        "OwnerKey" = "8:_0691353866D2695775E89839E8EA2A07"
+        "MsmKey" = "8:_BC22A99E6351932DE3291A385A014895"
+        "OwnerKey" = "8:_A3D2A4FD189B1C377A6A1287FA2378DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_548E428C13C3033DCAFD7FB9E7CACDE8"
-        "OwnerKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
+        "MsmKey" = "8:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F3A0219A2EFC946DC26661C1F1A94ED"
-        "OwnerKey" = "8:_36D240A2191019CF71E6470D19ABD6A2"
+        "MsmKey" = "8:_D08F70E75A6E8A45D508F47322834633"
+        "OwnerKey" = "8:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_36D240A2191019CF71E6470D19ABD6A2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_16173E6CB2BA4111AD98FB44708CED92"
+        "MsmKey" = "8:_D08F70E75A6E8A45D508F47322834633"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0691353866D2695775E89839E8EA2A07"
+        "OwnerKey" = "8:_A3D2A4FD189B1C377A6A1287FA2378DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_548E428C13C3033DCAFD7FB9E7CACDE8"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_412533ED10E58883FC4AF61175E30354"
+        "OwnerKey" = "8:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D08F70E75A6E8A45D508F47322834633"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -111,7 +111,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\OutlookAddin1Setup.msi"
+        "OutputFilename" = "8:Debug\\Edu.Psu.Ist.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -127,7 +127,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\OutlookAddin1Setup.msi"
+        "OutputFilename" = "8:Release\\Edu.Psu.Ist.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -154,7 +154,7 @@
         {
             "LaunchCondition"
             {
-                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_77AE6704759043179FC451AE152C6AD0"
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_C55629F1CA50445390F7467A2A567B08"
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
@@ -166,76 +166,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0691353866D2695775E89839E8EA2A07"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Outlook, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_0691353866D2695775E89839E8EA2A07"
-                    {
-                    "Name" = "8:Microsoft.Office.Tools.Outlook.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.Office.Tools.Outlook.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_36D240A2191019CF71E6470D19ABD6A2"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_36D240A2191019CF71E6470D19ABD6A2"
-                    {
-                    "Name" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_412533ED10E58883FC4AF61175E30354"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:TRUE"
             "AssemblyAsmDisplayName" = "8:office, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"
                 "ScatterAssemblies"
                 {
-                    "_412533ED10E58883FC4AF61175E30354"
+                    "_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
                     {
                     "Name" = "8:Office.dll"
                     "Attributes" = "3:512"
@@ -244,7 +182,7 @@
             "SourcePath" = "8:Office.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -259,23 +197,23 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_548E428C13C3033DCAFD7FB9E7CACDE8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A3D2A4FD189B1C377A6A1287FA2378DF"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.Outlook, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_548E428C13C3033DCAFD7FB9E7CACDE8"
+                    "_A3D2A4FD189B1C377A6A1287FA2378DF"
                     {
-                    "Name" = "8:Microsoft.Office.Interop.Outlook.dll"
+                    "Name" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.Office.Interop.Outlook.dll"
+            "SourcePath" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -290,12 +228,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F3A0219A2EFC946DC26661C1F1A94ED"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC22A99E6351932DE3291A385A014895"
             {
             "SourcePath" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.tlb"
             "TargetName" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.tlb"
             "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -310,25 +248,86 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C81BD1C4EE30DC1F2C6A72597D2D44E5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Office.Tools.Outlook, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C81BD1C4EE30DC1F2C6A72597D2D44E5"
+                    {
+                    "Name" = "8:Microsoft.Office.Tools.Outlook.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Office.Tools.Outlook.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D08F70E75A6E8A45D508F47322834633"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.Outlook, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"
+                "ScatterAssemblies"
+                {
+                    "_D08F70E75A6E8A45D508F47322834633"
+                    {
+                    "Name" = "8:Microsoft.Office.Interop.Outlook.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Office.Interop.Outlook.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
         }
         "Folder"
         {
-            "{3C67513D-01DD-4637-8A68-80971EB9504F}:_83794FBB3CDA480789213C0B9CEC0D55"
+            "{1525181F-901A-416C-8A58-119130FE478E}:_49DBF98701D947D2BE2BF2AD2B465A73"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-            "Name" = "8:#1925"
+            "Name" = "8:#1919"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
-            "Property" = "8:TARGETDIR"
+            "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_8C2CAD33B16F4276A3368484A1D2C1BA"
+            "{1525181F-901A-416C-8A58-119130FE478E}:_D982BF777A8A4989A44A03CB50F12142"
             {
             "Name" = "8:#1916"
             "AlwaysCreate" = "11:FALSE"
@@ -339,13 +338,14 @@
                 {
                 }
             }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_AEB0FB9DF4BF48EDA49CBFE8E5C7C4B3"
+            "{3C67513D-01DD-4637-8A68-80971EB9504F}:_E81E33A9E58A41A6AD93C4BCD0FA0324"
             {
-            "Name" = "8:#1919"
+            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
-            "Property" = "8:ProgramMenuFolder"
+            "Property" = "8:TARGETDIR"
                 "Folders"
                 {
                 }
@@ -364,10 +364,10 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:OutlookAddin1Setup"
-        "ProductCode" = "8:{C8796BCA-0187-4EB5-861F-BE48D694E271}"
-        "PackageCode" = "8:{83188DB1-3B9C-45C9-903E-D676BD64AD0E}"
-        "UpgradeCode" = "8:{D722D0EF-1C1E-4E6F-9DB3-F583EB73152E}"
+        "ProductName" = "8:Edu.Psu.Ist"
+        "ProductCode" = "8:{DD6AD4F8-65D4-46DA-B5ED-798AA95B3EFC}"
+        "PackageCode" = "8:{488548AB-0DA6-478B-BAB6-DFF7CC1C9F95}"
+        "UpgradeCode" = "8:{AE174341-0C09-44F4-B3DA-B7DB8E5E953D}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
@@ -376,7 +376,7 @@
         "Manufacturer" = "8:Default Company Name"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:OutlookAddin1Setup"
+        "Title" = "8:Edu.Psu.Ist"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Default Company Name"
         "Keywords" = "8:"
@@ -397,7 +397,7 @@
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F974543B87844C5090F0A6BF669C9FD1"
+                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_EC3DC84E736E488DA169AF0DDFA9DAFA"
                     {
                     "Name" = "8:Software"
                     "Condition" = "8:"
@@ -417,7 +417,7 @@
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_A88FC37F006746838AD137A5202025D0"
+                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_D7518C22E2AD4445A168D7B174C24092"
                     {
                     "Name" = "8:Software"
                     "Condition" = "8:"
@@ -426,7 +426,7 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_EAF8778ADC0A491199DCD2088EA8E0E5"
+                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_4E7ADE2241694C8DB7646ED8A398435C"
                             {
                             "Name" = "8:Classes"
                             "Condition" = "8:"
@@ -435,7 +435,51 @@
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_6DBF19E4A65B43F582AF060246197322"
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_13C0A5BF58EB4854BD8AB1EDAFA19408"
+                                    {
+                                    "Name" = "8:Edu.Psu.Ist.DynamicMail"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "DeleteAtUninstall" = "11:TRUE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_00F7483F13D143008B0B14DEDA1219FA"
+                                            {
+                                            "Name" = "8:CLSID"
+                                            "Condition" = "8:"
+                                            "AlwaysCreate" = "11:TRUE"
+                                            "DeleteAtUninstall" = "11:TRUE"
+                                            "Transitive" = "11:FALSE"
+                                                "Keys"
+                                                {
+                                                }
+                                                "Values"
+                                                {
+                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_AAE57375ABD34243B2120BD03C0733F7"
+                                                    {
+                                                    "Name" = "8:"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "ValueTypes" = "3:1"
+                                                    "Value" = "8:{859891C2-D9EC-4614-915D-137289E837F6}"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_A67936F58E324AF88FB718E3320F5F30"
+                                            {
+                                            "Name" = "8:"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "ValueTypes" = "3:1"
+                                            "Value" = "8:"
+                                            }
+                                        }
+                                    }
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_903DBD08584446A7B5A869BEC7A9EC41"
                                     {
                                     "Name" = "8:CLSID"
                                     "Condition" = "8:"
@@ -444,18 +488,18 @@
                                     "Transitive" = "11:FALSE"
                                         "Keys"
                                         {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_B8C90AE0C8BB4FC2893723991A465C23"
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_67101CF3A82B4143A40890EE4225EFB2"
                                             {
-                                            "Name" = "8:{EF354F4B-A723-4ACD-BC3D-EC1DDCBEB6AD}"
+                                            "Name" = "8:{859891C2-D9EC-4614-915D-137289E837F6}"
                                             "Condition" = "8:"
                                             "AlwaysCreate" = "11:TRUE"
                                             "DeleteAtUninstall" = "11:TRUE"
                                             "Transitive" = "11:FALSE"
                                                 "Keys"
                                                 {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_17C46BB348DE41F9A2B1ADC357197839"
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_35EECF89893B4CFE8EFD5AB0D50250CF"
                                                     {
-                                                    "Name" = "8:InprocServer32"
+                                                    "Name" = "8:ProgID"
                                                     "Condition" = "8:"
                                                     "AlwaysCreate" = "11:TRUE"
                                                     "DeleteAtUninstall" = "11:TRUE"
@@ -465,63 +509,17 @@
                                                         }
                                                         "Values"
                                                         {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_038EE1043DA844BD8B0CFE801120C230"
-                                                            {
-                                                            "Name" = "8:"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:2"
-                                                            "Value" = "8:%CommonProgramFiles%\\Microsoft Shared\\VSTO\\8.0\\AddinLoader.dll"
-                                                            }
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_4FC7F93080154C7DB2DE5E8F45F9A903"
-                                                            {
-                                                            "Name" = "8:ThreadingModel"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:Both"
-                                                            }
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_7114C8C34810489DB7E25B5A6380230A"
-                                                            {
-                                                            "Name" = "8:ManifestName"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:OutlookAddin1.dll.manifest"
-                                                            }
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_7CA7E64C7251428F86076F9E00935D30"
-                                                            {
-                                                            "Name" = "8:ManifestLocation"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:[TARGETDIR]"
-                                                            }
-                                                        }
-                                                    }
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_681C6F77A8CF491BA90D6AC91D4FC0DE"
-                                                    {
-                                                    "Name" = "8:VersionIndependentProgID"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:TRUE"
-                                                    "DeleteAtUninstall" = "11:TRUE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_8E036EAE38474F66A0705F22C75D0FF7"
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_CD7A3C51BC94419FAF56890EFE07434E"
                                                             {
                                                             "Name" = "8:"
                                                             "Condition" = "8:"
                                                             "Transitive" = "11:FALSE"
                                                             "ValueTypes" = "3:1"
-                                                            "Value" = "8:OutlookAddin1"
+                                                            "Value" = "8:Edu.Psu.Ist.DynamicMail"
                                                             }
                                                         }
                                                     }
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_C1E9596F39994FC485CD99528C2C56F5"
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_6CFE8B9FCCEB46CC8F861CA0F7FB826C"
                                                     {
                                                     "Name" = "8:Programmable"
                                                     "Condition" = "8:"
@@ -535,9 +533,9 @@
                                                         {
                                                         }
                                                     }
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_C73605EE385D4C4A99FA00724122E5E9"
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_7958F86CCDE84DDBB9CB92E13E8E9EE3"
                                                     {
-                                                    "Name" = "8:ProgID"
+                                                    "Name" = "8:InprocServer32"
                                                     "Condition" = "8:"
                                                     "AlwaysCreate" = "11:TRUE"
                                                     "DeleteAtUninstall" = "11:TRUE"
@@ -547,76 +545,78 @@
                                                         }
                                                         "Values"
                                                         {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_91FD86351EBE4A93BBB66278DB4D27FC"
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_8C3BBC03A3964063B47CC4ECBB403FB2"
+                                                            {
+                                                            "Name" = "8:"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "ValueTypes" = "3:2"
+                                                            "Value" = "8:%CommonProgramFiles%\\Microsoft Shared\\VSTO\\8.0\\AddinLoader.dll"
+                                                            }
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_985E001874604E1A8629CD07080C8A1B"
+                                                            {
+                                                            "Name" = "8:ManifestName"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:Edu.Psu.Ist.DynamicMail.dll.manifest"
+                                                            }
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_9DB2634A847045EBB4F76B4AF0B3E234"
+                                                            {
+                                                            "Name" = "8:ManifestLocation"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:[TARGETDIR]"
+                                                            }
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_BA176AD8754E4DDB86A9AD45AD5602BA"
+                                                            {
+                                                            "Name" = "8:ThreadingModel"
+                                                            "Condition" = "8:"
+                                                            "Transitive" = "11:FALSE"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:Both"
+                                                            }
+                                                        }
+                                                    }
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_A487FA24D89B4FBBA7720DA40A1FBD51"
+                                                    {
+                                                    "Name" = "8:VersionIndependentProgID"
+                                                    "Condition" = "8:"
+                                                    "AlwaysCreate" = "11:TRUE"
+                                                    "DeleteAtUninstall" = "11:TRUE"
+                                                    "Transitive" = "11:FALSE"
+                                                        "Keys"
+                                                        {
+                                                        }
+                                                        "Values"
+                                                        {
+                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_E1D67E74091B4E77A823A7D599918430"
                                                             {
                                                             "Name" = "8:"
                                                             "Condition" = "8:"
                                                             "Transitive" = "11:FALSE"
                                                             "ValueTypes" = "3:1"
-                                                            "Value" = "8:OutlookAddin1"
+                                                            "Value" = "8:Edu.Psu.Ist.DynamicMail"
                                                             }
                                                         }
                                                     }
                                                 }
                                                 "Values"
                                                 {
-                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_99A3B0450756405E8DD7A6736C2E2B87"
+                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_C6C74887F58C467292F9AB3272AEBEEE"
                                                     {
                                                     "Name" = "8:"
                                                     "Condition" = "8:"
                                                     "Transitive" = "11:FALSE"
                                                     "ValueTypes" = "3:1"
-                                                    "Value" = "8:OutlookAddin1  -- an addin created with VSTO technology"
+                                                    "Value" = "8:Edu.Psu.Ist.DynamicMail  -- an addin created with VSTO technology"
                                                     }
                                                 }
                                             }
                                         }
                                         "Values"
                                         {
-                                        }
-                                    }
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_7767D2E2EEA74EBCB0AF4E712239C3FF"
-                                    {
-                                    "Name" = "8:OutlookAddin1"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:TRUE"
-                                    "DeleteAtUninstall" = "11:TRUE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_73729D01D2C84C5CBD535CA1E6EE50F9"
-                                            {
-                                            "Name" = "8:CLSID"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:TRUE"
-                                            "DeleteAtUninstall" = "11:TRUE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                }
-                                                "Values"
-                                                {
-                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_C345889B952C41C88DBEB90CB366E51A"
-                                                    {
-                                                    "Name" = "8:"
-                                                    "Condition" = "8:"
-                                                    "Transitive" = "11:FALSE"
-                                                    "ValueTypes" = "3:1"
-                                                    "Value" = "8:{EF354F4B-A723-4ACD-BC3D-EC1DDCBEB6AD}"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_D207FBBD23B1482490C113CC1D9106B7"
-                                            {
-                                            "Name" = "8:"
-                                            "Condition" = "8:"
-                                            "Transitive" = "11:FALSE"
-                                            "ValueTypes" = "3:1"
-                                            "Value" = "8:"
-                                            }
                                         }
                                     }
                                 }
@@ -624,7 +624,7 @@
                                 {
                                 }
                             }
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F312C8BC40764EEC98C8EDE8F434FBFE"
+                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_B9AFF00CFC6143C984ABE3F5678D9C8F"
                             {
                             "Name" = "8:Microsoft"
                             "Condition" = "8:"
@@ -633,7 +633,7 @@
                             "Transitive" = "11:FALSE"
                                 "Keys"
                                 {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_78579B76557246BDB6A7961789CE1E05"
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_D3377A021FC74E199A4A36DABA256782"
                                     {
                                     "Name" = "8:Office"
                                     "Condition" = "8:"
@@ -642,7 +642,7 @@
                                     "Transitive" = "11:FALSE"
                                         "Keys"
                                         {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_B03ED2B9DBE44948BF1B1D9B80A9285B"
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_C5F2CAC1CF01428A9A70E9921FED9521"
                                             {
                                             "Name" = "8:Outlook"
                                             "Condition" = "8:"
@@ -651,7 +651,7 @@
                                             "Transitive" = "11:FALSE"
                                                 "Keys"
                                                 {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_BB713564E2234865BFA26091FD00F5EE"
+                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_BC21BA81480F4E6489FCDBF1CEAA2411"
                                                     {
                                                     "Name" = "8:Addins"
                                                     "Condition" = "8:"
@@ -660,9 +660,9 @@
                                                     "Transitive" = "11:FALSE"
                                                         "Keys"
                                                         {
-                                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_BDD1B0D0323E46588D723B12847D150B"
+                                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_B0E086B7733F4B22AAD11668EF65DFD3"
                                                             {
-                                                            "Name" = "8:OutlookAddin1"
+                                                            "Name" = "8:Edu.Psu.Ist.DynamicMail"
                                                             "Condition" = "8:"
                                                             "AlwaysCreate" = "11:TRUE"
                                                             "DeleteAtUninstall" = "11:TRUE"
@@ -672,39 +672,23 @@
                                                                 }
                                                                 "Values"
                                                                 {
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_0ACDBD1D9EDC46E2BE7E4AA6EAF23E95"
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_10BE36D630B84B25AD592162BDA2260F"
                                                                     {
-                                                                    "Name" = "8:LoadBehavior"
+                                                                    "Name" = "8:FriendlyName"
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
-                                                                    "ValueTypes" = "3:3"
-                                                                    "Value" = "3:3"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:Edu.Psu.Ist.DynamicMail"
                                                                     }
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_84383DF52DE34DCAB02B32BF79986E61"
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_5510441EEF4748CEAAEF73225A0E643D"
                                                                     {
                                                                     "Name" = "8:ManifestName"
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
-                                                                    "Value" = "8:OutlookAddin1.dll.manifest"
+                                                                    "Value" = "8:Edu.Psu.Ist.DynamicMail.dll.manifest"
                                                                     }
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_A7CA3E593B11437A93C52943A7EF8700"
-                                                                    {
-                                                                    "Name" = "8:Description"
-                                                                    "Condition" = "8:"
-                                                                    "Transitive" = "11:FALSE"
-                                                                    "ValueTypes" = "3:1"
-                                                                    "Value" = "8:OutlookAddin1  -- an addin created with VSTO technology"
-                                                                    }
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_AA20847E585E4851BC29BDD296ACFB24"
-                                                                    {
-                                                                    "Name" = "8:ManifestLocation"
-                                                                    "Condition" = "8:"
-                                                                    "Transitive" = "11:FALSE"
-                                                                    "ValueTypes" = "3:1"
-                                                                    "Value" = "8:[TARGETDIR]"
-                                                                    }
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_AE90037F06E147B1A7AEEBCA738FB2FB"
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_9E5194CAB1A8487AB979BF9CA9EE8455"
                                                                     {
                                                                     "Name" = "8:CommandLineSafe"
                                                                     "Condition" = "8:"
@@ -712,13 +696,29 @@
                                                                     "ValueTypes" = "3:3"
                                                                     "Value" = "3:1"
                                                                     }
-                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_B1B72CDCED174F8A83C25303DEBB1559"
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_B6D85F3E235D459C9F51C2B4E0666543"
                                                                     {
-                                                                    "Name" = "8:FriendlyName"
+                                                                    "Name" = "8:ManifestLocation"
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
-                                                                    "Value" = "8:OutlookAddin1"
+                                                                    "Value" = "8:[TARGETDIR]"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_D53A399813D947D9AD419009D8CBD43C"
+                                                                    {
+                                                                    "Name" = "8:LoadBehavior"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:3"
+                                                                    "Value" = "3:3"
+                                                                    }
+                                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_EDC714C876124C309584FA791B6A590F"
+                                                                    {
+                                                                    "Name" = "8:Description"
+                                                                    "Condition" = "8:"
+                                                                    "Transitive" = "11:FALSE"
+                                                                    "ValueTypes" = "3:1"
+                                                                    "Value" = "8:Edu.Psu.Ist.DynamicMail  -- an addin created with VSTO technology"
                                                                     }
                                                                 }
                                                             }
@@ -776,20 +776,64 @@
         }
         "UserInterface"
         {
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_060C92780CF844D497E608E9DF4D1C06"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_03EAD52FE09B473BB0EB5C842D91A3F7"
+            {
+            "Name" = "8:#1901"
+            "Sequence" = "3:2"
+            "Attributes" = "3:2"
+                "Dialogs"
+                {
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_4F5EE121892740549F291F2F73D3DEBE"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Progress"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ShowProgress"
+                            {
+                            "Name" = "8:ShowProgress"
+                            "DisplayName" = "8:#1009"
+                            "Description" = "8:#1109"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_2F8F98EF3E754FDEA5C1FE71B837CB0E"
             {
             "Name" = "8:#1902"
-            "Sequence" = "3:2"
+            "Sequence" = "3:1"
             "Attributes" = "3:3"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6BC40D2B830148F199755BF0CF37DF59"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_48528BD5C7F743BF81268213CF685870"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
                         "Properties"
                         {
                             "BannerBitmap"
@@ -801,127 +845,33 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "UpdateText"
+                            {
+                            "Name" = "8:UpdateText"
+                            "DisplayName" = "8:#1058"
+                            "Description" = "8:#1158"
+                            "Type" = "3:15"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1258"
+                            "DefaultValue" = "8:#1258"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
                     }
                 }
             }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_373D615779D140F9B182F75B0C416703"
-            {
-            "Name" = "8:#1900"
-            "Sequence" = "3:2"
-            "Attributes" = "3:1"
-                "Dialogs"
-                {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_315FCA0569EC419882A15434BDA5F0F8"
-                    {
-                    "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_75FEE1B756D04B1CB69E42D212774253"
-                    {
-                    "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "CopyrightWarning"
-                            {
-                            "Name" = "8:CopyrightWarning"
-                            "DisplayName" = "8:#1002"
-                            "Description" = "8:#1102"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
-                            "DefaultValue" = "8:#1202"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "Welcome"
-                            {
-                            "Name" = "8:Welcome"
-                            "DisplayName" = "8:#1003"
-                            "Description" = "8:#1103"
-                            "Type" = "3:3"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
-                            "DefaultValue" = "8:#1203"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F6C7E595EB6B4316A1AB6A6AE91C9AD8"
-                    {
-                    "Sequence" = "3:200"
-                    "DisplayName" = "8:Installation Folder"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                }
-            }
-            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_59BE8CFA19824093BECBA426D1325E22"
-            {
-            "UseDynamicProperties" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:<VsdDialogDir>\\VsdBasicDialogs.wim"
-            }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_9AF0CAFAD70C44378C5F9ED17BC176D0"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_31D21BAE1DCF4E35B451BE62E8F3BEEC"
             {
             "Name" = "8:#1900"
             "Sequence" = "3:1"
             "Attributes" = "3:1"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_1BECBE9FF6CF477DAFB046FC0D7BD5C4"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_2E11CAD357A945488FABBF1EF21838CD"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Welcome"
@@ -969,29 +919,7 @@
                             }
                         }
                     }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_367BFD9370E941BF909B945FA0694278"
-                    {
-                    "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6D5CA64600814EACA3E6996A5EF9EC69"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_7D852DCDD3B140ED9E224D6E2F0DEEAE"
                     {
                     "Sequence" = "3:200"
                     "DisplayName" = "8:Installation Folder"
@@ -1026,22 +954,13 @@
                             }
                         }
                     }
-                }
-            }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_BA33FB42B6F84FCEA11E7A485DBD1A38"
-            {
-            "Name" = "8:#1902"
-            "Sequence" = "3:1"
-            "Attributes" = "3:3"
-                "Dialogs"
-                {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_05F0584021B54EA583F75C9DFAE67BB8"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_A5319E090EF24BC89A10EDAEDA76CAFA"
                     {
-                    "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "Sequence" = "3:300"
+                    "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
                         "Properties"
                         {
                             "BannerBitmap"
@@ -1055,31 +974,162 @@
                             "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
-                            "UpdateText"
+                        }
+                    }
+                }
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_3FF97DC8AB2C4B46B9C46FEF637136BB"
+            {
+            "Name" = "8:#1902"
+            "Sequence" = "3:2"
+            "Attributes" = "3:3"
+                "Dialogs"
+                {
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_7224555881D54B869185C456694764BA"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Finished"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
                             {
-                            "Name" = "8:UpdateText"
-                            "DisplayName" = "8:#1058"
-                            "Description" = "8:#1158"
-                            "Type" = "3:15"
-                            "ContextData" = "8:"
-                            "Attributes" = "3:0"
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
                             "Setting" = "3:1"
-                            "Value" = "8:#1258"
-                            "DefaultValue" = "8:#1258"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
                     }
                 }
             }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_CFF983DA35704A3C897AAE324931722E"
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_5A40D3AD2FE04FBD8D05A334E7CDCFE1"
+            {
+            "Name" = "8:#1900"
+            "Sequence" = "3:2"
+            "Attributes" = "3:1"
+                "Dialogs"
+                {
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_5E7519C4648047CCAD6208411A250A1C"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Welcome"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "CopyrightWarning"
+                            {
+                            "Name" = "8:CopyrightWarning"
+                            "DisplayName" = "8:#1002"
+                            "Description" = "8:#1102"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1202"
+                            "DefaultValue" = "8:#1202"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Welcome"
+                            {
+                            "Name" = "8:Welcome"
+                            "DisplayName" = "8:#1003"
+                            "Description" = "8:#1103"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:#1203"
+                            "DefaultValue" = "8:#1203"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_8C472FA17DD14A71B21A14A856203C40"
+                    {
+                    "Sequence" = "3:300"
+                    "DisplayName" = "8:Confirm Installation"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_AE5337157C434E9987DDA46D1C750A29"
+                    {
+                    "Sequence" = "3:200"
+                    "DisplayName" = "8:Installation Folder"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                }
+            }
+            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_8283CB36228F4EC29B0451BEFCE71A85"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdUserInterface.wim"
+            }
+            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_855B479F3758400BAD38EFB986F923B5"
+            {
+            "UseDynamicProperties" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:<VsdDialogDir>\\VsdBasicDialogs.wim"
+            }
+            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_A43EE1E447224D6184B1EE2658756318"
             {
             "Name" = "8:#1901"
             "Sequence" = "3:1"
             "Attributes" = "3:2"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6C84DE76AE764C5893A7CE355C138310"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D4CFF523C4B2451DA0D07D8BFA3D8AAF"
                     {
                     "Sequence" = "3:100"
                     "DisplayName" = "8:Progress"
@@ -1116,68 +1166,18 @@
                     }
                 }
             }
-            "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_F891367674DF49A1B60764AC5CB7CF30"
-            {
-            "Name" = "8:#1901"
-            "Sequence" = "3:2"
-            "Attributes" = "3:2"
-                "Dialogs"
-                {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6212355FB46F47169B9C475057E0E034"
-                    {
-                    "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
-                    "UseDynamicProperties" = "11:TRUE"
-                    "IsDependency" = "11:FALSE"
-                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
-                        "Properties"
-                        {
-                            "BannerBitmap"
-                            {
-                            "Name" = "8:BannerBitmap"
-                            "DisplayName" = "8:#1001"
-                            "Description" = "8:#1101"
-                            "Type" = "3:8"
-                            "ContextData" = "8:Bitmap"
-                            "Attributes" = "3:4"
-                            "Setting" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                            "ShowProgress"
-                            {
-                            "Name" = "8:ShowProgress"
-                            "DisplayName" = "8:#1009"
-                            "Description" = "8:#1109"
-                            "Type" = "3:5"
-                            "ContextData" = "8:1;True=1;False=0"
-                            "Attributes" = "3:0"
-                            "Setting" = "3:0"
-                            "Value" = "3:1"
-                            "DefaultValue" = "3:1"
-                            "UsePlugInResources" = "11:TRUE"
-                            }
-                        }
-                    }
-                }
-            }
-            "{2479F3F5-0309-486D-8047-8187E2CE5BA0}:_FB95D24DB9B54DE9B1A006B3D1C00727"
-            {
-            "UseDynamicProperties" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:<VsdDialogDir>\\VsdUserInterface.wim"
-            }
         }
         "MergeModule"
         {
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_16173E6CB2BA4111AD98FB44708CED92"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_47482B8F962B4C86BB164BB6DF9120C9"
             {
-            "SourcePath" = "8:..\\OutlookAddin1\\obj\\Debug\\OutlookAddin1.dll"
+            "SourcePath" = "8:..\\Edu.Psu.Ist.DynamicMail\\obj\\Debug\\Edu.Psu.Ist.DynamicMail.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_83794FBB3CDA480789213C0B9CEC0D55"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1194,7 +1194,7 @@
             "ProjectOutputGroupRegister" = "3:3"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{EF354F4B-A723-4ACD-BC3D-EC1DDCBEB6AD}"
+            "OutputProjectGuid" = "8:{859891C2-D9EC-4614-915D-137289E837F6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

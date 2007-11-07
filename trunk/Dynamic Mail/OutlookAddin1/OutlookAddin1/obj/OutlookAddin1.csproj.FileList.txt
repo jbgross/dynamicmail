@@ -1,9 +1,0 @@
-.\bin\Debug\OutlookAddin1.dll
-.\bin\Debug\OutlookAddin1.pdb
-.\bin\Debug\OutlookAddin1.dll.manifest
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\OutlookAddin1.csproj.ResolveComReference.cache
-obj\Debug\OutlookAddin1.Properties.Resources.resources
-obj\Debug\OutlookAddin1.csproj.GenerateResource.Cache
-obj\Debug\OutlookAddin1.dll
-obj\Debug\OutlookAddin1.pdb

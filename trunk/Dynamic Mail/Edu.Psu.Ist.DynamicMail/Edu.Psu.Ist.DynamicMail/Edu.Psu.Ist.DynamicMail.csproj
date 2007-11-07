@@ -12,11 +12,11 @@
     <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF354F4B-A723-4ACD-BC3D-EC1DDCBEB6AD}</ProjectGuid>
+    <ProjectGuid>{859891C2-D9EC-4614-915D-137289E837F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>OutlookAddin1</RootNamespace>
-    <AssemblyName>OutlookAddin1</AssemblyName>
+    <RootNamespace>Edu.Psu.Ist.DynamicMail</RootNamespace>
+    <AssemblyName>Edu.Psu.Ist.DynamicMail</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <!-- 
@@ -173,7 +173,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Outlook" HostPackage="{8D6BBC0F-05A7-47D3-8C64-E77868110656}" ApplicationType="outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\11.0\outlook\InstallRoot\Path#Outlook.exe" />
-        <Host Name="Outlook" GeneratedCodeNamespace="OutlookAddin1" IconIndex="0">
+        <Host Name="Outlook" GeneratedCodeNamespace="Edu.Psu.Ist.DynamicMail" IconIndex="0">
           <HostItem Name="ThisApplication" Code="ThisApplication.cs" CanonicalName="ThisApplication" CanActivate="false" IconIndex="1" Blueprint="ThisApplication.Designer.xml" GeneratedCode="ThisApplication.Designer.cs" />
         </Host>
       </FlavorProperties>
