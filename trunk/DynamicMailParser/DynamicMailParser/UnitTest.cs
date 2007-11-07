@@ -88,7 +88,7 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             //save the indexes to a test file
             InvertedIndexes.saveTxt();
-
+            Indexes.Instance.WriteIndexToXML();
         }
 
         //unit test to verify that the binary search is working

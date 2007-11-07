@@ -1,26 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" total="6" failures="0" not-run="0" date="2007-11-07" time="10:22:05">
-  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Program Files\NUnit 2.4.3\bin" machine-name="DAVID-PC" user="David" user-domain="DAVID-PC" />
+<test-results name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" total="1" failures="1" not-run="0" date="2007-11-07" time="14:29:52">
+  <environment nunit-version="2.4.3.0" clr-version="2.0.50727.832" os-version="Microsoft Windows NT 5.1.2600 Service Pack 2" platform="Win32NT" cwd="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug" machine-name="DAVID-PC" user="David" user-domain="DAVID-PC" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" success="True" time="0.484" asserts="0">
+  <test-suite name="C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll" success="False" time="0.422" asserts="0">
     <results>
-      <test-suite name="Edu" success="True" time="0.469" asserts="0">
+      <test-suite name="Edu" success="False" time="0.406" asserts="0">
         <results>
-          <test-suite name="Psu" success="True" time="0.469" asserts="0">
+          <test-suite name="Psu" success="False" time="0.391" asserts="0">
             <results>
-              <test-suite name="Ist" success="True" time="0.469" asserts="0">
+              <test-suite name="Ist" success="False" time="0.391" asserts="0">
                 <results>
-                  <test-suite name="DynamicMail" success="True" time="0.469" asserts="0">
+                  <test-suite name="DynamicMail" success="False" time="0.391" asserts="0">
                     <results>
-                      <test-suite name="UnitTest" success="True" time="0.375" asserts="0">
+                      <test-suite name="UnitTest" success="False" time="0.297" asserts="0">
                         <results>
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.BianarySearch" executed="True" success="True" time="0.047" asserts="2" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestInboxIndexer" executed="True" success="True" time="0.000" asserts="0" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestIndexSort" executed="True" success="True" time="0.000" asserts="2" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestLogger" executed="True" success="True" time="0.047" asserts="7" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestStemmer" executed="True" success="True" time="0.016" asserts="1" />
-                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem" executed="True" success="True" time="0.109" asserts="7" />
+                          <test-case name="Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem" executed="True" success="False" time="0.203" asserts="7">
+                            <failure>
+                              <message><![CDATA[Edu.Psu.Ist.DynamicMail.NoConverterAvailable : No converter exists for type "System.Collections.ArrayList"]]></message>
+                              <stack-trace><![CDATA[   at Edu.Psu.Ist.DynamicMail.ObjectXmlConverterRegistry.LookUpConverter(Type type) in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\XML Manipulation\XML Manipulation\ObjectXmlConverterRegistry.cs:line 77
+   at Edu.Psu.Ist.DynamicMail.ObjectXmlWriter.WriteObjectXml(List`1 rootObjects, Object objectToWrite, XmlWriter writeStream, Dictionary`2 objectIDLookupTable, Int32& id) in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\XML Manipulation\XML Manipulation\ObjectXmlWriter.cs:line 156
+   at Edu.Psu.Ist.DynamicMail.ObjectXmlWriter.WriteObjectXml(List`1 rootObjects, Object objectToWrite, XmlWriter writeStream, Dictionary`2 objectIDLookupTable, Int32& id) in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\XML Manipulation\XML Manipulation\ObjectXmlWriter.cs:line 162
+   at Edu.Psu.Ist.DynamicMail.ObjectXmlWriter.WriteObjectXml(List`1 objectsToWrite, String outputLocation) in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\XML Manipulation\XML Manipulation\ObjectXmlWriter.cs:line 114
+   at Edu.Psu.Ist.DynamicMail.ObjectXmlWriter.WriteObjectXml(Object objectToWrite, String outputLocation) in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\XML Manipulation\XML Manipulation\ObjectXmlWriter.cs:line 87
+   at Edu.Psu.Ist.DynamicMail.Indexes.WriteIndexToXML() in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\Indexes.cs:line 52
+   at Edu.Psu.Ist.DynamicMail.UnitTest.TestSubjectStem() in C:\Documents and Settings\David\Desktop\Fall07\IST496\GoogleCode\DynamicMailParser\DynamicMailParser\UnitTest.cs:line 91
+]]></stack-trace>
+                            </failure>
+                          </test-case>
                         </results>
                       </test-suite>
                     </results>
