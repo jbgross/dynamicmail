@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
-    class IndexObjectXMLConverter : IObjectXmlConverter
+    class ArrayListObjectXMLConverter : IObjectXmlConverter
     {
         public Dictionary<String, String> GetPrimitives(Object o)
         {
-            Hashtable Index = (Hashtable)o;
+            ArrayList Index = (ArrayList)o;
             Dictionary<string, string> IndexDic = new Dictionary<string, string>();
 
-            foreach (String x in Index.Keys)
+            foreach (int x in Index)
             {
-                IndexDic.Add(x, x);
+                IndexDic.Add(x.ToString(), x.ToString());
             }
 
             return IndexDic;
@@ -22,13 +22,13 @@ namespace Edu.Psu.Ist.DynamicMail
 
         public Dictionary<String, Object> GetReferences(Object o)
         {
-            Hashtable Index = (Hashtable)o;
+            ArrayList Index = (ArrayList)o;
 
             Dictionary<string, Object> IndexDic = new Dictionary<string, Object>();
 
-            foreach (String x in Index.Keys)
+            foreach (int x in Index)
             {
-                IndexDic.Add(x, (Object)Index[x]);
+                IndexDic.Add(x.ToString(), (Object)Index[x]);
             }
 
             return IndexDic;
@@ -36,11 +36,12 @@ namespace Edu.Psu.Ist.DynamicMail
 
         public Object GenerateInstance(Dictionary<String, String> primitives, Dictionary<String, Object> references)
         {
-            Hashtable Index = new Hashtable();
+            ArrayList Index = new ArrayList();
 
             foreach (KeyValuePair<string, Object> kvp in references)
             {
-                Index.Add(kvp.Key, kvp.Value);
+                Index[Convert.ToInt32(kvp.Key)] = kvp.Value;
+                
             }
 
             return Index;
