@@ -54,7 +54,7 @@ namespace Edu.Psu.Ist.DynamicMail
             //IndexList.Add(contactsAddresses);
 
             //Send the list the the XML writer in order to write it to the specified file
-            WriteXML.WriteObjectXml(SubjectIndex, "c:\\emailparse.xml");
+            WriteXML.WriteObjectXml(SubjectIndex, "c:\\emailparse2.xml");
         }
 
 
@@ -64,7 +64,7 @@ namespace Edu.Psu.Ist.DynamicMail
             //create an XML reader object
             ObjectXmlReader ReadXML = new ObjectXmlReader();
             //get a list of all the Hashtables within the XML file
-            List<Object> IndexList = ReadXML.ReadObjectXml("c:\\emailparse.xml");
+            List<Object> IndexList = ReadXML.ReadObjectXml("c:\\emailparse3.xml");
 
             //assign each hashtable to the proper index based on the order that they were saved
             //within the write method
