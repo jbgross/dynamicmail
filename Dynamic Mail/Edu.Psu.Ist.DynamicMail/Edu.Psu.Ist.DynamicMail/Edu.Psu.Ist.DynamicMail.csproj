@@ -87,6 +87,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\DynamicMailParser\DynamicMailParser\bin\Debug\DynamicMailParser.dll</HintPath>
     </Reference>
+    <Reference Include="Edu.Psu.Ist.DynamicMail, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\XML Manipulation\XML Manipulation\bin\Debug\Edu.Psu.Ist.DynamicMail.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
