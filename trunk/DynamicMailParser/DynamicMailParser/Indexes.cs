@@ -46,12 +46,13 @@ namespace Edu.Psu.Ist.DynamicMail
             ObjectXmlWriter WriteXML = new ObjectXmlWriter();
 
             //creata list of all the indexes and add each index to it
-            List<Hashtable> IndexList = new List<Hashtable>();
-            //IndexList.Add(SubjectIndex);
-            //IndexList.Add(receivedEmailIndex);
-            //IndexList.Add(sentEmailIndex);
-            //IndexList.Add(contactsIndex);
-            //IndexList.Add(contactsAddresses);
+            List<Object> IndexList = new List<Object>();
+            IndexList.Add(SubjectIndex);
+            IndexList.Add(receivedEmailIndex);
+            IndexList.Add(sentEmailIndex);
+            IndexList.Add(contactsIndex);
+            IndexList.Add(contactsAddresses);
+            IndexList.Add(AlreadyIndexed);
 
             //Send the list the the XML writer in order to write it to the specified file
             WriteXML.WriteObjectXml(SubjectIndex, "c:\\emailparse2.xml");
@@ -73,6 +74,7 @@ namespace Edu.Psu.Ist.DynamicMail
             sentEmailIndex = (Hashtable)IndexList[2];
             contactsIndex = (Hashtable)IndexList[3];
             contactsAddresses = (Hashtable)IndexList[4];
+            AlreadyIndexed = (ArrayList)AlreadyIndexed[5];
         }
 
         //method to get the singelton instance of indexes
