@@ -102,27 +102,34 @@ namespace Edu.Psu.Ist.DynamicMail
         private void ButtonClick(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
-            Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-            Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
-            Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
-
-            if (ctrl.Tag == "inbox")
+            try
             {
+                Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+                Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+                Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
 
-                parser.InboxIndexer(inbox, contacts);
+                if (ctrl.Tag == "inbox")
+                {
 
+                    parser.InboxIndexer(inbox, contacts);
+
+                }
+                if (ctrl.Tag == "sent")
+                {
+                    parser.sentBoxIndexer(sentBox, contacts);
+
+                }
+                if (ctrl.Tag == "contacts")
+                {
+                    parser.contactsIndexer(contacts);
+                }
+
+                Indexes.Instance.WriteIndexToXML();
             }
-            if (ctrl.Tag == "sent")
+            catch (Exception e)
             {
-                parser.sentBoxIndexer(sentBox, contacts);
-
+                MessageBox.Show(e.ToString());
             }
-            if (ctrl.Tag == "contacts")
-            {
-                parser.contactsIndexer(contacts);
-            }
-
-            Indexes.Instance.WriteIndexToXML();
             MessageBox.Show("You clicked: " + ctrl.Caption);
         }
 
