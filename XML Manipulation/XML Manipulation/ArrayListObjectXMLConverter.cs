@@ -12,9 +12,9 @@ namespace Edu.Psu.Ist.DynamicMail
             ArrayList Index = (ArrayList)o;
             Dictionary<string, string> IndexDic = new Dictionary<string, string>();
 
-            foreach (int x in Index)
+            for (int x = 0; x < Index.Count; x++)
             {
-                IndexDic.Add(x.ToString(), x.ToString());
+                IndexDic.Add(x.ToString(), Index[x].ToString());
             }
 
             return IndexDic;
@@ -22,23 +22,25 @@ namespace Edu.Psu.Ist.DynamicMail
 
         public Dictionary<String, Object> GetReferences(Object o)
         {
-            ArrayList Index = (ArrayList)o;
-
             Dictionary<string, Object> IndexDic = new Dictionary<string, Object>();
+            /* Console.WriteLine(o.GetType().AssemblyQualifiedName);
+             Console.Out.Flush();
+             ArrayList Index = (ArrayList)o;
 
-            foreach (int x in Index)
-            {
-                IndexDic.Add(x.ToString(), (Object)Index[x]);
-            }
 
-            return IndexDic;
+             for(int x = 0; x < Index.Count; x++)
+             {
+                 IndexDic.Add(x.ToString(), (Object)Index[x]);
+             }
+*/
+             return IndexDic;
         }
 
         public Object GenerateInstance(Dictionary<String, String> primitives, Dictionary<String, Object> references)
         {
             ArrayList Index = new ArrayList();
 
-            foreach (KeyValuePair<string, Object> kvp in references)
+            foreach (KeyValuePair<String, String> kvp in primitives)
             {
                 Index[Convert.ToInt32(kvp.Key)] = kvp.Value;
                 
