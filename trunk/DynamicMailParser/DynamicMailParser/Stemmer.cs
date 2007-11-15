@@ -51,13 +51,20 @@ namespace Edu.Psu.Ist.DynamicMail
           * word can be provided a character at time (by calling add()), or at once
           * by calling one of the various stem(something) methods.
           */
-
+        
+        /// <summary>
+        /// Class that performs the Porter Stemmer Algorithm
+        /// </summary>
         class Stemmer
         {
-            //Indexes instance
+            /// <summary>
+            /// Indexes instance
+            /// </summary>
             private Indexes InvertedIndexes = Indexes.Instance;
 
-            //array list to hold the stop list
+            /// <summary>
+            /// array list to hold the stop list
+            /// </summary>
             public static ArrayList StopList = new ArrayList();
 
 
@@ -68,6 +75,9 @@ namespace Edu.Psu.Ist.DynamicMail
             private static int INC = 50;
             /* unit of size whereby b is increased */
 
+            /// <summary>
+            /// Public Constructor
+            /// </summary>
             public Stemmer()
             {
                 b = new char[INC];
@@ -77,7 +87,9 @@ namespace Edu.Psu.Ist.DynamicMail
                 initilizeStopList();
             }
 
-            //method to populate the stoplist arraylist from the stoplist.txt file
+            /// <summary>
+            /// populates the stoplist arraylist from the stoplist.txt file
+            /// </summary>
             private void initilizeStopList()
             {
                 // Create an instance of StreamReader to read from a file.
@@ -97,7 +109,12 @@ namespace Edu.Psu.Ist.DynamicMail
              * Add a character to the word being stemmed.  When you are finished
              * adding characters, you can call stem(void) to stem the word.
              */
-
+            /// <summary>
+            /// Add a character to the word being stemmed
+            /// </summary>
+            /// <remarks>
+            /// When you are finished adding characters, you can call stem(void) to stem the word.
+            /// </remarks>
             public void add(char ch)
             {
                 if (i == b.Length)
@@ -116,6 +133,14 @@ namespace Edu.Psu.Ist.DynamicMail
              * faster.
              */
 
+            /// <summary>
+            /// Adds wLen characters to the word being stemmed
+            /// </summary>
+            /// <param name="w">Character to be added</param>
+            /// <param name="wLen">Amount of times char w is added to word being stemmed</param>
+            /// <remarks>
+            /// This is similar to repeated calling add(char ch).  This is faster then multiple calls.
+            /// </remarks>
             public void add(char[] w, int wLen)
             {
                 if (i + wLen >= b.Length)
@@ -134,6 +159,16 @@ namespace Edu.Psu.Ist.DynamicMail
              * or a reference to the internal buffer can be retrieved by getResultBuffer
              * and getResultLength (which is generally more efficient.)
              */
+
+            /// <summary>
+            /// Returns the String representation of the word after it is stemmed
+            /// </summary>
+            /// <returns>
+            /// Returns the String representation of the word after it is stemmed
+            /// </returns>
+            /// <remarks>
+            /// reference to the internal buffer can be retrieved by getResultBuffer and getResultLength (which is generally more efficient.)
+            /// </remarks>
             public override string ToString()
             {
                 return new String(b, 0, i_end);
@@ -142,6 +177,13 @@ namespace Edu.Psu.Ist.DynamicMail
             /**
              * Returns the length of the word resulting from the stemming process.
              */
+
+            /// <summary>
+            /// Returns the length of the word resulting from the stemming process
+            /// </summary>
+            /// <returns>
+            /// Returns the length of the word resulting from the stemming process
+            /// </returns>
             public int getResultLength()
             {
                 return i_end;
@@ -152,12 +194,28 @@ namespace Edu.Psu.Ist.DynamicMail
              * the stemming process.  You also need to consult getResultLength()
              * to determine the length of the result.
              */
+
+            /// <summary>
+            /// Returns a reference to a character buffer containing the results of the stemming process
+            /// </summary>
+            /// <returns>
+            /// Returns a reference to a character buffer containing the results of the stemming process
+            /// </returns>
+            /// <remarks>
+            /// You also need to consult getResultLength() to determine the length of the result.
+            /// </remarks>
             public char[] getResultBuffer()
             {
                 return b;
             }
 
             /* cons(i) is true <=> b[i] is a consonant. */
+
+            /// <summary>
+            /// Determine if b[i] is a consonant
+            /// </summary>
+            /// <param name="i">Position in array b[]</param>
+            /// <returns>If b[i] is a consonant returns true.  If b[i] is a vowel returns false</returns>
             private bool cons(int i)
             {
                 switch (b[i])
@@ -182,6 +240,19 @@ namespace Edu.Psu.Ist.DynamicMail
                   <c>vcvcvc<v> gives 3
                   ....
             */
+
+            /// <summary>
+            /// Measures the number of consonant sequences between 0 and j
+            /// </summary>
+            /// <returns>Number of consonant/vowel sequences</returns>
+            /// <remarks>
+            /// f c is a consonant sequence and v a vowel sequence, and <..> indicates arbitrary presence,
+            ///      <c><v>       gives 0
+            ///      <c>vc<v>     gives 1
+            ///      <c>vcvc<v>   gives 2
+            ///      <c>vcvcvc<v> gives 3
+            ///      ....
+            /// </remarks>
             private int m()
             {
                 int n = 0;
@@ -213,6 +284,10 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* vowelinstem() is true <=> 0,...j contains a vowel */
+            /// <summary>
+            /// Determines if stem contains a vowel
+            /// </summary>
+            /// <returns>Returns true if stem contains vowel else Returns false</returns>
             private bool vowelinstem()
             {
                 int i;
@@ -223,6 +298,12 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* doublec(j) is true <=> j,(j-1) contain a double consonant. */
+
+            /// <summary>
+            /// Determines if character in position J and J-1 are consonants
+            /// </summary>
+            /// <param name="j">Position in array b[]</param>
+            /// <returns>Returns true if J and J-1</returns>
             private bool doublec(int j)
             {
                 if (j < 1)
@@ -240,6 +321,16 @@ namespace Edu.Psu.Ist.DynamicMail
                   snow, box, tray.
 
             */
+
+            /// <summary>
+            /// Determines if b[i-2],b[i-1],b[i] is a consonant-vowel-consonant pattern
+            /// </summary>
+            /// <param name="i">The position of the last character in the 3 letter pattern</param>
+            /// <returns>Returns true if b[i-2],b[i-1],b[i] is a consonantt-vowel-consonant pattern and the second consonant is not w,x, or y</returns>
+            /// <remarks>
+            /// cvc(i) is true <=> i-2,i-1,i has the form consonant - vowel - consonant and also if the second c is not w,x or y. this is used when trying to restore an e at the end of a short word. e.g.
+            /// cav(e), lov(e), hop(e), or crim(e), but not sno(w), bo(x), tra(y).
+            /// </remarks>
             private bool cvc(int i)
             {
                 if (i < 2 || !cons(i) || cons(i - 1) || !cons(i - 2))
@@ -250,6 +341,11 @@ namespace Edu.Psu.Ist.DynamicMail
                 return true;
             }
 
+            /// <summary>
+            /// No comments given (requires explaination)
+            /// </summary>
+            /// <param name="s"></param>
+            /// <returns></returns>
             private bool ends(String s)
             {
                 int l = s.Length;
@@ -266,6 +362,11 @@ namespace Edu.Psu.Ist.DynamicMail
 
             /* setto(s) sets (j+1),...k to the characters in the string s, readjusting
                k. */
+
+            /// <summary>
+            /// sets (j+1),...k to the characters in the string s, readjusting k.
+            /// </summary>
+            /// <param name="s"></param>
             private void setto(String s)
             {
                 int l = s.Length;
@@ -304,6 +405,26 @@ namespace Edu.Psu.Ist.DynamicMail
 
             */
 
+            /// <summary>
+            /// Removes endings such as plurals or -ing/-ed
+            /// </summary>
+            /// <example>
+            /// caresses  ->  caress
+            /// ponies    ->  poni
+            /// ties      ->  ti
+            /// caress    ->  caress
+            /// cats      ->  cat
+            /// 
+            /// feed      ->  feed
+            /// agreed    ->  agree
+            /// disabled  ->  disable
+            /// 
+            ///  matting   ->  mat
+            ///  mating    ->  mate
+            ///  meeting   ->  meet
+            ///  milling   ->  mill
+            ///  messing   ->  mess
+            /// </example>
             private void step1()
             {
                 if (b[k] == 's')
@@ -341,6 +462,10 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* step2() turns terminal y to i when there is another vowel in the stem. */
+
+            /// <summary>
+            /// Turns terminal y to i when there is another vowel in the stem
+            /// </summary>
             private void step2()
             {
                 if (ends("y") && vowelinstem())
@@ -350,6 +475,14 @@ namespace Edu.Psu.Ist.DynamicMail
             /* step3() maps double suffices to single ones. so -ization ( = -ize plus
                -ation) maps to -ize etc. note that the string before the suffix must give
                m() > 0. */
+
+            /// <summary>
+            /// Maps double suffices
+            /// </summary>
+            /// <example>
+            /// -ization = -ize + -ation
+            /// Note: string before suffix must give m() > 0
+            /// </example>
             private void step3()
             {
                 if (k == 0)
@@ -401,6 +534,13 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* step4() deals with -ic-, -full, -ness etc. similar strategy to step3. */
+
+            /// <summary>
+            /// Maps -ic-, -full, -ness and additional suffices
+            /// </summary>
+            /// <remarks>
+            /// Deals with -icate, -ative, -alize, -iciti, -ical, -ful, -ness
+            /// </remarks>
             private void step4()
             {
                 switch (b[k])
@@ -424,6 +564,13 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* step5() takes off -ant, -ence etc., in context <c>vcvc<v>. */
+            /// <summary>
+            /// Removes endings like -ant and -ence if context is cvcvcv
+            /// </summary>
+            /// <remarks>
+            /// Deals with -al, -ance, -ence, -er, -ic, -able, ible, -ant
+            /// -ement, -ment, -ent, -ion, -ou, -ism, -iti, -ous, -ive, -ize
+            /// </remarks>
             private void step5()
             {
                 if (k == 0)
@@ -474,6 +621,9 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             /* step6() removes a final -e if m() > 1. */
+            /// <summary>
+            /// Removes final -e if m() > 1
+            /// </summary>
             private void step6()
             {
                 j = k;
@@ -493,6 +643,13 @@ namespace Edu.Psu.Ist.DynamicMail
              * from the input.  You can retrieve the result with
              * getResultLength()/getResultBuffer() or toString().
              */
+
+            /// <summary>
+            /// Stem the word placed into the Stemmer buffer through calls to add()
+            /// </summary>
+            /// <remarks>
+            /// Returns true if the stemming process resulted in a word different from the input.  You can retrieve the result with getResultLength()/getResultBuffer() or toString().
+            /// </remarks>
             public void stem()
             {
                 k = i - 1;
@@ -509,6 +666,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 i = 0;
             }
 
+            /// <summary>
+            /// Call to stem the string in the parameter
+            /// </summary>
+            /// <param name="inputString">String to be stemmed</param>
             public void stem(String inputString)
             {
                 foreach (char x in inputString)
@@ -518,6 +679,11 @@ namespace Edu.Psu.Ist.DynamicMail
                 stem();
             }
 
+            /// <summary>
+            /// Stems the subject of an email
+            /// </summary>
+            /// <param name="inputString">String representation of the email title</param>
+            /// <param name="emailID">String representation of the emailID</param>
             public void stemSubject(String inputString, String emailID)
             {
                 //Deliminator list for splitting the strings
