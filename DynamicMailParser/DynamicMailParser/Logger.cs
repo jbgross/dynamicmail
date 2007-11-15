@@ -7,11 +7,15 @@ namespace Edu.Psu.Ist.DynamicMail
 {
     public class Logger
     {
-        //singlton class instance
+        /// <summary>
+        /// singlton class instance
+        /// </summary>
         private static Logger instance=null;
         private static readonly object padlock = new object();
 
-        //string to hold the location of the folder to hold the various output and input files
+        /// <summary>
+        /// string to hold the location of the folder to hold the various output and input files
+        /// </summary>
         private String logLocation = "C:\\Windows\\Temp\\";
         public String LogLocation
         {
@@ -19,7 +23,9 @@ namespace Edu.Psu.Ist.DynamicMail
             set { logLocation = value; }
         }
 
-        //Filename of the log file
+        /// <summary>
+        /// Filename of the log file
+        /// </summary>
         private String logFileName = "DynamicMailLog.txt";
         public String LogFileName
         {
@@ -27,13 +33,18 @@ namespace Edu.Psu.Ist.DynamicMail
             set { logFileName = value; }
         }
         
-        //public constructor
+        //
+        /// <summary>
+        /// public constructor
+        /// </summary>
         private Logger()
         {
             
         }
 
-        //method to get the singelton instance of indexes
+        /// <summary>
+        /// method to get the singelton instance of indexes
+        /// </summary>
         public static Logger Instance
         {
             get
@@ -57,6 +68,10 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
+        /// <summary>
+        /// Appends Time/Date and String message to the StreamWriter
+        /// </summary>
+        /// <param name="message"></param>
         public void logMessage(String message)
         {
             // create a writer and open the file
