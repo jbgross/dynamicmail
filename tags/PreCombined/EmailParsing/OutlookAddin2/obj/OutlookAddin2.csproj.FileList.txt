@@ -1,0 +1,13 @@
+.\bin\Debug\OutlookAddin2.dll
+.\bin\Debug\OutlookAddin2.pdb
+.\bin\Debug\OutlookAddin2.dll.manifest
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\OutlookAddin2.csproj.ResolveComReference.cache
+obj\Debug\OutlookAddin2.Properties.Resources.resources
+obj\Debug\OutlookAddin2.csproj.GenerateResource.Cache
+obj\Debug\OutlookAddin2.dll
+obj\Debug\OutlookAddin2.pdb
+obj\Debug\Interop.Microsoft.Office.Core.dll
+.\bin\Debug\Interop.Microsoft.Office.Core.dll
+.\bin\Debug\nunit.framework.xml
+.\bin\Debug\nunit.framework.dll
