@@ -5,11 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMailParser", "Dynami
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edu.Psu.Ist.DynamicMail", "Edu.Psu.Ist.DynamicMail\Edu.Psu.Ist.DynamicMail.csproj", "{859891C2-D9EC-4614-915D-137289E837F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mailWindowTest", "mailWindowTest\mailWindowTest.csproj", "{1280B771-9EEF-45F3-81C5-1C13EF98EF2E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectXmlUnitTests", "ObjectXmlUnitTests\ObjectXmlUnitTests.csproj", "{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookAddin2", "OutlookAddin2\OutlookAddin2.csproj", "{627D27A9-BA70-4B6B-A0AA-7684F95AAF0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectXml", "XML Manipulation\ObjectXml.csproj", "{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}"
 EndProject
@@ -33,18 +29,10 @@ Global
 		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1280B771-9EEF-45F3-81C5-1C13EF98EF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1280B771-9EEF-45F3-81C5-1C13EF98EF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1280B771-9EEF-45F3-81C5-1C13EF98EF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1280B771-9EEF-45F3-81C5-1C13EF98EF2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{627D27A9-BA70-4B6B-A0AA-7684F95AAF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{627D27A9-BA70-4B6B-A0AA-7684F95AAF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{627D27A9-BA70-4B6B-A0AA-7684F95AAF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{627D27A9-BA70-4B6B-A0AA-7684F95AAF0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU

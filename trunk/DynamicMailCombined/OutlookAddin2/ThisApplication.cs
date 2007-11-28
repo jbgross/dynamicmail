@@ -29,17 +29,17 @@ namespace OutlookAddin2
         /// Also populates contact inded with keys (contactIDs) and values(Email entryIDs of emails
         /// sent by that contact
         /// </summary>
-        private Hashtable indexInboxEmail()
-        {
+        //private Hashtable indexInboxEmail()
+        //{
             
-            //gets the contents of the inbox and puts them in searchFolder
-            Outlook.MAPIFolder inbox = this.ActiveExplorer().
-                Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-            Outlook.Items searchFolder = inbox.Items;
+        //    //gets the contents of the inbox and puts them in searchFolder
+        //    Outlook.MAPIFolder inbox = this.ActiveExplorer().
+        //        Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+        //    Outlook.Items searchFolder = inbox.Items;
 
 
             
-        }
+        //}
 
  
 
@@ -85,16 +85,16 @@ namespace OutlookAddin2
         /// </summary>
         /// <param name="searchAddress"></param>
         /// <returns>contnact EntryID if email address is in contacts.  Else null</returns>
-        private string checkContacts(string searchAddress)
-        {
-            Outlook.MAPIFolder contacts = this.ActiveExplorer().
-                Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
+        //private string checkContacts(string searchAddress)
+        //{
+        //    Outlook.MAPIFolder contacts = this.ActiveExplorer().
+        //        Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
 
             
 
-            return contactID;
+        //    return contactID;
 
-        }
+        //}
 
 
 
