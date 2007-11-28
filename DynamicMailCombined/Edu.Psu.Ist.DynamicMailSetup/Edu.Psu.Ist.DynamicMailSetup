@@ -21,18 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1509005CA0ECF97FCF45EC462D971A28"
-        "OwnerKey" = "8:_BC171ACF7911CB5140D4C505A911AF39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1509005CA0ECF97FCF45EC462D971A28"
-        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -63,38 +51,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AB5652682222A19EF883511A12A187EE"
-        "OwnerKey" = "8:_BC171ACF7911CB5140D4C505A911AF39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AB5652682222A19EF883511A12A187EE"
-        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AB7A85B73608185E8E10C6531DDB7048"
-        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BC171ACF7911CB5140D4C505A911AF39"
-        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D08F70E75A6E8A45D508F47322834633"
         "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D08F70E75A6E8A45D508F47322834633"
-        "OwnerKey" = "8:_BC171ACF7911CB5140D4C505A911AF39"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,24 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC171ACF7911CB5140D4C505A911AF39"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1509005CA0ECF97FCF45EC462D971A28"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AB5652682222A19EF883511A12A187EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D08F70E75A6E8A45D508F47322834633"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -149,12 +89,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AB7A85B73608185E8E10C6531DDB7048"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -285,37 +219,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1509005CA0ECF97FCF45EC462D971A28"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:nunit.framework, Version=2.4.4.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1509005CA0ECF97FCF45EC462D971A28"
-                    {
-                    "Name" = "8:nunit.framework.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:nunit.framework.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A941C0CEF25DCBB6513E569685B2EA8"
             {
             "SourcePath" = "8:Microsoft.VisualStudio.Tools.Applications.Runtime.tlb"
@@ -350,99 +253,6 @@
                     }
                 }
             "SourcePath" = "8:office.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AB5652682222A19EF883511A12A187EE"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Edu.Psu.Ist.DynamicMail, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_AB5652682222A19EF883511A12A187EE"
-                    {
-                    "Name" = "8:Edu.Psu.Ist.DynamicMail.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Edu.Psu.Ist.DynamicMail.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AB7A85B73608185E8E10C6531DDB7048"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"
-                "ScatterAssemblies"
-                {
-                    "_AB7A85B73608185E8E10C6531DDB7048"
-                    {
-                    "Name" = "8:Office.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Office.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC171ACF7911CB5140D4C505A911AF39"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DynamicMailParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BC171ACF7911CB5140D4C505A911AF39"
-                    {
-                    "Name" = "8:DynamicMailParser.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DynamicMailParser.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
