@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Edu.Psu.Ist.DynamicMail</RootNamespace>
-    <AssemblyName>Edu.Psu.Ist.DynamicMail</AssemblyName>
+    <AssemblyName>Edu.Psu.Ist.DynamicMail.ObjectXml</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
