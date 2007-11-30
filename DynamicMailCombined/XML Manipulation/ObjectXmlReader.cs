@@ -101,20 +101,23 @@ namespace Edu.Psu.Ist.DynamicMail
                     bool readObject = Boolean.Parse(reader.GetAttribute(ROOT_OBJECT));
                     Dictionary<String, String> primitives = new Dictionary<String, String>();
                     Dictionary<String, Object> references = new Dictionary<String, Object>();
-                    while (!(reader.NodeType == XmlNodeType.EndElement && reader.Name.Equals(OBJECT_ELEMENT_NAME)))
+                    if (!reader.IsEmptyElement)
                     {
-                        if (reader.Name.Equals(PRIMITIVE_ELEMENT_NAME))
-                            primitives.Add(
-                                reader.GetAttribute(VARIABLE_NAME),
-                                reader.GetAttribute(VALUE));
-                        else if (reader.Name.Equals(REFERENCE_ELEMENT_NAME))
+                        while (!(reader.NodeType == XmlNodeType.EndElement && reader.Name.Equals(OBJECT_ELEMENT_NAME)))
                         {
-                            String name = reader.GetAttribute(VARIABLE_NAME);
-                            int rid = Int32.Parse(reader.GetAttribute(OBJECT_ID));
-                            if (!readObjects.ContainsKey(rid)) throw new InvalidObjectIDException(rid.ToString());
-                            references.Add(name, readObjects[rid]);
+                            if (reader.Name.Equals(PRIMITIVE_ELEMENT_NAME))
+                                primitives.Add(
+                                    reader.GetAttribute(VARIABLE_NAME),
+                                    reader.GetAttribute(VALUE));
+                            else if (reader.Name.Equals(REFERENCE_ELEMENT_NAME))
+                            {
+                                String name = reader.GetAttribute(VARIABLE_NAME);
+                                int rid = Int32.Parse(reader.GetAttribute(OBJECT_ID));
+                                if (!readObjects.ContainsKey(rid)) throw new InvalidObjectIDException(rid.ToString());
+                                references.Add(name, readObjects[rid]);
+                            }
+                            reader.Read();
                         }
-                        reader.Read();
                     }
                     IObjectXmlConverter converter = registry.LookUpConverter(Type.GetType(classType));
                     Object o = converter.GenerateInstance(primitives, references);
