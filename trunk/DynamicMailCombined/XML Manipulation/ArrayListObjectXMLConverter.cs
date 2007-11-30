@@ -23,28 +23,15 @@ namespace Edu.Psu.Ist.DynamicMail
         public Dictionary<String, Object> GetReferences(Object o)
         {
             Dictionary<string, Object> IndexDic = new Dictionary<string, Object>();
-            /* Console.WriteLine(o.GetType().AssemblyQualifiedName);
-             Console.Out.Flush();
-             ArrayList Index = (ArrayList)o;
-
-
-             for(int x = 0; x < Index.Count; x++)
-             {
-                 IndexDic.Add(x.ToString(), (Object)Index[x]);
-             }
-*/
              return IndexDic;
         }
 
         public Object GenerateInstance(Dictionary<String, String> primitives, Dictionary<String, Object> references)
         {
-            ArrayList Index = new ArrayList();
+            ArrayList Index = new ArrayList(primitives.Count);
 
             foreach (KeyValuePair<String, String> kvp in primitives)
-            {
-                Index[Convert.ToInt32(kvp.Key)] = kvp.Value;
-                
-            }
+                Index.Insert(Convert.ToInt32(kvp.Key), kvp.Value);
 
             return Index;
         }

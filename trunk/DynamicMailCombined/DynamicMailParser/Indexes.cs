@@ -1,4 +1,4 @@
-using System;
+2.using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text;
@@ -30,9 +30,6 @@ namespace Edu.Psu.Ist.DynamicMail
         //hashtable to hold the inverted index of contacts
         public Hashtable contactsAddresses = new Hashtable();
 
-        //string to hold the location of the folder to hold the various output and input files
-        private String Location = "C:\\Documents and Settings\\David\\Desktop\\Fall07\\IST496\\OutlookAddin2\\OutlookAddin2\\bin\\Debug\\";
-        
         //public constructor
         private Indexes()
         {
@@ -74,7 +71,7 @@ namespace Edu.Psu.Ist.DynamicMail
             sentEmailIndex = (Hashtable)IndexList[2];
             contactsIndex = (Hashtable)IndexList[3];
             contactsAddresses = (Hashtable)IndexList[4];
-            AlreadyIndexed = (ArrayList)AlreadyIndexed[5];
+            AlreadyIndexed = (ArrayList)IndexList[5];
         }
 
         //method to get the singelton instance of indexes
@@ -90,11 +87,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     if (instance == null)
                     {
                         instance = new Indexes();
-                        try
-                        {
                             instance.ReadIndexFromXML();
-                        }catch(Exception e){
-                        }
                     }
                     //return the sigelton instance
                     return instance;
@@ -136,7 +129,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void SaveSerial()
         {
             //open a filestream
-            FileStream fs = new FileStream(Location + "Store.dat", FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream fs = new FileStream("Store.dat", FileMode.OpenOrCreate, FileAccess.Write);
             try
             {
                 //ArrayList a = new ArrayList();
@@ -161,7 +154,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void LoadSerial()
         {
             //open a filestream
-            FileStream fs = new FileStream(Location + "Store.dat", FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream("Store.dat", FileMode.Open, FileAccess.Read);
             try
             {
                 //ArrayList a = new ArrayList();
@@ -187,7 +180,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void saveTxt()
         {
              // create a writer and open the file
-            TextWriter tw = new StreamWriter(Location + "hashdata.txt");
+            TextWriter tw = new StreamWriter("hashdata.txt");
 
             bool firstLoop = true;
             // write a line of text to the file
