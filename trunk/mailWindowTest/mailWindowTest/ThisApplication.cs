@@ -11,6 +11,13 @@ namespace mailWindowTest
     {
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
+
+            Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.
+                    GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+            Outlook.Items items = inbox.Items;
+
+            generateDataTable(items);
+
             MainForm formMain = new MainForm();
             formMain.ShowDialog();
 
@@ -20,6 +27,7 @@ namespace mailWindowTest
 
         public void createTestMailItems()
         {
+
             Outlook.MailItem mail1 = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
             mail1.Subject = "Testing";
             mail1.To = "dave@google.com";
@@ -35,18 +43,27 @@ namespace mailWindowTest
             mail1.To = "mluther1@cia.gov";
             mail1.Body = "I have a dream.  I'm falling and I wake up";
 
+
         }
 
-        public static DataTable generateDataTable()
+        public static int /*DataTable*/ generateDataTable(Outlook.Items mailItems)
         {
             //create data table with colmns to hold mail info
             DataTable table = new DataTable();
-            table.TableName = "myMail";
-            table.Columns.Add("EntryID:", typeof(string));
-            table.Columns.Add("To:", typeof(string));
-            table.Columns.Add("Subject:", typeof(string));
-            table.Columns.Add("Message:", typeof(string));
+            //table.TableName = "myMail";
+            //table.Columns.Add("EntryID:", typeof(string));
+            //table.Columns.Add("To:", typeof(string));
+            //table.Columns.Add("Subject:", typeof(string));
+            //table.Columns.Add("Message:", typeof(string));
 
+            int count = 0;
+            foreach( Outlook.MailItem email in mailItems)
+            {
+                count++;
+            }
+
+            MessageBox.Show("Count = " + count);
+ 
             
 
 
@@ -57,7 +74,8 @@ namespace mailWindowTest
             
             //table.AcceptChanges();
 
-            return table;
+            //return table;
+            return 0;
 
         }
 
