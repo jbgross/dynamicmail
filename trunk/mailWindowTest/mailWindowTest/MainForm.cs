@@ -11,16 +11,13 @@ namespace mailWindowTest
     public partial class MainForm : Form
     {
         DataTable myMailData = new DataTable();
+        
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        public void sendDataTable(DataTable table)
-        {
-            myMailData = table;
-        }
 
 
         
@@ -33,6 +30,9 @@ namespace mailWindowTest
 
         private void populateButton_Click(object sender, EventArgs e)
         {
+
+            myMailData = ThisApplication.generateDataTable();
+
             myMail.DataSource = myMailData;
            // myMail.Columns["EntryID:"].Visible = false;
         }

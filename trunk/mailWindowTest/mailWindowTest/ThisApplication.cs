@@ -14,12 +14,30 @@ namespace mailWindowTest
             MainForm formMain = new MainForm();
             formMain.ShowDialog();
 
-            
+        }
+  
 
-          
+
+        public void createTestMailItems()
+        {
+            Outlook.MailItem mail1 = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
+            mail1.Subject = "Testing";
+            mail1.To = "dave@google.com";
+            mail1.Body = "I am testing an email";
+
+            Outlook.MailItem mail2 = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
+            mail1.Subject = "ForScore";
+            mail1.To = "abe@gettysburg.com";
+            mail1.Body = "Four Score and Seven years ago, our forefathers...";
+
+            Outlook.MailItem mail3 = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
+            mail1.Subject = "aDream";
+            mail1.To = "mluther1@cia.gov";
+            mail1.Body = "I have a dream.  I'm falling and I wake up";
+
         }
 
-        public DataTable generateDataTable()
+        public static DataTable generateDataTable()
         {
             //create data table with colmns to hold mail info
             DataTable table = new DataTable();
@@ -29,34 +47,21 @@ namespace mailWindowTest
             table.Columns.Add("Subject:", typeof(string));
             table.Columns.Add("Message:", typeof(string));
 
-            //get some mail
-            //for testing, we will create some mail
-            Outlook.MailItem mail1 = createMailItem("Testing", "dave@google.com", "I am testing an email");
-            Outlook.MailItem mail2 = createMailItem("ForScore", "abe@gettysburg.com", "Four Score and Seven years ago, our forefathers...");
-            Outlook.MailItem mail3 = createMailItem("aDream", "mluther1@cia.gov", "I have a dream.  I'm falling and I wake up");
             
 
-            table.Rows.Add(new object[] { mail1.EntryID, mail1.To, mail1.Subject, mail1.Body });
-            table.Rows.Add(new object[] { mail2.EntryID, mail2.To, mail2.Subject, mail2.Body });
-            table.Rows.Add(new object[] { mail3.EntryID, mail3.To, mail3.Subject, mail3.Body });
+
+            //table.Rows.Add(new object[] { mail1.EntryID.ToString(), mail1.To.ToString(), mail1.Subject.ToString(), mail1.Body.ToString() });
+            //table.Rows.Add(new object[] { mail2.EntryID.ToString(), mail2.To.ToString(), mail2.Subject.ToString(), mail2.Body.ToString() });
+            //table.Rows.Add(new object[] { mail3.EntryID.ToString(), mail3.To.ToString(), mail3.Subject.ToString(), mail3.Body.ToString() });
+            //table.Rows.Add(new object[] {"test1", "test2", "test3", "test4" });
             
-            
-            table.AcceptChanges();
+            //table.AcceptChanges();
 
             return table;
 
         }
 
-        public Outlook.MailItem createMailItem(string subject, string to, string body)
-        {
-            Outlook.MailItem mailItem = (Outlook.MailItem)this.CreateItem(Outlook.OlItemType.olMailItem);
-            mailItem.Subject = subject;
-            mailItem.To = to;
-            mailItem.Body = body;
-            mailItem.Display(false);
 
-            return mailItem;
-        }
        
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
