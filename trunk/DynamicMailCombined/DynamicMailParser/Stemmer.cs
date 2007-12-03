@@ -94,7 +94,7 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 // Create an instance of StreamReader to read from a file.
                 // The using statement also closes the StreamReader.
-                StreamReader sr = new StreamReader("stoplist.txt");
+                StreamReader sr = new StreamReader("C:\\Documents and Settings\\David\\Desktop\\Fall07\\IST496\\GoogleCode\\DynamicMailCombined\\DynamicMailParser\\stoplist.txt");
 
                 string line;
                 // Read and display lines from the file until the end of 

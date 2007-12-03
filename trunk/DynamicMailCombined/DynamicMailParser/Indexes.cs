@@ -1,4 +1,4 @@
-2.using System;
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text;
@@ -87,7 +87,14 @@ namespace Edu.Psu.Ist.DynamicMail
                     if (instance == null)
                     {
                         instance = new Indexes();
+                        try
+                        {
                             instance.ReadIndexFromXML();
+                        }
+
+                        catch (Exception e)
+                        {
+                       }
                     }
                     //return the sigelton instance
                     return instance;

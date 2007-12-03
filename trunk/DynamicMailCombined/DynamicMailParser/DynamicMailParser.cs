@@ -39,28 +39,37 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 try
                 {
+                    
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
+                    if (!Indexes.Instance.SearchAlreadyIndexed(foundEmail.EntryID))
+                    {
+
+                        //sender email address of current email
+                        foundSender = foundEmail.SenderEmailAddress;
+                        //email entry ID of current email
+                        foundEmailEntryID = foundEmail.EntryID;
+                        //subject of current email
+                        foundSubject = foundEmail.Subject;
+
+                        try
+                        {
+                            //Dave, this breaks because stoplist.txt is unavailable or in the wrong directory
+                            Stemmer SubjectStemmer = new Stemmer();
+                            SubjectStemmer.stemSubject(foundSubject.ToString(), foundEmailEntryID.ToString());
+                        }
+                        catch (Exception e)
+                        {
+                        }
 
 
-                    //sender email address of current email
-                    foundSender = foundEmail.SenderEmailAddress;
-                    //email entry ID of current email
-                    foundEmailEntryID = foundEmail.EntryID;
-                    //subject of current email
-                    foundSubject = foundEmail.Subject;
-
-
-                    //Dave, this breaks because stoplist.txt is unavailable or in the wrong directory
-                    //Stemmer SubjectStemmer = new Stemmer();
-                    //SubjectStemmer.stemSubject(foundSubject, foundEmailEntryID);
-
-
-                    //add email address and emailID to the received email index
-                    addToReceivedEmailIndex(foundSender, foundEmailEntryID, contacts);
+                        //add email address and emailID to the received email index
+                        addToReceivedEmailIndex(foundSender, foundEmailEntryID, contacts);
+                        Indexes.Instance.AddIndexedID(foundEmailEntryID);
+                    }
                 }
                 catch (Exception e) //catches items that are not emails
                 {
-
+                    Console.WriteLine(e.ToString());
                 }
                 lookedAt++;
             }
