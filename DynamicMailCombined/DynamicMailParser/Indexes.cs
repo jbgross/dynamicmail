@@ -19,24 +19,39 @@ namespace Edu.Psu.Ist.DynamicMail
         private ArrayList AlreadyIndexed = new ArrayList();
         
 
-        //hashtable to hold the inverted index of subject words
+        
+        /// <summary>
+        /// hashtable to hold the inverted index of subject words
+        /// </summary>
         public Hashtable SubjectIndex = new Hashtable();
-        //hashtable to hold the inverted index of received emails
+        /// <summary>
+        /// hashtable to hold the inverted index of received emails
+        /// </summary>
         public Hashtable receivedEmailIndex = new Hashtable();
-        //hashtable to hold the invereted index of sent emails
+        /// <summary>
+        /// hashtable to hold the invereted index of sent emails
+        /// </summary>
         public Hashtable sentEmailIndex = new Hashtable();
-        //hashtable to hold the invereted index of contacts
+        /// <summary>
+        /// hashtable to hold the invereted index of contacts
+        /// </summary>
         public Hashtable contactsIndex = new Hashtable();
-        //hashtable to hold the inverted index of contacts
+        /// <summary>
+        /// hashtable to hold the inverted index of contacts
+        /// </summary>
         public Hashtable contactsAddresses = new Hashtable();
 
-        //public constructor
+        /// <summary>
+        /// Blank private constructor.  All instanciations should be done through the singelton instance.
+        /// </summary>
         private Indexes()
         {
             
         }
 
-        //public method to write the indexes to XML
+        /// <summary>
+        ///     Method to write the all of the indexes to XML.  It only needs called from the singleton instance.
+        /// </summary>
         public void WriteIndexToXML()
         {
             //create an XML writer object
@@ -55,8 +70,10 @@ namespace Edu.Psu.Ist.DynamicMail
             WriteXML.WriteObjectXml(IndexList, "c:\\emailparse2.xml");
         }
 
-
-        //public method to read the XML datafile and place the data within the indexes
+        /// <summary>
+        /// public method to read the XML datafile and place the data within the indexes
+        /// </summary>
+        
         public void ReadIndexFromXML()
         {
             //create an XML reader object
@@ -74,7 +91,11 @@ namespace Edu.Psu.Ist.DynamicMail
             AlreadyIndexed = (ArrayList)IndexList[5];
         }
 
-        //method to get the singelton instance of indexes
+        /// <summary>
+        /// method to get the singelton instance of indexes
+        /// </summary>
+        /// <returns> Current instance of Indexes</returns>
+        
         public static Indexes Instance
         {
             get
@@ -106,8 +127,11 @@ namespace Edu.Psu.Ist.DynamicMail
                 instance = value;
             }
         }
-
-        //Method to search for an index and return a boolean whether or not it is indexed
+        /// <summary>
+        /// Method to search for an index and return a boolean whether or not it is indexed
+        /// </summary>
+        /// <param name="SearchIndex">GUID for Mail Item represented as a string which is used to search the already indexed array</param>
+        /// <returns>Boolean value that represents whether or not the GUID exists in the already indexed array</returns>
         public bool SearchAlreadyIndexed(String SearchIndex)
         {
             //to a binary search and get the index
@@ -118,21 +142,29 @@ namespace Edu.Psu.Ist.DynamicMail
             //if there is no index the return false
             return false;
         }
-
-        //method to add a new indexid to the Already Indexed arraylist
+        /// <summary>
+        /// method to add a new indexid to the Already Indexed arraylist
+        /// </summary>
+        /// <param name="NewIndex">GUID for Mail Item represented as a string</param>
         public void AddIndexedID(String NewIndex)
         {
             AlreadyIndexed.Add(NewIndex);
             AlreadyIndexed.Sort();
         }
 
-        //method to get the arraylist of already indexed emails
+        /// <summary>
+        /// method to get the arraylist of already indexed emails
+        /// </summary>
+        /// <returns>Array list of all the indexed Mail Object GUIDs</returns>
         public ArrayList GetAllIndexed()
         {
             return AlreadyIndexed;
         }
 
-        //method to save the singelton instace as a serialized object
+        /// <summary>
+        /// method to save the singelton instace as a serialized object
+        /// </summary>
+        
         public void SaveSerial()
         {
             //open a filestream
@@ -157,7 +189,10 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
-        //method to deserialize the singelton class
+        /// <summary>
+        /// method to deserialize the singelton class
+        /// </summary>
+        
         public void LoadSerial()
         {
             //open a filestream
@@ -184,6 +219,9 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
+        /// <summary>
+        ///  Method to write the indexes to a txt file
+        /// </summary>
         public void saveTxt()
         {
              // create a writer and open the file
