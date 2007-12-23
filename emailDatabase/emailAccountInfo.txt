@@ -1,0 +1,7 @@
+username:
+emailJunkiesTest
+emailJunkiesTest2
+
+password:
+enronDBftw
+
