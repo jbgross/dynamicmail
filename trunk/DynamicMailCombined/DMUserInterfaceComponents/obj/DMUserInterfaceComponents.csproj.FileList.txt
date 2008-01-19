@@ -1,0 +1,7 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\DMUserInterfaceComponents.csproj.GenerateResource.Cache
+obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.ProgressInfoBox.resources
+bin\Debug\DMUserInterfaceComponents.dll
+bin\Debug\DMUserInterfaceComponents.pdb
+obj\Debug\DMUserInterfaceComponents.dll
+obj\Debug\DMUserInterfaceComponents.pdb

@@ -30,9 +30,13 @@
     <DocumentationFile>bin\Release\DynamicMailParser.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="nunit.framework, Version=2.4.6.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\NUnit 2.4.6\bin\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +77,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DMUserInterfaceComponents\DMUserInterfaceComponents.csproj">
+      <Project>{2CB6935E-6F3B-4294-92D6-F971EE137764}</Project>
+      <Name>DMUserInterfaceComponents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XML Manipulation\ObjectXml.csproj">
       <Project>{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}</Project>
       <Name>ObjectXml</Name>

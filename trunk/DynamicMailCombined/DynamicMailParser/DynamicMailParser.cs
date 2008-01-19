@@ -6,12 +6,29 @@ using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Collections;
 using System.IO;
-
+using Edu.Psu.Ist.DynamicMail.Interface;
+using System.Threading;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
     public class DynamicMailParser
     {
+
+        private Outlook.MAPIFolder contacts;
+
+        public Outlook.MAPIFolder Contacts
+        {
+            get { return contacts; }
+            set { contacts = value; }
+        }
+        private Outlook.MAPIFolder box;
+
+        public Outlook.MAPIFolder Box
+        {
+            get { return box; }
+            set { box = value; }
+        }
+ 
         //Singelton Instance of indexes
         private Indexes InvertedIndexes;
 
@@ -21,9 +38,15 @@ namespace Edu.Psu.Ist.DynamicMail
             InvertedIndexes = Indexes.Instance;
         }
 
-        public void InboxIndexer(Outlook.MAPIFolder inbox, Outlook.MAPIFolder contacts)
+        public void Indexer()
         {
-            Outlook.Items searchFolder = inbox.Items;
+            // for now, if Box or Contacts has not been set, do nothing
+            if (Box == null || Contacts == null)
+            {
+                return;
+            }
+
+            Outlook.Items searchFolder = Box.Items;
 
             int total = searchFolder.Count;     //total items in mailbox
             int lookedAt = 1;                   //email items looked at so far    
@@ -32,10 +55,21 @@ namespace Edu.Psu.Ist.DynamicMail
             //variables to hold found email data
             string foundSender, foundEmailEntryID, foundSubject;
 
+            // open up a progress window for the user
+            int count = 0;
+            ProgressInfoBox pib = new ProgressInfoBox(total);
+            int update = pib.IncrementQuantity;
+            pib.Visible = true;
+
             //do this for every item in the searchFolder (inbox)
             while (lookedAt < total)
             {
-
+                // let's see if we need to update the progress window
+                if (++count >= update)
+                {
+                    pib.Increment();
+                    count = 0;
+                }
 
                 try
                 {
@@ -74,6 +108,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 lookedAt++;
             }
             Indexes SaveIndexes = Indexes.Instance;
+
+            // close the progress window
+            pib.Visible = false;
+            pib.Refresh();
 
             SaveIndexes.WriteIndexToXML();
         }

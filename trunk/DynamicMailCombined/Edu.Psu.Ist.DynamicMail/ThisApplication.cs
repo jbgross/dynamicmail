@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
+using System.Threading;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -110,9 +111,12 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 if (ctrl.Tag == "inbox")
                 {
-
-                    parser.InboxIndexer(inbox, contacts);
-
+                    // going to run this in a separate thread - jbg
+                    parser.Box = inbox;
+                    parser.Contacts = contacts;
+                    ThreadStart job = new ThreadStart(parser.Indexer);
+                    Thread thread = new Thread(job);
+                    thread.Start();
                 }
                 if (ctrl.Tag == "sent")
                 {
@@ -130,7 +134,7 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 MessageBox.Show(e.ToString());
             }
-            MessageBox.Show("You clicked: " + ctrl.Caption);
+            //MessageBox.Show("You clicked: " + ctrl.Caption);
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
