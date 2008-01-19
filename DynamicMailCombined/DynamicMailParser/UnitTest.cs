@@ -93,7 +93,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
         //unit test to verify that the binary search is working
         [Test]
-        public void BianarySearch()
+        public void BinarySearch()
         {
             //add indexes to the aleardy indexed array
             testIndexes.AddIndexedID("12r489ia");
@@ -118,7 +118,6 @@ namespace Edu.Psu.Ist.DynamicMail
             ArrayList TestIndexSortArray = testIndexes.GetAllIndexed();
 
             //validate that they are indexed
-            Assert.AreEqual("111111d", TestIndexSortArray[2]);
             Assert.AreEqual("111111a", TestIndexSortArray[0]);
         }
 

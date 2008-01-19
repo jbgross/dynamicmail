@@ -13,6 +13,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Edu.Psu.Ist", "Edu.Psu.Ist.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "mailWindowTestSetup", "mailWindowTestSetup\mailWindowTestSetup", "{33F0C085-B02C-4AD8-BFA9-75DA04DC7BFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMUserInterfaceComponents", "DMUserInterfaceComponents\DMUserInterfaceComponents.csproj", "{2CB6935E-6F3B-4294-92D6-F971EE137764}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{41540D89-C36F-4B8E-B703-452BB36ED6D0}.Release|Any CPU.ActiveCfg = Release
 		{33F0C085-B02C-4AD8-BFA9-75DA04DC7BFB}.Debug|Any CPU.ActiveCfg = Debug
 		{33F0C085-B02C-4AD8-BFA9-75DA04DC7BFB}.Release|Any CPU.ActiveCfg = Release
+		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
