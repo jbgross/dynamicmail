@@ -32,6 +32,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TimeRemaining = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ItemsLeft = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // progress
@@ -53,7 +55,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 89);
+            this.label2.Location = new System.Drawing.Point(38, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 13);
             this.label2.TabIndex = 2;
@@ -62,17 +64,37 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // TimeRemaining
             // 
             this.TimeRemaining.AutoSize = true;
-            this.TimeRemaining.Location = new System.Drawing.Point(196, 89);
+            this.TimeRemaining.Location = new System.Drawing.Point(196, 112);
             this.TimeRemaining.Name = "TimeRemaining";
             this.TimeRemaining.Size = new System.Drawing.Size(13, 13);
             this.TimeRemaining.TabIndex = 3;
             this.TimeRemaining.Text = "?";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(77, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Items Left to Index: ";
+            // 
+            // ItemsLeft
+            // 
+            this.ItemsLeft.AutoSize = true;
+            this.ItemsLeft.Location = new System.Drawing.Point(196, 89);
+            this.ItemsLeft.Name = "ItemsLeft";
+            this.ItemsLeft.Size = new System.Drawing.Size(13, 13);
+            this.ItemsLeft.TabIndex = 5;
+            this.ItemsLeft.Text = "?";
             // 
             // ProgressInfoBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 156);
+            this.Controls.Add(this.ItemsLeft);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeRemaining);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -90,5 +112,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label TimeRemaining;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label ItemsLeft;
     }
 }
