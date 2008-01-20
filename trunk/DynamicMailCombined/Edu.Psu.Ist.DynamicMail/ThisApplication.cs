@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.Tools.Applications.Runtime;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Threading;
+using Edu.Psu.Ist.DynamicMail.Interface;
+
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -112,10 +114,19 @@ namespace Edu.Psu.Ist.DynamicMail
                 if (ctrl.Tag == "inbox")
                 {
                     // going to run this in a separate thread - jbg
+                    ProgressInfoBox pib = new ProgressInfoBox(inbox.Items.Count);
+                    //ThreadStart pibTS = new ThreadStart(pib.IncrementCheck);
+                    //Thread pibThread = new Thread(pibTS);
+                    //pibThread.Priority = ThreadPriority.AboveNormal;
+                    //pibThread.Start();
+
+                    // going to run this in a separate thread - jbg
                     parser.Box = inbox;
                     parser.Contacts = contacts;
+                    parser.Pib = pib;
                     ThreadStart job = new ThreadStart(parser.Indexer);
                     Thread thread = new Thread(job);
+                    thread.Priority = ThreadPriority.Normal;
                     thread.Start();
                 }
                 if (ctrl.Tag == "sent")

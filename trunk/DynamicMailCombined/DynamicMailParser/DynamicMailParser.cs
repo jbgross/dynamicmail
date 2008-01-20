@@ -6,13 +6,24 @@ using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Collections;
 using System.IO;
-using Edu.Psu.Ist.DynamicMail.Interface;
 using System.Threading;
+using Edu.Psu.Ist.DynamicMail.Interface;
 
-namespace Edu.Psu.Ist.DynamicMail
+
+namespace Edu.Psu.Ist.DynamicMail 
 {
-    public class DynamicMailParser
+    public class DynamicMailParser 
     {
+        int checkAt = 0;
+        int count = 0;
+        int lookedAt = 1;
+        private ProgressInfoBox pib;
+
+        public ProgressInfoBox Pib
+        {
+            get { return pib; }
+            set { pib = value; }
+        }
 
         private Outlook.MAPIFolder contacts;
 
@@ -46,34 +57,28 @@ namespace Edu.Psu.Ist.DynamicMail
                 return;
             }
 
+            checkAt = (Box.Items.Count / 100) + 1;
             Outlook.Items searchFolder = Box.Items;
 
             int total = searchFolder.Count;     //total items in mailbox
-            int lookedAt = 1;                   //email items looked at so far    
-
 
             //variables to hold found email data
             string foundSender, foundEmailEntryID, foundSubject;
 
-            // open up a progress window for the user
-            int count = 0;
-            ProgressInfoBox pib = new ProgressInfoBox(total);
-            int update = pib.IncrementQuantity;
-            pib.Visible = true;
 
             //do this for every item in the searchFolder (inbox)
             while (lookedAt < total)
             {
                 // let's see if we need to update the progress window
-                if (++count >= update)
+                if (++count >= checkAt)
                 {
-                    pib.Increment();
+                    this.pib.Increment(total - lookedAt);
                     count = 0;
                 }
 
                 try
                 {
-                    
+
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
                     if (!Indexes.Instance.SearchAlreadyIndexed(foundEmail.EntryID))
                     {
@@ -99,6 +104,7 @@ namespace Edu.Psu.Ist.DynamicMail
                         //add email address and emailID to the received email index
                         addToReceivedEmailIndex(foundSender, foundEmailEntryID, contacts);
                         Indexes.Instance.AddIndexedID(foundEmailEntryID);
+
                     }
                 }
                 catch (Exception e) //catches items that are not emails
@@ -109,11 +115,10 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             Indexes SaveIndexes = Indexes.Instance;
 
-            // close the progress window
-            pib.Visible = false;
-            pib.Refresh();
-
             SaveIndexes.WriteIndexToXML();
+
+            this.pib.Visible = false;
+            this.pib.Refresh();
         }
 
         public void sentBoxIndexer(Outlook.MAPIFolder sentMail, Outlook.MAPIFolder contacts)
