@@ -34,6 +34,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.TimeRemaining = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ItemsLeft = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progress
@@ -88,11 +89,22 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.ItemsLeft.TabIndex = 5;
             this.ItemsLeft.Text = "?";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(298, 89);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 36);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Stop Indexing";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ProgressInfoBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 156);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ItemsLeft);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeRemaining);
@@ -114,5 +126,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private System.Windows.Forms.Label TimeRemaining;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ItemsLeft;
+        private System.Windows.Forms.Button button1;
     }
 }

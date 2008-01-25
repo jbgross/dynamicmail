@@ -5,3 +5,4 @@ bin\Debug\DMUserInterfaceComponents.dll
 bin\Debug\DMUserInterfaceComponents.pdb
 obj\Debug\DMUserInterfaceComponents.dll
 obj\Debug\DMUserInterfaceComponents.pdb
+obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.InfoBox.resources

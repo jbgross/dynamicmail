@@ -39,6 +39,13 @@
   </Target>
   -->
   <ItemGroup>
+    <Compile Include="InfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBox.Designer.cs">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stoppable.cs" />
     <Compile Include="ProgressInfoBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InfoBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressInfoBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProgressInfoBox.cs</DependentUpon>

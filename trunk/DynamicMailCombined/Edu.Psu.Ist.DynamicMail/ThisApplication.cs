@@ -15,6 +15,7 @@ namespace Edu.Psu.Ist.DynamicMail
         Office.CommandBarButton firstButton;
         Office.CommandBarButton secondButton;
         Office.CommandBarButton thirdButton;
+        Office.CommandBarButton fourthButton;
         Outlook.Explorers selectExplorers;
 
         DynamicMailParser parser = new DynamicMailParser();
@@ -95,6 +96,23 @@ namespace Edu.Psu.Ist.DynamicMail
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
+                
+                Office.CommandBarButton clusterButton = (Office
+                                    .CommandBarButton)newToolBar.Controls.Add
+                                    (1, missing, missing, missing, missing);
+                clusterButton.Style = Office
+                    .MsoButtonStyle.msoButtonCaption;
+                clusterButton.Caption = "Cluster Contacts";
+                clusterButton.Tag = "cluster";
+                newToolBar.Visible = true;
+                if (this.fourthButton == null)
+                {
+                    this.fourthButton = clusterButton;
+                    fourthButton.Click += new Office.
+                        _CommandBarButtonEvents_ClickEventHandler
+                        (ButtonClick);
+                }
+
             }
             catch (Exception ex)
             {
@@ -113,33 +131,37 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 if (ctrl.Tag == "inbox")
                 {
-                    // going to run this in a separate thread - jbg
-                    ProgressInfoBox pib = new ProgressInfoBox(inbox.Items.Count);
-                    //ThreadStart pibTS = new ThreadStart(pib.IncrementCheck);
-                    //Thread pibThread = new Thread(pibTS);
-                    //pibThread.Priority = ThreadPriority.AboveNormal;
-                    //pibThread.Start();
+                    InfoBox infobox = new InfoBox();
+                    ProgressInfoBox pib = new ProgressInfoBox(inbox.Items.Count, parser);
 
                     // going to run this in a separate thread - jbg
-                    parser.Box = inbox;
+                    parser.Mailbox = inbox;
                     parser.Contacts = contacts;
                     parser.Pib = pib;
+                    parser.InfoBox = infobox;
+
                     ThreadStart job = new ThreadStart(parser.Indexer);
                     Thread thread = new Thread(job);
                     thread.Priority = ThreadPriority.Normal;
                     thread.Start();
+                    Indexes.Instance.WriteIndexToXML();
                 }
                 if (ctrl.Tag == "sent")
                 {
                     parser.sentBoxIndexer(sentBox, contacts);
+                    Indexes.Instance.WriteIndexToXML();
 
                 }
                 if (ctrl.Tag == "contacts")
                 {
                     parser.contactsIndexer(contacts);
+                    Indexes.Instance.WriteIndexToXML();
+                }
+                if (ctrl.Tag.Equals("cluster"))
+                {
+                    PrepareClusterData pcd = new PrepareClusterData();
                 }
 
-                Indexes.Instance.WriteIndexToXML();
             }
             catch (Exception e)
             {
