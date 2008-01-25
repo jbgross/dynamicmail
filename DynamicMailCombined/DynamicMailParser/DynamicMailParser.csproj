@@ -7,7 +7,7 @@
     <ProjectGuid>{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicMailParser</RootNamespace>
+    <RootNamespace>Edu.Ist.Psu.DynamicMail</RootNamespace>
     <AssemblyName>DynamicMailParser</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Indexes.cs" />
     <Compile Include="IndexObjectXMLConverter.cs" />
+    <Compile Include="PrepareClusterData.cs" />
     <Compile Include="UpdatingObject.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

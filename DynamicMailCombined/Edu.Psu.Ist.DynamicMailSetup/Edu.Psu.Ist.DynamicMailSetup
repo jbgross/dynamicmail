@@ -45,18 +45,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BEE3D30F3DF8D111ED8358E9BFEBB6B"
-        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5BEE3D30F3DF8D111ED8358E9BFEBB6B"
-        "OwnerKey" = "8:_176EC46DB040C8F8E2A9CDB51EBCD70B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_79A3A8D2F85E6353047D806497ADC854"
         "OwnerKey" = "8:_176EC46DB040C8F8E2A9CDB51EBCD70B"
         "MsmSig" = "8:_UNDEFINED"
@@ -89,6 +77,18 @@
         {
         "MsmKey" = "8:_8D3AE2CB0E2D89BC6F17AEFCDA640CB4"
         "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8E71B3A3CF93FAA075B92937FB3B2D27"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8E71B3A3CF93FAA075B92937FB3B2D27"
+        "OwnerKey" = "8:_176EC46DB040C8F8E2A9CDB51EBCD70B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,7 +172,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5BEE3D30F3DF8D111ED8358E9BFEBB6B"
+        "OwnerKey" = "8:_8E71B3A3CF93FAA075B92937FB3B2D27"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -353,37 +353,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5BEE3D30F3DF8D111ED8358E9BFEBB6B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DMUserInterfaceComponents, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_5BEE3D30F3DF8D111ED8358E9BFEBB6B"
-                    {
-                    "Name" = "8:DMUserInterfaceComponents.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DMUserInterfaceComponents.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_79A3A8D2F85E6353047D806497ADC854"
             {
             "AssemblyRegister" = "3:1"
@@ -449,6 +418,37 @@
                     }
                 }
             "SourcePath" = "8:office.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E71B3A3CF93FAA075B92937FB3B2D27"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DMUserInterfaceComponents, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8E71B3A3CF93FAA075B92937FB3B2D27"
+                    {
+                    "Name" = "8:DMUserInterfaceComponents.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DMUserInterfaceComponents.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"

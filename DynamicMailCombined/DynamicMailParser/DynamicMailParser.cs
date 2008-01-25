@@ -8,15 +8,33 @@ using System.Collections;
 using System.IO;
 using System.Threading;
 using Edu.Psu.Ist.DynamicMail.Interface;
+using System.Windows.Forms;
 
 
 namespace Edu.Psu.Ist.DynamicMail 
 {
-    public class DynamicMailParser 
+    public class DynamicMailParser : Stoppable
     {
         int checkAt = 0;
         int count = 0;
         int lookedAt = 1;
+        private bool continueParsing = true;
+        private String[] splitArray = { "; " };
+        private InfoBox infoBox;
+
+        public InfoBox InfoBox
+        {
+            get { return infoBox; }
+            set { infoBox = value; }
+        }
+
+
+        public bool ContinueParsing
+        {
+            get { return continueParsing; }
+            set { continueParsing = value; }
+        }
+
         private ProgressInfoBox pib;
 
         public ProgressInfoBox Pib
@@ -32,42 +50,47 @@ namespace Edu.Psu.Ist.DynamicMail
             get { return contacts; }
             set { contacts = value; }
         }
-        private Outlook.MAPIFolder box;
+        private Outlook.MAPIFolder mailbox;
 
-        public Outlook.MAPIFolder Box
+        public Outlook.MAPIFolder Mailbox
         {
-            get { return box; }
-            set { box = value; }
+            get { return mailbox; }
+            set { mailbox = value; }
         }
  
         //Singelton Instance of indexes
         private Indexes InvertedIndexes;
 
-        //public default constructor
+        /// <summary>
+        /// public default constructor
+        /// </summary>
         public DynamicMailParser()
         {
             InvertedIndexes = Indexes.Instance;
         }
 
+        /// <summary>
+        /// Index whatever Mailbox is specified in the Mailbox property
+        /// </summary>
         public void Indexer()
         {
             // for now, if Box or Contacts has not been set, do nothing
-            if (Box == null || Contacts == null)
+            if (Mailbox == null || Contacts == null)
             {
                 return;
             }
 
-            checkAt = (Box.Items.Count / 100) + 1;
-            Outlook.Items searchFolder = Box.Items;
+            checkAt = (Mailbox.Items.Count / 100) + 1;
+            Outlook.Items searchFolder = Mailbox.Items;
 
             int total = searchFolder.Count;     //total items in mailbox
 
             //variables to hold found email data
-            string foundSender, foundEmailEntryID, foundSubject;
-
+            String foundSender, foundEmailEntryID, foundSubject;
+            String[] foundRecipients;
 
             //do this for every item in the searchFolder (inbox)
-            while (lookedAt < total)
+            while (lookedAt < total && this.continueParsing)
             {
                 // let's see if we need to update the progress window
                 if (++count >= checkAt)
@@ -82,27 +105,19 @@ namespace Edu.Psu.Ist.DynamicMail
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
                     if (!Indexes.Instance.SearchAlreadyIndexed(foundEmail.EntryID))
                     {
-
                         //sender email address of current email
                         foundSender = foundEmail.SenderEmailAddress;
                         //email entry ID of current email
                         foundEmailEntryID = foundEmail.EntryID;
-                        //subject of current email
-                        foundSubject = foundEmail.Subject;
-
-                        try
+                        // get all the recipients
+                        String[] recipients = this.GetAllRecipients(foundEmail);
+                        foreach (String addr in recipients)
                         {
-                            //Dave, this breaks because stoplist.txt is unavailable or in the wrong directory
-                            Stemmer SubjectStemmer = new Stemmer();
-                            SubjectStemmer.stemSubject(foundSubject.ToString(), foundEmailEntryID.ToString());
+                            addToReceivedEmailIndex(addr, foundEmailEntryID);
                         }
-                        catch (Exception e)
-                        {
-                        }
-
 
                         //add email address and emailID to the received email index
-                        addToReceivedEmailIndex(foundSender, foundEmailEntryID, contacts);
+                        addToReceivedEmailIndex(foundSender, foundEmailEntryID);
                         Indexes.Instance.AddIndexedID(foundEmailEntryID);
 
                     }
@@ -113,14 +128,68 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
                 lookedAt++;
             }
+
             Indexes SaveIndexes = Indexes.Instance;
 
             SaveIndexes.WriteIndexToXML();
 
-            this.pib.Visible = false;
-            this.pib.Refresh();
+            // get rid of the progress bar box
+            Pib.Visible = false;
+            Pib.Refresh();
+            this.pib = null;
+
+            InfoBox.Visible = false;
+            InfoBox.Refresh();
+            InfoBox = null;
         }
 
+        /// <summary>
+        /// Get all the recipients - from recipients, CC, BCC
+        /// </summary>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        private String [] GetAllRecipients(Outlook.MailItem msg) 
+        {
+            List<String> allRec = new List<String>();
+            if (msg.To != null && msg.To.Equals("") == false)
+            {
+                this.ParseRecipients(msg.To, allRec);
+            }
+            if (msg.CC != null && msg.CC.Equals("") == false)
+            {
+                this.ParseRecipients(msg.CC, allRec);
+            }
+            if (msg.BCC != null && msg.BCC.Equals("") == false)
+            {
+                this.ParseRecipients(msg.BCC, allRec);
+            }
+            return (String[]) allRec.ToArray();
+        }
+
+        /// <summary>
+        /// Parse addresses and add to List
+        /// There's an open question of uniqueness here - does it matter if one address ends up on an email twice?
+        /// I'm not sure, so I'm going to code around it - JBG 25 Jan 2008
+        /// </summary>
+        /// <param name="addresses"></param>
+        /// <param name="allRec"></param>
+        private void ParseRecipients(String addresses, List<String> allRec)
+        {
+            String [] addrs = addresses.Split(this.splitArray, StringSplitOptions.RemoveEmptyEntries);
+            foreach (String addr in addrs)
+            {
+                if (allRec.Contains(addr) == false)
+                {
+                    allRec.Add(addr);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Index Sent email box
+        /// </summary>
+        /// <param name="sentMail"></param>
+        /// <param name="contacts"></param>
         public void sentBoxIndexer(Outlook.MAPIFolder sentMail, Outlook.MAPIFolder contacts)
         {
             Outlook.Items searchFolder = sentMail.Items;
@@ -136,16 +205,13 @@ namespace Edu.Psu.Ist.DynamicMail
             string foundEmailEntryID, foundSubject;
             Outlook.Recipients foundRecipients;
 
-
             //do this for every item in the searchFolder (inbox)
             while (lookedAt <= total)
             {
 
-
                 try
                 {
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
-
 
                     //email entry ID of current email
                     foundEmailEntryID = foundEmail.EntryID;
@@ -237,7 +303,12 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
         }
-
+        /// <summary>
+        /// Check all contacts
+        /// </summary>
+        /// <param name="contacts"></param>
+        /// <param name="searchAddress"></param>
+        /// <returns></returns>
         public string contactChecker(Outlook.MAPIFolder contacts, string searchAddress)
         {
             string contactID = null;
@@ -255,7 +326,13 @@ namespace Edu.Psu.Ist.DynamicMail
             return contactID;
         }
 
-        public void addToReceivedEmailIndex(string senderAddress, string emailID, Outlook.MAPIFolder contacts)
+        /// <summary>
+        /// Add this email address to the index
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="emailID"></param>
+        /// <param name="contacts"></param>
+        public void addToReceivedEmailIndex(string address, string emailID)
         {
             //Key = email address (senderAddress)
             //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
@@ -263,42 +340,27 @@ namespace Edu.Psu.Ist.DynamicMail
 
 
             //if sender email address is NOT already in the index
-            if (InvertedIndexes.receivedEmailIndex.Contains(senderAddress) == false)
+            if (InvertedIndexes.receivedEmailIndex.Contains(address) == false)
             {
 
                 //put the emailID into an ArrayList
                 emailIDs.Add(emailID);
                 //add sender email address (key) and ArrayList of Email Entry ID (value) to the index
-                InvertedIndexes.receivedEmailIndex.Add(senderAddress, emailIDs);
+                InvertedIndexes.receivedEmailIndex.Add(address, emailIDs);
 
             }
             else //sender email address is already in the index
             {
                 //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
-                emailIDs = (ArrayList)InvertedIndexes.receivedEmailIndex[senderAddress];
+                emailIDs = (ArrayList)InvertedIndexes.receivedEmailIndex[address];
 
                 //add the found Emails ID to the array
                 emailIDs.Add(emailID);
 
                 //put the array back into the index, overwriting the old one
-                InvertedIndexes.receivedEmailIndex[senderAddress] = emailIDs;
+                InvertedIndexes.receivedEmailIndex[address] = emailIDs;
 
             }
-
-            //gets the contact ID. (contactID is null if email address is not in contacts)
-            string contactID = this.contactChecker(contacts, senderAddress);
-
-            if (contactID == null)
-            {
-                //do nothing, because the address does not belong to a contact
-            }
-            else //address does belong to a contact
-            {
-                //add contact and email to index
-                addToContactsEmailIndex(contactID, emailID);
-            }
-
-
         }
 
         public void addToContactsEmailIndex(string contactID, string emailID)
@@ -385,6 +447,13 @@ namespace Edu.Psu.Ist.DynamicMail
 
         }
 
+        /// <summary>
+        /// Stop parsing and write to file.
+        /// </summary>
+        public void Stop()
+        {
+            ContinueParsing = false;
+        }
         
     }
 }

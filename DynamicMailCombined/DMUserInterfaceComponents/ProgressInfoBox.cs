@@ -13,39 +13,50 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     public partial class ProgressInfoBox : Form
     {
         int incrementQuantity;
-        int startTime;
+        DateTime startTime;
         int totalCount;
+        private Stoppable stop;
 
-        public ProgressInfoBox(int totalCount)
+        /// <summary>
+        /// Create a new progress info box with a ref back
+        /// to the calling process, so we can stop it
+        /// </summary>
+        /// <param name="totalCount"></param>
+        /// <param name="stop"></param>
+        public ProgressInfoBox(int totalCount, Stoppable stop)
         {
             this.totalCount = totalCount;
+            this.stop = stop;
             this.incrementQuantity = totalCount / 100;
             InitializeComponent();
-            this.startTime = Environment.TickCount;
+            this.startTime = DateTime.Now;
             CheckForIllegalCrossThreadCalls = false;
             this.Visible = true;
             this.Refresh();
         }
 
-
+        /// <summary>
+        /// Increment the progress bar by specifying the units
+        /// left, and recalculate the time left
+        /// </summary>
+        /// <param name="itemsLeft"></param>
         public void Increment(int itemsLeft)
         {
             this.progress.Value++;
             this.ItemsLeft.Text = itemsLeft.ToString();
             this.Refresh();
             int unitsLeft = (100 - this.progress.Value);
-            int currentTime = Environment.TickCount;
-            int timeSoFar = currentTime - this.startTime;
-            int unitTimeSoFar = timeSoFar / this.progress.Value;
-//            this.TimeRemaining.Text = unitTimeSoFar.ToString();
-            int timeLeft = unitsLeft * unitTimeSoFar;
+            DateTime currentTime = DateTime.Now;
+            TimeSpan totalDuration = currentTime - this.startTime;
+            double unitTimeSoFar = (totalDuration.TotalSeconds / this.progress.Value);
+            double timeLeft = unitsLeft * unitTimeSoFar;
             this.TimeRemaining.Text = this.ConvertTime(timeLeft);
         }
 
-        public String ConvertTime(int milliseconds)
+        private String ConvertTime(double millisec)
         {
-            int sec = milliseconds / 1000;
-            if (sec <= 100)
+            int sec = (int) millisec / 1000;
+            if (sec <= 60)
             {
                 return "00:" + this.PrependZero(sec);
             }
@@ -73,6 +84,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         protected void finalize()
         {
             this.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.stop.Stop();
         }
 
     }

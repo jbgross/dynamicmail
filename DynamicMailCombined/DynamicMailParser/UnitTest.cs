@@ -10,6 +10,9 @@ using System.IO;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
+    /// <summary>
+    /// Unit test class
+    /// </summary>
     [TestFixture]
     public class UnitTest
     {
