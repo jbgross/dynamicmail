@@ -95,7 +95,6 @@ namespace Edu.Psu.Ist.DynamicMail
         /// method to get the singelton instance of indexes
         /// </summary>
         /// <returns> Current instance of Indexes</returns>
-        
         public static Indexes Instance
         {
             get
