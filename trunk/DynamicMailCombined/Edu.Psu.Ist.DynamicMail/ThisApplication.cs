@@ -12,10 +12,9 @@ namespace Edu.Psu.Ist.DynamicMail
     public partial class ThisApplication
     {
         Office.CommandBar newToolBar;
-        Office.CommandBarButton firstButton;
-        Office.CommandBarButton secondButton;
-        Office.CommandBarButton thirdButton;
-        Office.CommandBarButton fourthButton;
+        Office.CommandBarButton indexInboxButton;
+        Office.CommandBarButton indexSentButton;
+        Office.CommandBarButton clusterContactsButton;
         Outlook.Explorers selectExplorers;
 
         DynamicMailParser parser = new DynamicMailParser();
@@ -57,10 +56,10 @@ namespace Edu.Psu.Ist.DynamicMail
                     .MsoButtonStyle.msoButtonCaption;
                 button_1.Caption = "Index Inbox";
                 button_1.Tag = "inbox";
-                if (this.firstButton == null)
+                if (this.indexInboxButton == null)
                 {
-                    this.firstButton = button_1;
-                    firstButton.Click += new Office.
+                    this.indexInboxButton = button_1;
+                    indexInboxButton.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
@@ -73,26 +72,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 button_2.Caption = "Index Sent Mail";
                 button_2.Tag = "sent";
                 newToolBar.Visible = true;
-                if (this.secondButton == null)
+                if (this.indexSentButton == null)
                 {
-                    this.secondButton = button_2;
-                    secondButton.Click += new Office.
-                        _CommandBarButtonEvents_ClickEventHandler
-                        (ButtonClick);
-                }
-
-                Office.CommandBarButton button_3 = (Office
-                    .CommandBarButton)newToolBar.Controls.Add
-                    (1, missing, missing, missing, missing);
-                button_3.Style = Office
-                    .MsoButtonStyle.msoButtonCaption;
-                button_3.Caption = "Index Contacts";
-                button_3.Tag = "contacts";
-                newToolBar.Visible = true;
-                if (this.thirdButton == null)
-                {
-                    this.thirdButton = button_3;
-                    thirdButton.Click += new Office.
+                    this.indexSentButton = button_2;
+                    indexSentButton.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
@@ -105,10 +88,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 clusterButton.Caption = "Cluster Contacts";
                 clusterButton.Tag = "cluster";
                 newToolBar.Visible = true;
-                if (this.fourthButton == null)
+                if (this.clusterContactsButton == null)
                 {
-                    this.fourthButton = clusterButton;
-                    fourthButton.Click += new Office.
+                    this.clusterContactsButton = clusterButton;
+                    clusterContactsButton.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }

@@ -20,8 +20,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public PrepareClusterData()
         {
             Indexes indices = Indexes.Instance;
-            indices.ReadIndexFromXML();
-            Hashtable addresses = indices.contactsIndex;
+            Hashtable addresses = indices.receivedEmailIndex;
             InfoBox box = new InfoBox();
             box.AddText("Size: " + addresses.Count);
             foreach (Object k in addresses.Keys)
