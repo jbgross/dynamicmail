@@ -45,6 +45,12 @@
     <Compile Include="InfoBox.Designer.cs">
       <DependentUpon>InfoBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerWindow.designer.cs">
+      <DependentUpon>ManagerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stoppable.cs" />
     <Compile Include="ProgressInfoBox.cs">
       <SubType>Form</SubType>
@@ -64,6 +70,10 @@
     <EmbeddedResource Include="InfoBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>InfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerWindow.resx">
+      <DependentUpon>ManagerWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressInfoBox.resx">
       <SubType>Designer</SubType>
