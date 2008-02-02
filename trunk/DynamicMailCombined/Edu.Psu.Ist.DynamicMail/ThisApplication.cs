@@ -15,6 +15,7 @@ namespace Edu.Psu.Ist.DynamicMail
         Office.CommandBarButton indexInboxButton;
         Office.CommandBarButton indexSentButton;
         Office.CommandBarButton clusterContactsButton;
+        Office.CommandBarButton manageGroupButton;
         Outlook.Explorers selectExplorers;
 
         DynamicMailParser parser = new DynamicMailParser();
@@ -95,6 +96,21 @@ namespace Edu.Psu.Ist.DynamicMail
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
+                Office.CommandBarButton managerButton = (Office
+                                    .CommandBarButton)newToolBar.Controls.Add
+                                    (1, missing, missing, missing, missing);
+                managerButton.Style = Office
+                    .MsoButtonStyle.msoButtonCaption;
+                managerButton.Caption = "Manage Group";
+                managerButton.Tag = "manage";
+                newToolBar.Visible = true;
+                if (this.manageGroupButton == null)
+                {
+                    this.manageGroupButton = managerButton;
+                    manageGroupButton.Click += new Office.
+                        _CommandBarButtonEvents_ClickEventHandler
+                        (ButtonClick1);
+                }
 
             }
             catch (Exception ex)
@@ -151,6 +167,12 @@ namespace Edu.Psu.Ist.DynamicMail
                 MessageBox.Show(e.ToString());
             }
             //MessageBox.Show("You clicked: " + ctrl.Caption);
+        }
+
+        private void ButtonClick1(Office.CommandBarButton ctrl,
+                ref bool cancel)
+        {
+            Application.Run(new ManagerWindow());
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
