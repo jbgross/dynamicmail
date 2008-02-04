@@ -92,6 +92,8 @@ namespace Edu.Psu.Ist.DynamicMail
             //do this for every item in the searchFolder (inbox)
             while (lookedAt < total && this.continueParsing)
             {
+
+
                 // let's see if we need to update the progress window
                 if (++count >= checkAt)
                 {
@@ -103,6 +105,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 {
 
                     Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
+
                     if (!Indexes.Instance.SearchAlreadyIndexed(foundEmail.EntryID))
                     {
                         //sender email address of current email

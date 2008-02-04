@@ -63,6 +63,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9AAE705D155DE9734D5B2988E824357B"
+        "OwnerKey" = "8:_176EC46DB040C8F8E2A9CDB51EBCD70B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9AAE705D155DE9734D5B2988E824357B"
+        "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D08F70E75A6E8A45D508F47322834633"
         "OwnerKey" = "8:_47482B8F962B4C86BB164BB6DF9120C9"
         "MsmSig" = "8:_UNDEFINED"
@@ -127,6 +139,27 @@
         "OwnerKey" = "8:_973E8F25513E27D218F03A3EAA2F4CE9"
         "MsmSig" = "8:_UNDEFINED"
         }
+<<<<<<< .mine
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9AAE705D155DE9734D5B2988E824357B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_79A3A8D2F85E6353047D806497ADC854"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8E71B3A3CF93FAA075B92937FB3B2D27"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+=======
+>>>>>>> .r70
     }
     "Configurations"
     {
@@ -339,6 +372,37 @@
                     }
                 }
             "SourcePath" = "8:Office.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9AAE705D155DE9734D5B2988E824357B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Edu.Psu.Ist.Keystone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9AAE705D155DE9734D5B2988E824357B"
+                    {
+                    "Name" = "8:Edu.Psu.Ist.Keystone.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Edu.Psu.Ist.Keystone.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E81E33A9E58A41A6AD93C4BCD0FA0324"

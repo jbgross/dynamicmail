@@ -50,12 +50,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             TimeSpan totalDuration = currentTime - this.startTime;
             double unitTimeSoFar = (totalDuration.TotalSeconds / this.progress.Value);
             double timeLeft = unitsLeft * unitTimeSoFar;
-            this.TimeRemaining.Text = this.ConvertTime(timeLeft);
+            this.TimeRemaining.Text = this.ConvertTime((int) timeLeft);
         }
 
-        private String ConvertTime(double millisec)
+        private String ConvertTime(int sec)
         {
-            int sec = (int) millisec / 1000;
             if (sec <= 60)
             {
                 return "00:" + this.PrependZero(sec);
