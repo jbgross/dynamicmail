@@ -15,7 +15,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "mailWindowTestSetup", "mail
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMUserInterfaceComponents", "DMUserInterfaceComponents\DMUserInterfaceComponents.csproj", "{2CB6935E-6F3B-4294-92D6-F971EE137764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kmeans-test-jbg", "..\..\keystone\kmeans-test-jbg\kmeans-test-jbg\kmeans-test-jbg.csproj", "{28F88E14-8F40-40D2-89BE-8A3729C5F196}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edu.Psu.Ist.Keystone", "..\..\keystone\Edu.Psu.Ist.Keystone\kmeans-test-jbg\Edu.Psu.Ist.Keystone.csproj", "{AA3B04F7-004A-487A-ABC3-FBA3A5096446}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CB6935E-6F3B-4294-92D6-F971EE137764}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28F88E14-8F40-40D2-89BE-8A3729C5F196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28F88E14-8F40-40D2-89BE-8A3729C5F196}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28F88E14-8F40-40D2-89BE-8A3729C5F196}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28F88E14-8F40-40D2-89BE-8A3729C5F196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3B04F7-004A-487A-ABC3-FBA3A5096446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3B04F7-004A-487A-ABC3-FBA3A5096446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3B04F7-004A-487A-ABC3-FBA3A5096446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3B04F7-004A-487A-ABC3-FBA3A5096446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
