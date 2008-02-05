@@ -9,3 +9,5 @@ obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.InfoBox.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.GetNumericInput.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.SelectFolders.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.ManagerWindow.resources
+obj\Debug\DMUserInterfaceComponents.csproj.ResolveComReference.cache
+bin\Debug\Interop.Microsoft.Office.Core.dll

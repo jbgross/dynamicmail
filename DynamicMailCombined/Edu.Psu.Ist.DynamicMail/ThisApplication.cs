@@ -5,6 +5,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Threading;
 using Edu.Psu.Ist.DynamicMail.Interface;
+using Edu.Ist.Psu.DynamicMail;
 
 
 namespace Edu.Psu.Ist.DynamicMail
@@ -13,7 +14,7 @@ namespace Edu.Psu.Ist.DynamicMail
     {
         Office.CommandBar newToolBar;
         Office.CommandBarButton seeFolders;
-        Office.CommandBarButton indexInboxButton;
+        Office.CommandBarButton indexMailboxes;
         Office.CommandBarButton indexSentButton;
         Office.CommandBarButton clusterContactsButton;
         Office.CommandBarButton manageGroupButton;
@@ -28,8 +29,6 @@ namespace Edu.Psu.Ist.DynamicMail
             selectExplorers.NewExplorer += new Outlook
                 .ExplorersEvents_NewExplorerEventHandler(newExplorer_Event);
             AddToolbar();
-
-            
         }
 
         private void newExplorer_Event(Outlook.Explorer new_Explorer)
@@ -58,25 +57,10 @@ namespace Edu.Psu.Ist.DynamicMail
                     .MsoButtonStyle.msoButtonCaption;
                 button_0.Caption = "Index Mailboxes";
                 button_0.Tag = "mailboxes";
-                if (this.indexInboxButton == null)
+                if (this.indexMailboxes == null)
                 {
-                    this.indexInboxButton = button_0;
-                    indexInboxButton.Click += new Office.
-                        _CommandBarButtonEvents_ClickEventHandler
-                        (ButtonClick);
-                }
-
-                Office.CommandBarButton button_1 =
-                    (Office.CommandBarButton)newToolBar.Controls
-                    .Add(1, missing, missing, missing, missing);
-                button_1.Style = Office
-                    .MsoButtonStyle.msoButtonCaption;
-                button_1.Caption = "Index Inbox";
-                button_1.Tag = "inbox";
-                if (this.indexInboxButton == null)
-                {
-                    this.indexInboxButton = button_1;
-                    indexInboxButton.Click += new Office.
+                    this.indexMailboxes = button_0;
+                    indexMailboxes.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
@@ -147,25 +131,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 if (ctrl.Tag == "mailboxes")
                 {
-                    SelectFolders select = new SelectFolders();
-
-                }
-                else if (ctrl.Tag == "inbox")
-                {
-                    InfoBox infobox = new InfoBox();
-                    ProgressInfoBox pib = new ProgressInfoBox(inbox.Items.Count, parser);
-
-                    // going to run this in a separate thread - jbg
-                    parser.Mailbox = inbox;
-                    parser.Contacts = contacts;
-                    parser.Pib = pib;
-                    parser.InfoBox = infobox;
-
-                    ThreadStart job = new ThreadStart(parser.Indexer);
-                    Thread thread = new Thread(job);
-                    thread.Priority = ThreadPriority.Normal;
-                    thread.Start();
-                    Indexes.Instance.WriteIndexToXML();
+                    new IndexMailboxes(allFolders, Indexes.Instance);
                 }
                 if (ctrl.Tag == "sent")
                 {

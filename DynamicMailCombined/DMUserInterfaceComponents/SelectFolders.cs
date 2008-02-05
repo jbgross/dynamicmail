@@ -5,24 +5,44 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
+    /// <summary>
+    /// Class to display and select folders to
+    /// index or search from
+    /// </summary>
     public partial class SelectFolders : Form
     {
-        public SelectFolders()
+        private List<Outlook.MAPIFolder> folders = new List<Outlook.MAPIFolder>();
+        Finishable source;
+
+        public Outlook.MAPIFolder[] SelectedFolders
+        {
+            get { return (Outlook.MAPIFolder []) this.folders.ToArray(); }
+        }
+
+        public SelectFolders(Outlook.Folders roots, Finishable source)
         {
             InitializeComponent();
-            TreeNode tNode;
-            // Add parent node to treeView1 control
-            tNode = this.folderTree.Nodes.Add("A");
-            // Add child node: two overloads available
-            tNode.Nodes.Add(new TreeNode("C"));
-            tNode.Nodes.Add("D");
-            // Insert node after C
-            tNode.Nodes.Insert(1,new TreeNode("E"));
-            // Add parent node to treeView1 control 
-            tNode = this.folderTree.Nodes.Add("B");
+            this.source = source;
+            foreach (Outlook.MAPIFolder folder in roots)
+            {
+                TreeNode tNode;
+                // Add parent node to treeView1 control
+                tNode = this.folderTree.Nodes.Add(folder.Name);
+            }
+            this.Visible = true;
+        }
+
+        private void RecurseDown()
+        {
+        }
+
+        private void Done_Click(object sender, EventArgs e)
+        {
+            this.source.Finished();
         }
 
     }

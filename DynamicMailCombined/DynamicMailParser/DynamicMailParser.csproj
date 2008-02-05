@@ -44,6 +44,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Indexes.cs" />
+    <Compile Include="IndexMailboxes.cs" />
     <Compile Include="IndexObjectXMLConverter.cs" />
     <Compile Include="PrepareClusterData.cs" />
     <Compile Include="UpdatingObject.cs" />
