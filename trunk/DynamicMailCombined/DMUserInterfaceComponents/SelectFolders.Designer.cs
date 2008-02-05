@@ -28,35 +28,32 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderList = new System.Windows.Forms.TextBox();
+            this.folderTree = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // folderList
+            // folderTree
             // 
-            this.folderList.AcceptsReturn = true;
-            this.folderList.AllowDrop = true;
-            this.folderList.Location = new System.Drawing.Point(31, 24);
-            this.folderList.Multiline = true;
-            this.folderList.Name = "folderList";
-            this.folderList.Size = new System.Drawing.Size(100, 20);
-            this.folderList.TabIndex = 0;
+            this.folderTree.Location = new System.Drawing.Point(12, 12);
+            this.folderTree.Name = "folderTree";
+            this.folderTree.Size = new System.Drawing.Size(268, 249);
+            this.folderTree.TabIndex = 1;
             // 
             // SelectFolders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.folderList);
+            this.Controls.Add(this.folderTree);
             this.Name = "SelectFolders";
             this.Text = "SelectFolders";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox folderList;
+        private System.Windows.Forms.TreeView folderTree;
+
 
     }
 }
