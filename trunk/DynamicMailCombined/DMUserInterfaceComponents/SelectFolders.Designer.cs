@@ -29,6 +29,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void InitializeComponent()
         {
             this.folderTree = new System.Windows.Forms.TreeView();
+            this.Done = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // folderTree
@@ -38,11 +39,22 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.folderTree.Size = new System.Drawing.Size(268, 249);
             this.folderTree.TabIndex = 1;
             // 
+            // Done
+            // 
+            this.Done.Location = new System.Drawing.Point(180, 290);
+            this.Done.Name = "Done";
+            this.Done.Size = new System.Drawing.Size(75, 23);
+            this.Done.TabIndex = 2;
+            this.Done.Text = "Done";
+            this.Done.UseVisualStyleBackColor = true;
+            this.Done.Click += new System.EventHandler(this.Done_Click);
+            // 
             // SelectFolders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(289, 338);
+            this.Controls.Add(this.Done);
             this.Controls.Add(this.folderTree);
             this.Name = "SelectFolders";
             this.Text = "SelectFolders";
@@ -53,6 +65,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         #endregion
 
         private System.Windows.Forms.TreeView folderTree;
+        private System.Windows.Forms.Button Done;
 
 
     }
