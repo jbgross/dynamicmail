@@ -147,11 +147,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 if (ctrl.Tag == "mailboxes")
                 {
-                    InfoBox infobox = new InfoBox();
-                    foreach (Outlook.MAPIFolder folder in allFolders)
-                    {
-                        infobox.AddText(folder.Name);
-                    }
+                    SelectFolders select = new SelectFolders();
 
                 }
                 else if (ctrl.Tag == "inbox")
