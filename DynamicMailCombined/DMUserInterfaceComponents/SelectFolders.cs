@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,29 +16,136 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     /// </summary>
     public partial class SelectFolders : Form
     {
-        private List<Outlook.MAPIFolder> folders = new List<Outlook.MAPIFolder>();
-        Finishable source;
+        private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
+        private Finishable source;
+        private TreeNode tNode;
+        private Hashtable nameFolder = new Hashtable();
+        private TreeNode userInvoke = null;
 
         public Outlook.MAPIFolder[] SelectedFolders
         {
-            get { return (Outlook.MAPIFolder []) this.folders.ToArray(); }
+            get 
+            {
+                this.GetSelectedFolders();
+                
+                return (Outlook.MAPIFolder []) this.selectedFolders.ToArray(); 
+            }
         }
 
+        /// <summary>
+        /// Public constructor
+        /// </summary>
+        /// <param name="roots"></param>
+        /// <param name="source"></param>
         public SelectFolders(Outlook.Folders roots, Finishable source)
         {
             InitializeComponent();
+            this.folderTree.AfterCheck += new TreeViewEventHandler(treeView_AfterCheck);
             this.source = source;
             foreach (Outlook.MAPIFolder folder in roots)
             {
-                TreeNode tNode;
                 // Add parent node to treeView1 control
-                tNode = this.folderTree.Nodes.Add(folder.Name);
+                tNode = this.folderTree.Nodes.Add(folder.FullFolderPath);
+                this.nameFolder[folder.FullFolderPath] = folder;
+                BuildTree(tNode, folder);
             }
             this.Visible = true;
         }
 
-        private void RecurseDown()
+        /// <summary>
+        /// Get an array of all the folders selected
+        /// </summary>
+        /// <returns></returns>
+        public void GetSelectedFolders()
         {
+            TreeNode top = this.folderTree.TopNode;
+            while (true)
+            {
+                if (top == null)
+                    return;
+                if (top.Checked && this.nameFolder.ContainsKey(top.Text))
+                {
+                    this.selectedFolders.Add((Outlook.MAPIFolder)this.nameFolder[top.Text]);
+                }
+                this.GetSelectedSubFolders(this.selectedFolders, top);
+                top = top.NextNode;
+            }
+
+        }
+
+        /// <summary>
+        /// Recurse down list adding select folders
+        /// </summary>
+        /// <param name="?"></param>
+        /// <param name="parent"></param>
+        private void GetSelectedSubFolders(List<Outlook.MAPIFolder> selectedFolders, TreeNode parent)
+        {
+            TreeNode child = parent.FirstNode;
+            while(true) {
+                if (child == null)
+                    return;
+                if (child.Checked && this.nameFolder.ContainsKey(child.Text)) 
+                {
+                    selectedFolders.Add((Outlook.MAPIFolder) this.nameFolder[child.Text]);
+                    GetSelectedSubFolders(selectedFolders, child);
+                }
+                child = child.NextNode;
+            } 
+        }
+
+        private void BuildTree(TreeNode tree, Outlook.MAPIFolder parent)
+        {
+            Outlook.Folders children = parent.Folders;
+            if (children.Count == 0)
+            {
+                return;
+            }
+
+            foreach (Outlook.MAPIFolder child in children)
+            {
+                TreeNode parentNode = tree.Nodes.Add(child.FullFolderPath);
+                this.nameFolder[child.FullFolderPath] = child;
+                BuildTree(parentNode, child);
+            }
+        }
+        /// <summary>
+        /// Code taken from http://www.dotnet247.com/247reference/msgs/26/133631.aspx
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action == TreeViewAction.ByMouse)
+                userInvoke = e.Node;
+
+            if (IsDescendent(userInvoke, e.Node))
+            {
+                foreach (TreeNode tn in e.Node.Nodes)
+                    tn.Checked = e.Node.Checked;
+            }
+
+            if (IsDescendent(e.Node, userInvoke))
+            {
+                TreeNode pn = e.Node.Parent;
+                if (pn == null)
+                    return;
+
+                bool bAllChecked = true;
+                foreach (TreeNode tn in pn.Nodes)
+                    bAllChecked = bAllChecked && tn.Checked;
+
+                if (pn.Checked && !bAllChecked)
+                    pn.Checked = false;
+
+                if (!pn.Checked && bAllChecked)
+                    pn.Checked = true;
+            }
+
+        }
+
+        private bool IsDescendent(TreeNode parent, TreeNode desc)
+        {
+            return desc.FullPath.IndexOf(parent.FullPath) == 0;
         }
 
         private void Done_Click(object sender, EventArgs e)

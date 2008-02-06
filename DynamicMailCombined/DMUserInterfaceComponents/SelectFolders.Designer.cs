@@ -34,6 +34,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // folderTree
             // 
+            this.folderTree.CheckBoxes = true;
             this.folderTree.Location = new System.Drawing.Point(12, 12);
             this.folderTree.Name = "folderTree";
             this.folderTree.Size = new System.Drawing.Size(268, 249);
@@ -53,7 +54,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 338);
+            this.ClientSize = new System.Drawing.Size(293, 338);
             this.Controls.Add(this.Done);
             this.Controls.Add(this.folderTree);
             this.Name = "SelectFolders";
