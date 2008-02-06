@@ -64,6 +64,9 @@ namespace Edu.Ist.Psu.DynamicMail
             this.select.Visible = false;
             this.indexFolders = select.SelectedFolders;
             this.totalCount = this.GetTotalCount(this.indexFolders);
+            this.select = null;
+
+            Pib = new ProgressInfoBox(totalCount, this);
 
             ThreadStart job = new ThreadStart(Indexer);
             Thread thread = new Thread(job);
@@ -81,6 +84,11 @@ namespace Edu.Ist.Psu.DynamicMail
             // for now, if Box or Contacts has not been set, do nothing
             if (indexFolders == null || indexFolders.Length < 1)
             {
+                // get rid of the progress bar box
+                Pib.Visible = false;
+                Pib.Refresh();
+                Pib = null;
+                
                 return;
             }
 
@@ -99,7 +107,6 @@ namespace Edu.Ist.Psu.DynamicMail
                 while (lookedAt < total && this.continueParsing)
                 {
 
-
                     // let's see if we need to update the progress window
                     if (++count >= checkAt)
                     {
@@ -111,7 +118,7 @@ namespace Edu.Ist.Psu.DynamicMail
                     {
 
                         Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
-
+                      
                         if (!this.index.SearchAlreadyIndexed(foundEmail.EntryID))
                         {
                             //sender email address of current email
@@ -193,6 +200,7 @@ namespace Edu.Ist.Psu.DynamicMail
             int total = 0;
             foreach(Outlook.MAPIFolder folder in folders) 
             {
+                String name = folder.Name;
                 total += folder.Items.Count;
             }
             return total;
