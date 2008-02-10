@@ -138,7 +138,7 @@ namespace Edu.Ist.Psu.DynamicMail
                         String[] recipients = this.GetAllRecipients(foundEmail);
                         // ignore messages with only one recipient
                         // DEBUG
-                        if (recipients.Length <= 1)
+                        if (recipients.Length <= 2)
                         {
                             continue;
                         }
@@ -222,9 +222,14 @@ namespace Edu.Ist.Psu.DynamicMail
         /// </summary>
         /// <param name="address"></param>
         /// <param name="emailID"></param>
-        /// <param name="contacts"></param>
         public void addToReceivedEmailIndex(string address, string emailID)
         {
+            // DEBUG -ignore me
+            if(address.Equals("Joshua Gross"))
+            {
+                return;
+            }
+
             //Key = email address (senderAddress)
             //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
             ArrayList emailIDs = new ArrayList();

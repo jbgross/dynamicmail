@@ -19,8 +19,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// Get the textbox for this object
         /// </summary>
         public void AddText(String text) {
-            this.textBox1.Text += text;
-            this.textBox1.Text += System.Environment.NewLine;
+            this.textBox1.AppendText(text);
+            this.textBox1.AppendText(System.Environment.NewLine);
             this.Refresh();
         }
 
