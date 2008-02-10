@@ -40,7 +40,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private Space CreateSpace()
         {
             int count = 10;
-            Space space = new Space(count);
+            Space space = new Space(count, 20);
             foreach (Object o in this.addressMsgs.Keys)
             {
                 String address = (String)o;
@@ -82,6 +82,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     Cluster cluster = cent.Cluster;
                     this.infobox.AddText(cluster.Count.ToString());
                 }
+                this.infobox.AddText("");
 
                 // now, get new centroids
                  this.clusterSpace.GenerateNewCentroids();
