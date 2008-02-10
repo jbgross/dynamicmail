@@ -45,6 +45,13 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 String address = (String)o;
                 ArrayList msgIds = (ArrayList) this.addressMsgs[o];
+
+                // ignore addresses with one message
+                if (msgIds.Count <= 1)
+                {
+                    continue;
+                }
+
                 Vector d1 = new Vector(address, new DataType(), new InvertedBooleanPlane());
                 space.AddDimension(d1);
                 foreach (Object a in msgIds)
