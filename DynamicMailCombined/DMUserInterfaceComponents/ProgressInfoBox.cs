@@ -14,6 +14,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     {
         private int incrementQuantity;
         private DateTime startTime;
+        private DateTime lastTime;
         private int totalCount;
         private Stoppable stop;
 
@@ -31,6 +32,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.stop = stop;
             this.incrementQuantity = totalCount / 100;
             this.startTime = DateTime.Now;
+            this.lastTime = DateTime.Now;
             CheckForIllegalCrossThreadCalls = false;
             this.Visible = true;
             this.Refresh();
@@ -48,10 +50,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Refresh();
             int unitsLeft = (100 - this.progress.Value);
             DateTime currentTime = DateTime.Now;
-            TimeSpan totalDuration = currentTime - this.startTime;
-            double unitTimeSoFar = (totalDuration.TotalSeconds / this.progress.Value);
+            TimeSpan currentDuration = currentTime - this.lastTime;
+            double unitTimeSoFar = currentDuration.TotalSeconds;
             double timeLeft = unitsLeft * unitTimeSoFar;
             this.TimeRemaining.Text = this.ConvertTime((int) timeLeft);
+            TimeSpan totalDuration = currentTime - this.startTime;
+            this.TotalTime.Text = this.ConvertTime((int)totalDuration.TotalSeconds);
+            this.lastTime = currentTime;
         }
 
         /// <summary>
@@ -101,5 +106,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.stop.Stop();
         }
 
+ 
     }
 }

@@ -136,6 +136,12 @@ namespace Edu.Ist.Psu.DynamicMail
                         foundEmailEntryID = foundEmail.EntryID;
                         // get all the recipients
                         String[] recipients = this.GetAllRecipients(foundEmail);
+                        // ignore messages with only one recipient
+                        // DEBUG
+                        if (recipients.Length <= 1)
+                        {
+                            continue;
+                        }
                         foreach (String addr in recipients)
                         {
                             addToReceivedEmailIndex(addr, foundEmailEntryID);
