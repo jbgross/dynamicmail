@@ -89,6 +89,7 @@ namespace Edu.Psu.Ist.DynamicMail
             contactsIndex = (Hashtable)IndexList[3];
             contactsAddresses = (Hashtable)IndexList[4];
             AlreadyIndexed = (ArrayList)IndexList[5];
+            AlreadyIndexed.Sort();
         }
 
         /// <summary>

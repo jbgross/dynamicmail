@@ -5,6 +5,7 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Edu.Psu.Ist.DynamicMail;
 using System.Threading;
+using System.Collections;
 
 namespace Edu.Ist.Psu.DynamicMail
 {
@@ -13,9 +14,6 @@ namespace Edu.Ist.Psu.DynamicMail
     /// </summary>
     public class IndexMailboxes : Finishable, Stoppable
     {
-        int checkAt = 0;
-        int count = 0;
-        int lookedAt = 1;
         int totalCount = 0;
 
         private bool continueParsing = true;
@@ -92,59 +90,67 @@ namespace Edu.Ist.Psu.DynamicMail
                 return;
             }
 
-            checkAt = (this.totalCount / 100) + 1;
+            int count = 0;
+            int checkAt = (this.totalCount / 100) + 1;
+            int lookedAtTotal = 0;
             foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
             {
                 Outlook.Items searchFolder = mailbox.Items;
 
-                int total = searchFolder.Count;     //total items in mailbox
-
                 //variables to hold found email data
-                String foundSender, foundEmailEntryID, foundSubject;
-                String[] foundRecipients;
+                String foundSender, foundEmailEntryID;
 
                 //do this for every item in the searchFolder (inbox)
-                while (lookedAt < total && this.continueParsing)
+                foreach (Object o in searchFolder)
                 {
+                    lookedAtTotal++;
 
                     // let's see if we need to update the progress window
                     if (++count >= checkAt)
                     {
-                        this.pib.Increment(total - lookedAt);
+                        this.pib.Increment(this.totalCount - lookedAtTotal);
                         count = 0;
                     }
 
-                    try
+                    // stop if requested
+                    if (!ContinueParsing)
                     {
+                        break;
+                    }
 
-                        Outlook.MailItem foundEmail = (Outlook.MailItem)searchFolder[lookedAt];
-                      
-                        if (!this.index.SearchAlreadyIndexed(foundEmail.EntryID))
+                    // type check on the item - only looking at emails
+                    if (! (o is Outlook.MailItem))
+                    {
+                        continue;
+                    }
+
+                    // cast to email
+                    Outlook.MailItem foundEmail = (Outlook.MailItem) o;
+                  
+                    // if we haven't already indexed this one, index it
+                    if (!this.index.SearchAlreadyIndexed(foundEmail.EntryID))
+                    {
+                        //sender email address of current email
+                        foundSender = foundEmail.SenderEmailAddress;
+                        //email entry ID of current email
+                        foundEmailEntryID = foundEmail.EntryID;
+                        // get all the recipients
+                        String[] recipients = this.GetAllRecipients(foundEmail);
+                        foreach (String addr in recipients)
                         {
-                            //sender email address of current email
-                            foundSender = foundEmail.SenderEmailAddress;
-                            //email entry ID of current email
-                            foundEmailEntryID = foundEmail.EntryID;
-                            // get all the recipients
-                            String[] recipients = this.GetAllRecipients(foundEmail);
-                            foreach (String addr in recipients)
-                            {
-                                addToReceivedEmailIndex(addr, foundEmailEntryID);
-                            }
-
-                            //add email address and emailID to the received email index
-                            addToReceivedEmailIndex(foundSender, foundEmailEntryID);
-                            Indexes.Instance.AddIndexedID(foundEmailEntryID);
-
+                            addToReceivedEmailIndex(addr, foundEmailEntryID);
                         }
+
+                        //add email address and emailID to the received email index
+                        addToReceivedEmailIndex(foundSender, foundEmailEntryID);
+                        Indexes.Instance.AddIndexedID(foundEmailEntryID);
+
                     }
-                    catch (Exception e) //catches items that are not emails
-                    {
-                        Console.WriteLine(e.ToString());
-                    }
-                    lookedAt++;
                 }
             }
+
+            Pib.ChangeText("Writing index to disk...");
+            Pib.Refresh();
 
             index.WriteIndexToXML();
 
@@ -215,7 +221,7 @@ namespace Edu.Ist.Psu.DynamicMail
         {
             //Key = email address (senderAddress)
             //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
-            List<String> emailIDs = new List<String>();
+            ArrayList emailIDs = new ArrayList();
 
 
             //if sender email address is NOT already in the index
@@ -231,7 +237,7 @@ namespace Edu.Ist.Psu.DynamicMail
             else //sender email address is already in the index
             {
                 //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
-                emailIDs = (List<String>) this.index.receivedEmailIndex[address];
+                emailIDs = (ArrayList) this.index.receivedEmailIndex[address];
 
                 //add the found Emails ID to the array
                 emailIDs.Add(emailID);

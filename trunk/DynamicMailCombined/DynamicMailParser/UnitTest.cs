@@ -51,7 +51,6 @@ namespace Edu.Psu.Ist.DynamicMail
             //reset the inverted indexes
             Indexes InvertedIndexes = Indexes.Instance;
             InvertedIndexes.receivedEmailIndex.Clear();
-            InvertedIndexes.sentEmailIndex.Clear();
             InvertedIndexes.SubjectIndex.Clear();
 
             //create subject lines to stem

@@ -124,7 +124,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                     tn.Checked = e.Node.Checked;
             }
 
-            if (IsDescendent(e.Node, userInvoke))
+            // uncheck parents - don't need to do this
+            /*if (IsDescendent(e.Node, userInvoke))
             {
                 TreeNode pn = e.Node.Parent;
                 if (pn == null)
@@ -134,12 +135,14 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 foreach (TreeNode tn in pn.Nodes)
                     bAllChecked = bAllChecked && tn.Checked;
 
-                if (pn.Checked && !bAllChecked)
-                    pn.Checked = false;
+                // uncheck parent if child is unchecked
+                // should not be false
+                //if (pn.Checked && !bAllChecked)
+                //    pn.Checked = false;
 
-                if (!pn.Checked && bAllChecked)
-                    pn.Checked = true;
-            }
+                //if (!pn.Checked && bAllChecked)
+                //    pn.Checked = true;
+            }*/
 
         }
 
