@@ -77,7 +77,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
 
                 // now, get new centroids
-                this.clusterSpace.GenerateNewCentroids();
+                 this.clusterSpace.GenerateNewCentroids();
 
             }
             this.socialNetworks = clusterSpace.GetCurrentClusters();

@@ -33,7 +33,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.label2 = new System.Windows.Forms.Label();
             this.TimeRemaining = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ItemsLeft = new System.Windows.Forms.Label();
+            this.ItemsRemaining = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -82,12 +82,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // ItemsLeft
             // 
-            this.ItemsLeft.AutoSize = true;
-            this.ItemsLeft.Location = new System.Drawing.Point(196, 89);
-            this.ItemsLeft.Name = "ItemsLeft";
-            this.ItemsLeft.Size = new System.Drawing.Size(13, 13);
-            this.ItemsLeft.TabIndex = 5;
-            this.ItemsLeft.Text = "?";
+            this.ItemsRemaining.AutoSize = true;
+            this.ItemsRemaining.Location = new System.Drawing.Point(196, 89);
+            this.ItemsRemaining.Name = "ItemsLeft";
+            this.ItemsRemaining.Size = new System.Drawing.Size(13, 13);
+            this.ItemsRemaining.TabIndex = 5;
+            this.ItemsRemaining.Text = "?";
             // 
             // button1
             // 
@@ -105,7 +105,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 156);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.ItemsLeft);
+            this.Controls.Add(this.ItemsRemaining);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TimeRemaining);
             this.Controls.Add(this.label2);
@@ -125,7 +125,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label TimeRemaining;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label ItemsLeft;
+        private System.Windows.Forms.Label ItemsRemaining;
         private System.Windows.Forms.Button button1;
     }
 }

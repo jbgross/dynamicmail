@@ -12,9 +12,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     public partial class ProgressInfoBox : Form
     {
-        int incrementQuantity;
-        DateTime startTime;
-        int totalCount;
+        private int incrementQuantity;
+        private DateTime startTime;
+        private int totalCount;
         private Stoppable stop;
 
         /// <summary>
@@ -25,10 +25,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="stop"></param>
         public ProgressInfoBox(int totalCount, Stoppable stop)
         {
+            InitializeComponent();
             this.totalCount = totalCount;
+            this.ItemsRemaining.Text = totalCount.ToString();
             this.stop = stop;
             this.incrementQuantity = totalCount / 100;
-            InitializeComponent();
             this.startTime = DateTime.Now;
             CheckForIllegalCrossThreadCalls = false;
             this.Visible = true;
@@ -43,7 +44,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         public void Increment(int itemsLeft)
         {
             this.progress.Value++;
-            this.ItemsLeft.Text = itemsLeft.ToString();
+            this.ItemsRemaining.Text = itemsLeft.ToString();
             this.Refresh();
             int unitsLeft = (100 - this.progress.Value);
             DateTime currentTime = DateTime.Now;
@@ -51,6 +52,16 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             double unitTimeSoFar = (totalDuration.TotalSeconds / this.progress.Value);
             double timeLeft = unitsLeft * unitTimeSoFar;
             this.TimeRemaining.Text = this.ConvertTime((int) timeLeft);
+        }
+
+        /// <summary>
+        /// Change the text of the "Items Remaining" field
+        /// </summary>
+        /// <param name="text"></param>
+        public void ChangeText(String text)
+        {
+            this.ItemsRemaining.Text = text;
+            this.TimeRemaining.Text = "?";
         }
 
         private String ConvertTime(int sec)
