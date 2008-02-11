@@ -160,7 +160,9 @@ namespace Edu.Psu.Ist.DynamicMail
         private void ButtonClick1(Office.CommandBarButton ctrl,
                 ref bool cancel)
         {
-            Application.Run(new ManagerWindow());
+            //Application.Run(new ManagerWindow());
+            ManagerWindow mWindow = new ManagerWindow();
+            mWindow.Show();
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
