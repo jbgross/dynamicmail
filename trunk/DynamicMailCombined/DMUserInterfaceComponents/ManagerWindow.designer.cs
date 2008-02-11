@@ -1,4 +1,4 @@
-namespace Edu.Psu.Ist.DynamicMail.Interface
+namespace Edu.Psu.Ist.DynamicMail
 {
     partial class ManagerWindow
     {
@@ -79,15 +79,17 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.addAddress.TabIndex = 4;
             this.addAddress.Text = "Add Address";
             this.addAddress.UseVisualStyleBackColor = true;
+            this.addAddress.Click += new System.EventHandler(this.addAddress_Click);
             // 
             // removeName
             // 
-            this.removeName.Location = new System.Drawing.Point(277, 307);
+            this.removeName.Location = new System.Drawing.Point(271, 307);
             this.removeName.Name = "removeName";
-            this.removeName.Size = new System.Drawing.Size(69, 20);
+            this.removeName.Size = new System.Drawing.Size(75, 20);
             this.removeName.TabIndex = 5;
             this.removeName.Text = "Remove";
             this.removeName.UseVisualStyleBackColor = true;
+            this.removeName.Click += new System.EventHandler(this.removeName_Click);
             // 
             // nameL
             // 
@@ -100,12 +102,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // addContact
             // 
-            this.addContact.Location = new System.Drawing.Point(191, 333);
+            this.addContact.Location = new System.Drawing.Point(190, 333);
             this.addContact.Name = "addContact";
-            this.addContact.Size = new System.Drawing.Size(74, 20);
+            this.addContact.Size = new System.Drawing.Size(75, 20);
             this.addContact.TabIndex = 7;
             this.addContact.Text = "Add Contact";
             this.addContact.UseVisualStyleBackColor = true;
+            this.addContact.Click += new System.EventHandler(this.addContact_Click);
             // 
             // iconButton
             // 
@@ -132,6 +135,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.saveGroup.TabIndex = 11;
             this.saveGroup.Text = "Save";
             this.saveGroup.UseVisualStyleBackColor = true;
+            this.saveGroup.Click += new System.EventHandler(this.saveGroup_Click);
             // 
             // ignoreGroup
             // 
@@ -141,6 +145,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.ignoreGroup.TabIndex = 12;
             this.ignoreGroup.Text = "Ignore";
             this.ignoreGroup.UseVisualStyleBackColor = true;
+            this.ignoreGroup.Click += new System.EventHandler(this.ignoreGroup_Click);
             // 
             // groupList
             // 
