@@ -80,13 +80,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\keystone\Edu.Psu.Ist.Keystone\kmeans-test-jbg\Edu.Psu.Ist.Keystone.csproj">
-      <Project>{AA3B04F7-004A-487A-ABC3-FBA3A5096446}</Project>
-      <Name>Edu.Psu.Ist.Keystone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DMUserInterfaceComponents\DMUserInterfaceComponents.csproj">
       <Project>{2CB6935E-6F3B-4294-92D6-F971EE137764}</Project>
       <Name>DMUserInterfaceComponents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Edu.Psu.Ist.Keystone\Edu.Psu.Ist.Keystone.csproj">
+      <Project>{5BEF3B6A-02C8-4730-848C-7A974C478B7C}</Project>
+      <Name>Edu.Psu.Ist.Keystone</Name>
     </ProjectReference>
     <ProjectReference Include="..\XML Manipulation\ObjectXml.csproj">
       <Project>{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}</Project>
