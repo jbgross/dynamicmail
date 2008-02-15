@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Psu
 {
     public class Logger
     {

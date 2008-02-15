@@ -40,24 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DynamicMailParser.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\DynamicMailParser.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Indexes.cs" />
-    <Compile Include="IndexMailboxes.cs" />
-    <Compile Include="IndexObjectXMLConverter.cs" />
-    <Compile Include="PrepareClusterData.cs" />
-    <Compile Include="UpdatingObject.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Indexes.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexMailboxes.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexObjectXMLConverter.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\PrepareClusterData.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\UpdatingObject.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Logger.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stemmer.cs" />
-    <Compile Include="UnitTest.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Stemmer.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="hashdata.txt">
+    <Content Include="Edu.Psu.Ist.DynamicMail.Parse\hashdata.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="stoplist.txt">
+    <Content Include="Edu.Psu.Ist.DynamicMail.Parse\stoplist.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -94,7 +95,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Store.dat">
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\Store.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

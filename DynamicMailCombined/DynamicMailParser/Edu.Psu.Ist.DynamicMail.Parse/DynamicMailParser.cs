@@ -11,7 +11,7 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using System.Windows.Forms;
 
 
-namespace Edu.Psu.Ist.DynamicMail 
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     public class DynamicMailParser
     {

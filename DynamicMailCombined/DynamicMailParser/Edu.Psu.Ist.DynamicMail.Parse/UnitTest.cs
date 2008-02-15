@@ -7,8 +7,9 @@ using Office = Microsoft.Office.Core;
 using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.IO;
+using Edu.Psu.Ist.DynamicMail.Psu;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     /// <summary>
     /// Unit test class
