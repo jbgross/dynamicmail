@@ -21,10 +21,41 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
         }
         private Hashtable elements = new Hashtable();
 
+        /// <summary>
+        /// Get the Centroid for this cluster
+        /// </summary>
+        /// <param name="centroid"></param>
         public Cluster(Centroid centroid)
         {
             this.Centroid = centroid;
         }
+
+        private bool complete;
+
+        /// <summary>
+        /// Determine if the Cluster is complete; if so, it is locked, and
+        /// its members should be locked.
+        /// </summary>
+        public bool Complete
+        {
+            get { return complete; }
+            set { complete = value; }
+        }
+
+        private int same = 0;
+
+        /// <summary>
+        /// The number of Cluster elements that 
+        /// are the same from the last iteration
+        /// </summary>
+        public int Same
+        {
+            get { return same; }
+            set { same = value; }
+        }
+
+
+
 
         /// <summary>
         /// Add a data element

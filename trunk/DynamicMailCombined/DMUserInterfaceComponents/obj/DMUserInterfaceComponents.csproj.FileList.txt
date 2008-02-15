@@ -1,6 +1,3 @@
-bin\Debug\DMUserInterfaceComponents.dll
-bin\Debug\DMUserInterfaceComponents.pdb
-bin\Debug\Interop.Microsoft.Office.Core.dll
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\DMUserInterfaceComponents.csproj.ResolveComReference.cache
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.AddAccount.resources
@@ -10,5 +7,8 @@ obj\Debug\Edu.Psu.Ist.DynamicMail.NetworkManager.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.ProgressInfoBox.resources
 obj\Debug\Edu.Psu.Ist.DynamicMail.Interface.SelectFolders.resources
 obj\Debug\DMUserInterfaceComponents.csproj.GenerateResource.Cache
+bin\Debug\DMUserInterfaceComponents.dll
+bin\Debug\DMUserInterfaceComponents.pdb
+bin\Debug\Interop.Microsoft.Office.Core.dll
 obj\Debug\DMUserInterfaceComponents.dll
 obj\Debug\DMUserInterfaceComponents.pdb

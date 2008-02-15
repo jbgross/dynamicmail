@@ -76,17 +76,15 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             {
                 // start by comparing centroids to dimensions
                 this.clusterSpace.CompareCentroids();
+                // now, get new centroids
+                this.clusterSpace.GenerateNewCentroids();
 
                 foreach (Centroid cent in clusterSpace.Centroids)
                 {
                     Cluster cluster = cent.Cluster;
-                    this.infobox.AddText(cluster.Count.ToString());
+                    this.infobox.AddText(cluster.Same.ToString());
                 }
                 this.infobox.AddText("");
-
-                // now, get new centroids
-                 this.clusterSpace.GenerateNewCentroids();
-
             }
             this.socialNetworks = clusterSpace.GetCurrentClusters();
         }

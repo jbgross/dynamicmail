@@ -14,13 +14,16 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
     /// </summary>
     public class IndexMailboxes : Finishable, Stoppable
     {
-        int totalCount = 0;
+        private int totalCount = 0;
 
         private bool continueParsing = true;
         private String[] splitArray = { "; " };
         private InfoBox infoBox;
         private Indexes index;
 
+        /// <summary>
+        /// Get the infobox
+        /// </summary>
         public InfoBox InfoBox
         {
             get { return infoBox; }
@@ -34,7 +37,9 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         }
 
         private ProgressInfoBox pib;
-
+        /// <summary>
+        /// Get the progress bar
+        /// </summary>
         public ProgressInfoBox Pib
         {
             get { return pib; }
