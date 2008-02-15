@@ -13,12 +13,18 @@ namespace Edu.Psu.Ist.Keystone.Data
         private Cluster cluster;
         private int highScore;
 
+        /// <summary>
+        /// Get the highest score
+        /// </summary>
         public int HighScore
         {
             get { return this.highScore; }
             private set { this.highScore = value; }
         }
 
+        /// <summary>
+        /// Get the mean score of 
+        /// </summary>
         public float MeanScore
         {
             get
@@ -47,6 +53,9 @@ namespace Edu.Psu.Ist.Keystone.Data
             private set { cluster = value; }
         }
 
+        /// <summary>
+        /// Get the data points in the cluster
+        /// </summary>
         public DataElement[] Elements
         {
             get
@@ -85,6 +94,11 @@ namespace Edu.Psu.Ist.Keystone.Data
         private int totalScore = 0;
         private int totalPassedIn = 0;
 
+        /// <summary>
+        /// Update the score after assigning a 
+        /// </summary>
+        /// <param name="scores"></param>
+        /// <param name="total"></param>
         public void UpdateScores(Hashtable scores, int total)
         {
             //DEBUG

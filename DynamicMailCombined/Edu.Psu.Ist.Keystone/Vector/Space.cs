@@ -14,7 +14,10 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
     {
         private Centroid[] centroids;
         private Centroid[] oldCentroids;
-
+        
+        /// <summary>
+        /// Get an array of the Centroids, from which you can get each Cluster
+        /// </summary>
         public Centroid[] Centroids
         {
             get { return centroids; }
@@ -30,6 +33,9 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
 
         int clusterCount, clusterSize;
 
+        /// <summary>
+        /// Get the number of clusters to be generated
+        /// </summary>
         public int ClusterCount
         {
             get { return clusterCount; }
@@ -38,6 +44,9 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
 
         private bool centroidsComplete = false;
 
+        /// <summary>
+        /// Determine if the clustering is complete
+        /// </summary>
         public bool CentroidsComplete
         {
             get { return centroidsComplete; }
@@ -147,7 +156,7 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
         public void GenerateNewCentroids()
         {
             // stop if old centroids and new centroids are the same
-            if (this.isFinished())
+            if (this.IsFinished())
             {
                 CentroidsComplete = true;
                 return;
@@ -165,14 +174,33 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
             for (int i = 0; i < newCents.Length; i++)
             {
                 Centroid oldCentroid = Centroids[i];
-                // now, changing algorithm
-                Centroid newCentroid = oldCentroid.GenerateModifiedCentroid();
-                foreach (DataElement de in newCentroid.Elements)
+                Centroid active = null;
+
+                // if the cluster is complete, then don't create a new cluster
+                if (oldCentroid.Cluster.Complete)
+                {
+                    active = oldCentroid;
+                } 
+                else 
+                {
+                    // otherwise, create a new centroid
+                    active = oldCentroid.GenerateModifiedCentroid();
+                }
+
+                // pull all data elements from this centroid
+                // from the central repository
+                foreach (DataElement de in active.Elements)
                 {
                     allVectorsLeft.Remove(de);
                 }
-                newCents[i] = newCentroid;
+
+                // assign the new cluster (or old) to the array
+                // of new centroids, and copy the "Same" value
+                active.Cluster.Same = oldCentroid.Cluster.Same;
+                newCents[i] = active;
             }
+
+            // switch from old centroids to new
             this.oldCentroids = this.Centroids;
             this.centroids = newCents;
 
@@ -191,8 +219,10 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
         /// If so, return true, else return false
         /// </summary>
         /// <returns></returns>
-        private bool isFinished()
+        private bool IsFinished()
         {
+            bool done = true;
+
             // first time through, we won't have old centroids,
             // so we won't have to check
             if (this.oldCentroids == null)
@@ -202,15 +232,21 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
 
             for (int i = 0; i < this.centroids.Length; i++)
             {
+                // first, determine if the cluster is complete; if so, move to next
+                if(this.centroids[i].Cluster.Complete)
+                {
+                    continue;
+                }
+                Cluster current = this.centroids[i].Cluster;
+                Cluster old = this.oldCentroids[i].Cluster;
+
                 int high = this.centroids[i].HighScore;
                 float mean = this.centroids[i].MeanScore;
 
-                List<DataElement> newMembers = this.centroids[i].Cluster.GetDataElements();
-                List<DataElement> oldMembers = this.oldCentroids[i].Cluster.GetDataElements();
-                //newMembers.Sort();
-                //oldMembers.Sort();
-                List<DataElement> topNewMembers = this.GetTopMembers(newMembers, this.centroids[i].Cluster);
-                List<DataElement> topOldMembers = this.GetTopMembers(oldMembers, this.oldCentroids[i].Cluster);
+                List<DataElement> newMembers = current.GetDataElements();
+                List<DataElement> oldMembers = old.GetDataElements();
+                List<DataElement> topNewMembers = this.GetTopMembers(newMembers, current);
+                List<DataElement> topOldMembers = this.GetTopMembers(oldMembers, old);
                 int same = 0;
                 foreach (DataElement de in topOldMembers)
                 {
@@ -220,15 +256,22 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
                     }
                 }
 
-                if (same < this.clusterSize)
+                // set the number of elements that are the same
+                current.Same = same;
+
+                if (same == this.clusterSize)
                 {
-                    return false;
+                    current.Complete = true;
+                }
+                else
+                {
+                    done = false;
                 }
 
             }
 
-            // if nothing has caused a false so far, then return true
-            return true;
+            // if nothing has caused a false so far, then the cluster is complete
+            return done;
         }
 
         /// <summary>
