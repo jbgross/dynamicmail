@@ -6,21 +6,23 @@ using Office = Microsoft.Office.Core;
 using System.Threading;
 using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Ist.Psu.DynamicMail;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 
 namespace Edu.Psu.Ist.DynamicMail
 {
+    /// <summary>
+    /// Setup class for the plugin
+    /// </summary>
     public partial class ThisApplication
     {
-        Office.CommandBar newToolBar;
-        Office.CommandBarButton seeFolders;
-        Office.CommandBarButton indexMailboxes;
-        Office.CommandBarButton indexSentButton;
-        Office.CommandBarButton clusterContactsButton;
-        Office.CommandBarButton manageGroupButton;
-        Outlook.Explorers selectExplorers;
+        private Office.CommandBar newToolBar;
+        private Office.CommandBarButton indexMailboxes;
+        private Office.CommandBarButton clusterContactsButton;
+        private Office.CommandBarButton manageGroupButton;
+        private Outlook.Explorers selectExplorers;
 
-        DynamicMailParser parser = new DynamicMailParser();
+        private DynamicMailParser parser = new DynamicMailParser();
 
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
@@ -65,21 +67,6 @@ namespace Edu.Psu.Ist.DynamicMail
                         (ButtonClick);
                 }
 
-                Office.CommandBarButton button_2 = (Office
-                    .CommandBarButton)newToolBar.Controls.Add
-                    (1, missing, missing, missing, missing);
-                button_2.Style = Office
-                    .MsoButtonStyle.msoButtonCaption;
-                button_2.Caption = "Index Sent Mail";
-                button_2.Tag = "sent";
-                newToolBar.Visible = true;
-                if (this.indexSentButton == null)
-                {
-                    this.indexSentButton = button_2;
-                    indexSentButton.Click += new Office.
-                        _CommandBarButtonEvents_ClickEventHandler
-                        (ButtonClick);
-                }
                 
                 Office.CommandBarButton clusterButton = (Office
                                     .CommandBarButton)newToolBar.Controls.Add
@@ -109,7 +96,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     this.manageGroupButton = managerButton;
                     manageGroupButton.Click += new Office.
                         _CommandBarButtonEvents_ClickEventHandler
-                        (ButtonClick1);
+                        (ButtonClick);
                 }
 
             }
@@ -133,18 +120,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 {
                     new IndexMailboxes(allFolders, Indexes.Instance);
                 }
-                if (ctrl.Tag == "sent")
-                {
-                    parser.sentBoxIndexer(sentBox, contacts);
-                    Indexes.Instance.WriteIndexToXML();
-
-                }
-                if (ctrl.Tag == "contacts")
-                {
-                    parser.contactsIndexer(contacts);
-                    Indexes.Instance.WriteIndexToXML();
-                }
-                if (ctrl.Tag.Equals("cluster"))
+                else if (ctrl.Tag.Equals("cluster"))
                 {
                     PrepareClusterData pcd = new PrepareClusterData();
                 }
@@ -154,15 +130,6 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 MessageBox.Show(e.ToString());
             }
-            //MessageBox.Show("You clicked: " + ctrl.Caption);
-        }
-
-        private void ButtonClick1(Office.CommandBarButton ctrl,
-                ref bool cancel)
-        {
-            //Application.Run(new ManagerWindow());
-            ManagerWindow mWindow = new ManagerWindow();
-            mWindow.Show();
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
