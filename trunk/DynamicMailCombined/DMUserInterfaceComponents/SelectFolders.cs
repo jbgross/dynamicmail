@@ -153,7 +153,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
         private void Done_Click(object sender, EventArgs e)
         {
-            this.source.Finished();
+            this.source.Finish();
         }
 
     }

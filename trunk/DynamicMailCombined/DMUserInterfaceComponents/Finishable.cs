@@ -14,6 +14,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// Call back to the calling code to indicate
         /// that this Dialogue box is finished
         /// </summary>
-        void Finished();
+        void Finish();
+
+        /// <summary>
+        /// Call back that the action was cancelled
+        /// </summary>
+        void Cancel();
+
     }
 }

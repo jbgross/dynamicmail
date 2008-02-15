@@ -39,6 +39,13 @@
   </Target>
   -->
   <ItemGroup>
+    <Compile Include="AddAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAccount.Designer.cs">
+      <DependentUpon>AddAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Address.cs" />
     <Compile Include="Finishable.cs" />
     <Compile Include="GetNumericInput.cs">
       <SubType>Form</SubType>
@@ -58,11 +65,11 @@
     <Compile Include="SelectFolders.Designer.cs">
       <DependentUpon>SelectFolders.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagerWindow.cs">
+    <Compile Include="NetworkManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagerWindow.designer.cs">
-      <DependentUpon>ManagerWindow.cs</DependentUpon>
+    <Compile Include="NetworkManager.designer.cs">
+      <DependentUpon>NetworkManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Stoppable.cs" />
     <Compile Include="ProgressInfoBox.cs">
@@ -84,6 +91,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddAccount.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GetNumericInput.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GetNumericInput.cs</DependentUpon>
@@ -92,8 +103,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>InfoBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagerWindow.resx">
-      <DependentUpon>ManagerWindow.cs</DependentUpon>
+    <EmbeddedResource Include="NetworkManager.resx">
+      <DependentUpon>NetworkManager.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressInfoBox.resx">
