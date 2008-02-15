@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     class IndexObjectXMLConverter : IObjectXmlConverter
     {

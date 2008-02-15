@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     
 

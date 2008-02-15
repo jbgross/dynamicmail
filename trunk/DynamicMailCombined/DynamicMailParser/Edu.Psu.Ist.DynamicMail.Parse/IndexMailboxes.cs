@@ -7,7 +7,7 @@ using Edu.Psu.Ist.DynamicMail;
 using System.Threading;
 using System.Collections;
 
-namespace Edu.Ist.Psu.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     /// <summary>
     /// Class to parse and index mailbox content
@@ -57,7 +57,7 @@ namespace Edu.Ist.Psu.DynamicMail
         /// <summary>
         /// Call when the folders are selected
         /// </summary>
-        public void Finished()
+        public void Finish()
         {
             this.select.Visible = false;
             this.indexFolders = select.SelectedFolders;
@@ -265,7 +265,14 @@ namespace Edu.Ist.Psu.DynamicMail
         {
             ContinueParsing = false;
         }
-        
+
+        /// <summary>
+        /// Implement the required method from Finishable
+        /// </summary>
+        public void Cancel()
+        {
+            // don't do anything
+        }
 
     }
 }

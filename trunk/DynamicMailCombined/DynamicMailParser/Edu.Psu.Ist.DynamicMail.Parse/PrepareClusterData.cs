@@ -8,7 +8,7 @@ using Edu.Psu.Ist.Keystone.Data;
 using Edu.Psu.Ist.Keystone.Dimensions;
 using System.Threading;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     /// <summary>
     /// Class to ready data for clustering
