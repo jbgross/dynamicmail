@@ -3,37 +3,58 @@ using System.Collections.Generic;
 using System.Text;
 using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.DynamicMail;
+using Edu.Psu.Ist.Keystone.Data;
 
-namespace Edu.Ist.Psu.DynamicMail.Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// A social network, can be saved, loaded, and managed
     /// </summary>
     public class SocialNetwork : Finishable
     {
+        private Finishable finish;
         private Account [] accounts;
         private NetworkManager manager;
 
-        private Account[] Accounts
+        public Account[] Accounts
         {
             get { return accounts; }
-            set { accounts = value; }
+            private set { accounts = value; }
         }
 
         /// <summary>
         /// Public constructor
         /// </summary>
         /// <param name="addresses"></param>
-        public SocialNetwork(Account [] accounts)
+        public SocialNetwork(List<DataElement> accounts)
         {
+            List<Account> accts = new List<Account>();
+            foreach (DataElement de in accounts)
+            {
+                Account acct = new Account();
+                String s = de.ToString();
+                if (s.Contains("@"))
+                {
+                    acct.Address = s;
+                }
+                else
+                {
+                    acct.Name = s;
+                }
+                accts.Add(acct);
+            }
+            //accts.Sort();
+            Accounts = accts.ToArray();
+
         }
 
         /// <summary>
         /// Open a manager window
         /// </summary>
-        public void Manage()
+        public void Manage(Finishable finish)
         {
-            this.manager = new NetworkManager(this, accounts);
+            this.finish = finish;
+            this.manager = new NetworkManager(this, this.accounts);
         }
 
         public void Finish()
@@ -49,14 +70,19 @@ namespace Edu.Ist.Psu.DynamicMail.Edu.Psu.Ist.DynamicMail
             //send list to XML writer to write to the specified file
             WriteXML.WriteObjectXml(groupIList, "c:\\groupList.xml");
 
+            // move to next
+            this.finish.Finish();
+
         }
         
         /// <summary>
-        /// Implemented for interface
+        /// If the canceled, don't save
         /// </summary>
         public void Cancel()
         {
-            // do nothing right now
+            this.manager.Close();
+            // move to the next
+            this.finish.Finish();
         }
 
     }

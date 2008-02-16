@@ -28,21 +28,22 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.OpenLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.countSN = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.countSN)).BeginInit();
+            this.NumberBox = new System.Windows.Forms.NumericUpDown();
+            this.OkButton = new System.Windows.Forms.Button();
+            this.CancelProcessButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // OpenLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Desired Number of Networks:";
+            this.OpenLabel.AutoSize = true;
+            this.OpenLabel.Location = new System.Drawing.Point(12, 14);
+            this.OpenLabel.Name = "OpenLabel";
+            this.OpenLabel.Size = new System.Drawing.Size(141, 13);
+            this.OpenLabel.TabIndex = 0;
+            this.OpenLabel.Text = "this will be set to some value";
             // 
             // label2
             // 
@@ -53,50 +54,56 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.label2.TabIndex = 1;
             this.label2.Text = "(if unknown, leave at default)";
             // 
-            // countSN
+            // NumberBox
             // 
-            this.countSN.Location = new System.Drawing.Point(182, 14);
-            this.countSN.Maximum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            this.countSN.Minimum = new decimal(new int[] {
+            this.NumberBox.Location = new System.Drawing.Point(230, 14);
+            this.NumberBox.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.countSN.Name = "countSN";
-            this.countSN.Size = new System.Drawing.Size(120, 20);
-            this.countSN.TabIndex = 2;
-            this.countSN.Value = new decimal(new int[] {
+            this.NumberBox.Name = "NumberBox";
+            this.NumberBox.Size = new System.Drawing.Size(72, 20);
+            this.NumberBox.TabIndex = 2;
+            this.NumberBox.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
             // 
-            // button1
+            // OkButton
             // 
-            this.button1.Location = new System.Drawing.Point(227, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.OkButton.Location = new System.Drawing.Point(149, 47);
+            this.OkButton.Name = "OkButton";
+            this.OkButton.Size = new System.Drawing.Size(75, 23);
+            this.OkButton.TabIndex = 3;
+            this.OkButton.Text = "OK";
+            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // CancelProcessButton
+            // 
+            this.CancelProcessButton.Location = new System.Drawing.Point(230, 47);
+            this.CancelProcessButton.Name = "CancelProcessButton";
+            this.CancelProcessButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelProcessButton.TabIndex = 4;
+            this.CancelProcessButton.Text = "Cancel";
+            this.CancelProcessButton.UseVisualStyleBackColor = true;
+            this.CancelProcessButton.Click += new System.EventHandler(this.CancelProcessButton_Click);
             // 
             // GetNumericInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(314, 82);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.countSN);
+            this.Controls.Add(this.CancelProcessButton);
+            this.Controls.Add(this.OkButton);
+            this.Controls.Add(this.NumberBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.OpenLabel);
             this.Name = "GetNumericInput";
-            this.Text = "GetInput";
-            ((System.ComponentModel.ISupportInitialize)(this.countSN)).EndInit();
+            this.Text = "Get Numeric Input";
+            ((System.ComponentModel.ISupportInitialize)(this.NumberBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,9 +111,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label OpenLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown countSN;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown NumberBox;
+        private System.Windows.Forms.Button OkButton;
+        private System.Windows.Forms.Button CancelProcessButton;
     }
 }

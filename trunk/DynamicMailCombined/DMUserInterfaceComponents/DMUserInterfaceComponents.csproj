@@ -45,7 +45,7 @@
     <Compile Include="AddAccount.Designer.cs">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Address.cs" />
+    <Compile Include="Account.cs" />
     <Compile Include="Finishable.cs" />
     <Compile Include="GetNumericInput.cs">
       <SubType>Form</SubType>
