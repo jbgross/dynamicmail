@@ -21,6 +21,17 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
         }
         private Hashtable elements = new Hashtable();
 
+        private List<DataElement> topAccounts;
+
+        /// <summary>
+        /// Set the top accounts
+        /// </summary>
+        public List<DataElement> TopAccounts
+        {
+            get { return topAccounts; }
+            set { topAccounts = value; }
+        }
+
         /// <summary>
         /// Get the Centroid for this cluster
         /// </summary>

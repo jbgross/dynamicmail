@@ -17,7 +17,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         public String Address
         {
             get { return address; }
-            private set { address = value; }
+            set { address = value; }
         }
         private String name;
 
@@ -27,18 +27,23 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         public String Name
         {
             get { return name; }
-            private set { name = value; }
+            set { name = value; }
         }
 
         /// <summary>
         /// Constructor, takes two arguments - either can be null
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="address"></param>
         public Account(String name, String address)
         {
             Address = address;
             Name = name;
+        }
+        
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
+        public Account()
+        {
         }
 
     }

@@ -259,9 +259,14 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
                 // set the number of elements that are the same
                 current.Same = same;
 
-                if (same == this.clusterSize)
+                // stop if we've converged
+                // which is either that we've matched the correct number
+                // of members or that we've matched the entire member set
+                if (same == this.clusterSize || same == current.GetDataElements().Count)
                 {
                     current.Complete = true;
+                    current.TopAccounts = topNewMembers;
+                    
                 }
                 else
                 {

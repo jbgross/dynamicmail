@@ -13,21 +13,77 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
     /// <summary>
     /// Class to ready data for clustering
     /// </summary>
-    public class PrepareClusterData
+    public class PrepareClusterData : Finishable
     {
-        InfoBox infobox = new InfoBox();
-        Hashtable addressMsgs = new Hashtable();
-        Space clusterSpace = null;
-        Cluster[] socialNetworks = null;
+        private InfoBox infoBox = new InfoBox();
+        private Hashtable addressMsgs = new Hashtable();
+        private Space clusterSpace = null;
+        private Indexes indices = null;
+
+        private GetNumericInput getClusterCount = null;
+        private GetNumericInput getClusterSize = null;
+
+        private int clusterCount = 0;
+        private int clusterSize = 0;
 
         /// <summary>
         /// Constructor, opens and loads index data
         /// </summary>
         public PrepareClusterData()
         {
-            Indexes indices = Indexes.Instance;
+            // load the indexes, if they haven't already been loaded
+            this.indices = Indexes.Instance;
+
+            // get the number and size of clusters
+            this.GetInputs();
+        }
+
+        /// <summary>
+        /// Start by getting the number of clusters (social networks)
+        /// </summary>
+        private void GetInputs()
+        {
+            this.getClusterCount = new
+                GetNumericInput("Number of Social Networks:", 10, this);
+        }
+
+        /// <summary>
+        /// Called by a window to indicate that it is finished
+        /// We have two windows - one for social network size
+        /// and one for number of social networks, so we have to
+        /// figure out which is finished
+        /// </summary>
+        public void Finish()
+        {
+            // if it's clusterCount, get that value
+            if (this.getClusterCount != null)
+            {
+                this.clusterCount = this.getClusterCount.Count;
+                this.getClusterCount = null; // release from memory
+                this.getClusterSize = new 
+                    GetNumericInput("Number of members for each Social Network:", 20, this);
+                return;
+            } 
+            else if (this.getClusterSize != null)
+            {
+                this.clusterSize = this.getClusterSize.Count;
+                this.getClusterSize = null; // release from memory
+                this.StartClustering();
+            }
+        }
+
+        /// <summary>
+        /// Called from window, just stop the process
+        /// </summary>
+        public void Cancel()
+        {
+            this.infoBox.Close();
+        }
+
+        private void StartClustering()
+        {
             this.addressMsgs = indices.receivedEmailIndex;
-            this.infobox.AddText("Size: " + addressMsgs.Count);
+            this.infoBox.AddText("Size: " + addressMsgs.Count);
             this.clusterSpace = this.CreateSpace();
             ThreadStart ts = new ThreadStart(Cluster);
             Thread t = new Thread(ts);
@@ -39,8 +95,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// </summary>
         private Space CreateSpace()
         {
-            int count = 10;
-            Space space = new Space(count, 20);
+            Space space = new Space(clusterCount, clusterSize);
             foreach (Object o in this.addressMsgs.Keys)
             {
                 String address = (String)o;
@@ -64,6 +119,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             return space;
         }
 
+
         /// <summary>
         /// Actually perform the clustering and return the 
         /// final clusters
@@ -82,11 +138,12 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 foreach (Centroid cent in clusterSpace.Centroids)
                 {
                     Cluster cluster = cent.Cluster;
-                    this.infobox.AddText(cluster.Same.ToString());
+                    this.infoBox.AddText(cluster.Same.ToString());
                 }
-                this.infobox.AddText("");
+                this.infoBox.AddText("");
             }
-            this.socialNetworks = clusterSpace.GetCurrentClusters();
+            SocialNetworkManager mgr = new SocialNetworkManager(clusterSpace.GetCurrentClusters());
         }
+
     }
 }

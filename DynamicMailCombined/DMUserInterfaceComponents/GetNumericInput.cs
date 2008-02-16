@@ -11,50 +11,40 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     public partial class GetNumericInput : Form
     {
-        bool done = false;
-
-        public bool Done
-        {
-            get { return done; }
-            private set { done = value; }
-        }
-
-        int count = 0;
+        private Finishable finishable;
 
         /// <summary>
         /// Get the count
         /// </summary>
         public int Count
         {
-            get { return count; }
+            get { return (int) this.NumberBox.Value; }
+            private set { this.NumberBox.Value = value; }
         }
 
         /// <summary>
         /// Public constructor
         /// </summary>
-        public GetNumericInput()
+        public GetNumericInput(String message, int initialValue, Finishable finish)
         {
+            this.finishable = finish;
             InitializeComponent();
-            Visible = true;
-
-            //lock this object to block main thread
-            Monitor.Enter(this);
-        }
-
-        /// <summary>
-        /// Placeholder method to wait for data
-        /// </summary>
-        [STAThread]
-        public void Run()
-        {
+            Count = initialValue;
+            this.OpenLabel.Text = message;
+            this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.count = (int) this.countSN.Value;
-            Done = true;
-            Visible = false;
-            Monitor.Exit(this);
+            Count = (int) this.NumberBox.Value;
+            this.Close();
+            finishable.Finish();
+        }
+
+        private void CancelProcessButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.finishable.Cancel();
         }
 
     }

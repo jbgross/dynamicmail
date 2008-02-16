@@ -5,7 +5,6 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Threading;
 using Edu.Psu.Ist.DynamicMail.Interface;
-using Edu.Ist.Psu.DynamicMail;
 using Edu.Psu.Ist.DynamicMail.Parse;
 
 

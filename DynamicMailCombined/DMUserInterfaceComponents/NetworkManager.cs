@@ -37,7 +37,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private List<Account> accounts = new List<Account>();
         private AddAccount addAccount = null;
 
-        /// <summary>
+        /// <summary>&
         /// Get the accounts as an array of Account objects
         /// </summary>
         public Account[] Accounts
@@ -62,6 +62,11 @@ namespace Edu.Psu.Ist.DynamicMail
         public NetworkManager(Finishable finish, Account [] accounts)
         {
             this.finish = finish;
+            
+            if (accounts.Length == 0)
+            {
+                this.finish.Cancel();
+            }
             InitializeComponent();
             foreach (Account account in accounts)
             {
@@ -69,6 +74,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 this.groupList.Rows.Add(row);
                 this.accounts.Add(account);
             }
+            this.Visible = true;
         }
 
         /// <summary>

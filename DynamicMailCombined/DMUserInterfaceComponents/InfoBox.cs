@@ -13,8 +13,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     /// </summary>
     public partial class InfoBox : Form
     {
-
-
         /// <summary>
         /// Get the textbox for this object
         /// </summary>
@@ -34,5 +32,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Visible = true;
             this.Refresh();
         }
+
     }
 }
