@@ -33,9 +33,25 @@ namespace Edu.Psu.Ist.DynamicMail
             get { return this.emailCol; }
         }
 
+        private String networkName;
+
+        /// <summary>
+        /// The name of the social network
+        /// </summary>
+        public String NetworkName
+        {
+            get { return networkName; }
+            private set { networkName = value; }
+        }
+
         private Finishable finish;
         private List<Account> accounts = new List<Account>();
-        private AddAccount addAccount = null;
+        private EditAccount addAccount = null;
+
+        // for editing an account
+        private EditAccount editAccount = null;
+        private DataGridViewRow editRow = null;
+        private Account editingAccount = null;
 
         /// <summary>&
         /// Get the accounts as an array of Account objects
@@ -68,13 +84,14 @@ namespace Edu.Psu.Ist.DynamicMail
                 this.finish.Cancel();
             }
             InitializeComponent();
-            foreach (Account account in accounts)
+            for (int i = 0; i < accounts.Length; i++)
             {
+                Account account = accounts[i];
                 String[] row = { account.Name, account.Address };
                 this.groupList.Rows.Add(row);
                 this.accounts.Add(account);
             }
-            this.Visible = true;
+            this.Show();
         }
 
         /// <summary>
@@ -84,13 +101,24 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="e"></param>
         private void addAddress_Click(object sender, EventArgs e)
         {
-            AddAccount addWindow = new AddAccount(this);
+            EditAccount addWindow = new EditAccount(this);
             addWindow.Show();
         }
 
-
+        /// <summary>
+        /// Save the SocialNetwork
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveGroup_Click(object sender, EventArgs e)
         {
+            // have to have a name
+            NetworkName = this.nameBox.Text;
+            if (NetworkName == null || NetworkName.Equals(""))
+            {
+                MessageBox.Show("You must set the Network Name");
+                return;
+            }
             this.Close();
             this.finish.Finish();
         }
@@ -115,7 +143,29 @@ namespace Edu.Psu.Ist.DynamicMail
                 String [] arr = {name, address};
                 this.groupList.Rows.Add(arr);
                 this.accounts.Add(new Account(name, address));
+                this.addAccount = null;
                 this.Refresh();
+            }
+            else if (this.editAccount != null)
+            {
+                // get data from edit box
+                String name = this.editAccount.AccountName;
+                this.editRow.Cells[0].Value = name; ;
+
+                String address = this.editAccount.AccountAddress;
+                this.editRow.Cells[1].Value = address;
+
+                // replace Account object in List
+                Account acct = new Account(name, address);
+                // why isn't this working?
+                int index = this.accounts.IndexOf(this.editingAccount);
+                this.accounts.RemoveAt(index);
+                this.accounts.Insert(index, acct);
+                
+                // cleanup
+                this.editingAccount = null;
+                this.editAccount = null;
+                this.editRow = null;
             }
         }
 
@@ -138,33 +188,50 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="e"></param>
         private void removeName_Click(object sender, EventArgs e)
         {
-            if (this.groupList.SelectedRows.Count > 0 &&
-                this.groupList.SelectedRows[0].Index !=
-                this.groupList.Rows.Count - 1)
+            this.SelectRowsFromCells();
+            foreach (DataGridViewRow row in this.groupList.SelectedRows)
             {
-                String name = groupList.SelectedRows[0].Cells[0].ToString();
-                if(name == null || name.Equals("")) 
+                // remove from the list of accounts
+                Account acct = new Account(row.Cells[0].ToString(), row.Cells[1].ToString());
+                this.accounts.Remove(acct);
+                // remove from rows
+                groupList.Rows.RemoveAt(row.Index);
+            }
+        }
+
+        /// <summary>
+        /// If the edit button is selected, allow the user 
+        /// to edit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            this.SelectRowsFromCells();
+            foreach (DataGridViewRow row in this.groupList.SelectedRows)
+            {
+                String name = "";
+                String address = "";
+                if(row.Cells[0].Value != null)
+                    name = row.Cells[0].Value.ToString();
+                if(row.Cells[1].Value != null)
+                    address = row.Cells[1].Value.ToString();
+                this.editAccount = new EditAccount(this, name, address);
+                this.editRow = row;
+            }
+        }
+
+        /// <summary>
+        /// If cells are selected instead of rows, select those rows
+        /// </summary>
+        private void SelectRowsFromCells()
+        {
+            if (this.groupList.SelectedRows.Count == 0 && this.groupList.SelectedCells.Count > 0)
+            {
+                foreach (DataGridViewCell cell in this.groupList.SelectedCells)
                 {
-                    name = "foobar";
+                    this.groupList.Rows[cell.RowIndex].Selected = true;
                 }
-
-                String address = groupList.SelectedRows[0].Cells[1].ToString();
-                if(address == null || address.Equals(""))
-                {
-                    address = "barfoo";
-                }
-
-                foreach (Account acct in this.accounts)
-                {
-                    if (acct.Name.Equals(name) || acct.Name.Equals(address))
-                    {
-                        this.accounts.Remove(acct);
-                        break;
-                    }
-                }
-
-                groupList.Rows.RemoveAt(groupList.SelectedRows[0].Index);
-
             }
         }
     }

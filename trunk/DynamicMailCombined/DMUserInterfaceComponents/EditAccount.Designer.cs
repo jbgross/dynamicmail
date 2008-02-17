@@ -1,6 +1,6 @@
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
-    partial class AddAccount
+    partial class EditAccount
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.AddressBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -64,15 +64,15 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // Add
+            // SaveButton
             // 
-            this.Add.Location = new System.Drawing.Point(226, 95);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
-            this.Add.TabIndex = 3;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
+            this.SaveButton.Location = new System.Drawing.Point(226, 95);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 3;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.Add_Click);
             // 
             // NameBox
             // 
@@ -88,19 +88,19 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.AddressBox.Size = new System.Drawing.Size(167, 20);
             this.AddressBox.TabIndex = 5;
             // 
-            // AddAccount
+            // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 122);
             this.Controls.Add(this.AddressBox);
             this.Controls.Add(this.NameBox);
-            this.Controls.Add(this.Add);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddAccount";
-            this.Text = "Add an Address";
+            this.Name = "EditAccount";
+            this.Text = "Account Editor";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,7 +111,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Cancel;
-        private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.TextBox AddressBox;
     }

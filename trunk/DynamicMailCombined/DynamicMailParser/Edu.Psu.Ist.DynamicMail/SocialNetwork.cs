@@ -15,6 +15,17 @@ namespace Edu.Psu.Ist.DynamicMail
         private Finishable finish;
         private Account [] accounts;
         private NetworkManager manager;
+        private String name;
+
+        /// <summary>
+        /// The name of the social network
+        /// </summary>
+        public String Name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+
 
         public Account[] Accounts
         {
@@ -33,7 +44,8 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 Account acct = new Account();
                 String s = de.ToString();
-                if (s.Contains("@"))
+                s = s.Remove(s.IndexOf(':'));
+                if(s.Contains("@"))
                 {
                     acct.Address = s;
                 }
@@ -57,15 +69,16 @@ namespace Edu.Psu.Ist.DynamicMail
             this.manager = new NetworkManager(this, this.accounts);
         }
 
+        /// <summary>
+        /// Override the finish method, and save to 
+        /// </summary>
         public void Finish()
         {
             //create an XMP writer object
             ObjectXmlWriter WriteXML = new ObjectXmlWriter();
 
             //create Index List of the dataGridView's columns
-            List<Object> groupIList = new List<Object>();
-            groupIList.Add(this.manager.NetworkData.Columns.IndexOf(this.manager.NameColumn));
-            groupIList.Add(this.manager.NetworkData.Columns.IndexOf(this.manager.AddressColumn));
+            List<Account> groupIList = new List<Account>();
 
             //send list to XML writer to write to the specified file
             WriteXML.WriteObjectXml(groupIList, "c:\\groupList.xml");

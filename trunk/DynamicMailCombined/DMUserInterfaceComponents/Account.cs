@@ -46,5 +46,37 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
         }
 
+
+        /// <summary>
+        /// Override equals
+        /// </summary>
+        /// <param name="obj">The Account object to compare to</param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            // can't compare to a non-Account object
+            if (obj is Account == false)
+            {
+                return false;
+            }
+
+            Account acct = (Account) obj;
+            if (acct.Name != null && this.Name != null)
+            {
+                if (acct.Name.Equals(this.Name))
+                {
+                    return true;
+                }
+            }
+            if (acct.Address != null && this.Address != null)
+            {
+                if (acct.Name.Equals(this.Name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

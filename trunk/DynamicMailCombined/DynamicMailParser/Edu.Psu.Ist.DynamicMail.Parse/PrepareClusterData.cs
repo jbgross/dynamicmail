@@ -26,11 +26,24 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         private int clusterCount = 0;
         private int clusterSize = 0;
 
+        // for the caller
+        private Cluster[] networks = null;
+        private Finishable finish = null;
+
+        public Cluster[] Networks
+        {
+            get { return networks; }
+            private set { networks = value; }
+        }
+
         /// <summary>
         /// Constructor, opens and loads index data
         /// </summary>
-        public PrepareClusterData()
+        public PrepareClusterData(Finishable finish)
         {
+            // set the caller
+            this.finish = finish;
+
             // load the indexes, if they haven't already been loaded
             this.indices = Indexes.Instance;
 
@@ -85,9 +98,10 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             this.addressMsgs = indices.receivedEmailIndex;
             this.infoBox.AddText("Size: " + addressMsgs.Count);
             this.clusterSpace = this.CreateSpace();
-            ThreadStart ts = new ThreadStart(Cluster);
-            Thread t = new Thread(ts);
-            t.Start();
+            this.Cluster(); // try in same thread
+            //ThreadStart ts = new ThreadStart(Cluster);
+            //Thread t = new Thread(ts);
+            //t.Start();
         }
 
         /// <summary>
@@ -142,8 +156,9 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 }
                 this.infoBox.AddText("");
             }
-            SocialNetworkManager mgr = new SocialNetworkManager(clusterSpace.GetCurrentClusters());
+            Networks = clusterSpace.GetCurrentClusters();
+            this.infoBox.Close();
+            this.finish.Finish();
         }
-
     }
 }
