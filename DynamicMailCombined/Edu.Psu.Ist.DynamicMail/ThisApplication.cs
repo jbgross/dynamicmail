@@ -13,7 +13,7 @@ namespace Edu.Psu.Ist.DynamicMail
     /// <summary>
     /// Setup class for the plugin
     /// </summary>
-    public partial class ThisApplication
+    public partial class ThisApplication : Finishable
     {
         private Office.CommandBar newToolBar;
         private Office.CommandBarButton indexMailboxes;
@@ -22,6 +22,8 @@ namespace Edu.Psu.Ist.DynamicMail
         private Outlook.Explorers selectExplorers;
 
         private DynamicMailParser parser = new DynamicMailParser();
+        private PrepareClusterData pcd = null;
+        private SocialNetworkManager networkManager = null;
 
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
@@ -121,7 +123,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
                 else if (ctrl.Tag.Equals("cluster"))
                 {
-                    PrepareClusterData pcd = new PrepareClusterData();
+                    this.pcd = new PrepareClusterData(this);
                 }
 
             }
@@ -132,6 +134,22 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Finish()
+        {
+            this.networkManager = new SocialNetworkManager(pcd.Networks);
+            this.pcd = null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Cancel()
         {
         }
 

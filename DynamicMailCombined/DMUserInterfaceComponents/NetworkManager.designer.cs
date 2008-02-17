@@ -28,107 +28,68 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.nameBox = new System.Windows.Forms.TextBox();
-            this.addAddress = new System.Windows.Forms.Button();
+            this.addAccountButton = new System.Windows.Forms.Button();
             this.removeName = new System.Windows.Forms.Button();
             this.nameL = new System.Windows.Forms.Label();
             this.addContact = new System.Windows.Forms.Button();
-            this.iconButton = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.saveGroup = new System.Windows.Forms.Button();
             this.ignoreGroup = new System.Windows.Forms.Button();
             this.groupList = new System.Windows.Forms.DataGridView();
+            this.editButton = new System.Windows.Forms.Button();
             this.emailCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupList)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(467, 90);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(12, 107);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(162, 260);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(228, 281);
+            this.nameBox.Location = new System.Drawing.Point(333, 280);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(118, 20);
+            this.nameBox.Size = new System.Drawing.Size(107, 20);
             this.nameBox.TabIndex = 3;
             // 
-            // addAddress
+            // addAccountButton
             // 
-            this.addAddress.Location = new System.Drawing.Point(190, 307);
-            this.addAddress.Name = "addAddress";
-            this.addAddress.Size = new System.Drawing.Size(75, 20);
-            this.addAddress.TabIndex = 4;
-            this.addAddress.Text = "Add Address";
-            this.addAddress.UseVisualStyleBackColor = true;
-            this.addAddress.Click += new System.EventHandler(this.addAddress_Click);
+            this.addAccountButton.Location = new System.Drawing.Point(333, 96);
+            this.addAccountButton.Name = "addAccountButton";
+            this.addAccountButton.Size = new System.Drawing.Size(107, 20);
+            this.addAccountButton.TabIndex = 4;
+            this.addAccountButton.Text = "Add Account";
+            this.addAccountButton.UseVisualStyleBackColor = true;
+            this.addAccountButton.Click += new System.EventHandler(this.addAddress_Click);
             // 
             // removeName
             // 
-            this.removeName.Location = new System.Drawing.Point(271, 307);
+            this.removeName.Location = new System.Drawing.Point(333, 52);
             this.removeName.Name = "removeName";
-            this.removeName.Size = new System.Drawing.Size(75, 20);
+            this.removeName.Size = new System.Drawing.Size(107, 20);
             this.removeName.TabIndex = 5;
-            this.removeName.Text = "Remove";
+            this.removeName.Text = "Remove Account";
             this.removeName.UseVisualStyleBackColor = true;
             this.removeName.Click += new System.EventHandler(this.removeName_Click);
             // 
             // nameL
             // 
             this.nameL.AutoSize = true;
-            this.nameL.Location = new System.Drawing.Point(187, 284);
+            this.nameL.Location = new System.Drawing.Point(346, 264);
             this.nameL.Name = "nameL";
-            this.nameL.Size = new System.Drawing.Size(35, 13);
+            this.nameL.Size = new System.Drawing.Size(78, 13);
             this.nameL.TabIndex = 6;
-            this.nameL.Text = "Name";
+            this.nameL.Text = "Network Name";
             // 
             // addContact
             // 
-            this.addContact.Location = new System.Drawing.Point(190, 333);
+            this.addContact.Location = new System.Drawing.Point(333, 122);
             this.addContact.Name = "addContact";
-            this.addContact.Size = new System.Drawing.Size(75, 20);
+            this.addContact.Size = new System.Drawing.Size(107, 20);
             this.addContact.TabIndex = 7;
             this.addContact.Text = "Add Contact";
             this.addContact.UseVisualStyleBackColor = true;
             // 
-            // iconButton
-            // 
-            this.iconButton.Location = new System.Drawing.Point(362, 281);
-            this.iconButton.Name = "iconButton";
-            this.iconButton.Size = new System.Drawing.Size(63, 20);
-            this.iconButton.TabIndex = 9;
-            this.iconButton.Text = "Icon";
-            this.iconButton.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(441, 280);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.TabIndex = 10;
-            this.pictureBox3.TabStop = false;
-            // 
             // saveGroup
             // 
-            this.saveGroup.Location = new System.Drawing.Point(334, 342);
+            this.saveGroup.Location = new System.Drawing.Point(318, 319);
             this.saveGroup.Name = "saveGroup";
             this.saveGroup.Size = new System.Drawing.Size(70, 25);
             this.saveGroup.TabIndex = 11;
@@ -138,7 +99,7 @@ namespace Edu.Psu.Ist.DynamicMail
             // 
             // ignoreGroup
             // 
-            this.ignoreGroup.Location = new System.Drawing.Point(410, 342);
+            this.ignoreGroup.Location = new System.Drawing.Point(394, 319);
             this.ignoreGroup.Name = "ignoreGroup";
             this.ignoreGroup.Size = new System.Drawing.Size(70, 25);
             this.ignoreGroup.TabIndex = 12;
@@ -154,11 +115,21 @@ namespace Edu.Psu.Ist.DynamicMail
             this.groupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.emailCol,
             this.nameCol});
-            this.groupList.Location = new System.Drawing.Point(188, 112);
+            this.groupList.Location = new System.Drawing.Point(12, 12);
             this.groupList.Name = "groupList";
             this.groupList.ReadOnly = true;
-            this.groupList.Size = new System.Drawing.Size(290, 145);
+            this.groupList.Size = new System.Drawing.Size(293, 356);
             this.groupList.TabIndex = 13;
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(333, 23);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(107, 23);
+            this.editButton.TabIndex = 14;
+            this.editButton.Text = "Edit Account";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // emailCol
             // 
@@ -174,28 +145,22 @@ namespace Edu.Psu.Ist.DynamicMail
             this.nameCol.ReadOnly = true;
             this.nameCol.Width = 120;
             // 
-            // ManagerWindow
+            // NetworkManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 383);
+            this.ClientSize = new System.Drawing.Size(476, 380);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.groupList);
             this.Controls.Add(this.ignoreGroup);
             this.Controls.Add(this.saveGroup);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.iconButton);
             this.Controls.Add(this.addContact);
             this.Controls.Add(this.nameL);
             this.Controls.Add(this.removeName);
-            this.Controls.Add(this.addAddress);
+            this.Controls.Add(this.addAccountButton);
             this.Controls.Add(this.nameBox);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "ManagerWindow";
-            this.Text = "Manager";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.Name = "NetworkManager";
+            this.Text = "Network Manager";
             ((System.ComponentModel.ISupportInitialize)(this.groupList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -204,18 +169,15 @@ namespace Edu.Psu.Ist.DynamicMail
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox nameBox;
-        private System.Windows.Forms.Button addAddress;
+        private System.Windows.Forms.Button addAccountButton;
         private System.Windows.Forms.Button removeName;
         private System.Windows.Forms.Label nameL;
         private System.Windows.Forms.Button addContact;
-        private System.Windows.Forms.Button iconButton;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button saveGroup;
         private System.Windows.Forms.Button ignoreGroup;
         private System.Windows.Forms.DataGridView groupList;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameCol;
     }
