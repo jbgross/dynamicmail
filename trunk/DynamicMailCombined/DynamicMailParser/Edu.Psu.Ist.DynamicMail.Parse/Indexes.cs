@@ -140,6 +140,26 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             //if there is no index the return false
             return false;
         }
+
+
+        /// <summary>
+        /// Add the address to lookup hash
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="address"></param>
+        public void AddAddressName(String name, String address)
+        {
+            if (this.contactsAddresses.ContainsKey(address))
+            {
+                return;
+            }
+            else if (name != null && name.Equals("") == false && address != null && address.Equals("") == false)
+            {
+                this.contactsAddresses[address] = name;
+            }
+
+        }
+
         /// <summary>
         /// method to add a new indexid to the Already Indexed arraylist
         /// </summary>
@@ -147,7 +167,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public void AddIndexedID(String NewIndex)
         {
             AlreadyIndexed.Add(NewIndex);
-            AlreadyIndexed.Sort();
+            //AlreadyIndexed.Sort();
         }
 
         /// <summary>

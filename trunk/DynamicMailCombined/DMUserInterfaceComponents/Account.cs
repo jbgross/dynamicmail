@@ -70,7 +70,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
             if (acct.Address != null && this.Address != null)
             {
-                if (acct.Name.Equals(this.Name))
+                if (acct.Address.Equals(this.Address))
                 {
                     return true;
                 }

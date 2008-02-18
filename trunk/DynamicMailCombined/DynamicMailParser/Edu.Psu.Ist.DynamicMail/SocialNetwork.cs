@@ -4,6 +4,7 @@ using System.Text;
 using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.DynamicMail;
 using Edu.Psu.Ist.Keystone.Data;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -27,6 +28,9 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
 
+        /// <summary>
+        /// The accounts associated with the social network
+        /// </summary>
         public Account[] Accounts
         {
             get { return accounts; }
@@ -36,7 +40,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <summary>
         /// Public constructor
         /// </summary>
-        /// <param name="addresses"></param>
+        /// <param name="accounts"></param>
         public SocialNetwork(List<DataElement> accounts)
         {
             List<Account> accts = new List<Account>();
@@ -45,13 +49,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 Account acct = new Account();
                 String s = de.ToString();
                 s = s.Remove(s.IndexOf(':'));
-                if(s.Contains("@"))
+                acct.Address = s;
+                if (Indexes.Instance.contactsAddresses.ContainsKey(s))
                 {
-                    acct.Address = s;
-                }
-                else
-                {
-                    acct.Name = s;
+                    acct.Name = (String)Indexes.Instance.contactsAddresses[s];
                 }
                 accts.Add(acct);
             }
