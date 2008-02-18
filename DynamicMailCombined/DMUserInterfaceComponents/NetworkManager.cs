@@ -101,8 +101,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="e"></param>
         private void addAddress_Click(object sender, EventArgs e)
         {
-            EditAccount addWindow = new EditAccount(this);
-            addWindow.Show();
+            this.addAccount = new EditAccount(this);
         }
 
         /// <summary>
@@ -148,25 +147,22 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             else if (this.editAccount != null)
             {
-                // get data from edit box
                 String name = this.editAccount.AccountName;
-                this.editRow.Cells[0].Value = name; ;
-
                 String address = this.editAccount.AccountAddress;
-                this.editRow.Cells[1].Value = address;
+                // set the Account object variables
+                this.editingAccount.Name = name;
+                this.editingAccount.Address = address;
 
-                // replace Account object in List
-                Account acct = new Account(name, address);
-                // why isn't this working?
-                int index = this.accounts.IndexOf(this.editingAccount);
-                this.accounts.RemoveAt(index);
-                this.accounts.Insert(index, acct);
+                // set row data
+                this.editRow.Cells[0].Value = name;
+                this.editRow.Cells[1].Value = address;
                 
                 // cleanup
                 this.editingAccount = null;
                 this.editAccount = null;
                 this.editRow = null;
             }
+            this.Refresh();
         }
 
         /// <summary>
@@ -192,11 +188,12 @@ namespace Edu.Psu.Ist.DynamicMail
             foreach (DataGridViewRow row in this.groupList.SelectedRows)
             {
                 // remove from the list of accounts
-                Account acct = new Account(row.Cells[0].ToString(), row.Cells[1].ToString());
+                Account acct = this.GetAccountFromRow(row);
                 this.accounts.Remove(acct);
                 // remove from rows
                 groupList.Rows.RemoveAt(row.Index);
             }
+            this.Refresh();
         }
 
         /// <summary>
@@ -210,15 +207,27 @@ namespace Edu.Psu.Ist.DynamicMail
             this.SelectRowsFromCells();
             foreach (DataGridViewRow row in this.groupList.SelectedRows)
             {
-                String name = "";
-                String address = "";
-                if(row.Cells[0].Value != null)
-                    name = row.Cells[0].Value.ToString();
-                if(row.Cells[1].Value != null)
-                    address = row.Cells[1].Value.ToString();
-                this.editAccount = new EditAccount(this, name, address);
+                Account acct = this.GetAccountFromRow(row);
+                this.editingAccount = this.accounts[this.accounts.IndexOf(acct)];
                 this.editRow = row;
+                this.editAccount = new EditAccount(this, this.editingAccount.Name, this.editingAccount.Address);
             }
+        }
+
+        /// <summary>
+        /// Given a row, returns an account object for that row
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns></returns>
+        private Account GetAccountFromRow(DataGridViewRow row)
+        {
+            String name = "";
+            String address = "";
+            if (row.Cells[0].Value != null)
+                name = row.Cells[0].Value.ToString();
+            if (row.Cells[1].Value != null)
+                address = row.Cells[1].Value.ToString();
+            return new Account(name, address);
         }
 
         /// <summary>

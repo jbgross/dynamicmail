@@ -24,7 +24,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             get 
             {
-                if (this.accountName != null)
+                if (this.accountName == null)
                 {
                     this.accountName = this.NameBox.Text;
                 }
@@ -46,7 +46,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             get
             {
-                if (this.accountAddress != null)
+                if (this.accountAddress == null)
                 {
                     this.accountAddress = this.AddressBox.Text;
                 }
@@ -68,6 +68,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             InitializeComponent();
             this.finishable = finish;
             this.Show();
+            this.NameBox.Focus();
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             AccountName = name;
             AccountAddress = address;
             this.Show();
+            this.NameBox.Focus();
         }
 
         /// <summary>

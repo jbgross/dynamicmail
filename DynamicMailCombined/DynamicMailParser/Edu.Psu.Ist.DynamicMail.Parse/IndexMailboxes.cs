@@ -21,6 +21,8 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         private InfoBox infoBox;
         private Indexes index;
 
+        private string ignoreAddress;
+
         /// <summary>
         /// Get the infobox
         /// </summary>
@@ -53,8 +55,9 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// Public constructor
         /// </summary>
         /// <param name="allFolders"></param>
-        public IndexMailboxes(Outlook.Folders allFolders, Indexes index)
+        public IndexMailboxes(Outlook.Folders allFolders, Indexes index, String myAddress)
         {
+            this.ignoreAddress = myAddress;
             this.select = new SelectFolders(allFolders, this);
             this.index = index;
         }
@@ -103,7 +106,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 Outlook.Items searchFolder = mailbox.Items;
 
                 //variables to hold found email data
-                String foundSender, foundEmailEntryID;
+                String foundEmailEntryId;
 
                 //do this for every item in the searchFolder (inbox)
                 foreach (Object o in searchFolder)
@@ -131,31 +134,42 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
 
                     // cast to email
                     Outlook.MailItem foundEmail = (Outlook.MailItem) o;
-                  
+                    foundEmailEntryId = foundEmail.EntryID;
                     // if we haven't already indexed this one, index it
-                    if (!this.index.SearchAlreadyIndexed(foundEmail.EntryID))
+                    if (!this.index.SearchAlreadyIndexed(foundEmailEntryId))
                     {
-                        //sender email address of current email
-                        foundSender = foundEmail.SenderEmailAddress;
-                        //email entry ID of current email
-                        foundEmailEntryID = foundEmail.EntryID;
-                        // get all the recipients
-                        String[] recipients = this.GetAllRecipients(foundEmail);
-                        // ignore messages with only one recipient
-                        // DEBUG
-                        if (recipients.Length <= 2)
+                        // add each recipient that is not the current user
+                        Outlook.Recipients recs = foundEmail.Recipients;
+                        List<String> recipients = new List<String>();
+                        foreach (Outlook.Recipient rec in recs)
                         {
+                            String addr = rec.Address;
+                            if(addr.Equals(this.ignoreAddress))
+                                continue;
+                            recipients.Add(addr);
+                            // add the name DEBUG
+                            //this.index.AddAddressName(addr, rec.Name);
+                        }
+                        // add the sender
+                        String sender = foundEmail.SenderEmailAddress;
+                        if (sender.Equals(this.ignoreAddress) == false)
+                        {
+                            recipients.Add(sender);
+                            // add the name DEBUG
+                            //this.index.AddAddressName(sender, foundEmail.SenderName);
+                        }
+
+                        // DEBUG
+                        if (recipients.Count <= 1)
+                        {
+                            Indexes.Instance.AddIndexedID(foundEmailEntryId);
                             continue;
                         }
                         foreach (String addr in recipients)
                         {
-                            addToReceivedEmailIndex(addr, foundEmailEntryID);
+                            addToReceivedEmailIndex(addr, foundEmailEntryId);
                         }
-
-                        //add email address and emailID to the received email index
-                        addToReceivedEmailIndex(foundSender, foundEmailEntryID);
-                        Indexes.Instance.AddIndexedID(foundEmailEntryID);
-
+                        Indexes.Instance.AddIndexedID(foundEmailEntryId);
                     }
                 }
             }
@@ -169,28 +183,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             Pib.Visible = false;
             Pib.Refresh();
             Pib = null;
-        }
-        /// <summary>
-        /// Get all the recipients - from recipients, CC, BCC
-        /// </summary>
-        /// <param name="?"></param>
-        /// <returns></returns>
-        private String[] GetAllRecipients(Outlook.MailItem msg)
-        {
-            List<String> allRec = new List<String>();
-            if (msg.To != null && msg.To.Equals("") == false)
-            {
-                this.ParseRecipients(msg.To, allRec);
-            }
-            if (msg.CC != null && msg.CC.Equals("") == false)
-            {
-                this.ParseRecipients(msg.CC, allRec);
-            }
-            if (msg.BCC != null && msg.BCC.Equals("") == false)
-            {
-                this.ParseRecipients(msg.BCC, allRec);
-            }
-            return (String[])allRec.ToArray();
         }
 
         /// <summary>
@@ -229,11 +221,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// <param name="emailID"></param>
         public void addToReceivedEmailIndex(string address, string emailID)
         {
-            // DEBUG -ignore me
-            if(address.Equals("Joshua Gross"))
-            {
-                return;
-            }
 
             //Key = email address (senderAddress)
             //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)

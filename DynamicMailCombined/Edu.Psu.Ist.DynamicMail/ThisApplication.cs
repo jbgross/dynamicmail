@@ -21,7 +21,6 @@ namespace Edu.Psu.Ist.DynamicMail
         private Office.CommandBarButton manageGroupButton;
         private Outlook.Explorers selectExplorers;
 
-        private DynamicMailParser parser = new DynamicMailParser();
         private PrepareClusterData pcd = null;
         private SocialNetworkManager networkManager = null;
 
@@ -119,7 +118,8 @@ namespace Edu.Psu.Ist.DynamicMail
 
                 if (ctrl.Tag == "mailboxes")
                 {
-                    new IndexMailboxes(allFolders, Indexes.Instance);
+                    string myAddress = this.ActiveExplorer().Session.CurrentUser.Address;
+                    new IndexMailboxes(allFolders, Indexes.Instance, myAddress);
                 }
                 else if (ctrl.Tag.Equals("cluster"))
                 {
