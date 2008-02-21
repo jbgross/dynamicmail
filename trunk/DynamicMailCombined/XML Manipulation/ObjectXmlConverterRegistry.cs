@@ -108,6 +108,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private void LoadConvertersFromStatic()
         {
             converters.Add(typeof(Hashtable), new IndexObjectXMLConverter());
+            //converters.Add(typeof(String), new StringXMLConverter());  //added 20Feb08 JBG
             converters.Add(typeof(ArrayList), new ArrayListObjectXMLConverter());
         }
 
