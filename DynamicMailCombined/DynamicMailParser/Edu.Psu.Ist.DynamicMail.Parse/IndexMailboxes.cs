@@ -78,7 +78,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             Thread thread = new Thread(job);
             thread.Priority = ThreadPriority.Normal;
             thread.Start();
-            Indexes.Instance.WriteIndexToXML();
         }
 
         /// <summary>
@@ -148,15 +147,15 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                                 continue;
                             recipients.Add(addr);
                             // add the name DEBUG
-                            //this.index.AddAddressName(addr, rec.Name);
+                            this.index.AddAddressName(rec.Name, addr);
                         }
                         // add the sender
                         String sender = foundEmail.SenderEmailAddress;
-                        if (sender.Equals(this.ignoreAddress) == false)
+                        if (sender != null && sender.Equals(this.ignoreAddress) == false)
                         {
                             recipients.Add(sender);
                             // add the name DEBUG
-                            //this.index.AddAddressName(sender, foundEmail.SenderName);
+                            this.index.AddAddressName(foundEmail.SenderName, sender);
                         }
 
                         // DEBUG

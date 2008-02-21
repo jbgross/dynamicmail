@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="ArrayListObjectXMLConverter.cs" />
     <Compile Include="IndexObjectXMLConverter.cs" />
+    <Compile Include="StringXMLConverter.cs" />
     <Compile Include="IObjectXmlConverter.cs" />
     <Compile Include="ObjectXmlConverterRegistry.cs" />
     <Compile Include="ObjectXmlExceptions.cs" />

@@ -71,7 +71,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// <summary>
         /// public method to read the XML datafile and place the data within the indexes
         /// </summary>
-        
         public void ReadIndexFromXML()
         {
             //create an XML reader object
@@ -155,7 +154,11 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             }
             else if (name != null && name.Equals("") == false && address != null && address.Equals("") == false)
             {
-                this.contactsAddresses[address] = name;
+                // this is silly, putting one value in an arraylist
+                // but... 
+                ArrayList al = new ArrayList();
+                al.Add(name);
+                this.contactsAddresses[address] = al;
             }
 
         }

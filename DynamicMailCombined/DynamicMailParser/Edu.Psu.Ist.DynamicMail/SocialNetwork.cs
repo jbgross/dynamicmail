@@ -5,6 +5,7 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.DynamicMail;
 using Edu.Psu.Ist.Keystone.Data;
 using Edu.Psu.Ist.DynamicMail.Parse;
+using System.Collections;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -52,7 +53,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 acct.Address = s;
                 if (Indexes.Instance.contactsAddresses.ContainsKey(s))
                 {
-                    acct.Name = (String)Indexes.Instance.contactsAddresses[s];
+                    Hashtable ht = Indexes.Instance.contactsAddresses;
+                    ArrayList al = (ArrayList) ht[s];
+                    acct.Name = (String) al[0];
+                    //acct.Name = (String) ((ArrayList) Indexes.Instance.contactsAddresses[s])[0];
                 }
                 accts.Add(acct);
             }

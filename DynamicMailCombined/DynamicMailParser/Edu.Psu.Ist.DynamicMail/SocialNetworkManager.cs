@@ -32,9 +32,12 @@ namespace Edu.Psu.Ist.DynamicMail
                 return;
             }
 
-            Cluster cluster = this.socialNetworks[index++];
-            SocialNetwork sn = new SocialNetwork(cluster.TopAccounts);
-            sn.Manage(this);
+            if (index < this.socialNetworks.Length)
+            {
+                Cluster cluster = this.socialNetworks[index++];
+                SocialNetwork sn = new SocialNetwork(cluster.TopAccounts);
+                sn.Manage(this);
+            }
         }
 
         /// <summary>
