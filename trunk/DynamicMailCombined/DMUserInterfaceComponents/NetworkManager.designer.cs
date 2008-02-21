@@ -36,9 +36,9 @@ namespace Edu.Psu.Ist.DynamicMail
             this.saveGroup = new System.Windows.Forms.Button();
             this.ignoreGroup = new System.Windows.Forms.Button();
             this.groupList = new System.Windows.Forms.DataGridView();
-            this.editButton = new System.Windows.Forms.Button();
             this.emailCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.editButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.groupList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@ namespace Edu.Psu.Ist.DynamicMail
             // nameL
             // 
             this.nameL.AutoSize = true;
-            this.nameL.Location = new System.Drawing.Point(346, 264);
+            this.nameL.Location = new System.Drawing.Point(347, 252);
             this.nameL.Name = "nameL";
             this.nameL.Size = new System.Drawing.Size(78, 13);
             this.nameL.TabIndex = 6;
@@ -121,16 +121,6 @@ namespace Edu.Psu.Ist.DynamicMail
             this.groupList.Size = new System.Drawing.Size(293, 356);
             this.groupList.TabIndex = 13;
             // 
-            // editButton
-            // 
-            this.editButton.Location = new System.Drawing.Point(333, 23);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(107, 23);
-            this.editButton.TabIndex = 14;
-            this.editButton.Text = "Edit Account";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
             // emailCol
             // 
             this.emailCol.HeaderText = "Email";
@@ -144,6 +134,16 @@ namespace Edu.Psu.Ist.DynamicMail
             this.nameCol.Name = "nameCol";
             this.nameCol.ReadOnly = true;
             this.nameCol.Width = 120;
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(333, 23);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(107, 23);
+            this.editButton.TabIndex = 14;
+            this.editButton.Text = "Edit Account";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // NetworkManager
             // 
