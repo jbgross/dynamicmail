@@ -42,8 +42,10 @@ namespace Edu.Psu.Ist.DynamicMail
         /// Public constructor
         /// </summary>
         /// <param name="accounts"></param>
-        public SocialNetwork(List<DataElement> accounts)
+        public SocialNetwork(List<DataElement> accounts, Finishable finish)
         {
+            this.finish = finish;
+
             List<Account> accts = new List<Account>();
             foreach (DataElement de in accounts)
             {
@@ -75,19 +77,12 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         /// <summary>
-        /// Override the finish method, and save to 
+        /// Override the finish method, and call finish on 
+        /// the 
         /// </summary>
         public void Finish()
         {
-            //create an XMP writer object
-            ObjectXmlWriter WriteXML = new ObjectXmlWriter();
-
-            //create Index List of the dataGridView's columns
-            List<Account> groupIList = new List<Account>();
-
-            //send list to XML writer to write to the specified file
-            WriteXML.WriteObjectXml(groupIList, "c:\\groupList.xml");
-
+            this.Name = this.manager.NetworkName;
             // move to next
             this.finish.Finish();
 
@@ -100,7 +95,7 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             this.manager.Close();
             // move to the next
-            this.finish.Finish();
+            this.finish.Cancel();
         }
 
     }

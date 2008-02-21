@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Text;
 using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.Keystone.Dimensions;
+using System.Collections;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
+    /// <summary>
+    /// The class to manage all of the SocialNetwork objects
+    /// </summary>
     public class SocialNetworkManager : Finishable
     {
         private Cluster[] socialNetworks;
         private int index = 0;
+        private Hashtable allNetworks = new Hashtable();
+        private SocialNetwork currentSn;
 
         /// <summary>
         /// Public constructor
@@ -21,23 +27,58 @@ namespace Edu.Psu.Ist.DynamicMail
             this.Manage();
         }
 
+
         /// <summary>
         /// Manage all of the social networks
         /// </summary>
         public void Manage()
         {
-            if (index > socialNetworks.Length)
+            if (index >= socialNetworks.Length)
             {
                 // eventually, we need to create a button for each
+                this.Save();
                 return;
             }
+            Cluster cluster = this.socialNetworks[index++];
+            currentSn = new SocialNetwork(cluster.TopAccounts, this);
+            currentSn.Manage(this);
+        }
 
-            if (index < this.socialNetworks.Length)
+        /// <summary>
+        /// Determine if a name is unique.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool NameIsUnique(String name)
+        {
+            return !this.allNetworks.ContainsKey(name);
+        }
+
+        /// <summary>
+        /// Add a network to the list to save
+        /// </summary>
+        /// <param name="sn"></param>
+        public void AddNetwork(SocialNetwork sn)
+        {
+            Hashtable nw = new Hashtable();
+            foreach (Account acct in currentSn.Accounts)
             {
-                Cluster cluster = this.socialNetworks[index++];
-                SocialNetwork sn = new SocialNetwork(cluster.TopAccounts);
-                sn.Manage(this);
+                nw[acct.Address] = acct.Name;
             }
+            this.allNetworks[currentSn.Name] = nw;
+
+        }
+
+        /// <summary>
+        /// Save the social networks to a file
+        /// </summary>
+        private void Save()
+        {
+            //create an XMP writer object
+            ObjectXmlWriter WriteXML = new ObjectXmlWriter();
+
+            //send list to XML writer to write to the specified file
+            WriteXML.WriteObjectXml(this.allNetworks, "c:\\groupList.xml");
         }
 
         /// <summary>
@@ -45,6 +86,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
+            this.AddNetwork(this.currentSn);
             this.Manage();
         }
 
@@ -53,6 +95,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Cancel()
         {
+            this.Manage();
         }
 
     }
