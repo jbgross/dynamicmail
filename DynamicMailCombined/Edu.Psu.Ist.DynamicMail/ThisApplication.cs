@@ -6,6 +6,7 @@ using Office = Microsoft.Office.Core;
 using System.Threading;
 using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.DynamicMail.Parse;
+using System.Collections.Generic;
 
 
 namespace Edu.Psu.Ist.DynamicMail
@@ -21,6 +22,10 @@ namespace Edu.Psu.Ist.DynamicMail
         private Office.CommandBarButton manageGroupButton;
         private Outlook.Explorers selectExplorers;
 
+        private Office.CommandBar filterBar;
+        private List<Office.CommandBarButton> filterButtons;
+        private Dictionary<Office.CommandBarButton, SocialNetwork> filterNetwork;
+
         private PrepareClusterData pcd = null;
         private SocialNetworkManager networkManager = null;
 
@@ -30,14 +35,15 @@ namespace Edu.Psu.Ist.DynamicMail
             selectExplorers = this.Explorers;
             selectExplorers.NewExplorer += new Outlook
                 .ExplorersEvents_NewExplorerEventHandler(newExplorer_Event);
-            AddToolbar();
+            this.AddToolbar();
+            this.AddFilterBar();
         }
 
         private void newExplorer_Event(Outlook.Explorer new_Explorer)
         {
             ((Outlook._Explorer)new_Explorer).Activate();
             newToolBar = null;
-            AddToolbar();
+            this.AddToolbar();
         }
 
         private void AddToolbar()
@@ -47,11 +53,12 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 Office.CommandBars cmdBars =
                     this.ActiveExplorer().CommandBars;
-                newToolBar = cmdBars.Add("Email Groups",
+                newToolBar = cmdBars.Add("Cluster Tools",
                     Office.MsoBarPosition.msoBarTop, false, true);
             }
             try
             {
+                // the Index Mailboxes
                 Office.CommandBarButton button_0 =
                     (Office.CommandBarButton)newToolBar.Controls
                     .Add(1, missing, missing, missing, missing);
@@ -67,7 +74,7 @@ namespace Edu.Psu.Ist.DynamicMail
                         (ButtonClick);
                 }
 
-                
+                // the Cluster Contacts button
                 Office.CommandBarButton clusterButton = (Office
                                     .CommandBarButton)newToolBar.Controls.Add
                                     (1, missing, missing, missing, missing);
@@ -75,7 +82,6 @@ namespace Edu.Psu.Ist.DynamicMail
                     .MsoButtonStyle.msoButtonCaption;
                 clusterButton.Caption = "Cluster Contacts";
                 clusterButton.Tag = "cluster";
-                newToolBar.Visible = true;
                 if (this.clusterContactsButton == null)
                 {
                     this.clusterContactsButton = clusterButton;
@@ -83,6 +89,8 @@ namespace Edu.Psu.Ist.DynamicMail
                         _CommandBarButtonEvents_ClickEventHandler
                         (ButtonClick);
                 }
+
+                // the Manage Group button
                 Office.CommandBarButton managerButton = (Office
                                     .CommandBarButton)newToolBar.Controls.Add
                                     (1, missing, missing, missing, missing);
@@ -90,7 +98,6 @@ namespace Edu.Psu.Ist.DynamicMail
                     .MsoButtonStyle.msoButtonCaption;
                 managerButton.Caption = "Manage Group";
                 managerButton.Tag = "manage";
-                newToolBar.Visible = true;
                 if (this.manageGroupButton == null)
                 {
                     this.manageGroupButton = managerButton;
@@ -99,11 +106,48 @@ namespace Edu.Psu.Ist.DynamicMail
                         (ButtonClick);
                 }
 
+                newToolBar.Visible = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddFilterBar()
+        {
+            SocialNetworkManager snm = new SocialNetworkManager();
+            if (snm.Count == 0)
+            {
+                return;
+            } 
+            else if (this.filterBar == null)
+            {
+                Office.CommandBars cmdBars =
+                    this.ActiveExplorer().CommandBars;
+                this.filterBar = cmdBars.Add("Social Network Filters",
+                    Office.MsoBarPosition.msoBarTop, false, true);
+                this.filterNetwork = new Dictionary<Microsoft.Office.Core.CommandBarButton, SocialNetwork>();
+                foreach (SocialNetwork sn in snm.SocialNetworks)
+                {
+                    Office.CommandBarButton filterButton = (Office.CommandBarButton)newToolBar.Controls.Add
+                                    (1, missing, missing, missing, missing);
+                    filterButton.Style = Office.MsoButtonStyle.msoButtonCaption;
+                    filterButton.Caption = sn.Name;
+                    filterButton.Tag = sn.Name;
+                    filterButton.Click += new Office._CommandBarButtonEvents_ClickEventHandler(Filter);
+                    this.filterButtons.Add(filterButton);
+                    this.filterNetwork.Add(filterButton, sn);
+                }
+
+            }
+
+        }
+
+        private void Filter(Office.CommandBarButton ctrl, ref bool cancel)
+        {
+            SocialNetwork sn = this.filterNetwork[ctrl];
+            sn.Filter();
         }
 
         private void ButtonClick(Office.CommandBarButton ctrl,

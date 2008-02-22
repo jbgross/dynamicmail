@@ -6,6 +6,7 @@ using Edu.Psu.Ist.DynamicMail;
 using Edu.Psu.Ist.Keystone.Data;
 using Edu.Psu.Ist.DynamicMail.Parse;
 using System.Collections;
+using System.Windows.Forms;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -61,7 +62,26 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             //accts.Sort();
             Accounts = accts.ToArray();
+        }
 
+
+        /// <summary>
+        /// Create a social network from a (stored) hashtable
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="members"></param>
+        public SocialNetwork(String name, Hashtable members)
+        {
+            Name = name;
+            this.accounts = new Account[members.Count];
+            int index = 0;
+            foreach (Object o in members.Keys)
+            {
+                String acctAddress = (String) o;
+                String acctName = (String) members[o];
+                Account acct = new Account(acctName, acctAddress);
+                this.accounts[index++] = acct;
+            }
         }
 
         /// <summary>
@@ -92,6 +112,15 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             // move to the next
             this.finish.Cancel();
+        }
+
+        /// <summary>
+        /// Filter the view to display only members of 
+        /// this SocialNetwork
+        /// </summary>
+        public void Filter()
+        {
+            MessageBox.Show("Hey, you tried to filter " + this.Name);
         }
 
     }

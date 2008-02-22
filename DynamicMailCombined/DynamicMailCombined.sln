@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMailParser", "DynamicMailParser\DynamicMailParser.csproj", "{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edu.Psu.Ist.DynamicMail", "Edu.Psu.Ist.DynamicMail\Edu.Psu.Ist.DynamicMail.csproj", "{859891C2-D9EC-4614-915D-137289E837F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectXmlUnitTests", "ObjectXmlUnitTests\ObjectXmlUnitTests.csproj", "{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}"
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
