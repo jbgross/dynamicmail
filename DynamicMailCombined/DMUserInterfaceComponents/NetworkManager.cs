@@ -8,9 +8,8 @@ using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Threading;
-using Edu.Psu.Ist.DynamicMail.Interface;
 
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     /// <summary>
     /// Form to manage a SocialNetwork
@@ -118,8 +117,16 @@ namespace Edu.Psu.Ist.DynamicMail
                 MessageBox.Show("You must set the Network Name");
                 return;
             }
+            try
+            {
+                this.finish.Finish();
+            }
+            catch (SocialNetworkException sne)
+            {
+                MessageBox.Show(sne.Message);
+                return;
+            }
             this.Close();
-            this.finish.Finish();
         }
 
         /// <summary>

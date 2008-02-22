@@ -1,4 +1,4 @@
-namespace Edu.Psu.Ist.DynamicMail
+namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     partial class NetworkManager
     {
