@@ -55,10 +55,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 acct.Address = s;
                 if (Indexes.Instance.contactsAddresses.ContainsKey(s))
                 {
-                    Hashtable ht = Indexes.Instance.contactsAddresses;
-                    ArrayList al = (ArrayList) ht[s];
-                    acct.Name = (String) al[0];
-                    //acct.Name = (String) ((ArrayList) Indexes.Instance.contactsAddresses[s])[0];
+                    acct.Name = (String) ((ArrayList) Indexes.Instance.contactsAddresses[s])[0];
                 }
                 accts.Add(acct);
             }
@@ -93,7 +90,6 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Cancel()
         {
-            this.manager.Close();
             // move to the next
             this.finish.Cancel();
         }

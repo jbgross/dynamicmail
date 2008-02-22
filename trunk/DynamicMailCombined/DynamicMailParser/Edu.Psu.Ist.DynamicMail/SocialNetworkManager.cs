@@ -60,6 +60,13 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="sn"></param>
         public void AddNetwork(SocialNetwork sn)
         {
+            String name = currentSn.Name;
+            // throw an exception if name isn't set or isn't unique
+            if (name == null || name.Equals("") || !this.NameIsUnique(name))
+            {
+                throw new SocialNetworkException("Social Network name must be set and unique.");
+            }
+
             Hashtable nw = new Hashtable();
             foreach (Account acct in currentSn.Accounts)
             {
@@ -91,7 +98,7 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         /// <summary>
-        /// If canceled, do nothing
+        /// If canceled, move to next
         /// </summary>
         public void Cancel()
         {

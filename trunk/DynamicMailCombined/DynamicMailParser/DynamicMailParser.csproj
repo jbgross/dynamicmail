@@ -47,6 +47,7 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\UpdatingObject.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Logger.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetwork.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkException.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkFilters.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
