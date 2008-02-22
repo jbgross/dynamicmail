@@ -78,9 +78,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             this.finish = finish;
             
+            // if we get an empty, move to next
             if (accounts.Length == 0)
             {
                 this.finish.Cancel();
+                return;
             }
             InitializeComponent();
             for (int i = 0; i < accounts.Length; i++)
@@ -121,8 +123,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             {
                 this.finish.Finish();
             }
-            catch (SocialNetworkException sne)
+            catch (Exception sne)
             {
+                // the only exception that should come here is a
+                // SocialNetworkException
                 MessageBox.Show(sne.Message);
                 return;
             }

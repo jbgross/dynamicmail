@@ -12,9 +12,29 @@ namespace Edu.Psu.Ist.DynamicMail
     /// </summary>
     public class SocialNetworkManager : Finishable
     {
-        private Cluster[] socialNetworks;
+        private String fileName = "c:\\groupList.xml";
+        private Cluster[] networkClusters;
         private int index = 0;
         private Hashtable allNetworks = new Hashtable();
+
+        /// <summary>
+        /// The number of SocialNetwork objects
+        /// </summary>
+        public int Count
+        {
+            get { return SocialNetworks.Count; }
+        }
+
+        private List<SocialNetwork> socialNetworks;
+
+        /// <summary>
+        /// A list of all SocialNetwork objects
+        /// </summary>
+        public List<SocialNetwork> SocialNetworks
+        {
+            get { return socialNetworks; }
+            private set { socialNetworks = value; }
+        }
         private SocialNetwork currentSn;
 
         /// <summary>
@@ -23,8 +43,35 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="sns"></param>
         public SocialNetworkManager(Cluster[] sns)
         {
-            this.socialNetworks = sns;
+            this.networkClusters = sns;
             this.Manage();
+        }
+
+
+        /// <summary>
+        /// Public constructor to determine if we have any SocialNetworks
+        /// </summary>
+        public SocialNetworkManager()
+        {
+            ObjectXmlReader reader = new ObjectXmlReader();
+            SocialNetworks = new List<SocialNetwork>();
+            List<Object> obj = reader.ReadObjectXml(this.fileName);
+            if (obj.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                Hashtable outer = (Hashtable)obj[0];
+                foreach(Object nameList in outer.Keys)
+                {
+                    ArrayList al = (ArrayList)nameList;
+                    String snName = (String) al[0];
+                    Hashtable inner = (Hashtable) outer[snName];
+                    SocialNetwork sn = new SocialNetwork(snName, inner);
+                    SocialNetworks.Add(sn);
+                }
+            }
         }
 
 
@@ -33,13 +80,13 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Manage()
         {
-            if (index >= socialNetworks.Length)
+            if (index >= networkClusters.Length)
             {
                 // eventually, we need to create a button for each
                 this.Save();
                 return;
             }
-            Cluster cluster = this.socialNetworks[index++];
+            Cluster cluster = this.networkClusters[index++];
             currentSn = new SocialNetwork(cluster.TopAccounts, this);
             currentSn.Manage(this);
         }
@@ -70,7 +117,10 @@ namespace Edu.Psu.Ist.DynamicMail
             Hashtable nw = new Hashtable();
             foreach (Account acct in currentSn.Accounts)
             {
-                nw[acct.Address] = acct.Name;
+                // stupid - need to save as an arraylist
+                ArrayList al = new ArrayList();
+                al.Add(acct.Name);
+                nw[acct.Address] = al;
             }
             this.allNetworks[currentSn.Name] = nw;
 
@@ -85,7 +135,7 @@ namespace Edu.Psu.Ist.DynamicMail
             ObjectXmlWriter WriteXML = new ObjectXmlWriter();
 
             //send list to XML writer to write to the specified file
-            WriteXML.WriteObjectXml(this.allNetworks, "c:\\groupList.xml");
+            WriteXML.WriteObjectXml(this.allNetworks, this.fileName);
         }
 
         /// <summary>
