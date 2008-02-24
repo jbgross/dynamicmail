@@ -170,7 +170,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public void AddIndexedID(String NewIndex)
         {
             AlreadyIndexed.Add(NewIndex);
-            //AlreadyIndexed.Sort();
         }
 
         /// <summary>

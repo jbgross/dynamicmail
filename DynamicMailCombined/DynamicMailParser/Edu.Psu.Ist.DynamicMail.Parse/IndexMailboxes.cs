@@ -126,49 +126,59 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                     }
 
                     // type check on the item - only looking at emails
-                    if (! (o is Outlook.MailItem))
-                    {
-                        continue;
-                    }
+                    //if (! (o is Outlook.MailItem))
+                    //{
+                    //    continue;
+                    //}
+                    // don't typecheck - seems a significant slowdown
+                    // fall through to the catch
 
-                    // cast to email
-                    Outlook.MailItem foundEmail = (Outlook.MailItem) o;
-                    foundEmailEntryId = foundEmail.EntryID;
-                    // if we haven't already indexed this one, index it
-                    if (!this.index.SearchAlreadyIndexed(foundEmailEntryId))
+                    try
                     {
-                        // add each recipient that is not the current user
-                        Outlook.Recipients recs = foundEmail.Recipients;
-                        List<String> recipients = new List<String>();
-                        foreach (Outlook.Recipient rec in recs)
+
+                        // cast to email
+                        Outlook.MailItem foundEmail = (Outlook.MailItem)o;
+                        foundEmailEntryId = foundEmail.EntryID;
+                        // if we haven't already indexed this one, index it
+                        if (!this.index.SearchAlreadyIndexed(foundEmailEntryId))
                         {
-                            String addr = rec.Address;
-                            if(addr.Equals(this.ignoreAddress))
+                            // add each recipient that is not the current user
+                            Outlook.Recipients recs = foundEmail.Recipients;
+                            List<String> recipients = new List<String>();
+                            foreach (Outlook.Recipient rec in recs)
+                            {
+                                String addr = rec.Address;
+                                if (addr.Equals(this.ignoreAddress))
+                                    continue;
+                                recipients.Add(addr);
+                                // add the name DEBUG
+                                this.index.AddAddressName(rec.Name, addr);
+                            }
+                            // add the sender
+                            String sender = foundEmail.SenderEmailAddress;
+                            if (sender != null && sender.Equals(this.ignoreAddress) == false)
+                            {
+                                recipients.Add(sender);
+                                // add the name DEBUG
+                                this.index.AddAddressName(foundEmail.SenderName, sender);
+                            }
+
+                            // DEBUG
+                            if (recipients.Count <= 1)
+                            {
+                                Indexes.Instance.AddIndexedID(foundEmailEntryId);
                                 continue;
-                            recipients.Add(addr);
-                            // add the name DEBUG
-                            this.index.AddAddressName(rec.Name, addr);
-                        }
-                        // add the sender
-                        String sender = foundEmail.SenderEmailAddress;
-                        if (sender != null && sender.Equals(this.ignoreAddress) == false)
-                        {
-                            recipients.Add(sender);
-                            // add the name DEBUG
-                            this.index.AddAddressName(foundEmail.SenderName, sender);
-                        }
-
-                        // DEBUG
-                        if (recipients.Count <= 1)
-                        {
+                            }
+                            foreach (String addr in recipients)
+                            {
+                                addToReceivedEmailIndex(addr, foundEmailEntryId);
+                            }
                             Indexes.Instance.AddIndexedID(foundEmailEntryId);
-                            continue;
                         }
-                        foreach (String addr in recipients)
-                        {
-                            addToReceivedEmailIndex(addr, foundEmailEntryId);
-                        }
-                        Indexes.Instance.AddIndexedID(foundEmailEntryId);
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        // ignore bad casts
                     }
                 }
             }

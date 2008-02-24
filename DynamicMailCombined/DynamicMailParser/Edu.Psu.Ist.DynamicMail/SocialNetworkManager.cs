@@ -63,10 +63,9 @@ namespace Edu.Psu.Ist.DynamicMail
             else
             {
                 Hashtable outer = (Hashtable)obj[0];
-                foreach(Object nameList in outer.Keys)
+                foreach(Object nameObj in outer.Keys)
                 {
-                    ArrayList al = (ArrayList)nameList;
-                    String snName = (String) al[0];
+                    String snName = (String) nameObj;
                     Hashtable inner = (Hashtable) outer[snName];
                     SocialNetwork sn = new SocialNetwork(snName, inner);
                     SocialNetworks.Add(sn);

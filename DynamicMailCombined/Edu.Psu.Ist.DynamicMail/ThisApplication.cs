@@ -24,7 +24,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
         private Office.CommandBar filterBar;
         private List<Office.CommandBarButton> filterButtons;
-        private Dictionary<Office.CommandBarButton, SocialNetwork> filterNetwork;
+        private Dictionary<String, SocialNetwork> filterNetwork;
 
         private PrepareClusterData pcd = null;
         private SocialNetworkManager networkManager = null;
@@ -116,6 +116,8 @@ namespace Edu.Psu.Ist.DynamicMail
 
         private void AddFilterBar()
         {
+            this.filterButtons = new List<Office.CommandBarButton>();
+            this.filterNetwork = new Dictionary<String, SocialNetwork>();
             SocialNetworkManager snm = new SocialNetworkManager();
             if (snm.Count == 0)
             {
@@ -127,7 +129,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     this.ActiveExplorer().CommandBars;
                 this.filterBar = cmdBars.Add("Social Network Filters",
                     Office.MsoBarPosition.msoBarTop, false, true);
-                this.filterNetwork = new Dictionary<Microsoft.Office.Core.CommandBarButton, SocialNetwork>();
+                this.filterNetwork = new Dictionary<String, SocialNetwork>();
                 foreach (SocialNetwork sn in snm.SocialNetworks)
                 {
                     Office.CommandBarButton filterButton = (Office.CommandBarButton)newToolBar.Controls.Add
@@ -137,7 +139,7 @@ namespace Edu.Psu.Ist.DynamicMail
                     filterButton.Tag = sn.Name;
                     filterButton.Click += new Office._CommandBarButtonEvents_ClickEventHandler(Filter);
                     this.filterButtons.Add(filterButton);
-                    this.filterNetwork.Add(filterButton, sn);
+                    this.filterNetwork.Add(filterButton.Caption, sn);
                 }
 
             }
@@ -146,7 +148,7 @@ namespace Edu.Psu.Ist.DynamicMail
 
         private void Filter(Office.CommandBarButton ctrl, ref bool cancel)
         {
-            SocialNetwork sn = this.filterNetwork[ctrl];
+            SocialNetwork sn = this.filterNetwork[ctrl.Caption];
             sn.Filter();
         }
 
