@@ -246,11 +246,11 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             /// </summary>
             /// <returns>Number of consonant/vowel sequences</returns>
             /// <remarks>
-            /// f c is a consonant sequence and v a vowel sequence, and <..> indicates arbitrary presence,
-            ///      <c><v>       gives 0
-            ///      <c>vc<v>     gives 1
-            ///      <c>vcvc<v>   gives 2
-            ///      <c>vcvcvc<v> gives 3
+            /// f c is a consonant sequence and v a vowel sequence, and &lt;.&lt; indicates arbitrary presence,
+            ///      &lt;c&lt;&lt;v&lt;       gives 0
+            ///      &lt;c&lt;vc&lt;v&lt;     gives 1
+            ///      &lt;c&lt;vcvc&lt;v&lt;   gives 2
+            ///      &lt;c&lt;vcvcvc&lt;v&lt; gives 3
             ///      ....
             /// </remarks>
             private int m()

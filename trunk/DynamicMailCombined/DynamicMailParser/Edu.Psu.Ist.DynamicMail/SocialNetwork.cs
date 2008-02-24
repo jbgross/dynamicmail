@@ -78,7 +78,8 @@ namespace Edu.Psu.Ist.DynamicMail
             foreach (Object o in members.Keys)
             {
                 String acctAddress = (String) o;
-                String acctName = (String) members[o];
+                ArrayList al = (ArrayList)members[o];
+                String acctName = (String) al[0];
                 Account acct = new Account(acctName, acctAddress);
                 this.accounts[index++] = acct;
             }

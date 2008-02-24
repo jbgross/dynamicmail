@@ -46,6 +46,23 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            if (Address != null && !Address.Equals(""))
+            {
+                return Address.GetHashCode();
+            }
+            else if (Name != null && !Name.Equals(""))
+            {
+                return Name.GetHashCode();
+            }
+            return base.GetHashCode();
+        }
+
 
         /// <summary>
         /// Override equals

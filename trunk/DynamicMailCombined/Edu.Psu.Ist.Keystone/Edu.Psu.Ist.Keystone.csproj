@@ -5,11 +5,12 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5BEF3B6A-02C8-4730-848C-7A974C478B7C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Edu.Psu.Ist.Keystone</RootNamespace>
     <AssemblyName>Edu.Psu.Ist.Keystone</AssemblyName>
-    <StartupObject>Edu.Psu.Ist.Keystone.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
