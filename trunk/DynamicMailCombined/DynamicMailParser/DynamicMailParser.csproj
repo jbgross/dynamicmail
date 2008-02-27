@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Filter\FilterMail.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Indexes.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexMailboxes.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexObjectXMLConverter.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\PrepareClusterData.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\UpdatingObject.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Logger.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\FilterMail.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetwork.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkException.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkFilters.cs" />

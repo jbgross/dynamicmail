@@ -8,7 +8,6 @@ using Edu.Psu.Ist.DynamicMail.Parse;
 using System.Collections;
 using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
-using Edu.Psu.Ist.DynamicMail.Filter;
 
 namespace Edu.Psu.Ist.DynamicMail
 {

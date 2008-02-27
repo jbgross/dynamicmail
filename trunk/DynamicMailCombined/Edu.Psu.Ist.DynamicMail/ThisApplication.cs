@@ -160,8 +160,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private void Filter(Office.CommandBarButton ctrl, ref bool cancel)
         {
             this.currentSocialNetwork = this.filterNetwork[ctrl.Caption];
-            // for the time being, filter the inbox
-            this.currentSocialNetwork.FilterFolder(this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox));
+            this.currentSocialNetwork.FilterFolder(this.ActiveExplorer().CurrentFolder);
         }
 
         private void ButtonClick(Office.CommandBarButton ctrl,
