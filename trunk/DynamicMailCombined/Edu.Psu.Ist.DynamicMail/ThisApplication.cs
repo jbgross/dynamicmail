@@ -16,6 +16,7 @@ namespace Edu.Psu.Ist.DynamicMail
     /// </summary>
     public partial class ThisApplication : Finishable
     {
+
         private Office.CommandBar newToolBar;
         private Office.CommandBarButton indexMailboxes;
         private Office.CommandBarButton clusterContactsButton;
@@ -28,13 +29,22 @@ namespace Edu.Psu.Ist.DynamicMail
 
         private PrepareClusterData pcd = null;
         private SocialNetworkManager networkManager = null;
+        private Outlook.Folders rootFolders;
+        private SocialNetwork currentSocialNetwork;
+
+        public Outlook.Folders RootFolders
+        {
+            get { return rootFolders; }
+            set { rootFolders = value; }
+        }
+
 
         private void ThisApplication_Startup(object sender, System.EventArgs e)
         {
-
             selectExplorers = this.Explorers;
             selectExplorers.NewExplorer += new Outlook
                 .ExplorersEvents_NewExplorerEventHandler(newExplorer_Event);
+            this.rootFolders = this.ActiveExplorer().Session.Folders;
             this.AddToolbar();
             this.AddFilterBar();
         }
@@ -134,6 +144,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 {
                     Office.CommandBarButton filterButton = (Office.CommandBarButton)newToolBar.Controls.Add
                                     (1, missing, missing, missing, missing);
+                    sn.RootFolders = this.RootFolders;
                     filterButton.Style = Office.MsoButtonStyle.msoButtonCaption;
                     filterButton.Caption = sn.Name;
                     filterButton.Tag = sn.Name;
@@ -148,8 +159,9 @@ namespace Edu.Psu.Ist.DynamicMail
 
         private void Filter(Office.CommandBarButton ctrl, ref bool cancel)
         {
-            SocialNetwork sn = this.filterNetwork[ctrl.Caption];
-            sn.Filter();
+            this.currentSocialNetwork = this.filterNetwork[ctrl.Caption];
+            // for the time being, filter the inbox
+            this.currentSocialNetwork.FilterFolder(this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox));
         }
 
         private void ButtonClick(Office.CommandBarButton ctrl,
@@ -160,12 +172,11 @@ namespace Edu.Psu.Ist.DynamicMail
                 Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
                 Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
                 Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
-                Outlook.Folders allFolders = this.ActiveExplorer().Session.Folders;
 
                 if (ctrl.Tag == "mailboxes")
                 {
                     string myAddress = this.ActiveExplorer().Session.CurrentUser.Address;
-                    new IndexMailboxes(allFolders, Indexes.Instance, myAddress);
+                    new IndexMailboxes(this.rootFolders, Indexes.Instance, myAddress);
                 }
                 else if (ctrl.Tag.Equals("cluster"))
                 {
