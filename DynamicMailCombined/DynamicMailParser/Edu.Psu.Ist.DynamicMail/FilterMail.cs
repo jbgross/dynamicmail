@@ -4,7 +4,7 @@ using System.Text;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Edu.Psu.Ist.DynamicMail.Interface;
 
-namespace Edu.Psu.Ist.DynamicMail.Filter
+namespace Edu.Psu.Ist.DynamicMail
 {
     /// <summary>
     /// Class to filter mail and display in a new window
@@ -84,7 +84,7 @@ namespace Edu.Psu.Ist.DynamicMail.Filter
 
         private void DisplayMail()
         {
-            this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, this.folders[0]);
+            this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, this.folders[0].FullFolderPath);
             this.filterDisplay.Show();
         }
 
