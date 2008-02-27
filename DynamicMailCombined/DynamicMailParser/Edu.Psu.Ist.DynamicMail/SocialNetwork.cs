@@ -7,6 +7,8 @@ using Edu.Psu.Ist.Keystone.Data;
 using Edu.Psu.Ist.DynamicMail.Parse;
 using System.Collections;
 using System.Windows.Forms;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using Edu.Psu.Ist.DynamicMail.Filter;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -19,6 +21,14 @@ namespace Edu.Psu.Ist.DynamicMail
         private Account [] accounts;
         private NetworkManager manager;
         private String name;
+        private Outlook.Folders rootFolders;
+        private FilterMail filterMail;
+
+        public Outlook.Folders RootFolders
+        {
+            get { return rootFolders; }
+            set { rootFolders = value; }
+        }
 
         /// <summary>
         /// The name of the social network
@@ -64,6 +74,35 @@ namespace Edu.Psu.Ist.DynamicMail
             Accounts = accts.ToArray();
         }
 
+        /// <summary>
+        /// Return a sorted list of addresses
+        /// </summary>
+        /// <returns></returns>
+        public List<String> GetAddresses()
+        {
+            List<String> addrs = new List<String>();
+            foreach (Account a in Accounts)
+            {
+                addrs.Add(a.Address);
+            }
+            addrs.Sort();
+            return addrs;
+        }
+
+        /// <summary>
+        /// Return a sorted list of names
+        /// </summary>
+        /// <returns></returns>
+        public List<String> GetNames()
+        {
+            List<String> names = new List<String>();
+            foreach (Account a in Accounts)
+            {
+                names.Add(a.Name);
+            }
+            names.Sort();
+            return names;
+        }
 
         /// <summary>
         /// Create a social network from a (stored) hashtable
@@ -119,9 +158,9 @@ namespace Edu.Psu.Ist.DynamicMail
         /// Filter the view to display only members of 
         /// this SocialNetwork
         /// </summary>
-        public void Filter()
+        public void FilterFolder(Outlook.MAPIFolder current)
         {
-            MessageBox.Show("Hey, you tried to filter " + this.Name);
+            this.filterMail = new FilterMail(this, current);
         }
 
     }

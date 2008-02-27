@@ -46,6 +46,12 @@
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Account.cs" />
+    <Compile Include="FilterDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterDisplay.Designer.cs">
+      <DependentUpon>FilterDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Finishable.cs" />
     <Compile Include="GetNumericInput.cs">
       <SubType>Form</SubType>
@@ -94,6 +100,10 @@
     <EmbeddedResource Include="EditAccount.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterDisplay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FilterDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GetNumericInput.resx">
       <SubType>Designer</SubType>

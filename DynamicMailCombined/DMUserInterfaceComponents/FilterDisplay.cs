@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -10,17 +9,27 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
-    /// <summary>
-    /// Class to display and select folders to
-    /// index or search from
-    /// </summary>
-    public partial class SelectFolders : Form
+    public partial class FilterDisplay : Form, Finishable
     {
         private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
         private Finishable source;
         private TreeNode tNode;
-        private Hashtable nameFolder = new Hashtable();
+        private List<TreeNode> roots = new List<TreeNode>();
+        private Dictionary<String, Outlook.MAPIFolder> nameFolder = new Dictionary<String, Outlook.MAPIFolder>();
         private TreeNode userInvoke = null;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="roots">the root folders</param>
+        public FilterDisplay(Outlook.Folders roots, Outlook.MAPIFolder current)
+        {
+            InitializeComponent();
+            this.BuildRoot(roots, this);
+            this.SelectFolderAndDisplay(current);
+            this.Show();
+            this.Focus();
+        }
 
         /// <summary>
         /// Get an array of the selected folders
@@ -30,29 +39,63 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             get 
             {
                 this.GetSelectedFolders();
-                
                 return (Outlook.MAPIFolder []) this.selectedFolders.ToArray(); 
             }
         }
 
         /// <summary>
-        /// Public constructor
+        /// Build out folder hierarchy
         /// </summary>
         /// <param name="roots"></param>
         /// <param name="source"></param>
-        public SelectFolders(Outlook.Folders roots, Finishable source)
+        public void BuildRoot(Outlook.Folders roots, Finishable source)
         {
-            InitializeComponent();
             this.folderTree.AfterCheck += new TreeViewEventHandler(treeView_AfterCheck);
             this.source = source;
             foreach (Outlook.MAPIFolder folder in roots)
             {
-                // Add parent node to treeView1 control
+                // Add parent node to folderTree control
                 tNode = this.folderTree.Nodes.Add(folder.FullFolderPath);
+                this.roots.Add(tNode);
                 this.nameFolder[folder.FullFolderPath] = folder;
                 BuildTree(tNode, folder);
             }
-            this.Visible = true;
+        }
+
+        /// <summary>
+        /// Add a folder to the Selected list and display that level
+        /// </summary>
+        public void SelectFolderAndDisplay(Outlook.MAPIFolder folder)
+        {
+            this.selectedFolders.Add(folder);
+            foreach (TreeNode root in this.roots)
+            {
+                this.ExpandChecked(root);
+            }
+        }
+
+
+        /// <summary>
+        /// recurse through and expand checked nodes
+        /// </summary>
+        /// <param name="parent"></param>
+        private void ExpandChecked(TreeNode parent)
+        {
+            foreach (TreeNode child in parent.Nodes)
+            {
+                // first, get the folder out of the list
+                Outlook.MAPIFolder childFolder = this.nameFolder[child.Name];
+                if (this.selectedFolders.Contains(childFolder))
+                {
+                    child.Checked = true;
+                }
+
+                if (child.Checked)
+                {
+                    parent.Expand();
+                }
+                ExpandChecked(child);
+            }
         }
 
         /// <summary>
@@ -138,5 +181,14 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.source.Finish();
         }
 
+        public void Finish()
+        {
+            this.Refresh();
+        }
+
+        public void Cancel()
+        {
+            // do nothing
+        }
     }
 }
