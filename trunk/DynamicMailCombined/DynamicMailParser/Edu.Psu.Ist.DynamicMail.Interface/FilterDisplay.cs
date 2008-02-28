@@ -9,7 +9,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
-    public partial class FilterDisplay : Form, Finishable
+    public partial class FilterDisplay : Form
     {
         private List<String> selectedFolders = new List<String>();
         private Finishable source;
@@ -17,18 +17,44 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private List<TreeNode> roots = new List<TreeNode>();
         private Dictionary<String, Outlook.MAPIFolder> nameFolder = new Dictionary<String, Outlook.MAPIFolder>();
         private TreeNode userInvoke = null;
+        private FilterMail filter;
+
+        // this works much better than a list, trust me - JBG
+        private Dictionary<int, Outlook.MailItem> messageList = new Dictionary<int, Outlook.MailItem>();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="roots">the root folders</param>
-        public FilterDisplay(Outlook.Folders roots, String currentFolderName)
+        public FilterDisplay(Outlook.Folders roots, String currentFolderName, FilterMail filter)
         {
             InitializeComponent();
-            this.BuildRoot(roots, this);
+            this.filter = filter;
+            this.BuildRoot(roots);
+            this.ShowMessages();
             this.Show();
             this.SelectFolderAndDisplay(currentFolderName);
             this.Focus();
+        }
+
+        /// <summary>
+        /// Get the messages out of the filter, and create
+        /// a list element for each
+        /// </summary>
+        private void ShowMessages()
+        {
+            this.mailGrid.Rows.Clear();
+            this.messageList = new Dictionary<int, Outlook.MailItem>();
+            foreach (Outlook.MailItem msg in this.filter.Messages)
+            {
+                String sender = msg.SenderName != null ? msg.SenderName : msg.SenderEmailAddress;
+                String recip = msg.To;
+                String subject = msg.Subject;
+                String date = msg.SentOn.ToString();
+                String [] data = { sender, recip, subject, date };
+                int pos = this.mailGrid.Rows.Add(data);
+                this.messageList[pos] = msg;
+            }
         }
 
         /// <summary>
@@ -36,13 +62,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="roots"></param>
         /// <param name="source"></param>
-        public void BuildRoot(Outlook.Folders roots, Finishable source)
+        public void BuildRoot(Outlook.Folders roots)
         {
-            this.source = source;
             foreach (Outlook.MAPIFolder folder in roots)
             {
                 // Add parent node to folderTree control
-                tNode = this.folderTree.Nodes.Add(folder.FullFolderPath);
+                tNode = this.folderTree.Nodes.Add(folder.Name);
+                tNode.Name = folder.FullFolderPath;
                 this.roots.Add(tNode);
                 this.nameFolder[folder.FullFolderPath] = folder;
                 BuildTree(tNode, folder);
@@ -132,6 +158,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             } 
         }
 
+        /// <summary>
+        /// Build the Mail Folder tree
+        /// </summary>
+        /// <param name="tree"></param>
+        /// <param name="parent"></param>
         private void BuildTree(TreeNode tree, Outlook.MAPIFolder parent)
         {
             Outlook.Folders children = parent.Folders;
@@ -142,31 +173,25 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
             foreach (Outlook.MAPIFolder child in children)
             {
-                TreeNode parentNode = tree.Nodes.Add(child.FullFolderPath);
+                TreeNode parentNode = tree.Nodes.Add(child.Name);
                 parentNode.Name = child.FullFolderPath;
                 this.nameFolder[child.FullFolderPath] = child;
                 BuildTree(parentNode, child);
             }
         }
- 
-        private bool IsDescendent(TreeNode parent, TreeNode desc)
-        {
-            return desc.FullPath.IndexOf(parent.FullPath) == 0;
-        }
 
-        private void Done_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Open a message when it is double clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mailGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.source.Finish();
-        }
-
-        public void Finish()
-        {
-            this.Refresh();
-        }
-
-        public void Cancel()
-        {
-            // do nothing
+            int index = e.RowIndex;
+            if(this.messageList.ContainsKey(index)) {
+                Outlook.MailItem msg = this.messageList[index];
+                msg.Display(true);
+            }
         }
     }
 }
