@@ -29,13 +29,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void InitializeComponent()
         {
             this.mailGrid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RefreshButton = new System.Windows.Forms.Button();
-            this.folderTree = new System.Windows.Forms.TreeView();
             this.SenderCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RecipientCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubjectCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            this.folderTree = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.mailGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,32 +57,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.mailGrid.Size = new System.Drawing.Size(628, 657);
             this.mailGrid.TabIndex = 2;
             this.mailGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mailGrid_CellContentDoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Select Folders:";
-            // 
-            // RefreshButton
-            // 
-            this.RefreshButton.Location = new System.Drawing.Point(127, 646);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(88, 23);
-            this.RefreshButton.TabIndex = 5;
-            this.RefreshButton.Text = "Refresh View";
-            this.RefreshButton.UseVisualStyleBackColor = true;
-            // 
-            // folderTree
-            // 
-            this.folderTree.CheckBoxes = true;
-            this.folderTree.Location = new System.Drawing.Point(15, 37);
-            this.folderTree.Name = "folderTree";
-            this.folderTree.Size = new System.Drawing.Size(210, 592);
-            this.folderTree.TabIndex = 6;
             // 
             // SenderCol
             // 
@@ -108,6 +82,34 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.DateCol.HeaderText = "Date";
             this.DateCol.Name = "DateCol";
             this.DateCol.ReadOnly = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Select Folders:";
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(127, 646);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(88, 23);
+            this.RefreshButton.TabIndex = 5;
+            this.RefreshButton.Text = "Refresh View";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
+            // folderTree
+            // 
+            this.folderTree.CheckBoxes = true;
+            this.folderTree.Location = new System.Drawing.Point(15, 37);
+            this.folderTree.Name = "folderTree";
+            this.folderTree.Size = new System.Drawing.Size(210, 592);
+            this.folderTree.TabIndex = 6;
+            this.folderTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.folderTree_AfterCheck);
             // 
             // FilterDisplay
             // 
