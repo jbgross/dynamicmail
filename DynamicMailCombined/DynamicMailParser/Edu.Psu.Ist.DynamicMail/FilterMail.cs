@@ -14,7 +14,26 @@ namespace Edu.Psu.Ist.DynamicMail
         private SocialNetwork socialNetwork;
         private List<Outlook.MAPIFolder> folders = new List<Outlook.MAPIFolder>();
         private List<Outlook.MAPIFolder> searchedFolders = new List<Outlook.MAPIFolder>();
-        private List<Outlook.MailItem> display = new List<Outlook.MailItem>();
+        private List<Outlook.MailItem> messages = new List<Outlook.MailItem>();
+        private bool changed = true;
+
+        /// <summary>
+        /// Get the messages
+        /// </summary>
+        public List<Outlook.MailItem> Messages
+        {
+            get 
+            {
+                // see if the filter list has changed, and
+                // if it has, refilter
+                if (this.changed)
+                {
+                    this.Refilter();
+                }
+                return messages; 
+            }
+        }
+
         private FilterDisplay filterDisplay;
 
         /// <summary>
@@ -26,15 +45,47 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             this.socialNetwork = socialNetwork;
             this.folders.Add(folder);
-            this.FilterMembers();
+            this.Refilter();
             this.DisplayMail();
+        }
+
+        /// <summary>
+        /// Add a folder to the search list
+        /// </summary>
+        /// <param name="folder"></param>
+        public void AddFolder(Outlook.MAPIFolder folder)
+        {
+            if (! this.folders.Contains(folder))
+            {
+                this.folders.Add(folder);
+                this.changed = true;
+            }
+        }
+
+        /// <summary>
+        /// Remove a folder from the search list
+        /// </summary>
+        /// <param name="folder"></param>
+        public void RemoveFolder(Outlook.MAPIFolder folder)
+        {
+            if (this.folders.Contains(folder))
+            {
+                this.folders.Remove(folder);
+            }
+
+            // check in the searchedFolders list
+            if (this.searchedFolders.Contains(folder))
+            {
+                this.searchedFolders.Remove(folder);
+            }
+            this.changed = true;
         }
 
         /// <summary>
         /// Generate display list
         /// </summary>
         /// <returns></returns>
-        private void FilterMembers()
+        public void Refilter()
         {
             List<String> addrs = this.socialNetwork.GetAddresses();
             List<String> names = this.socialNetwork.GetNames();
@@ -65,13 +116,13 @@ namespace Edu.Psu.Ist.DynamicMail
                         String address = rec.Address;
                         if (address != null && addrs.Contains(address))
                         {
-                            this.display.Add(mail);
+                            this.messages.Add(mail);
                             break;
                         }
                         String name = rec.Name;
                         if (name != null && names.Contains(name))
                         {
-                            this.display.Add(mail);
+                            this.messages.Add(mail);
                             break;
                         }
                     }
@@ -80,20 +131,32 @@ namespace Edu.Psu.Ist.DynamicMail
                 // add this folder to the searched folder list, so we don't search it again
                 this.searchedFolders.Add(folder);
             }
+
+            this.changed = false;
         }
 
+        /// <summary>
+        /// Create a new form to display the current mail
+        /// </summary>
         private void DisplayMail()
         {
-            this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, this.folders[0].FullFolderPath);
-            this.filterDisplay.Show();
+            this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, 
+                this.folders[0].FullFolderPath,
+                this);
         }
 
+        /// <summary>
+        /// Finish the filter
+        /// </summary>
         public void Finish()
         {
             this.filterDisplay.Close();
             this.filterDisplay = null;
         }
 
+        /// <summary>
+        /// Cancel the filter - basically the same as Finish()
+        /// </summary>
         public void Cancel()
         {
             this.filterDisplay.Close();

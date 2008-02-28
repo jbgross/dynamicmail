@@ -28,58 +28,35 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         private void InitializeComponent()
         {
-            this.myMail = new System.Windows.Forms.DataGridView();
+            this.mailGrid = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            this.folderTree = new System.Windows.Forms.TreeView();
             this.SenderCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RecipientCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubjectCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RefreshButton = new System.Windows.Forms.Button();
-            this.folderTree = new System.Windows.Forms.TreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.myMail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mailGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // myMail
+            // mailGrid
             // 
-            this.myMail.AllowUserToAddRows = false;
-            this.myMail.AllowUserToDeleteRows = false;
-            this.myMail.AllowUserToResizeRows = false;
-            this.myMail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.myMail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mailGrid.AllowUserToAddRows = false;
+            this.mailGrid.AllowUserToDeleteRows = false;
+            this.mailGrid.AllowUserToOrderColumns = true;
+            this.mailGrid.AllowUserToResizeRows = false;
+            this.mailGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mailGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SenderCol,
             this.RecipientCol,
             this.SubjectCol,
             this.DateCol});
-            this.myMail.Location = new System.Drawing.Point(243, 12);
-            this.myMail.Name = "myMail";
-            this.myMail.ReadOnly = true;
-            this.myMail.Size = new System.Drawing.Size(628, 657);
-            this.myMail.TabIndex = 2;
-            // 
-            // SenderCol
-            // 
-            this.SenderCol.HeaderText = "Sender";
-            this.SenderCol.Name = "SenderCol";
-            this.SenderCol.ReadOnly = true;
-            // 
-            // RecipientCol
-            // 
-            this.RecipientCol.HeaderText = "Recipient";
-            this.RecipientCol.Name = "RecipientCol";
-            this.RecipientCol.ReadOnly = true;
-            // 
-            // SubjectCol
-            // 
-            this.SubjectCol.HeaderText = "Subject";
-            this.SubjectCol.Name = "SubjectCol";
-            this.SubjectCol.ReadOnly = true;
-            this.SubjectCol.Width = 250;
-            // 
-            // DateCol
-            // 
-            this.DateCol.HeaderText = "Date";
-            this.DateCol.Name = "DateCol";
-            this.DateCol.ReadOnly = true;
+            this.mailGrid.Location = new System.Drawing.Point(243, 12);
+            this.mailGrid.Name = "mailGrid";
+            this.mailGrid.ReadOnly = true;
+            this.mailGrid.Size = new System.Drawing.Size(628, 657);
+            this.mailGrid.TabIndex = 2;
+            this.mailGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mailGrid_CellContentDoubleClick);
             // 
             // label1
             // 
@@ -107,6 +84,31 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.folderTree.Size = new System.Drawing.Size(210, 592);
             this.folderTree.TabIndex = 6;
             // 
+            // SenderCol
+            // 
+            this.SenderCol.HeaderText = "Sender";
+            this.SenderCol.Name = "SenderCol";
+            this.SenderCol.ReadOnly = true;
+            // 
+            // RecipientCol
+            // 
+            this.RecipientCol.HeaderText = "Recipient";
+            this.RecipientCol.Name = "RecipientCol";
+            this.RecipientCol.ReadOnly = true;
+            // 
+            // SubjectCol
+            // 
+            this.SubjectCol.HeaderText = "Subject";
+            this.SubjectCol.Name = "SubjectCol";
+            this.SubjectCol.ReadOnly = true;
+            this.SubjectCol.Width = 250;
+            // 
+            // DateCol
+            // 
+            this.DateCol.HeaderText = "Date";
+            this.DateCol.Name = "DateCol";
+            this.DateCol.ReadOnly = true;
+            // 
             // FilterDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,10 +117,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Controls.Add(this.folderTree);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.myMail);
+            this.Controls.Add(this.mailGrid);
             this.Name = "FilterDisplay";
             this.Text = "FilterDisplay";
-            ((System.ComponentModel.ISupportInitialize)(this.myMail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mailGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,13 +128,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
         #endregion
 
-        private System.Windows.Forms.DataGridView myMail;
+        private System.Windows.Forms.DataGridView mailGrid;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.TreeView folderTree;
         private System.Windows.Forms.DataGridViewTextBoxColumn SenderCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn RecipientCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCol;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button RefreshButton;
-        private System.Windows.Forms.TreeView folderTree;
     }
 }
