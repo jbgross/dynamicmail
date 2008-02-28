@@ -11,7 +11,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     public partial class FilterDisplay : Form
     {
-        private List<String> selectedFolders = new List<String>();
+        private String initialSelectedFolder;
         private Finishable source;
         private TreeNode tNode;
         private List<TreeNode> roots = new List<TreeNode>();
@@ -44,6 +44,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void ShowMessages()
         {
             this.mailGrid.Rows.Clear();
+            this.Refresh();
             this.messageList = new Dictionary<int, Outlook.MailItem>();
             foreach (Outlook.MailItem msg in this.filter.Messages)
             {
@@ -80,7 +81,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         public void SelectFolderAndDisplay(String folderName)
         {
-            this.selectedFolders.Add(folderName);
+            this.initialSelectedFolder = folderName;
             foreach (TreeNode root in this.roots)
             {
                 this.ExpandChecked(root);
@@ -101,7 +102,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 if (this.nameFolder.ContainsKey(path))
                 {
                     // check the folder
-                    if (this.selectedFolders.Contains(path))
+                    if (this.initialSelectedFolder.Equals(path))
                     {
                         child.Checked = true;
                     }
@@ -123,17 +124,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <returns></returns>
         public void GetSelectedFolders()
         {
-            TreeNode top = this.folderTree.TopNode;
-            while (true)
+            foreach (TreeNode root in this.roots)
             {
-                if (top == null)
-                    return;
-                if (top.Checked && this.nameFolder.ContainsKey(top.Text))
-                {
-                    this.selectedFolders.Add(top.Name);
-                }
-                this.GetSelectedSubFolders(top);
-                top = top.NextNode;
+                this.GetSelectedSubFolders(root);
             }
 
         }
@@ -149,12 +142,21 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             while(true) {
                 if (child == null)
                     return;
-                if (child.Checked && this.nameFolder.ContainsKey(child.Text)) 
-                {
-                    this.selectedFolders.Add(child.Name);
+                if(this.nameFolder.ContainsKey(child.Name)) {
+                    Outlook.MAPIFolder folder = this.nameFolder[child.Name];
+                    if (child.Checked)
+                    {
+                        this.filter.AddFolder(folder);
+                    }
+                    else
+                    {
+                        this.filter.RemoveFolder(folder);
+                    }
+                    // recurse 
                     GetSelectedSubFolders(child);
+                    // set the child for the next iteration
+                    child = child.NextNode;
                 }
-                child = child.NextNode;
             } 
         }
 
@@ -192,6 +194,24 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 Outlook.MailItem msg = this.messageList[index];
                 msg.Display(true);
             }
+        }
+
+        private void folderTree_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            //  need to avoid open recurse 
+            if (e.Node.Name.Equals(this.initialSelectedFolder))
+            {
+                return;
+            }
+
+            e.Node.Expand();
+
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            this.GetSelectedFolders(); 
+            this.ShowMessages();
         }
     }
 }
