@@ -1,6 +1,6 @@
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
-    partial class NetworkManager
+    partial class NetworkEditorForm
     {
         /// <summary>
         /// Required designer variable.

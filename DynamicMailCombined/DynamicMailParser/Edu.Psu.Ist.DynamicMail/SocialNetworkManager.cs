@@ -15,7 +15,9 @@ namespace Edu.Psu.Ist.DynamicMail
         private String fileName = "c:\\groupList.xml";
         private Cluster[] networkClusters;
         private int index = 0;
-        private Hashtable allNetworks = new Hashtable();
+        private Hashtable writableNeworks = new Hashtable();
+        private NetworkManagerForm manager;
+        private bool runThroughMode = false;
 
         /// <summary>
         /// The number of SocialNetwork objects
@@ -44,9 +46,9 @@ namespace Edu.Psu.Ist.DynamicMail
         public SocialNetworkManager(Cluster[] sns)
         {
             this.networkClusters = sns;
-            this.Manage();
+            this.runThroughMode = true;
+            this.EditNewNetworks();
         }
-
 
         /// <summary>
         /// Public constructor to determine if we have any SocialNetworks
@@ -73,11 +75,19 @@ namespace Edu.Psu.Ist.DynamicMail
             }
         }
 
+        /// <summary>
+        /// Manage existing networks
+        /// </summary>
+        public void ManageNetworks()
+        {
+            this.manager = new NetworkManagerForm(this);
+        }
+
 
         /// <summary>
-        /// Manage all of the social networks
+        /// Manage all of the new social networks
         /// </summary>
-        public void Manage()
+        public void EditNewNetworks()
         {
             if (index >= networkClusters.Length)
             {
@@ -97,7 +107,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <returns></returns>
         public bool NameIsUnique(String name)
         {
-            return !this.allNetworks.ContainsKey(name);
+            return !this.writableNeworks.ContainsKey(name);
         }
 
         /// <summary>
@@ -108,9 +118,15 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             String name = currentSn.Name;
             // throw an exception if name isn't set or isn't unique
-            if (name == null || name.Equals("") || !this.NameIsUnique(name))
+            if (name == null || name.Equals(""))
             {
-                throw new SocialNetworkException("Social Network name must be set and unique.");
+                throw new SocialNetworkException("Social Network name must be set.");
+            }
+            
+            // throw an exception if the name isn't unique and this is a new network
+            if(currentSn.IsNew && !this.NameIsUnique(name))
+            {
+                throw new SocialNetworkException("Social Network name unique.");
             }
 
             Hashtable nw = new Hashtable();
@@ -121,7 +137,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 al.Add(acct.Name);
                 nw[acct.Address] = al;
             }
-            this.allNetworks[currentSn.Name] = nw;
+            this.writableNeworks[currentSn.Name] = nw;
 
         }
 
@@ -134,7 +150,7 @@ namespace Edu.Psu.Ist.DynamicMail
             ObjectXmlWriter WriteXML = new ObjectXmlWriter();
 
             //send list to XML writer to write to the specified file
-            WriteXML.WriteObjectXml(this.allNetworks, this.fileName);
+            WriteXML.WriteObjectXml(this.writableNeworks, this.fileName);
         }
 
         /// <summary>
@@ -143,7 +159,10 @@ namespace Edu.Psu.Ist.DynamicMail
         public void Finish()
         {
             this.AddNetwork(this.currentSn);
-            this.Manage();
+            if (this.runThroughMode)
+            {
+                this.EditNewNetworks();
+            }
         }
 
         /// <summary>
@@ -151,7 +170,10 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Cancel()
         {
-            this.Manage();
+            if (this.runThroughMode)
+            {
+                this.EditNewNetworks();
+            }
         }
 
     }

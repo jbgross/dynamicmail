@@ -67,11 +67,17 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.Designer.cs">
       <DependentUpon>InfoBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManager.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManager.designer.cs">
-      <DependentUpon>NetworkManager.cs</DependentUpon>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.designer.cs">
+      <DependentUpon>NetworkEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.Designer.cs">
+      <DependentUpon>NetworkManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.cs">
       <SubType>Form</SubType>
@@ -159,9 +165,13 @@
       <DependentUpon>InfoBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManager.resx">
-      <DependentUpon>NetworkManager.cs</DependentUpon>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.resx">
+      <DependentUpon>NetworkEditorForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NetworkManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.resx">
       <DependentUpon>ProgressInfoBox.cs</DependentUpon>

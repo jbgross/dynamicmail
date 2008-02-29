@@ -183,7 +183,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
                 else if (ctrl.Tag.Equals("manage"))
                 {
-                    this.networkManager.Manage();
+                    this.networkManager.ManageNetworks();
                 }
 
             }
