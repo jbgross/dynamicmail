@@ -18,11 +18,24 @@ namespace Edu.Psu.Ist.DynamicMail
     {
         private Finishable finish;
         private Account [] accounts;
-        private NetworkManager manager;
+        private NetworkEditorForm editor;
         private String name;
         private Outlook.Folders rootFolders;
         private FilterMail filterMail;
+        private bool isNew = true;
 
+        /// <summary>
+        /// If the social network is new or changed
+        /// </summary>
+        public bool IsNew
+        {
+            get { return isNew; }
+            private set { isNew = value; }
+        }
+
+        /// <summary>
+        /// The root folders
+        /// </summary>
         public Outlook.Folders RootFolders
         {
             get { return rootFolders; }
@@ -37,7 +50,6 @@ namespace Edu.Psu.Ist.DynamicMail
             get { return name; }
             private set { name = value; }
         }
-
 
         /// <summary>
         /// The accounts associated with the social network
@@ -71,6 +83,28 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             //accts.Sort();
             Accounts = accts.ToArray();
+            IsNew = true;
+        }
+
+        /// <summary>
+        /// Create a social network from a (stored) hashtable
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="members"></param>
+        public SocialNetwork(String name, Hashtable members)
+        {
+            Name = name;
+            this.accounts = new Account[members.Count];
+            int index = 0;
+            foreach (Object o in members.Keys)
+            {
+                String acctAddress = (String)o;
+                ArrayList al = (ArrayList)members[o];
+                String acctName = (String)al[0];
+                Account acct = new Account(acctName, acctAddress);
+                this.accounts[index++] = acct;
+            }
+            IsNew = false;
         }
 
         /// <summary>
@@ -103,25 +137,6 @@ namespace Edu.Psu.Ist.DynamicMail
             return names;
         }
 
-        /// <summary>
-        /// Create a social network from a (stored) hashtable
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="members"></param>
-        public SocialNetwork(String name, Hashtable members)
-        {
-            Name = name;
-            this.accounts = new Account[members.Count];
-            int index = 0;
-            foreach (Object o in members.Keys)
-            {
-                String acctAddress = (String) o;
-                ArrayList al = (ArrayList)members[o];
-                String acctName = (String) al[0];
-                Account acct = new Account(acctName, acctAddress);
-                this.accounts[index++] = acct;
-            }
-        }
 
         /// <summary>
         /// Open a manager window
@@ -129,7 +144,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void Manage(Finishable finish)
         {
             this.finish = finish;
-            this.manager = new NetworkManager(this, this.accounts);
+            this.editor = new NetworkEditorForm(this, this.accounts);
         }
 
         /// <summary>
@@ -138,7 +153,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.Name = this.manager.NetworkName;
+            this.Name = this.editor.NetworkName;
             // move to next
             this.finish.Finish();
 

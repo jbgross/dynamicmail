@@ -14,7 +14,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     /// <summary>
     /// Form to manage a SocialNetwork
     /// </summary>
-    public partial class NetworkManager : Form, Finishable
+    public partial class NetworkEditorForm : Form, Finishable
     {
         /// <summary>
         /// Get the Name column
@@ -70,11 +70,25 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         }
 
         /// <summary>
+        /// Edit an existing network
+        /// </summary>
+        /// <param name="finish"></param>
+        /// <param name="network"></param>
+        public NetworkEditorForm(Finishable finish, SocialNetwork network)
+        {
+            this.finish = finish;
+            InitializeComponent();
+            this.PopulateAccounts(network.Accounts);
+            this.Show();
+            this.Focus();
+        }
+
+        /// <summary>
         /// Public constructor, needs to be created by a Finishable object
         /// </summary>
         /// <param name="finish"></param>
         /// <param name="accounts"></param>
-        public NetworkManager(Finishable finish, Account [] accounts)
+        public NetworkEditorForm(Finishable finish, Account [] accounts)
         {
             this.finish = finish;
             
@@ -85,6 +99,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 return;
             }
             InitializeComponent();
+            this.PopulateAccounts(accounts);
+            this.Show();
+        }
+
+        private void PopulateAccounts(Account[] accounts)
+        {
             for (int i = 0; i < accounts.Length; i++)
             {
                 Account account = accounts[i];
@@ -92,11 +112,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 this.groupList.Rows.Add(row);
                 this.accounts.Add(account);
             }
-            this.Show();
         }
 
         /// <summary>
-        /// 
+        /// Add a new Address
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -122,15 +141,15 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             try
             {
                 this.finish.Finish();
+                this.Close();
             }
-            catch (Exception sne)
+            catch (SocialNetworkException sne)
             {
                 // the only exception that should come here is a
                 // SocialNetworkException
                 MessageBox.Show(sne.Message);
                 return;
             }
-            this.Close();
         }
 
         /// <summary>
