@@ -12,10 +12,10 @@ namespace Edu.Psu.Ist.DynamicMail
 	public class FilterMail : Finishable
 	{
         private SocialNetwork socialNetwork;
-        private List<Outlook.MAPIFolder> folders = new List<Outlook.MAPIFolder>();
-        private List<Outlook.MAPIFolder> searchedFolders = new List<Outlook.MAPIFolder>();
+        private Dictionary<String, Outlook.MAPIFolder> folders;
+        private Dictionary<String, Outlook.MAPIFolder> searchedFolders;
         private List<Outlook.MailItem> messages = new List<Outlook.MailItem>();
-        private bool changed = true;
+        private bool changed = false;
 
         /// <summary>
         /// Get the messages
@@ -44,9 +44,11 @@ namespace Edu.Psu.Ist.DynamicMail
         public FilterMail (SocialNetwork socialNetwork, Outlook.MAPIFolder folder)
         {
             this.socialNetwork = socialNetwork;
-            this.folders.Add(folder);
-            this.Refilter();
-            this.DisplayMail();
+            this.folders = new Dictionary<string,Outlook.MAPIFolder>();
+            this.searchedFolders = new Dictionary<string, Outlook.MAPIFolder>();
+            this.folders[folder.FullFolderPath] = folder;
+            this.changed = true;
+            this.DisplayMail(folder);
         }
 
         /// <summary>
@@ -55,9 +57,9 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="folder"></param>
         public void AddFolder(Outlook.MAPIFolder folder)
         {
-            if (! this.folders.Contains(folder))
+            if (! this.folders.ContainsKey(folder.FullFolderPath))
             {
-                this.folders.Add(folder);
+                this.folders[folder.FullFolderPath] = folder;
                 this.changed = true;
             }
         }
@@ -68,15 +70,15 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="folder"></param>
         public void RemoveFolder(Outlook.MAPIFolder folder)
         {
-            if (this.folders.Contains(folder))
+            if (this.folders.ContainsKey(folder.FullFolderPath))
             {
-                this.folders.Remove(folder);
+                this.folders.Remove(folder.FullFolderPath);
             }
 
             // check in the searchedFolders list
-            if (this.searchedFolders.Contains(folder))
+            if (this.searchedFolders.ContainsKey(folder.FullFolderPath))
             {
-                this.searchedFolders.Remove(folder);
+                this.searchedFolders.Remove(folder.FullFolderPath);
             }
             this.changed = true;
         }
@@ -89,11 +91,12 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             List<String> addrs = this.socialNetwork.GetAddresses();
             List<String> names = this.socialNetwork.GetNames();
-            foreach (Outlook.MAPIFolder folder in this.folders)
+            foreach (Outlook.MAPIFolder folder in this.folders.Values)
             {
+                String path = folder.FullFolderPath;
                 // if we've already searched this folder,
                 // move to the next folder
-                if(this.searchedFolders.Contains(folder)) 
+                if(this.searchedFolders.ContainsKey(path)) 
                 {
                     continue;
                 }
@@ -129,7 +132,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
 
                 // add this folder to the searched folder list, so we don't search it again
-                this.searchedFolders.Add(folder);
+                this.searchedFolders[path] = folder;
             }
 
             this.changed = false;
@@ -138,10 +141,10 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <summary>
         /// Create a new form to display the current mail
         /// </summary>
-        private void DisplayMail()
+        private void DisplayMail(Outlook.MAPIFolder folder)
         {
             this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, 
-                this.folders[0].FullFolderPath,
+                folder.FullFolderPath,
                 this);
         }
 

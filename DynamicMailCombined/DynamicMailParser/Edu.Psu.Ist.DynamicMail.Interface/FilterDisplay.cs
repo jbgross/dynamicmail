@@ -49,8 +49,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             foreach (Outlook.MailItem msg in this.filter.Messages)
             {
                 String sender = msg.SenderName != null ? msg.SenderName : msg.SenderEmailAddress;
-                String recip = msg.To;
-                String subject = msg.Subject;
+                String recip = msg.To != null ? msg.To : "no recipient";
+                String subject = msg.Subject != null ? msg.Subject : "<no subject>";
                 String date = msg.SentOn.ToString();
                 String [] data = { sender, recip, subject, date };
                 int pos = this.mailGrid.Rows.Add(data);
@@ -192,7 +192,14 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             int index = e.RowIndex;
             if(this.messageList.ContainsKey(index)) {
                 Outlook.MailItem msg = this.messageList[index];
-                msg.Display(true);
+                try
+                {
+                    msg.Display(true);
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.Message);
+                }
             }
         }
 
