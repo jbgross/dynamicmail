@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMailParser", "DynamicMailParser\DynamicMailParser.csproj", "{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edu.Psu.Ist.DynamicMail", "Edu.Psu.Ist.DynamicMail\Edu.Psu.Ist.DynamicMail.csproj", "{859891C2-D9EC-4614-915D-137289E837F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectXmlUnitTests", "ObjectXmlUnitTests\ObjectXmlUnitTests.csproj", "{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectXml", "XML Manipulation\ObjectXml.csproj", "{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edu.Psu.Ist.Keystone", "Edu.Psu.Ist.Keystone\Edu.Psu.Ist.Keystone.csproj", "{5BEF3B6A-02C8-4730-848C-7A974C478B7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMailParser", "DynamicMailParser\DynamicMailParser.csproj", "{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,26 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A4DB9B5-568B-4FD8-A7A3-9F3C2F173F39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BEF3B6A-02C8-4730-848C-7A974C478B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BEF3B6A-02C8-4730-848C-7A974C478B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BEF3B6A-02C8-4730-848C-7A974C478B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BEF3B6A-02C8-4730-848C-7A974C478B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECB4ED8-CD5B-4E15-9E04-0DB873634EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{859891C2-D9EC-4614-915D-137289E837F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{859891C2-D9EC-4614-915D-137289E837F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79EFEE1-ED96-40D0-AD7C-6C4345B5EAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -128,8 +128,8 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             this.filterButtons = new List<Office.CommandBarButton>();
             this.filterNetwork = new Dictionary<String, SocialNetwork>();
-            SocialNetworkManager snm = new SocialNetworkManager();
-            if (snm.Count == 0)
+            this.networkManager = new SocialNetworkManager();
+            if (this.networkManager.Count == 0)
             {
                 return;
             } 
@@ -140,7 +140,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 this.filterBar = cmdBars.Add("Social Network Filters",
                     Office.MsoBarPosition.msoBarTop, false, true);
                 this.filterNetwork = new Dictionary<String, SocialNetwork>();
-                foreach (SocialNetwork sn in snm.SocialNetworks)
+                foreach (SocialNetwork sn in this.networkManager.SocialNetworks)
                 {
                     Office.CommandBarButton filterButton = (Office.CommandBarButton)newToolBar.Controls.Add
                                     (1, missing, missing, missing, missing);
@@ -180,6 +180,10 @@ namespace Edu.Psu.Ist.DynamicMail
                 else if (ctrl.Tag.Equals("cluster"))
                 {
                     this.pcd = new PrepareClusterData(this);
+                }
+                else if (ctrl.Tag.Equals("manage"))
+                {
+                    this.networkManager.Manage();
                 }
 
             }
