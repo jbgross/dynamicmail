@@ -35,23 +35,23 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.addContact = new System.Windows.Forms.Button();
             this.saveGroup = new System.Windows.Forms.Button();
             this.ignoreGroup = new System.Windows.Forms.Button();
-            this.groupList = new System.Windows.Forms.DataGridView();
+            this.accountGrid = new System.Windows.Forms.DataGridView();
             this.emailCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.groupList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(333, 280);
+            this.nameBox.Location = new System.Drawing.Point(362, 280);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(107, 20);
             this.nameBox.TabIndex = 3;
             // 
             // addAccountButton
             // 
-            this.addAccountButton.Location = new System.Drawing.Point(333, 96);
+            this.addAccountButton.Location = new System.Drawing.Point(362, 96);
             this.addAccountButton.Name = "addAccountButton";
             this.addAccountButton.Size = new System.Drawing.Size(107, 20);
             this.addAccountButton.TabIndex = 4;
@@ -61,7 +61,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // removeName
             // 
-            this.removeName.Location = new System.Drawing.Point(333, 52);
+            this.removeName.Location = new System.Drawing.Point(362, 52);
             this.removeName.Name = "removeName";
             this.removeName.Size = new System.Drawing.Size(107, 20);
             this.removeName.TabIndex = 5;
@@ -72,7 +72,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // nameL
             // 
             this.nameL.AutoSize = true;
-            this.nameL.Location = new System.Drawing.Point(347, 252);
+            this.nameL.Location = new System.Drawing.Point(376, 252);
             this.nameL.Name = "nameL";
             this.nameL.Size = new System.Drawing.Size(78, 13);
             this.nameL.TabIndex = 6;
@@ -80,7 +80,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // addContact
             // 
-            this.addContact.Location = new System.Drawing.Point(333, 122);
+            this.addContact.Location = new System.Drawing.Point(362, 122);
             this.addContact.Name = "addContact";
             this.addContact.Size = new System.Drawing.Size(107, 20);
             this.addContact.TabIndex = 7;
@@ -89,7 +89,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // saveGroup
             // 
-            this.saveGroup.Location = new System.Drawing.Point(318, 319);
+            this.saveGroup.Location = new System.Drawing.Point(347, 319);
             this.saveGroup.Name = "saveGroup";
             this.saveGroup.Size = new System.Drawing.Size(70, 25);
             this.saveGroup.TabIndex = 11;
@@ -99,7 +99,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // ignoreGroup
             // 
-            this.ignoreGroup.Location = new System.Drawing.Point(394, 319);
+            this.ignoreGroup.Location = new System.Drawing.Point(423, 319);
             this.ignoreGroup.Name = "ignoreGroup";
             this.ignoreGroup.Size = new System.Drawing.Size(70, 25);
             this.ignoreGroup.TabIndex = 12;
@@ -107,19 +107,19 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.ignoreGroup.UseVisualStyleBackColor = true;
             this.ignoreGroup.Click += new System.EventHandler(this.ignoreGroup_Click);
             // 
-            // groupList
+            // accountGrid
             // 
-            this.groupList.AllowUserToAddRows = false;
-            this.groupList.AllowUserToDeleteRows = false;
-            this.groupList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.groupList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.accountGrid.AllowUserToAddRows = false;
+            this.accountGrid.AllowUserToDeleteRows = false;
+            this.accountGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.accountGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.emailCol,
             this.nameCol});
-            this.groupList.Location = new System.Drawing.Point(12, 12);
-            this.groupList.Name = "groupList";
-            this.groupList.ReadOnly = true;
-            this.groupList.Size = new System.Drawing.Size(293, 356);
-            this.groupList.TabIndex = 13;
+            this.accountGrid.Location = new System.Drawing.Point(12, 12);
+            this.accountGrid.Name = "accountGrid";
+            this.accountGrid.ReadOnly = true;
+            this.accountGrid.Size = new System.Drawing.Size(318, 356);
+            this.accountGrid.TabIndex = 13;
             // 
             // emailCol
             // 
@@ -137,7 +137,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(333, 23);
+            this.editButton.Location = new System.Drawing.Point(362, 23);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(107, 23);
             this.editButton.TabIndex = 14;
@@ -145,13 +145,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
-            // NetworkManager
+            // NetworkEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 380);
+            this.ClientSize = new System.Drawing.Size(507, 380);
             this.Controls.Add(this.editButton);
-            this.Controls.Add(this.groupList);
+            this.Controls.Add(this.accountGrid);
             this.Controls.Add(this.ignoreGroup);
             this.Controls.Add(this.saveGroup);
             this.Controls.Add(this.addContact);
@@ -159,9 +159,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Controls.Add(this.removeName);
             this.Controls.Add(this.addAccountButton);
             this.Controls.Add(this.nameBox);
-            this.Name = "NetworkManager";
+            this.Name = "NetworkEditorForm";
             this.Text = "Network Manager";
-            ((System.ComponentModel.ISupportInitialize)(this.groupList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,7 +176,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private System.Windows.Forms.Button addContact;
         private System.Windows.Forms.Button saveGroup;
         private System.Windows.Forms.Button ignoreGroup;
-        private System.Windows.Forms.DataGridView groupList;
+        private System.Windows.Forms.DataGridView accountGrid;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameCol;

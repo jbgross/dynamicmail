@@ -1,6 +1,6 @@
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
-    partial class EditAccount
+    partial class EditAccountForm
     {
         /// <summary>
         /// Required designer variable.
