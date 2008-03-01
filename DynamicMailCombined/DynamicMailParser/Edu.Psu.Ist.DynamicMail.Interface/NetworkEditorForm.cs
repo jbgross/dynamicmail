@@ -16,6 +16,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     /// </summary>
     public partial class NetworkEditorForm : Form, Finishable
     {
+        private SocialNetwork network;
+        private SocialNetworkManager manager;
+
         /// <summary>
         /// Get the Name column
         /// </summary>
@@ -32,33 +35,17 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             get { return this.emailCol; }
         }
 
-        private String networkName;
+        /// <summary>
+        /// for adding an account
+        /// </summary>
+        private EditAccountForm addAccount = null;
 
         /// <summary>
-        /// The name of the social network
+        /// for editing an account
         /// </summary>
-        public String NetworkName
-        {
-            get { return networkName; }
-            private set { networkName = value; }
-        }
-
-        private Finishable finish;
-        private List<Account> accounts = new List<Account>();
-        private EditAccount addAccount = null;
-
-        // for editing an account
-        private EditAccount editAccount = null;
+        private EditAccountForm editAccountForm = null;
         private DataGridViewRow editRow = null;
-        private Account editingAccount = null;
-
-        /// <summary>&
-        /// Get the accounts as an array of Account objects
-        /// </summary>
-        public Account[] Accounts
-        {
-            get { return (Account[])this.accounts.ToArray(); }
-        }
+        private Account editAccount = null;
 
         /// <summary>
         /// Get the DataGridView to pull all data - necessary right now, 
@@ -66,7 +53,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         public DataGridView NetworkData
         {
-            get { return this.groupList; }
+            get { return this.accountGrid; }
         }
 
         /// <summary>
@@ -74,43 +61,26 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="finish"></param>
         /// <param name="network"></param>
-        public NetworkEditorForm(Finishable finish, SocialNetwork network)
+        public NetworkEditorForm(SocialNetwork network, SocialNetworkManager manager)
         {
-            this.finish = finish;
+            this.network = network;
+            this.manager = manager;
             InitializeComponent();
             this.PopulateAccounts(network.Accounts);
+            if (network.Name != null && !network.Name.Equals(""))
+            {
+                this.nameBox.Text = network.Name;
+            }
             this.Show();
             this.Focus();
         }
 
-        /// <summary>
-        /// Public constructor, needs to be created by a Finishable object
-        /// </summary>
-        /// <param name="finish"></param>
-        /// <param name="accounts"></param>
-        public NetworkEditorForm(Finishable finish, Account [] accounts)
+        private void PopulateAccounts(List<Account> accounts)
         {
-            this.finish = finish;
-            
-            // if we get an empty, move to next
-            if (accounts.Length == 0)
+            foreach(Account acct in this.network.Accounts)
             {
-                this.finish.Cancel();
-                return;
-            }
-            InitializeComponent();
-            this.PopulateAccounts(accounts);
-            this.Show();
-        }
-
-        private void PopulateAccounts(Account[] accounts)
-        {
-            for (int i = 0; i < accounts.Length; i++)
-            {
-                Account account = accounts[i];
-                String[] row = { account.Name, account.Address };
-                this.groupList.Rows.Add(row);
-                this.accounts.Add(account);
+                String[] row = { acct.Name, acct.Address };
+                this.accountGrid.Rows.Add(row);
             }
         }
 
@@ -121,7 +91,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="e"></param>
         private void addAddress_Click(object sender, EventArgs e)
         {
-            this.addAccount = new EditAccount(this);
+            this.addAccount = new EditAccountForm(this);
         }
 
         /// <summary>
@@ -131,16 +101,22 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="e"></param>
         private void saveGroup_Click(object sender, EventArgs e)
         {
+            string networkName = this.nameBox.Text;
             // have to have a name
-            NetworkName = this.nameBox.Text;
-            if (NetworkName == null || NetworkName.Equals(""))
+            if (networkName == null || networkName.Equals(""))
             {
                 MessageBox.Show("You must set the Network Name");
                 return;
             }
+
             try
             {
-                this.finish.Finish();
+                this.network.Name = networkName;
+                if (this.network.IsNew)
+                {
+                    this.manager.SocialNetworks.Add(this.network);
+                }
+                this.manager.Finish();
                 this.Close();
             }
             catch (SocialNetworkException sne)
@@ -170,26 +146,25 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 String name = this.addAccount.AccountName;
                 String address = this.addAccount.AccountAddress;
                 String [] arr = {name, address};
-                this.groupList.Rows.Add(arr);
-                this.accounts.Add(new Account(name, address));
+                this.accountGrid.Rows.Add(arr);
+                this.network.Accounts.Add(new Account(name, address));
                 this.addAccount = null;
                 this.Refresh();
             }
-            else if (this.editAccount != null)
+            else if (this.editAccountForm != null)
             {
-                String name = this.editAccount.AccountName;
-                String address = this.editAccount.AccountAddress;
+                String name = this.editAccountForm.AccountName;
+                String address = this.editAccountForm.AccountAddress;
                 // set the Account object variables
-                this.editingAccount.Name = name;
-                this.editingAccount.Address = address;
+                this.editAccount.Name = name;
+                this.editAccount.Address = address;
 
                 // set row data
                 this.editRow.Cells[0].Value = name;
                 this.editRow.Cells[1].Value = address;
                 
                 // cleanup
-                this.editingAccount = null;
-                this.editAccount = null;
+                this.editAccountForm = null;
                 this.editRow = null;
             }
             this.Refresh();
@@ -203,7 +178,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void ignoreGroup_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.finish.Cancel();
+            this.manager.Cancel();
         }
 
         /// <summary>
@@ -215,13 +190,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void removeName_Click(object sender, EventArgs e)
         {
             this.SelectRowsFromCells();
-            foreach (DataGridViewRow row in this.groupList.SelectedRows)
+            foreach (DataGridViewRow row in this.accountGrid.SelectedRows)
             {
                 // remove from the list of accounts
-                Account acct = this.GetAccountFromRow(row);
-                this.accounts.Remove(acct);
+                this.network.Accounts.RemoveAt(row.Index);
                 // remove from rows
-                groupList.Rows.RemoveAt(row.Index);
+                accountGrid.Rows.RemoveAt(row.Index);
             }
             this.Refresh();
         }
@@ -235,41 +209,26 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void editButton_Click(object sender, EventArgs e)
         {
             this.SelectRowsFromCells();
-            foreach (DataGridViewRow row in this.groupList.SelectedRows)
+            foreach (DataGridViewRow row in this.accountGrid.SelectedRows)
             {
-                Account acct = this.GetAccountFromRow(row);
-                this.editingAccount = this.accounts[this.accounts.IndexOf(acct)];
+                int pos = row.Index;
+                this.editAccount = this.network.Accounts[pos];
                 this.editRow = row;
-                this.editAccount = new EditAccount(this, this.editingAccount.Name, this.editingAccount.Address);
+                this.editAccountForm = new EditAccountForm(this, this.editAccount.Name, this.editAccount.Address);
             }
         }
 
-        /// <summary>
-        /// Given a row, returns an account object for that row
-        /// </summary>
-        /// <param name="row"></param>
-        /// <returns></returns>
-        private Account GetAccountFromRow(DataGridViewRow row)
-        {
-            String name = "";
-            String address = "";
-            if (row.Cells[0].Value != null)
-                name = row.Cells[0].Value.ToString();
-            if (row.Cells[1].Value != null)
-                address = row.Cells[1].Value.ToString();
-            return new Account(name, address);
-        }
 
         /// <summary>
         /// If cells are selected instead of rows, select those rows
         /// </summary>
         private void SelectRowsFromCells()
         {
-            if (this.groupList.SelectedRows.Count == 0 && this.groupList.SelectedCells.Count > 0)
+            if (this.accountGrid.SelectedRows.Count == 0 && this.accountGrid.SelectedCells.Count > 0)
             {
-                foreach (DataGridViewCell cell in this.groupList.SelectedCells)
+                foreach (DataGridViewCell cell in this.accountGrid.SelectedCells)
                 {
-                    this.groupList.Rows[cell.RowIndex].Selected = true;
+                    this.accountGrid.Rows[cell.RowIndex].Selected = true;
                 }
             }
         }

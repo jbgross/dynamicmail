@@ -152,11 +152,14 @@ namespace Edu.Psu.Ist.DynamicMail
                     this.filterButtons.Add(filterButton);
                     this.filterNetwork.Add(filterButton.Caption, sn);
                 }
-
             }
-
         }
 
+        /// <summary>
+        /// Filter mail based on the social networks
+        /// </summary>
+        /// <param name="ctrl"></param>
+        /// <param name="cancel"></param>
         private void Filter(Office.CommandBarButton ctrl, ref bool cancel)
         {
             this.currentSocialNetwork = this.filterNetwork[ctrl.Caption];
@@ -191,6 +194,13 @@ namespace Edu.Psu.Ist.DynamicMail
             {
                 MessageBox.Show(e.ToString());
             }
+        }
+
+        /// <summary>
+        /// Refresh the list of social networks
+        /// </summary>
+        private void RefreshNetworks()
+        {
         }
 
         private void ThisApplication_Shutdown(object sender, System.EventArgs e)

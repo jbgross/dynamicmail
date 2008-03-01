@@ -11,7 +11,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     /// <summary>
     /// Class to add an individual account to a network
     /// </summary>
-    public partial class EditAccount : Form
+    public partial class EditAccountForm : Form
     {
         Finishable finishable;
         
@@ -63,7 +63,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// Create a new instance and make visible
         /// </summary>
         /// <param name="finish"></param>
-        public EditAccount(Finishable finish)
+        public EditAccountForm(Finishable finish)
         {
             InitializeComponent();
             this.finishable = finish;
@@ -75,7 +75,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// Create a new instance and make visible
         /// </summary>
         /// <param name="finish"></param>
-        public EditAccount(Finishable finish, String name, String address)
+        public EditAccountForm(Finishable finish, String name, String address)
         {
             InitializeComponent();
             this.finishable = finish;

@@ -17,7 +17,8 @@ namespace Edu.Psu.Ist.DynamicMail
     public class SocialNetwork : Finishable
     {
         private Finishable finish;
-        private Account [] accounts;
+        private SocialNetworkManager manager;
+        private List<Account> accounts;
         private NetworkEditorForm editor;
         private String name;
         private Outlook.Folders rootFolders;
@@ -48,13 +49,13 @@ namespace Edu.Psu.Ist.DynamicMail
         public String Name
         {
             get { return name; }
-            private set { name = value; }
+            set { name = value; }
         }
 
         /// <summary>
         /// The accounts associated with the social network
         /// </summary>
-        public Account[] Accounts
+        public List<Account> Accounts
         {
             get { return accounts; }
             private set { accounts = value; }
@@ -64,11 +65,11 @@ namespace Edu.Psu.Ist.DynamicMail
         /// Public constructor
         /// </summary>
         /// <param name="accounts"></param>
-        public SocialNetwork(List<DataElement> accounts, Finishable finish)
+        public SocialNetwork(List<DataElement> accounts, Finishable finish, SocialNetworkManager manager)
         {
             this.finish = finish;
-
-            List<Account> accts = new List<Account>();
+            this.manager = manager;
+            Accounts = new List<Account>();
             foreach (DataElement de in accounts)
             {
                 Account acct = new Account();
@@ -79,10 +80,9 @@ namespace Edu.Psu.Ist.DynamicMail
                 {
                     acct.Name = (String) ((ArrayList) Indexes.Instance.contactsAddresses[s])[0];
                 }
-                accts.Add(acct);
+                Accounts.Add(acct);
             }
             //accts.Sort();
-            Accounts = accts.ToArray();
             IsNew = true;
         }
 
@@ -91,18 +91,19 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         /// <param name="name"></param>
         /// <param name="members"></param>
-        public SocialNetwork(String name, Hashtable members)
+        public SocialNetwork(String name, Hashtable members, Finishable finish, SocialNetworkManager manager)
         {
+            this.finish = finish;
+            this.manager = manager;
             Name = name;
-            this.accounts = new Account[members.Count];
-            int index = 0;
+            Accounts = new List<Account>();
             foreach (Object o in members.Keys)
             {
                 String acctAddress = (String)o;
                 ArrayList al = (ArrayList)members[o];
                 String acctName = (String)al[0];
                 Account acct = new Account(acctName, acctAddress);
-                this.accounts[index++] = acct;
+                Accounts.Add(acct);
             }
             IsNew = false;
         }
@@ -144,7 +145,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void Manage(Finishable finish)
         {
             this.finish = finish;
-            this.editor = new NetworkEditorForm(this, this.accounts);
+            this.editor = new NetworkEditorForm(this, this.manager);
         }
 
         /// <summary>
@@ -153,10 +154,8 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.Name = this.editor.NetworkName;
             // move to next
             this.finish.Finish();
-
         }
         
         /// <summary>

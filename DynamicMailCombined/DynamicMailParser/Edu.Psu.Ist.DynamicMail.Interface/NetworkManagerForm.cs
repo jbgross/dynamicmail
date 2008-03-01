@@ -28,7 +28,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.networkManager = snmanager;
             foreach (SocialNetwork sn in networkManager.SocialNetworks)
             {
-                String [] rowData = {sn.Name, sn.Accounts.Length.ToString() };
+                String [] rowData = {sn.Name, sn.Accounts.Count.ToString() };
                 int pos = this.NetworkGrid.Rows.Add(rowData);
                 this.networkList[pos] = sn;
             }
@@ -44,6 +44,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void DoneButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.networkManager.Save();
         }
 
         /// <summary>
@@ -58,8 +59,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 int pos = NetworkGrid.SelectedCells[0].RowIndex;
                 if (this.networkList.ContainsKey(pos))
                 {
-                    this.Hide();
-                    this.editor = new NetworkEditorForm(this, this.networkList[pos]);
+                    this.network = this.networkList[pos];
+                    this.editor = new NetworkEditorForm(this.network, this.networkManager);
                 }
                 else
                 {
