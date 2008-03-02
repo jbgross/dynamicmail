@@ -37,7 +37,13 @@ namespace Edu.Psu.Ist.DynamicMail
             get { return socialNetworks; }
             private set { socialNetworks = value; }
         }
-        private SocialNetwork currentSn;
+        private SocialNetwork currentSocialNetwork;
+
+        public SocialNetwork CurrentSocialNetwork
+        {
+            get { return currentSocialNetwork; }
+            set { currentSocialNetwork = value; }
+        }
 
         /// <summary>
         /// Public constructor
@@ -104,8 +110,8 @@ namespace Edu.Psu.Ist.DynamicMail
                 return;
             }
             Cluster cluster = this.networkClusters[index++];
-            this.currentSn = new SocialNetwork(cluster.TopAccounts, this, this);
-            this.currentSn.Manage(this);
+            this.currentSocialNetwork = new SocialNetwork(cluster.TopAccounts, this, this);
+            this.currentSocialNetwork.Manage(this);
         }
 
         /// <summary>
@@ -124,8 +130,8 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="sn"></param>
         public void AddNetwork(SocialNetwork sn)
         {
-            this.currentSn = sn;
-            String name = currentSn.Name;
+            this.currentSocialNetwork = sn;
+            String name = currentSocialNetwork.Name;
             // throw an exception if name isn't set or isn't unique
             if (name == null || name.Equals(""))
             {
@@ -133,21 +139,21 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             
             // throw an exception if the name isn't unique and this is a new network
-            if(currentSn.IsNew && !this.NameIsUnique(name))
+            if(currentSocialNetwork.IsNew && !this.NameIsUnique(name))
             {
                 throw new SocialNetworkException("Social Network name unique.");
             }
 
             Hashtable nw = new Hashtable();
-            foreach (Account acct in currentSn.Accounts)
+            foreach (Account acct in currentSocialNetwork.Accounts)
             {
                 // stupid - need to save as an arraylist
                 ArrayList al = new ArrayList();
                 al.Add(acct.Name);
                 nw[acct.Address] = al;
             }
-            this.writableNeworks[currentSn.Name] = nw;
-            this.currentSn = null;
+            this.writableNeworks[currentSocialNetwork.Name] = nw;
+            this.currentSocialNetwork = null;
         }
 
         /// <summary>
@@ -167,7 +173,8 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.AddNetwork(this.currentSn);
+            this.AddNetwork(CurrentSocialNetwork);
+            CurrentSocialNetwork = null;
             if (this.runThroughMode)
             {
                 this.EditNewNetworks();
