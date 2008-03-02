@@ -54,24 +54,41 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="e"></param>
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if (NetworkGrid.SelectedCells.Count == 1)
+            this.SelectRowsFromCells();
+            if (NetworkGrid.SelectedRows.Count == 1)
             {
-                int pos = NetworkGrid.SelectedCells[0].RowIndex;
+                int pos = NetworkGrid.SelectedRows[0].Index;
                 if (this.networkList.ContainsKey(pos))
                 {
                     this.network = this.networkList[pos];
+                    this.networkManager.CurrentSocialNetwork = this.network;
                     this.editor = new NetworkEditorForm(this.network, this.networkManager);
                 }
                 else
                 {
-                    MessageBox.Show("An error occurred - no identifiable Network selected. Try again.");
+                    MessageBox.Show("An error occurred. Select one and only one Social Network. Try again.");
                 }
             } 
             else 
             {
-                MessageBox.Show("Please select one and only one Network.");
+                MessageBox.Show("Please select one and only one Social Network.");
             }
         }
+
+        /// <summary>
+        /// If cells are selected instead of rows, select those rows
+        /// </summary>
+        private void SelectRowsFromCells()
+        {
+            if (this.NetworkGrid.SelectedRows.Count == 0 && this.NetworkGrid.SelectedCells.Count > 0)
+            {
+                foreach (DataGridViewCell cell in this.NetworkGrid.SelectedCells)
+                {
+                    this.NetworkGrid.Rows[cell.RowIndex].Selected = true;
+                }
+            }
+        }
+
 
         public void Finish()
         {
