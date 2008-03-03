@@ -82,7 +82,14 @@ namespace Edu.Psu.Ist.DynamicMail
                 }
                 Accounts.Add(acct);
             }
-            //accts.Sort();
+            IsNew = true;
+        }
+
+        public SocialNetwork(Finishable finish, SocialNetworkManager manager)
+        {
+            this.finish = finish;
+            this.manager = manager;
+            Accounts = new List<Account>();
             IsNew = true;
         }
 

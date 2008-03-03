@@ -52,8 +52,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.SubjectCol,
             this.DateCol});
             this.mailGrid.Location = new System.Drawing.Point(243, 12);
+            this.mailGrid.MultiSelect = false;
             this.mailGrid.Name = "mailGrid";
             this.mailGrid.ReadOnly = true;
+            this.mailGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.mailGrid.Size = new System.Drawing.Size(628, 657);
             this.mailGrid.TabIndex = 2;
             this.mailGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mailGrid_CellContentDoubleClick);
