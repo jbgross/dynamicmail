@@ -29,11 +29,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 		private void InitializeComponent()
 		{
             this.NetworkGrid = new System.Windows.Forms.DataGridView();
+            this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
-            this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoneButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NetworkGrid)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +53,20 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.NetworkGrid.Size = new System.Drawing.Size(276, 209);
             this.NetworkGrid.TabIndex = 0;
             // 
+            // NameCol
+            // 
+            this.NameCol.HeaderText = "Network Name";
+            this.NameCol.Name = "NameCol";
+            this.NameCol.ReadOnly = true;
+            this.NameCol.Width = 180;
+            // 
+            // SizeCol
+            // 
+            this.SizeCol.HeaderText = "Size";
+            this.SizeCol.Name = "SizeCol";
+            this.SizeCol.ReadOnly = true;
+            this.SizeCol.Width = 50;
+            // 
             // EditButton
             // 
             this.EditButton.Location = new System.Drawing.Point(22, 227);
@@ -71,6 +85,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add Network";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // DeleteButton
             // 
@@ -80,20 +95,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.DeleteButton.TabIndex = 3;
             this.DeleteButton.Text = "Delete Network";
             this.DeleteButton.UseVisualStyleBackColor = true;
-            // 
-            // NameCol
-            // 
-            this.NameCol.HeaderText = "Network Name";
-            this.NameCol.Name = "NameCol";
-            this.NameCol.ReadOnly = true;
-            this.NameCol.Width = 180;
-            // 
-            // SizeCol
-            // 
-            this.SizeCol.HeaderText = "Size";
-            this.SizeCol.Name = "SizeCol";
-            this.SizeCol.ReadOnly = true;
-            this.SizeCol.Width = 50;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // DoneButton
             // 
@@ -105,7 +107,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.DoneButton.UseVisualStyleBackColor = true;
             this.DoneButton.Click += new System.EventHandler(this.DoneButton_Click);
             // 
-            // NetworkManager
+            // NetworkManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,7 +117,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.NetworkGrid);
-            this.Name = "NetworkManager";
+            this.Name = "NetworkManagerForm";
             this.Text = "NetworkManager";
             ((System.ComponentModel.ISupportInitialize)(this.NetworkGrid)).EndInit();
             this.ResumeLayout(false);

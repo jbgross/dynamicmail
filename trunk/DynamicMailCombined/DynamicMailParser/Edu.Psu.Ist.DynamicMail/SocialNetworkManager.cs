@@ -46,10 +46,11 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         /// <summary>
-        /// Public constructor
+        /// Public constructor - call the empty constructor first
+        /// to ensure we pick up old SN's
         /// </summary>
         /// <param name="sns"></param>
-        public SocialNetworkManager(Cluster[] sns)
+        public SocialNetworkManager(Cluster[] sns) : this()
         {
             this.networkClusters = sns;
             this.runThroughMode = true;
@@ -79,6 +80,7 @@ namespace Edu.Psu.Ist.DynamicMail
                         Hashtable inner = (Hashtable)outer[snName];
                         SocialNetwork sn = new SocialNetwork(snName, inner, this, this);
                         SocialNetworks.Add(sn);
+                        this.AddNetwork(sn);
                     }
                 }
             }
@@ -154,6 +156,15 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             this.writableNeworks[currentSocialNetwork.Name] = nw;
             this.currentSocialNetwork = null;
+        }
+
+        /// <summary>
+        /// remove a network from the list
+        /// </summary>
+        /// <param name="sn"></param>
+        public void RemoveNetwork(SocialNetwork sn)
+        {
+            this.writableNeworks.Remove(sn.Name);
         }
 
         /// <summary>

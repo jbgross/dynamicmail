@@ -98,7 +98,39 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
         public void Cancel()
         {
+            this.network = null;
+            this.editor = null;
+        }
 
+        /// <summary>
+        /// Delete a Social Network
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            this.SelectRowsFromCells();
+            int count = this.NetworkGrid.SelectedRows.Count;
+            if(count != 1) 
+            {
+                MessageBox.Show("Select one and only one Social Network.");
+                return;
+            }
+            int index = this.NetworkGrid.SelectedRows[0].Index;
+            SocialNetwork sn = this.networkList[index];
+            this.networkManager.RemoveNetwork(sn);
+            this.NetworkGrid.Rows.Remove(this.NetworkGrid.SelectedRows[0]);
+        }
+
+        /// <summary>
+        /// Create a new SocialNetwork
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            this.network = new SocialNetwork(this, this.networkManager);
+            this.editor = new NetworkEditorForm(this.network, this.networkManager);
         }
 	}
 }

@@ -182,27 +182,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
         }
 
-        /// <summary>
-        /// Open a message when it is double clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mailGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int index = e.RowIndex;
-            if(this.messageList.ContainsKey(index)) {
-                Outlook.MailItem msg = this.messageList[index];
-                try
-                {
-                    msg.Display(true);
-                }
-                catch (Exception x)
-                {
-                    MessageBox.Show(x.Message);
-                }
-            }
-        }
-
         private void folderTree_AfterCheck(object sender, TreeViewEventArgs e)
         {
             //  need to avoid open recurse 
@@ -220,5 +199,38 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.GetSelectedFolders(); 
             this.ShowMessages();
         }
+
+        /// <summary>
+        /// If cells are selected instead of rows, select those rows
+        /// </summary>
+        private void SelectRowsFromCells()
+        {
+            if (this.mailGrid.SelectedRows.Count == 0 && this.mailGrid.SelectedCells.Count > 0)
+            {
+                foreach (DataGridViewCell cell in this.mailGrid.SelectedCells)
+                {
+                    this.mailGrid.Rows[cell.RowIndex].Selected = true;
+                }
+            }
+        }
+
+        private void mailGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.SelectRowsFromCells();
+            int index = e.RowIndex;
+            if (this.messageList.ContainsKey(index))
+            {
+                Outlook.MailItem msg = this.messageList[index];
+                try
+                {
+                    msg.Display(false);
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.Message);
+                }
+            }
+        }
+
     }
 }
