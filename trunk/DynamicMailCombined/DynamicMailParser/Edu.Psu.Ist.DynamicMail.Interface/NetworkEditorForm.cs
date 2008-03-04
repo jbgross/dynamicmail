@@ -18,6 +18,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     {
         private SocialNetwork network;
         private SocialNetworkManager manager;
+        private NetworkManagerForm managerForm;
 
         /// <summary>
         /// Get the Name column
@@ -61,10 +62,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="finish"></param>
         /// <param name="network"></param>
-        public NetworkEditorForm(SocialNetwork network, SocialNetworkManager manager)
+        public NetworkEditorForm(NetworkManagerForm managerForm, SocialNetwork network, SocialNetworkManager manager)
         {
             this.network = network;
             this.manager = manager;
+            this.managerForm = managerForm;
             InitializeComponent();
             this.PopulateAccounts(network.Accounts);
             if (network.Name != null && !network.Name.Equals(""))
@@ -75,6 +77,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Focus();
         }
 
+        /// <summary>
+        /// populate the accounts from the network
+        /// </summary>
+        /// <param name="accounts"></param>
         private void PopulateAccounts(List<Account> accounts)
         {
             foreach(Account acct in this.network.Accounts)
@@ -114,10 +120,19 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 this.network.Name = networkName;
                 if (this.network.IsNew)
                 {
-                    this.manager.SocialNetworks.Add(this.network);
+                    this.manager.AddNetwork(this.network);
+                    this.manager.Save();
                 }
-                this.manager.Finish();
+                
+                // this is a hack; it would be better to use the NetworkManagerForm
+                // immediately after clustering, but...
+                if (this.managerForm != null)
+                {
+                    this.managerForm.Refresh();
+                }
+
                 this.Close();
+                this.manager.Finish();
             }
             catch (SocialNetworkException sne)
             {

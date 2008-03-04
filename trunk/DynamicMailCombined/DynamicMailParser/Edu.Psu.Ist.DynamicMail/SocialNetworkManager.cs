@@ -79,7 +79,6 @@ namespace Edu.Psu.Ist.DynamicMail
                         String snName = (String)nameObj;
                         Hashtable inner = (Hashtable)outer[snName];
                         SocialNetwork sn = new SocialNetwork(snName, inner, this, this);
-                        SocialNetworks.Add(sn);
                         this.AddNetwork(sn);
                     }
                 }
@@ -141,9 +140,9 @@ namespace Edu.Psu.Ist.DynamicMail
             }
             
             // throw an exception if the name isn't unique and this is a new network
-            if(currentSocialNetwork.IsNew && !this.NameIsUnique(name))
+            if(currentSocialNetwork.IsNew && ! this.NameIsUnique(name))
             {
-                throw new SocialNetworkException("Social Network name unique.");
+                throw new SocialNetworkException("Social Network name must be unique.");
             }
 
             Hashtable nw = new Hashtable();
@@ -154,6 +153,7 @@ namespace Edu.Psu.Ist.DynamicMail
                 al.Add(acct.Name);
                 nw[acct.Address] = al;
             }
+            SocialNetworks.Add(this.currentSocialNetwork);
             this.writableNeworks[currentSocialNetwork.Name] = nw;
             this.currentSocialNetwork = null;
         }
@@ -184,8 +184,11 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.AddNetwork(CurrentSocialNetwork);
-            CurrentSocialNetwork = null;
+            if (CurrentSocialNetwork != null)
+            {
+                this.AddNetwork(CurrentSocialNetwork);
+                CurrentSocialNetwork = null;
+            }
             if (this.runThroughMode)
             {
                 this.EditNewNetworks();
