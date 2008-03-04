@@ -13,7 +13,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     {
         private String initialSelectedFolder;
         private Finishable source;
-        private TreeNode tNode;
+        private static TreeNode tNode;
         private List<TreeNode> roots = new List<TreeNode>();
         private Dictionary<String, Outlook.MAPIFolder> nameFolder = new Dictionary<String, Outlook.MAPIFolder>();
         private TreeNode userInvoke = null;

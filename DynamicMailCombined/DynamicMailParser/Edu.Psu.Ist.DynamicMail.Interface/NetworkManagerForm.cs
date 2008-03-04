@@ -26,15 +26,30 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 		{
 			InitializeComponent();
             this.networkManager = snmanager;
-            foreach (SocialNetwork sn in networkManager.SocialNetworks)
-            {
-                String [] rowData = {sn.Name, sn.Accounts.Count.ToString() };
-                int pos = this.NetworkGrid.Rows.Add(rowData);
-                this.networkList[pos] = sn;
-            }
+            this.PopulateRows();
             this.Show();
             this.Focus();
 		}
+
+        /// <summary>
+        /// Override of refresh to ensure that the DataGridView's rows are refreshed
+        /// </summary>
+        public override void Refresh()
+        {
+            this.PopulateRows();
+            base.Refresh();
+        }
+
+        private void PopulateRows()
+        {
+            this.NetworkGrid.Rows.Clear();
+            foreach (SocialNetwork sn in this.networkManager.SocialNetworks)
+            {
+                String[] rowData = { sn.Name, sn.Accounts.Count.ToString() };
+                int pos = this.NetworkGrid.Rows.Add(rowData);
+                this.networkList[pos] = sn;
+            }
+        }
 
         /// <summary>
         /// If the done button is pressed
@@ -62,7 +77,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 {
                     this.network = this.networkList[pos];
                     this.networkManager.CurrentSocialNetwork = this.network;
-                    this.editor = new NetworkEditorForm(this.network, this.networkManager);
+                    this.editor = new NetworkEditorForm(this, this.network, this.networkManager);
                 }
                 else
                 {
@@ -130,7 +145,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void AddButton_Click(object sender, EventArgs e)
         {
             this.network = new SocialNetwork(this, this.networkManager);
-            this.editor = new NetworkEditorForm(this.network, this.networkManager);
+            this.editor = new NetworkEditorForm(this, this.network, this.networkManager);
         }
 	}
 }

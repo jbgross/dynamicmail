@@ -152,7 +152,7 @@ namespace Edu.Psu.Ist.DynamicMail
         public void Manage(Finishable finish)
         {
             this.finish = finish;
-            this.editor = new NetworkEditorForm(this, this.manager);
+            this.editor = new NetworkEditorForm(null, this, this.manager);
         }
 
         /// <summary>
