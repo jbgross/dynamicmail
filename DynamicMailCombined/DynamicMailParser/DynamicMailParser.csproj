@@ -55,6 +55,8 @@
       <DependentUpon>FilterDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Finishable.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FolderTreeView.cs">
+    </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.cs">
       <SubType>Form</SubType>
     </Compile>
