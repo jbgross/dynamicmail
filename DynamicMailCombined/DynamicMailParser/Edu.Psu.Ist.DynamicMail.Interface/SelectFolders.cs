@@ -17,9 +17,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     public partial class SelectFolders : Form
     {
         private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
-        private Finishable source;
+        private Finishable finish;
         private TreeNode tNode;
-        private Hashtable nameFolder = new Hashtable();
+        private Dictionary<string, Outlook.MAPIFolder> nameFolder = new Dictionary<string, Outlook.MAPIFolder>();
         private TreeNode userInvoke = null;
 
         /// <summary>
@@ -30,7 +30,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             get 
             {
                 this.GetSelectedFolders();
-                
                 return (Outlook.MAPIFolder []) this.selectedFolders.ToArray(); 
             }
         }
@@ -40,20 +39,28 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="roots"></param>
         /// <param name="source"></param>
-        public SelectFolders(Outlook.Folders roots, Finishable source)
+        public SelectFolders(FolderTree tree, Finishable finish)
         {
             InitializeComponent();
-            this.folderTree.AfterCheck += new TreeViewEventHandler(treeView_AfterCheck);
-            this.source = source;
-            foreach (Outlook.MAPIFolder folder in roots)
+            try
             {
-                // Add parent node to treeView1 control
-                tNode = this.folderTree.Nodes.Add(folder.FullFolderPath);
-                this.nameFolder[folder.FullFolderPath] = folder;
-                BuildTree(tNode, folder);
+                foreach (TreeNode parent in tree.Nodes)
+                {
+                    this.folderTree.Nodes.Add(parent);
+                }
             }
-            this.Visible = true;
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
+            this.folderTree.Refresh();
+            this.folderTree.AfterCheck += new TreeViewEventHandler(treeView_AfterCheck);
+            this.nameFolder = tree.NameFolder;
+            this.finish = finish;
+            this.Show();
+            this.Focus();
         }
+
 
         /// <summary>
         /// Get an array of all the folders selected
@@ -61,17 +68,14 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <returns></returns>
         public void GetSelectedFolders()
         {
-            TreeNode top = this.folderTree.TopNode;
-            while (true)
+            TreeNodeCollection tops = this.folderTree.Nodes;
+            foreach(TreeNode top in tops)
             {
-                if (top == null)
-                    return;
                 if (top.Checked && this.nameFolder.ContainsKey(top.Text))
                 {
                     this.selectedFolders.Add((Outlook.MAPIFolder)this.nameFolder[top.Text]);
                 }
                 this.GetSelectedSubFolders(this.selectedFolders, top);
-                top = top.NextNode;
             }
 
         }
@@ -87,30 +91,15 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             while(true) {
                 if (child == null)
                     return;
-                if (child.Checked && this.nameFolder.ContainsKey(child.Text)) 
+                if (child.Checked && this.nameFolder.ContainsKey(child.Name)) 
                 {
-                    selectedFolders.Add((Outlook.MAPIFolder) this.nameFolder[child.Text]);
+                    selectedFolders.Add((Outlook.MAPIFolder) this.nameFolder[child.Name]);
                     GetSelectedSubFolders(selectedFolders, child);
                 }
                 child = child.NextNode;
             } 
         }
 
-        private void BuildTree(TreeNode tree, Outlook.MAPIFolder parent)
-        {
-            Outlook.Folders children = parent.Folders;
-            if (children.Count == 0)
-            {
-                return;
-            }
-
-            foreach (Outlook.MAPIFolder child in children)
-            {
-                TreeNode parentNode = tree.Nodes.Add(child.FullFolderPath);
-                this.nameFolder[child.FullFolderPath] = child;
-                BuildTree(parentNode, child);
-            }
-        }
         /// <summary>
         /// Code taken from http://www.dotnet247.com/247reference/msgs/26/133631.aspx
         /// </summary>
@@ -135,7 +124,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
         private void Done_Click(object sender, EventArgs e)
         {
-            this.source.Finish();
+            this.finish.Finish();
+            foreach (TreeNode node in this.folderTree.Nodes)
+            {
+                this.folderTree.Nodes.Remove(node);
+            }
+            this.Close();
         }
 
     }

@@ -17,6 +17,8 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>Edu.Psu.Ist.DynamicMail</RootNamespace>
     <AssemblyName>Edu.Psu.Ist.DynamicMail</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>OutlookAddin.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <!-- 
@@ -145,6 +147,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="OutlookAddin.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

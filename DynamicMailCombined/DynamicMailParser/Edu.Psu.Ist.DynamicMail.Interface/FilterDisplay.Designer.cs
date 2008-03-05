@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
     partial class FilterDisplay
@@ -124,6 +125,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Controls.Add(this.mailGrid);
             this.Name = "FilterDisplay";
             this.Text = "FilterDisplay";
+            this.FormClosing += new FormClosingEventHandler(this.FilterDisplay_Close);
             ((System.ComponentModel.ISupportInitialize)(this.mailGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

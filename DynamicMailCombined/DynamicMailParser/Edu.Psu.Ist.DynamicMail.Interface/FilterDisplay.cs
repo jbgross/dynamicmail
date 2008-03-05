@@ -26,11 +26,22 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// Constructor
         /// </summary>
         /// <param name="roots">the root folders</param>
-        public FilterDisplay(Outlook.Folders roots, String currentFolderName, FilterMail filter)
+        public FilterDisplay(FolderTree tree, String currentFolderName, FilterMail filter)
         {
             InitializeComponent();
+            try
+            {
+                foreach (TreeNode parent in tree.Nodes)
+                {
+                    this.folderTree.Nodes.Add(parent);
+                }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
+
             this.filter = filter;
-            this.BuildRoot(roots);
             this.ShowMessages();
             this.Show();
             this.SelectFolderAndDisplay(currentFolderName);
@@ -58,24 +69,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
         }
 
-        /// <summary>
-        /// Build out folder hierarchy
-        /// </summary>
-        /// <param name="roots"></param>
-        /// <param name="source"></param>
-        public void BuildRoot(Outlook.Folders roots)
-        {
-            foreach (Outlook.MAPIFolder folder in roots)
-            {
-                // Add parent node to folderTree control
-                tNode = this.folderTree.Nodes.Add(folder.Name);
-                tNode.Name = folder.FullFolderPath;
-                this.roots.Add(tNode);
-                this.nameFolder[folder.FullFolderPath] = folder;
-                BuildTree(tNode, folder);
-            }
-        }
-
+ 
         /// <summary>
         /// Add a folder to the Selected list and display that level
         /// </summary>
@@ -160,28 +154,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             } 
         }
 
-        /// <summary>
-        /// Build the Mail Folder tree
-        /// </summary>
-        /// <param name="tree"></param>
-        /// <param name="parent"></param>
-        private void BuildTree(TreeNode tree, Outlook.MAPIFolder parent)
-        {
-            Outlook.Folders children = parent.Folders;
-            if (children.Count == 0)
-            {
-                return;
-            }
-
-            foreach (Outlook.MAPIFolder child in children)
-            {
-                TreeNode parentNode = tree.Nodes.Add(child.Name);
-                parentNode.Name = child.FullFolderPath;
-                this.nameFolder[child.FullFolderPath] = child;
-                BuildTree(parentNode, child);
-            }
-        }
-
         private void folderTree_AfterCheck(object sender, TreeViewEventArgs e)
         {
             //  need to avoid open recurse 
@@ -191,7 +163,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
 
             e.Node.Expand();
-
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -229,6 +200,15 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 {
                     MessageBox.Show(x.Message);
                 }
+            }
+
+        }
+
+        private void FilterDisplay_Close (object sender, EventArgs e)
+        {
+            foreach (TreeNode node in this.folderTree.Nodes)
+            {
+                this.folderTree.Nodes.Remove(node);
             }
         }
 

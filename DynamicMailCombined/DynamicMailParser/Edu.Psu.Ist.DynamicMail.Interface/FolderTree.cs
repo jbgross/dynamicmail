@@ -12,6 +12,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 	{
         private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
         private Dictionary<string, Outlook.MAPIFolder> nameFolder = new Dictionary<string, Outlook.MAPIFolder>();
+
+        public Dictionary<string, Outlook.MAPIFolder> NameFolder
+        {
+            get { return nameFolder; }
+        }
+
         private TreeNode userInvoke = null;
 
         /// <summary>
@@ -19,16 +25,34 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="roots"></param>
         /// <param name="source"></param>
-        private FolderTree(Outlook.Folders roots)
+        public FolderTree(Outlook.Folders roots)
         {
-            this.TreeView.CheckBoxes = true;
             foreach (Outlook.MAPIFolder folder in roots)
             {
                 // Add parent node to treeView1 control
-                TreeNode root = new TreeNode(folder.FullFolderPath);
+                TreeNode root = new TreeNode(folder.Name);
+                root.Name = folder.FullFolderPath;
                 this.Nodes.Add(root);
                 this.nameFolder[folder.FullFolderPath] = folder;
-                BuildTree(root, folder);
+                this.BuildTree(root, folder);
+            }
+        }
+
+        private void BuildTree(TreeNode parentNode, Outlook.MAPIFolder parentFolder)
+        {
+            Outlook.Folders children = parentFolder.Folders;
+            if (children.Count == 0)
+            {
+                return;
+            }
+
+            foreach (Outlook.MAPIFolder child in children)
+            {
+                TreeNode childNode = new TreeNode(child.Name);
+                childNode.Name = child.FullFolderPath;
+                parentNode.Nodes.Add(childNode);
+                this.nameFolder[child.FullFolderPath] = child;
+                BuildTree(childNode, child);
             }
         }
 
@@ -71,23 +95,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 }
                 child = child.NextNode;
             } 
-        }
-
-        private void BuildTree(TreeNode parentNode, Outlook.MAPIFolder parentFolder)
-        {
-            Outlook.Folders children = parentFolder.Folders;
-            if (children.Count == 0)
-            {
-                return;
-            }
-
-            foreach (Outlook.MAPIFolder child in children)
-            {
-                TreeNode childNode = new TreeNode(child.FullFolderPath);
-                parentNode.Nodes.Add(childNode);
-                this.nameFolder[child.FullFolderPath] = child;
-                BuildTree(parentNode, child);
-            }
         }
 
         private bool IsDescendent(TreeNode parent, TreeNode desc)

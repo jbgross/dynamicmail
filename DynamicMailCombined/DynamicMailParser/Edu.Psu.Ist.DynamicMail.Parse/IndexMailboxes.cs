@@ -55,10 +55,10 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// Public constructor
         /// </summary>
         /// <param name="allFolders"></param>
-        public IndexMailboxes(Outlook.Folders allFolders, Indexes index, String myAddress)
+        public IndexMailboxes(FolderTree tree, Indexes index, String myAddress)
         {
             this.ignoreAddress = myAddress;
-            this.select = new SelectFolders(allFolders, this);
+            this.select = new SelectFolders(tree, this);
             this.index = index;
         }
 
@@ -150,6 +150,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                                 String addr = rec.Address;
                                 if (addr.Equals(this.ignoreAddress))
                                     continue;
+                                addr = addr.ToLower();
                                 recipients.Add(addr);
                                 // add the name DEBUG
                                 this.index.AddAddressName(rec.Name, addr);
@@ -159,6 +160,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                             if (sender != null && sender.Equals(this.ignoreAddress) == false)
                             {
                                 recipients.Add(sender);
+                                sender = sender.ToLower();
                                 // add the name DEBUG
                                 this.index.AddAddressName(foundEmail.SenderName, sender);
                             }

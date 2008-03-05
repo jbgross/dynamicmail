@@ -85,6 +85,12 @@ namespace Edu.Psu.Ist.DynamicMail
             IsNew = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="folderTree"></param>
+        /// <param name="finish"></param>
+        /// <param name="manager"></param>
         public SocialNetwork(Finishable finish, SocialNetworkManager manager)
         {
             this.finish = finish;
@@ -180,7 +186,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void FilterFolder(Outlook.MAPIFolder current)
         {
-            this.filterMail = new FilterMail(this, current);
+            this.filterMail = new FilterMail(this.manager.FolderTree, this, current);
         }
 
     }
