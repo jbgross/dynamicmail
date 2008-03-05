@@ -31,6 +31,18 @@ namespace Edu.Psu.Ist.DynamicMail
         private SocialNetworkManager networkManager = null;
         private Outlook.Folders rootFolders;
         private SocialNetwork currentSocialNetwork;
+        private FolderTree folderTree;
+
+        public FolderTree FolderTree
+        {
+            get {
+                if (folderTree == null)
+                {
+                    this.folderTree = new FolderTree(this.RootFolders);
+                }
+                return this.folderTree; 
+            }
+        }
 
         public Outlook.Folders RootFolders
         {
@@ -128,7 +140,7 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             this.filterButtons = new List<Office.CommandBarButton>();
             this.filterNetwork = new Dictionary<String, SocialNetwork>();
-            this.networkManager = new SocialNetworkManager();
+            this.networkManager = new SocialNetworkManager(FolderTree);
             if (this.networkManager.Count == 0)
             {
                 return;
@@ -178,7 +190,11 @@ namespace Edu.Psu.Ist.DynamicMail
                 if (ctrl.Tag == "mailboxes")
                 {
                     string myAddress = this.ActiveExplorer().Session.CurrentUser.Address;
-                    new IndexMailboxes(this.rootFolders, Indexes.Instance, myAddress);
+                    if (this.folderTree == null)
+                    {
+                        this.folderTree = new FolderTree(this.rootFolders);
+                    }
+                    new IndexMailboxes(this.folderTree, Indexes.Instance, myAddress);
                 }
                 else if (ctrl.Tag.Equals("cluster"))
                 {
@@ -212,7 +228,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.networkManager = new SocialNetworkManager(pcd.Networks);
+            this.networkManager = new SocialNetworkManager(pcd.Networks, FolderTree);
             this.pcd = null;
         }
 

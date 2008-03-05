@@ -16,6 +16,7 @@ namespace Edu.Psu.Ist.DynamicMail
         private Dictionary<String, Outlook.MAPIFolder> searchedFolders;
         private List<Outlook.MailItem> messages = new List<Outlook.MailItem>();
         private bool changed = false;
+        private FolderTree folderTree;
 
         /// <summary>
         /// Get the messages
@@ -41,8 +42,9 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         /// <param name="socialNetwork">The SocialNetwork to filter on</param>
         /// <param name="folder">The folder to start filtering on</param>
-        public FilterMail (SocialNetwork socialNetwork, Outlook.MAPIFolder folder)
+        public FilterMail(FolderTree folderTree, SocialNetwork socialNetwork, Outlook.MAPIFolder folder)
         {
+            this.folderTree = folderTree;
             this.socialNetwork = socialNetwork;
             this.folders = new Dictionary<string,Outlook.MAPIFolder>();
             this.searchedFolders = new Dictionary<string, Outlook.MAPIFolder>();
@@ -143,9 +145,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         private void DisplayMail(Outlook.MAPIFolder folder)
         {
-            this.filterDisplay = new FilterDisplay(this.socialNetwork.RootFolders, 
-                folder.FullFolderPath,
-                this);
+            this.filterDisplay = new FilterDisplay(this.folderTree, folder.FullFolderPath, this);
         }
 
         /// <summary>

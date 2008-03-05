@@ -34,7 +34,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.startTime = DateTime.Now;
             this.lastTime = DateTime.Now;
             CheckForIllegalCrossThreadCalls = false;
-            this.Visible = true;
+            this.Show();
+            this.Focus();
             this.Refresh();
         }
 

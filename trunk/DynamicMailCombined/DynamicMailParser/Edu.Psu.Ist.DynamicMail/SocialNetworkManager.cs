@@ -18,6 +18,12 @@ namespace Edu.Psu.Ist.DynamicMail
         private Hashtable writableNeworks = new Hashtable();
         private NetworkManagerForm managerForm;
         private bool runThroughMode = false;
+        private FolderTree folderTree;
+
+        public FolderTree FolderTree
+        {
+            get { return folderTree; }
+        }
 
         /// <summary>
         /// The number of SocialNetwork objects
@@ -50,7 +56,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// to ensure we pick up old SN's
         /// </summary>
         /// <param name="sns"></param>
-        public SocialNetworkManager(Cluster[] sns) : this()
+        public SocialNetworkManager(Cluster[] sns, FolderTree folderTree) : this(folderTree)
         {
             this.networkClusters = sns;
             this.runThroughMode = true;
@@ -60,8 +66,9 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <summary>
         /// Public constructor to determine if we have any SocialNetworks
         /// </summary>
-        public SocialNetworkManager()
+        public SocialNetworkManager(FolderTree folderTree)
         {
+            this.folderTree = folderTree;
             try
             {
                 ObjectXmlReader reader = new ObjectXmlReader();
