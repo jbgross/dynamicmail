@@ -14,6 +14,15 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         //singlton class instance
         private static Indexes instance=null;
         private static readonly object padlock = new object();
+        private static String localAccountAddress;
+
+        private String fileName = "c:\\" + LocalAccountAddress + "emailparse2.xml";
+
+        public static String LocalAccountAddress
+        {
+            get { return Indexes.localAccountAddress; }
+            set { Indexes.localAccountAddress = value; }
+        }
 
         //arraylist to store all of the entry ids that have been indexed
         private ArrayList AlreadyIndexed = new ArrayList();
@@ -65,7 +74,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             IndexList.Add(AlreadyIndexed);
 
             //Send the list the the XML writer in order to write it to the specified file
-            WriteXML.WriteObjectXml(IndexList, "c:\\emailparse2.xml");
+            WriteXML.WriteObjectXml(IndexList, fileName);
         }
 
         /// <summary>
@@ -76,7 +85,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             //create an XML reader object
             ObjectXmlReader ReadXML = new ObjectXmlReader();
             //get a list of all the Hashtables within the XML file
-            List<Object> IndexList = ReadXML.ReadObjectXml("c:\\emailparse2.xml");
+            List<Object> IndexList = ReadXML.ReadObjectXml(fileName);
 
             //assign each hashtable to the proper index based on the order that they were saved
             //within the write method

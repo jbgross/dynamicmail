@@ -57,6 +57,8 @@ namespace Edu.Psu.Ist.DynamicMail
             selectExplorers.NewExplorer += new Outlook
                 .ExplorersEvents_NewExplorerEventHandler(newExplorer_Event);
             this.rootFolders = this.ActiveExplorer().Session.Folders;
+            string myAddress = this.ActiveExplorer().Session.CurrentUser.Address;
+            Indexes.LocalAccountAddress = myAddress;
             this.AddToolbar();
             this.AddFilterBar();
         }
@@ -183,18 +185,18 @@ namespace Edu.Psu.Ist.DynamicMail
         {
             try
             {
-                Outlook.MAPIFolder inbox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
-                Outlook.MAPIFolder sentBox = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
-                Outlook.MAPIFolder contacts = this.ActiveExplorer().Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
+                Outlook.Explorer activeExplorer = this.ActiveExplorer();
+                Outlook.MAPIFolder inbox = activeExplorer.Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox);
+                Outlook.MAPIFolder sentBox = activeExplorer.Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderSentMail);
+                Outlook.MAPIFolder contacts = activeExplorer.Session.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts);
 
                 if (ctrl.Tag == "mailboxes")
                 {
-                    string myAddress = this.ActiveExplorer().Session.CurrentUser.Address;
                     if (this.folderTree == null)
                     {
                         this.folderTree = new FolderTree(this.rootFolders);
                     }
-                    new IndexMailboxes(this.folderTree, Indexes.Instance, myAddress);
+                    new IndexMailboxes(this.folderTree, Indexes.Instance, activeExplorer);
                 }
                 else if (ctrl.Tag.Equals("cluster"))
                 {

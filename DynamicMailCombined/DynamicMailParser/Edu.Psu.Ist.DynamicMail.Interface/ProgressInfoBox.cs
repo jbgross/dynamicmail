@@ -51,13 +51,26 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Refresh();
             int unitsLeft = (100 - this.progress.Value);
             DateTime currentTime = DateTime.Now;
-            TimeSpan currentDuration = currentTime - this.lastTime;
-            double unitTimeSoFar = currentDuration.TotalSeconds;
-            double timeLeft = unitsLeft * unitTimeSoFar;
-            this.TimeRemaining.Text = this.ConvertTime((int) timeLeft);
+
+            // get the average time to completion
+            TimeSpan totalDurationSoFar = currentTime - this.startTime;
+            double unitTimeSoFar = totalDurationSoFar.TotalSeconds / this.progress.Value;
+            double meanTimeLeft = unitsLeft * unitTimeSoFar;
+
+            // get the time to completion based on the last iteration
+            //TimeSpan localDuration = currentTime - this.lastTime;
+            //double localUnitTime = localDuration.TotalSeconds / this.progress.Value;
+            //double localTimeLeft = unitsLeft * localUnitTime;
+
+            // use whichever is higher
+            //double higherTime = meanTimeLeft > localTimeLeft ? meanTimeLeft : localTimeLeft;
+
+            //this.TimeRemaining.Text = this.ConvertTime((int) higherTime);
+            this.TimeRemaining.Text = this.ConvertTime((int)meanTimeLeft);
             TimeSpan totalDuration = currentTime - this.startTime;
             this.TotalTime.Text = this.ConvertTime((int)totalDuration.TotalSeconds);
             this.lastTime = currentTime;
+            this.Focus();
         }
 
         /// <summary>

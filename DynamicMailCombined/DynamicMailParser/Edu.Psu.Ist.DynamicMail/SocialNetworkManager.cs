@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Edu.Psu.Ist.DynamicMail.Interface;
+
 using Edu.Psu.Ist.Keystone.Dimensions;
 using System.Collections;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -12,7 +14,8 @@ namespace Edu.Psu.Ist.DynamicMail
     /// </summary>
     public class SocialNetworkManager : Finishable
     {
-        private String fileName = "c:\\groupList.xml";
+        private String fileName = "c:\\" + Indexes.LocalAccountAddress +"groupList.xml";
+
         private Cluster[] networkClusters;
         private int index = 0;
         private Hashtable writableNeworks = new Hashtable();
