@@ -20,6 +20,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         private String[] splitArray = { "; " };
         private InfoBox infoBox;
         private Indexes index;
+        private Outlook.Explorer activeExplorer;
 
         private string ignoreAddress;
 
@@ -55,9 +56,10 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// Public constructor
         /// </summary>
         /// <param name="allFolders"></param>
-        public IndexMailboxes(FolderTree tree, Indexes index, String myAddress)
+        public IndexMailboxes(FolderTree tree, Indexes index, Outlook.Explorer activeExplorer)
         {
-            this.ignoreAddress = myAddress;
+            this.activeExplorer = activeExplorer;
+            this.ignoreAddress = Indexes.LocalAccountAddress;
             this.select = new SelectFolders(tree, this);
             this.index = index;
         }
@@ -67,7 +69,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// </summary>
         public void Finish()
         {
-            this.select.Visible = false;
             this.indexFolders = select.SelectedFolders;
             this.totalCount = this.GetTotalCount(this.indexFolders);
             this.select = null;
@@ -102,8 +103,10 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             int lookedAtTotal = 0;
             foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
             {
-                Outlook.Items searchFolder = mailbox.Items;
+                // testing
+                this.activeExplorer.SelectFolder(mailbox);
 
+                Outlook.Items searchFolder = mailbox.Items;
                 //variables to hold found email data
                 String foundEmailEntryId;
 
@@ -125,19 +128,17 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                         break;
                     }
 
-                    // type check on the item - only looking at emails
-                    //if (! (o is Outlook.MailItem))
-                    //{
-                    //    continue;
-                    //}
-                    // don't typecheck - seems a significant slowdown
-                    // fall through to the catch
+                    //type check on the item - only looking at emails
+                    if (! (o is Outlook.MailItem))
+                    {
+                        continue;
+                    }
 
                     try
                     {
 
                         // cast to email
-                        Outlook.MailItem foundEmail = (Outlook.MailItem)o;
+                        Outlook.MailItem foundEmail = (Outlook.MailItem) o;
                         foundEmailEntryId = foundEmail.EntryID;
                         // if we haven't already indexed this one, index it
                         if (!this.index.SearchAlreadyIndexed(foundEmailEntryId))
@@ -183,6 +184,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                         // ignore bad casts
                     }
                 }
+                
             }
 
             Pib.ChangeText("Writing index to disk...");
@@ -191,9 +193,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             index.WriteIndexToXML();
 
             // get rid of the progress bar box
-            Pib.Visible = false;
-            Pib.Refresh();
-            Pib = null;
+            Pib.Close();
         }
 
         /// <summary>

@@ -125,11 +125,16 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private void Done_Click(object sender, EventArgs e)
         {
             this.finish.Finish();
+            ReleaseTree(sender, e);
+            this.Close();
+        }
+
+        private void ReleaseTree(object sender, EventArgs e)
+        {
             foreach (TreeNode node in this.folderTree.Nodes)
             {
                 this.folderTree.Nodes.Remove(node);
             }
-            this.Close();
         }
 
     }

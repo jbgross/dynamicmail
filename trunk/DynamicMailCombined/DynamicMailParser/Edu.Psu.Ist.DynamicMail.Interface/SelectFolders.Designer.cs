@@ -42,7 +42,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Done.Text = "Done";
             this.Done.UseVisualStyleBackColor = true;
             this.Done.Click += new System.EventHandler(this.Done_Click);
-            this.FormClosing += new FormClosingEventHandler(this.Done_Click);
+            this.FormClosing += new FormClosingEventHandler(this.ReleaseTree);
 
             // 
             // folderTree
