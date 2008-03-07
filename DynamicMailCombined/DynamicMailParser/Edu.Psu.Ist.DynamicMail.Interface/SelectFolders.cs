@@ -19,7 +19,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
         private Finishable finish;
         private TreeNode tNode;
-        private Dictionary<string, Outlook.MAPIFolder> nameFolder = new Dictionary<string, Outlook.MAPIFolder>();
+        private Dictionary<string, Outlook.MAPIFolder> nameFolder;
         private TreeNode userInvoke = null;
         private FolderTree sourceTree;
 
@@ -44,6 +44,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             InitializeComponent();
             this.sourceTree = sourceTree;
+            this.nameFolder = sourceTree.NameFolder;
             try
             {
                 foreach (TreeNode parent in this.sourceTree.Nodes)
