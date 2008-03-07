@@ -21,6 +21,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private TreeNode tNode;
         private Dictionary<string, Outlook.MAPIFolder> nameFolder = new Dictionary<string, Outlook.MAPIFolder>();
         private TreeNode userInvoke = null;
+        private FolderTree sourceTree;
 
         /// <summary>
         /// Get an array of the selected folders
@@ -39,12 +40,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// </summary>
         /// <param name="roots"></param>
         /// <param name="source"></param>
-        public SelectFolders(FolderTree tree, Finishable finish)
+        public SelectFolders(FolderTree sourceTree, Finishable finish)
         {
             InitializeComponent();
+            this.sourceTree = sourceTree;
             try
             {
-                foreach (TreeNode parent in tree.Nodes)
+                foreach (TreeNode parent in this.sourceTree.Nodes)
                 {
                     this.folderTree.Nodes.Add(parent);
                 }
@@ -55,7 +57,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
             this.folderTree.Refresh();
             this.folderTree.AfterCheck += new TreeViewEventHandler(treeView_AfterCheck);
-            this.nameFolder = tree.NameFolder;
+            this.nameFolder = sourceTree.NameFolder;
             this.finish = finish;
             this.Show();
             this.Focus();
@@ -135,6 +137,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             {
                 this.folderTree.Nodes.Remove(node);
             }
+            this.sourceTree.ClearCheckBoxes();
         }
 
     }

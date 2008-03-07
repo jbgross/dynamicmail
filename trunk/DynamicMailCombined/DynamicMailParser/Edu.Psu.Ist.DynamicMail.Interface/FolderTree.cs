@@ -18,8 +18,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             get { return nameFolder; }
         }
 
-        private TreeNode userInvoke = null;
-
         /// <summary>
         /// Public constructor
         /// </summary>
@@ -101,6 +99,25 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             return desc.FullPath.IndexOf(parent.FullPath) == 0;
         }
+
+        /// <summary>
+        /// clear all check boxes
+        /// </summary>
+        public void ClearCheckBoxes()
+        {
+            foreach (TreeNode node in this.Nodes)
+            {
+                this.ClearCheckBoxRecurse(node);
+            }
+        }
+
+        private void ClearCheckBoxRecurse(TreeNode parent)
+        {
+            parent.Checked = false;
+            foreach (TreeNode child in parent.Nodes)
+                ClearCheckBoxRecurse(child);
+        }
+
 
 
 	}
