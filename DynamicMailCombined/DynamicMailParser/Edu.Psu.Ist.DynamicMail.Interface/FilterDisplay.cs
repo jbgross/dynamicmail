@@ -14,10 +14,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         private String initialSelectedFolder;
         private Finishable source;
         private static TreeNode tNode;
-        private List<TreeNode> roots = new List<TreeNode>();
-        private Dictionary<String, Outlook.MAPIFolder> nameFolder = new Dictionary<String, Outlook.MAPIFolder>();
+        private Dictionary<String, Outlook.MAPIFolder> nameFolder;
         private TreeNode userInvoke = null;
         private FilterMail filter;
+        private FolderTree sourceTree;
 
         // this works much better than a list, trust me - JBG
         private Dictionary<int, Outlook.MailItem> messageList = new Dictionary<int, Outlook.MailItem>();
@@ -25,13 +25,17 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="roots">the root folders</param>
-        public FilterDisplay(FolderTree tree, String currentFolderName, FilterMail filter)
+        /// <param name="sourceTree">The FolderTree object, which will be released later</param>
+        /// <param name="currentFolderName">The name of the current folder selected</param>
+        /// <param name="filter">The actual filter</param>
+        public FilterDisplay(FolderTree sourceTree, String currentFolderName, FilterMail filter)
         {
             InitializeComponent();
+            this.sourceTree = sourceTree;
+            this.nameFolder = sourceTree.NameFolder;
             try
             {
-                foreach (TreeNode parent in tree.Nodes)
+                foreach (TreeNode parent in this.sourceTree.Nodes)
                 {
                     this.folderTree.Nodes.Add(parent);
                 }
@@ -42,9 +46,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             }
 
             this.filter = filter;
+            this.SelectFolderAndDisplay(currentFolderName);
             this.ShowMessages();
             this.Show();
-            this.SelectFolderAndDisplay(currentFolderName);
             this.Focus();
         }
 
@@ -76,7 +80,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         public void SelectFolderAndDisplay(String folderName)
         {
             this.initialSelectedFolder = folderName;
-            foreach (TreeNode root in this.roots)
+            foreach (TreeNode root in this.folderTree.Nodes)
             {
                 this.ExpandChecked(root);
             }
@@ -93,21 +97,19 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             {
                 // first, get the folder out of the list
                 String path = child.Name;
-                if (this.nameFolder.ContainsKey(path))
+                // check the folder
+                if (this.initialSelectedFolder.Equals(path))
                 {
-                    // check the folder
-                    if (this.initialSelectedFolder.Equals(path))
-                    {
-                        child.Checked = true;
-                    }
-
-                    // expand the folder and its parent
-                    if (child.Checked)
-                    {
-                        parent.Expand();
-                        child.Expand();
-                    }
+                    child.Checked = true;
                 }
+
+                // expand the folder and its parent
+                if (child.Checked)
+                {
+                    parent.Expand();
+                    child.Expand();
+                }
+
                 ExpandChecked(child);
             }
         }
@@ -118,7 +120,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <returns></returns>
         public void GetSelectedFolders()
         {
-            foreach (TreeNode root in this.roots)
+            foreach (TreeNode root in this.folderTree.Nodes)
             {
                 this.GetSelectedSubFolders(root);
             }
@@ -132,11 +134,10 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="parent"></param>
         private void GetSelectedSubFolders(TreeNode parent)
         {
-            TreeNode child = parent.FirstNode;
-            while(true) {
-                if (child == null)
-                    return;
-                if(this.nameFolder.ContainsKey(child.Name)) {
+            foreach (TreeNode child in parent.Nodes)
+            {
+                if(this.nameFolder.ContainsKey(child.Name)) 
+                {
                     Outlook.MAPIFolder folder = this.nameFolder[child.Name];
                     if (child.Checked)
                     {
@@ -148,11 +149,9 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                     }
                     // recurse 
                     GetSelectedSubFolders(child);
-                    // set the child for the next iteration
-                    child = child.NextNode;
                 }
-            } 
-        }
+            }
+        } 
 
         private void folderTree_AfterCheck(object sender, TreeViewEventArgs e)
         {
@@ -210,6 +209,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             {
                 this.folderTree.Nodes.Remove(node);
             }
+            this.sourceTree.ClearCheckBoxes();
         }
 
     }
