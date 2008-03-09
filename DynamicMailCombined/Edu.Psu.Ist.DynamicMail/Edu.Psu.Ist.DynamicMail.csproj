@@ -135,13 +135,13 @@
      be found.
   -->
   <ItemGroup>
-    <Compile Include="Edu.Psu.Ist.Keystone.Algorithms\KMeansCartesian2D.cs" />
     <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ArrayListObjectXMLConverter.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Data\DataElement.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Data\IntegerData.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2D.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2DDataElement.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Data\StringData.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IndexObjectXMLConverter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IObjectXmlConverter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlConverterRegistry.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlExceptions.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlReader.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlWriter.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Account.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\EditAccountForm.cs">
       <SubType>Form</SubType>
@@ -152,7 +152,7 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.Designer.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.designer.cs">
       <DependentUpon>FilterDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Finishable.cs" />
@@ -160,13 +160,13 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.Designer.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.designer.cs">
       <DependentUpon>GetNumericInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.Designer.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.designer.cs">
       <DependentUpon>InfoBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.cs">
@@ -178,21 +178,17 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.Designer.cs">
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.designer.cs">
       <DependentUpon>NetworkManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.Designer.cs">
-      <DependentUpon>ProgressInfoBox.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.Designer.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.Designer.cs">
-      <DependentUpon>SelectFolders.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.Designer.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Stoppable.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Indexes.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexMailboxes.cs" />
@@ -206,12 +202,25 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkException.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkFilters.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkManager.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IndexObjectXMLConverter.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IObjectXmlConverter.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlConverterRegistry.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlExceptions.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlReader.cs" />
-    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlWriter.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Algorithms\KMeansCartesian2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\DataElement.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\IntegerData.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2DDataElement.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\StringData.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\ArtificialVectors.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cartesian2DPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cluster.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DataType.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DecimalPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DiscretePlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\InvertedBooleanPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\PlaneType.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Space.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Vector.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\VectorException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -240,11 +249,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.resx">
-      <DependentUpon>ProgressInfoBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.resx">
-      <DependentUpon>SelectFolders.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -258,9 +265,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\ClassDiagram1.cd" />
-    <None Include="Edu.Psu.Ist.DynamicMail.Parse\Store.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXML.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -287,28 +291,9 @@
     <Compile Include="ThisApplication.Designer.cs">
       <DependentUpon>ThisApplication.Designer.xml</DependentUpon>
     </Compile>
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\ArtificialVectors.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cartesian2DPlane.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid2D.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cluster.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DataType.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DecimalPlane.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DiscretePlane.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\InvertedBooleanPlane.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\PlaneType.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Space.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Vector.cs" />
-    <Compile Include="Edu.Psu.Ist.Keystone.Vector\VectorException.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Edu.Psu.Ist.DynamicMail.Parse\hashdata.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Edu.Psu.Ist.DynamicMail.Parse\stoplist.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Edu.Ist.Psu.DynamciMail.XmlTools\test-address.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
