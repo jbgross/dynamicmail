@@ -103,6 +103,12 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             int lookedAtTotal = 0;
             foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
             {
+                // stop if requested
+                if (!ContinueParsing)
+                {
+                    break;
+                }
+
                 // testing
                 this.activeExplorer.SelectFolder(mailbox);
 
