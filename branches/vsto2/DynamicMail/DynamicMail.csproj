@@ -1,0 +1,447 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- This section defines project level properties.
+         
+         Configuration : Specifies a default value for debug.
+         Platform : Specifies what CPU the output of this project can run on.
+         OutputType : Must be "Library" for VSTO.
+         NoStandardLibraries : Set to "false" for VSTO.
+         RootNamespace : In C#, this specifies the namespace given to new files. In VB, all objects are wrapped in
+                         this namespace at runtime.
+         AssemblyName : Name of the output assembly. -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD029173-1604-4A84-BBED-D7477BB55E25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <RootNamespace>DynamicMail</RootNamespace>
+    <AssemblyName>DynamicMail</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- 
+        VSTO_TrustAssembliesLocation - If true, VSTO gives the project output full trust in user-
+              level policy when the project is built.
+        VSTO_HostDocumentName - Not used in addins.
+    -->
+    <VSTO_TrustAssembliesLocation>true</VSTO_TrustAssembliesLocation>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!--
+        properites needed to register addins
+        AddinRegistryHive - Root registry hive for the addin
+        AddinRegistryKey  - Registry key where this addin is registered
+    -->
+    <AddinRegistryHive>CurrentUser</AddinRegistryHive>
+    <AddinRegistryKey>Software\Microsoft\Office\Outlook\Addins</AddinRegistryKey>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Debug" configuration is 
+       selected. 
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Release" configuration is 
+       selected.
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- This section enables pre and post build steps. However, 
+       in VSTO use MSBuild tasks instead of these properties.       
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!--
+     This sections specifies references for the project.
+  -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime" />
+    <Reference Include="Microsoft.Office.Tools.Common" />
+  </ItemGroup>
+  <!--
+     This section specifies COM References for the project (managed assemblies that wrap unmanaged
+     typelibs (tlb)). This is the equivalent of choosing "Add Reference->Com Reference" in the 
+     IDE.
+  -->
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <COMReference Include="Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <!--
+     This section defines the user source files that are part of the
+     project.
+     
+     A compile tag specifies a source file to compile.
+     An EmbeddedResource tag specifies an .resx file for embedded resources.
+     A None tag specifies a file that is not to be passed to the compiler (for instance, 
+     a text file or XML file).
+     The AppDesigner tag specifies the directory where the application properties files can
+     be found.
+  -->
+  <ItemGroup>
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ArrayListObjectXMLConverter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IndexObjectXMLConverter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\IObjectXmlConverter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlConverterRegistry.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlExceptions.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlReader.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXmlWriter.cs" />
+    <Compile Include="Edu.Ist.Psu.DynamciMail.XmlTools\StringXMLConverter.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Account.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\EditAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\EditAccountForm.designer.cs">
+      <DependentUpon>EditAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.designer.cs">
+      <DependentUpon>FilterDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Finishable.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\FolderTree.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.designer.cs">
+      <DependentUpon>GetNumericInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.designer.cs">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.designer.cs">
+      <DependentUpon>NetworkEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.designer.cs">
+      <DependentUpon>NetworkManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.Designer.cs">
+      <DependentUpon>ProgressInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.Designer.cs">
+      <DependentUpon>SelectFolders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Interface\Stoppable.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Indexes.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexMailboxes.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\IndexObjectXMLConverter.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Logger.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\PrepareClusterData.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\Stemmer.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail.Parse\UpdatingObject.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\FilterMail.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetwork.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkException.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkFilters.cs" />
+    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkManager.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Algorithms\KMeansCartesian2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\DataElement.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\IntegerData.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\Point2DDataElement.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Data\StringData.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\ArtificialVectors.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cartesian2DPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Centroid2D.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Cluster.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DataType.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DecimalPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\DiscretePlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\InvertedBooleanPlane.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\PlaneType.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Space.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\Vector.cs" />
+    <Compile Include="Edu.Psu.Ist.Keystone.Vector\VectorException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\EditAccountForm.resx">
+      <DependentUpon>EditAccountForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\FilterDisplay.resx">
+      <DependentUpon>FilterDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\GetNumericInput.resx">
+      <DependentUpon>GetNumericInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\InfoBox.resx">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkEditorForm.resx">
+      <DependentUpon>NetworkEditorForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\NetworkManagerForm.resx">
+      <DependentUpon>NetworkManagerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\ProgressInfoBox.resx">
+      <DependentUpon>ProgressInfoBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edu.Psu.Ist.DynamicMail.Interface\SelectFolders.resx">
+      <DependentUpon>SelectFolders.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\all-wcprops" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\entries" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\format" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ArrayListObjectXMLConverter.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ClassDiagram1.cd.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\IndexObjectXMLConverter.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\IObjectXmlConverter.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXML.xsd.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXML.xsx.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXmlConverterRegistry.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXmlExceptions.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXmlReader.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\ObjectXmlWriter.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\StringXMLConverter.cs.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\text-base\test-address.txt.svn-base" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\ClassDiagram1.cd" />
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXML.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Edu.Ist.Psu.DynamciMail.XmlTools\ObjectXML.xsx">
+      <DependentUpon>ObjectXML.xsd</DependentUpon>
+    </None>
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\entries" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\format" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\Account.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\EditAccountForm.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\EditAccountForm.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\EditAccountForm.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\FilterDisplay.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\FilterDisplay.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\FilterDisplay.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\Finishable.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\FolderTree.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\GetNumericInput.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\GetNumericInput.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\GetNumericInput.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\InfoBox.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\InfoBox.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\InfoBox.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkEditorForm.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkEditorForm.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkEditorForm.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkManagerForm.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkManagerForm.designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\NetworkManagerForm.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\ProgressInfoBox.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\ProgressInfoBox.Designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\ProgressInfoBox.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\SelectFolders.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\SelectFolders.Designer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\SelectFolders.resx.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\text-base\Stoppable.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\entries" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\format" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\Indexes.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\IndexMailboxes.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\IndexObjectXMLConverter.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\Logger.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\PrepareClusterData.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\Stemmer.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\text-base\UpdatingObject.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\entries" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\format" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\text-base\FilterMail.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\text-base\SocialNetwork.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\text-base\SocialNetworkException.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\text-base\SocialNetworkFilters.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.DynamicMail\.svn\text-base\SocialNetworkManager.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\entries" />
+    <None Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\format" />
+    <None Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\text-base\KMeansCartesian2D.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\entries" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\format" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\text-base\DataElement.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\text-base\IntegerData.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\text-base\Point2D.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\text-base\Point2DDataElement.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Data\.svn\text-base\StringData.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\all-wcprops" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\entries" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\format" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\ArtificialVectors.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Cartesian2DPlane.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Centroid.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Centroid2D.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Cluster.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\DataType.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\DecimalPlane.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\DiscretePlane.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\InvertedBooleanPlane.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\PlaneType.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Space.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\Vector.cs.svn-base" />
+    <None Include="Edu.Psu.Ist.Keystone.Vector\.svn\text-base\VectorException.cs.svn-base" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ThisAddIn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="ThisAddIn.Designer.xml">
+      <DependentUpon>ThisAddIn.cs</DependentUpon>
+    </None>
+    <Compile Include="ThisAddIn.Designer.cs">
+      <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Edu.Ist.Psu.DynamciMail.XmlTools\test-address.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\prop-base\" />
+    <Folder Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\props\" />
+    <Folder Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\tmp\props\" />
+    <Folder Include="Edu.Ist.Psu.DynamciMail.XmlTools\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Interface\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail.Parse\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.DynamicMail\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Algorithms\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Data\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Data\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Data\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Data\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Data\.svn\tmp\text-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Vector\.svn\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Vector\.svn\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Vector\.svn\tmp\prop-base\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Vector\.svn\tmp\props\" />
+    <Folder Include="Edu.Psu.Ist.Keystone.Vector\.svn\tmp\text-base\" />
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- Include additional build rules for an office application addin -->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft.VisualStudio.OfficeTools2.targets" />
+  <!-- This section defines VSTO properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
+        <ProjectProperties HostName="Outlook" HostPackage="{D53BAEDE-5B63-42BE-8267-3DED11EDC582}" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\11.0\Outlook\InstallRoot\Path#Outlook.exe" />
+        <Host Name="Outlook" GeneratedCodeNamespace="DynamicMail" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        </Host>
+        <ProjectClient>
+          <VSTO_CompatibleProducts ErrorProduct="This project requires Microsoft Office Outlook 2003, but this application is not installed." ErrorPIA="This project references the primary interop assembly for Microsoft Office Outlook 2003, but this primary interop assembly is not installed.">
+            <Product Code="{XXXXXXXX-6000-11D3-8CFE-0150048383C9}" Feature="OUTLOOKFiles" PIAFeature="Outlook_PIA" />
+          </VSTO_CompatibleProducts>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
