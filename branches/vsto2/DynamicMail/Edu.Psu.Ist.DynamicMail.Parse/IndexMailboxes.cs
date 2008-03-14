@@ -103,9 +103,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             int lookedAtTotal = 0;
             foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
             {
-                // testing
-                this.activeExplorer.SelectFolder(mailbox);
-
                 Outlook.Items searchFolder = mailbox.Items;
                 //variables to hold found email data
                 String foundEmailEntryId;
@@ -179,7 +176,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                             Indexes.Instance.AddIndexedID(foundEmailEntryId);
                         }
                     }
-                    catch (InvalidCastException e)
+                    catch
                     {
                         // ignore bad casts
                     }

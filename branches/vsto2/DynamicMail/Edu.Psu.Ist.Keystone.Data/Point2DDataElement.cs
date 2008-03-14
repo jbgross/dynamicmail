@@ -42,5 +42,9 @@ namespace Edu.Psu.Ist.Keystone.Data
             return ((Point2DDataElement)obj).Value.Equals(Value);
         }
 
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 }

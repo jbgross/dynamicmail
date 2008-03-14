@@ -12,10 +12,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     public partial class FilterDisplay : Form
     {
         private String initialSelectedFolder;
-        private Finishable source;
-        private static TreeNode tNode;
         private Dictionary<String, Outlook.MAPIFolder> nameFolder;
-        private TreeNode userInvoke = null;
         private FilterMail filter;
         private FolderTree sourceTree;
 

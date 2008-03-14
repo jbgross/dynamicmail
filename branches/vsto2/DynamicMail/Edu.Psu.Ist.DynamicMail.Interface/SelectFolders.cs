@@ -18,7 +18,6 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
     {
         private List<Outlook.MAPIFolder> selectedFolders = new List<Outlook.MAPIFolder>();
         private Finishable finish;
-        private TreeNode tNode;
         private Dictionary<string, Outlook.MAPIFolder> nameFolder;
         private TreeNode userInvoke = null;
         private FolderTree sourceTree;

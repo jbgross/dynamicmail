@@ -11,35 +11,26 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         /// singlton class instance
         /// </summary>
         private static Logger instance=null;
-        private static readonly object padlock = new object();
+        private static String localAccountAddress;
 
-        /// <summary>
-        /// string to hold the location of the folder to hold the various output and input files
-        /// </summary>
-        private String logLocation = "C:\\Windows\\Temp\\";
-        public String LogLocation
+        public static String LocalAccountAddress
         {
-            get { return logLocation; }
-            set { logLocation = value; }
+            get { return Logger.localAccountAddress; }
+            set { Logger.localAccountAddress = value; }
         }
 
-        /// <summary>
-        /// Filename of the log file
-        /// </summary>
-        private String logFileName = "DynamicMailLog.txt";
-        public String LogFileName
-        {
-            get { return logFileName; }
-            set { logFileName = value; }
-        }
+        private String fileName = "c:\\" + localAccountAddress + "log.txt";
+        private StreamWriter writer;
         
-        //
         /// <summary>
-        /// public constructor
+        /// constructor
         /// </summary>
         private Logger()
         {
-            
+            // create a writer and open the file
+            this.writer = File.AppendText(this.fileName);
+            this.writer.AutoFlush = true;
+            this.logMessage("Logger started.");
         }
 
         /// <summary>
@@ -47,24 +38,15 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         /// </summary>
         public static Logger Instance
         {
-            get
+              //if there is no current instance create a new one
+            get 
             {
-                //lock to make the singleton class thread safe
-                lock (padlock)
+                if (instance == null)
                 {
-                    //if there is no current instance create a new one
-                    if (instance == null)
-                    {
-                        instance = new Logger();
-                    }
-                    //return the sigelton instance
-                    return instance;
+                    instance = new Logger();
                 }
-            }
-
-            private set
-            {
-                instance = value;
+                //return the sigelton instance
+                return instance;
             }
         }
 
@@ -74,15 +56,38 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         /// <param name="message"></param>
         public void logMessage(String message)
         {
-            // create a writer and open the file
-            StreamWriter tw = File.AppendText(LogLocation + LogFileName);
+            lock (this)
+            {
+                // write a line of text to the file
+                tw.WriteLine(DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "-"
+                    + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second
+                    + " " + message);
 
-            
-            // write a line of text to the file
-            tw.WriteLine(DateTime.Now.Year+"-"+DateTime.Now.Month+"-"+DateTime.Now.Day+"-"+DateTime.Now.Hour+":"+DateTime.Now.Minute+":"+DateTime.Now.Second+" \t"+message);
-            
-            // close the stream
-            tw.Close();
+                // close the stream
+                tw.Close();
+            }
+        }
+
+        /// <summary>
+        /// Close down the writer when application exits
+        /// </summary>
+        public void Close()
+        {
+            if (this.writer != null)
+            {
+                this.logMessage("Logger stopped.");
+                this.writer.Close();
+                this.writer.Dispose();
+                this.writer = null;
+            }
+        }
+
+        /// <summary>
+        /// At the end, close if necessary
+        /// </summary>
+        private void Finalize()
+        {
+            this.Close();
         }
     }
 }
