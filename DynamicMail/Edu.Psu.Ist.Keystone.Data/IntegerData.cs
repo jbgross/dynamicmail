@@ -40,5 +40,9 @@ namespace Edu.Psu.Ist.Keystone.Data
         {
             return ((IntegerData)obj).Data.Equals(Data);
         }
+        public override int GetHashCode()
+        {
+            return Data.GetHashCode();
+        }
     }
 }

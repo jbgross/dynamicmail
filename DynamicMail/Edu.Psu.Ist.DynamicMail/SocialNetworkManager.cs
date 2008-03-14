@@ -121,8 +121,16 @@ namespace Edu.Psu.Ist.DynamicMail
                 return;
             }
             Cluster cluster = this.networkClusters[index++];
-            this.currentSocialNetwork = new SocialNetwork(cluster.TopAccounts, this, this);
-            this.currentSocialNetwork.Manage(this);
+            List<DataElements> topAccounts = cluster.TopAccounts;
+            if (topAccounts.Count == 0)
+            {
+                this.currentSocialNetwork = new SocialNetwork(cluster.TopAccounts, this, this);
+                this.currentSocialNetwork.Manage(this);
+            }
+            else
+            {
+                this.EditNewNetworks();
+            }
         }
 
         /// <summary>

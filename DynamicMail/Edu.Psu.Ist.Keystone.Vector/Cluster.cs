@@ -95,7 +95,6 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
         public List<DataElement> GetDataElements()
         {
             List<DataElement> des = new List<DataElement>();
-            int count = 0;
             foreach (DataElement d in elements.Keys)
             {
                 des.Add(d);

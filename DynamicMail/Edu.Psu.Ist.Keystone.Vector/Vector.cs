@@ -177,5 +177,10 @@ namespace Edu.Psu.Ist.Keystone.Dimensions
             return eq;
         }
 
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
+
 }

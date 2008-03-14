@@ -51,5 +51,9 @@ namespace Edu.Psu.Ist.Keystone.Data
             return false;
         }
 
+        public override int GetHashCode()
+        {
+            return X.GetHashCode();
+        }
     }
 }

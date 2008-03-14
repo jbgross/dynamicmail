@@ -7,6 +7,7 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using System.Collections.Generic;
 using Edu.Psu.Ist.DynamicMail.Parse;
 using Edu.Psu.Ist.DynamicMail;
+using Edu.Psu.Ist.DynamicMail.Psu;
 
 namespace DynamicMail
 {
@@ -57,6 +58,7 @@ namespace DynamicMail
             this.rootFolders = this.Application.ActiveExplorer().Session.Folders;
             string myAddress = this.Application.ActiveExplorer().Session.CurrentUser.Address;
             Indexes.LocalAccountAddress = myAddress;
+            Logger.LocalAccountAddress = myAddress;
             this.AddToolbar();
             this.AddFilterBar();
 
@@ -238,6 +240,7 @@ namespace DynamicMail
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            Logger.Instance.Close();
         }
 
         #region VSTO generated code

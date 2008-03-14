@@ -118,10 +118,9 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                         {
                             instance.ReadIndexFromXML();
                         }
-
-                        catch (Exception e)
+                        catch
                         {
-                       }
+                        }
                     }
                     //return the sigelton instance
                     return instance;
