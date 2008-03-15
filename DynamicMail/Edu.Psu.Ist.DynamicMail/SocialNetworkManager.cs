@@ -6,6 +6,7 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using Edu.Psu.Ist.Keystone.Dimensions;
 using System.Collections;
 using Edu.Psu.Ist.DynamicMail.Parse;
+using Edu.Psu.Ist.Keystone.Data;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -121,8 +122,8 @@ namespace Edu.Psu.Ist.DynamicMail
                 return;
             }
             Cluster cluster = this.networkClusters[index++];
-            List<DataElements> topAccounts = cluster.TopAccounts;
-            if (topAccounts.Count == 0)
+            List<DataElement> topAccounts = cluster.TopAccounts;
+            if (topAccounts.Count > 0)
             {
                 this.currentSocialNetwork = new SocialNetwork(cluster.TopAccounts, this, this);
                 this.currentSocialNetwork.Manage(this);

@@ -35,15 +35,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // Done
             // 
-            this.Done.Location = new System.Drawing.Point(180, 290);
+            this.Done.Location = new System.Drawing.Point(148, 290);
             this.Done.Name = "Done";
-            this.Done.Size = new System.Drawing.Size(75, 23);
+            this.Done.Size = new System.Drawing.Size(117, 23);
             this.Done.TabIndex = 2;
-            this.Done.Text = "Done";
+            this.Done.Text = "Index These Folders";
             this.Done.UseVisualStyleBackColor = true;
             this.Done.Click += new System.EventHandler(this.Done_Click);
-            this.FormClosing += new FormClosingEventHandler(this.ReleaseTree);
-
             // 
             // folderTree
             // 
@@ -62,6 +60,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.Controls.Add(this.folderTree);
             this.Name = "SelectFolders";
             this.Text = "SelectFolders";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReleaseTree);
             this.ResumeLayout(false);
 
         }

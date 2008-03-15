@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
 using System.Threading;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
@@ -72,7 +73,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             if (network.Name != null && !network.Name.Equals(""))
             {
                 this.nameBox.Text = network.Name;
+                Logger.Instance.LogMessage("Editing New Network");
             }
+            else
+            {
+                Logger.Instance.LogMessage("Editing Existing Network Name:\t" + this.network.Name.GetHashCode());
+            }
+            Logger.Instance.LogMessage("Network Member Count:\t" + this.network.Accounts.Count);
             this.Show();
             this.Focus();
         }
@@ -122,6 +129,8 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 {
                     this.manager.AddNetwork(this.network);
                     this.manager.Save();
+                    Logger.Instance.LogMessage("Saved Network:\t" + this.network.Name.GetHashCode());
+                    Logger.Instance.LogMessage("Member Count:\t" + this.network.Accounts.Count);
                 }
                 
                 // this is a hack; it would be better to use the NetworkManagerForm
@@ -164,6 +173,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 this.accountGrid.Rows.Add(arr);
                 this.network.Accounts.Add(new Account(name, address));
                 this.addAccount = null;
+                Logger.Instance.LogMessage("Added Member");
                 this.Refresh();
             }
             else if (this.editAccountForm != null)
@@ -192,6 +202,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <param name="e"></param>
         private void ignoreGroup_Click(object sender, EventArgs e)
         {
+            Logger.Instance.LogMessage("Ignored Network");
             this.Close();
             this.manager.Cancel();
         }
@@ -212,6 +223,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 // remove from rows
                 accountGrid.Rows.RemoveAt(row.Index);
             }
+            Logger.Instance.LogMessage("Removed Member Count:\t" + this.accountGrid.SelectedRows.Count);
             this.Refresh();
         }
 
@@ -231,6 +243,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 this.editRow = row;
                 this.editAccountForm = new EditAccountForm(this, this.editAccount.Name, this.editAccount.Address);
             }
+            Logger.Instance.LogMessage("Edited Member Count:\t" + this.accountGrid.SelectedRows.Count);
         }
 
 

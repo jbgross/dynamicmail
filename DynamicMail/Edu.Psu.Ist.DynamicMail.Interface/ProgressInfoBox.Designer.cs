@@ -93,11 +93,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(302, 100);
+            this.button1.Location = new System.Drawing.Point(278, 100);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 36);
+            this.button1.Size = new System.Drawing.Size(95, 36);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Stop Indexing";
+            this.button1.Text = "Stop Indexing and Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
