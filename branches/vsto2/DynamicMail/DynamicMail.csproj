@@ -201,7 +201,6 @@
     <Compile Include="Edu.Psu.Ist.DynamicMail\FilterMail.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetwork.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkException.cs" />
-    <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkFilters.cs" />
     <Compile Include="Edu.Psu.Ist.DynamicMail\SocialNetworkManager.cs" />
     <Compile Include="Edu.Psu.Ist.Keystone.Algorithms\KMeansCartesian2D.cs" />
     <Compile Include="Edu.Psu.Ist.Keystone.Data\DataElement.cs" />

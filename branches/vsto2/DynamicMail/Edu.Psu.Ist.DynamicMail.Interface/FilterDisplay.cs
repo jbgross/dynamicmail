@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 namespace Edu.Psu.Ist.DynamicMail.Interface
 {
@@ -197,7 +198,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                     MessageBox.Show(x.Message);
                 }
             }
-
+            Logger.Instance.LogMessage("Opened Message");
         }
 
         private void FilterDisplay_Close (object sender, EventArgs e)
@@ -207,6 +208,7 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
                 this.folderTree.Nodes.Remove(node);
             }
             this.sourceTree.ClearCheckBoxes();
+            this.filter.Finish();
         }
 
     }

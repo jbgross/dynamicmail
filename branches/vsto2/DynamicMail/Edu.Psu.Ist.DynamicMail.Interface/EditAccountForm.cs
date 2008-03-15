@@ -105,6 +105,11 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         {
             AccountName = NameBox.Text;
             AccountAddress = AddressBox.Text;
+            if (AccountAddress == null)
+            {
+                MessageBox.Show("Must specify an email address.");
+                return;
+            }
             this.Close();
             this.finishable.Finish();
         }

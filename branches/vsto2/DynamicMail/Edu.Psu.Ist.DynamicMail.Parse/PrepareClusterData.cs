@@ -95,13 +95,13 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
 
         private void StartClustering()
         {
+            Logger.Instance.LogMessage("Started Clustering");
+            Logger.Instance.LogMessage("Cluster Count:\t" + this.clusterCount);
+            Logger.Instance.LogMessage("Cluster Size:\t" + this.clusterSize);
             this.addressMsgs = indices.receivedEmailIndex;
             this.infoBox.AddText("Size: " + addressMsgs.Count);
             this.clusterSpace = this.CreateSpace();
-            this.Cluster(); // try in same thread
-            //ThreadStart ts = new ThreadStart(Cluster);
-            //Thread t = new Thread(ts);
-            //t.Start();
+            this.Cluster();
         }
 
         /// <summary>
@@ -159,6 +159,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             Networks = clusterSpace.GetCurrentClusters();
             this.infoBox.Close();
             this.finish.Finish();
+            Logger.Instance.LogMessage("Clustering Complete");
         }
     }
 }

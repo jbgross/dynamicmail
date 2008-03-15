@@ -59,7 +59,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public IndexMailboxes(FolderTree tree, Indexes index, Outlook.Explorer activeExplorer)
         {
             this.activeExplorer = activeExplorer;
-            this.ignoreAddress = Indexes.LocalAccountAddress;
+            this.ignoreAddress = Indexes.LocalAccountAddress.ToLowerInvariant();
             this.select = new SelectFolders(tree, this);
             this.index = index;
         }
@@ -74,7 +74,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             this.select = null;
 
             Pib = new ProgressInfoBox(totalCount, this);
-
             ThreadStart job = new ThreadStart(Indexer);
             Thread thread = new Thread(job);
             thread.Priority = ThreadPriority.Normal;
@@ -87,6 +86,8 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public void Indexer()
         {
 
+            Logger.Instance.LogMessage("Started Indexing");
+            Logger.Instance.LogMessage("Folder Count:\t" + indexFolders.Length);
             // for now, if Box or Contacts has not been set, do nothing
             if (indexFolders == null || indexFolders.Length < 1)
             {
@@ -101,8 +102,13 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             int count = 0;
             int checkAt = (this.totalCount / 100) + 1;
             int lookedAtTotal = 0;
+            int actuallyIndexed = 0;
+            DateTime start = DateTime.Now;
             foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
             {
+                // is this faster?
+                //this.activeExplorer.SelectFolder(mailbox);
+
                 Outlook.Items searchFolder = mailbox.Items;
                 //variables to hold found email data
                 String foundEmailEntryId;
@@ -133,32 +139,32 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
 
                     try
                     {
-
                         // cast to email
                         Outlook.MailItem foundEmail = (Outlook.MailItem) o;
                         foundEmailEntryId = foundEmail.EntryID;
                         // if we haven't already indexed this one, index it
                         if (!this.index.SearchAlreadyIndexed(foundEmailEntryId))
                         {
+                            actuallyIndexed++; // count this as an actual indexed mail
+
                             // add each recipient that is not the current user
                             Outlook.Recipients recs = foundEmail.Recipients;
                             List<String> recipients = new List<String>();
                             foreach (Outlook.Recipient rec in recs)
                             {
-                                String addr = rec.Address;
+                                String addr = rec.Address.ToLowerInvariant();
                                 if (addr.Equals(this.ignoreAddress))
                                     continue;
-                                addr = addr.ToLower();
                                 recipients.Add(addr);
                                 // add the name DEBUG
                                 this.index.AddAddressName(rec.Name, addr);
                             }
+
                             // add the sender
-                            String sender = foundEmail.SenderEmailAddress;
+                            String sender = foundEmail.SenderEmailAddress.ToLowerInvariant();
                             if (sender != null && sender.Equals(this.ignoreAddress) == false)
                             {
                                 recipients.Add(sender);
-                                sender = sender.ToLower();
                                 // add the name DEBUG
                                 this.index.AddAddressName(foundEmail.SenderName, sender);
                             }
@@ -183,6 +189,12 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 }
                 
             }
+
+            DateTime end = DateTime.Now;
+            TimeSpan duration = end - start;
+            Logger.Instance.LogMessage("Ended Indexing - Duration (sec):\t" + duration.Seconds);
+            Logger.Instance.LogMessage("Indexed Messages:\t" + actuallyIndexed);
+            Logger.Instance.LogMessage("Indexed Accounts:\t" + duration);
 
             Pib.ChangeText("Writing index to disk...");
             Pib.Refresh();
@@ -264,6 +276,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public void Stop()
         {
             ContinueParsing = false;
+            Logger.Instance.LogMessage("User stopped indexing.");
         }
 
         /// <summary>

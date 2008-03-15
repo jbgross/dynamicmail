@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Edu.Psu.Ist.DynamicMail.Interface;
+using Edu.Psu.Ist.DynamicMail.Parse;
 
 namespace Edu.Psu.Ist.DynamicMail
 {
@@ -44,6 +45,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <param name="folder">The folder to start filtering on</param>
         public FilterMail(FolderTree folderTree, SocialNetwork socialNetwork, Outlook.MAPIFolder folder)
         {
+            Logger.Instance.LogMessage("Filter Opened:\t" + socialNetwork.Name.GetHashCode());
             this.folderTree = folderTree;
             this.socialNetwork = socialNetwork;
             this.folders = new Dictionary<string,Outlook.MAPIFolder>();
@@ -91,8 +93,10 @@ namespace Edu.Psu.Ist.DynamicMail
         /// <returns></returns>
         public void Refilter()
         {
+            Logger.Instance.LogMessage("Filter Folder Count:\t" + this.folders.Values.Count);
             List<String> addrs = this.socialNetwork.GetAddresses();
             List<String> names = this.socialNetwork.GetNames();
+            int totalMessagesDisplayed = 0;
             foreach (Outlook.MAPIFolder folder in this.folders.Values)
             {
                 String path = folder.FullFolderPath;
@@ -118,16 +122,20 @@ namespace Edu.Psu.Ist.DynamicMail
                     // to next message
                     foreach (Outlook.Recipient rec in mail.Recipients)
                     {
-                        String address = rec.Address;
+                        String address = rec.Address.ToLowerInvariant();
                         if (address != null && addrs.Contains(address))
                         {
                             this.messages.Add(mail);
+                            totalMessagesDisplayed++;
                             break;
                         }
-                        String name = rec.Name;
+
+                        // for comparison purposes, use lowercase
+                        String name = rec.Name.ToLowerInvariant();
                         if (name != null && names.Contains(name))
                         {
                             this.messages.Add(mail);
+                            totalMessagesDisplayed++;
                             break;
                         }
                     }
@@ -138,6 +146,7 @@ namespace Edu.Psu.Ist.DynamicMail
             }
 
             this.changed = false;
+            Logger.Instance.LogMessage("Filter Message Count:\t" + totalMessagesDisplayed);
         }
 
         /// <summary>
@@ -153,7 +162,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Finish()
         {
-            this.filterDisplay.Close();
+            Logger.Instance.LogMessage("Filter Closed:\t" + socialNetwork.Name.GetHashCode());
             this.filterDisplay = null;
         }
 
@@ -162,7 +171,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Cancel()
         {
-            this.filterDisplay.Close();
+            Logger.Instance.LogMessage("Filter Closed:\t" + socialNetwork.Name.GetHashCode());
             this.filterDisplay = null;
         }
 

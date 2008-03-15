@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Edu.Psu.Ist.DynamicMail.Psu
+namespace Edu.Psu.Ist.DynamicMail.Parse
 {
     public class Logger
     {
@@ -30,7 +30,7 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
             // create a writer and open the file
             this.writer = File.AppendText(this.fileName);
             this.writer.AutoFlush = true;
-            this.logMessage("Logger started.");
+            this.LogMessage("Logger started.");
         }
 
         /// <summary>
@@ -54,17 +54,15 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         /// Appends Time/Date and String message to the StreamWriter
         /// </summary>
         /// <param name="message"></param>
-        public void logMessage(String message)
+        public void LogMessage(String message)
         {
             lock (this)
             {
                 // write a line of text to the file
-                tw.WriteLine(DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "-"
-                    + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second
-                    + " " + message);
+                this.writer.WriteLine(DateTime.Now.Day + "/" + DateTime.Now.Month + "/" +DateTime.Now.Year
+                    + "\t" + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second
+                    + "\t" + message);
 
-                // close the stream
-                tw.Close();
             }
         }
 
@@ -75,7 +73,7 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         {
             if (this.writer != null)
             {
-                this.logMessage("Logger stopped.");
+                this.LogMessage("Logger stopped.");
                 this.writer.Close();
                 this.writer.Dispose();
                 this.writer = null;
@@ -85,7 +83,7 @@ namespace Edu.Psu.Ist.DynamicMail.Psu
         /// <summary>
         /// At the end, close if necessary
         /// </summary>
-        private void Finalize()
+        ~Logger()
         {
             this.Close();
         }

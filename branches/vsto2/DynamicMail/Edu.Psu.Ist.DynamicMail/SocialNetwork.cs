@@ -130,7 +130,7 @@ namespace Edu.Psu.Ist.DynamicMail
             List<String> addrs = new List<String>();
             foreach (Account a in Accounts)
             {
-                addrs.Add(a.Address);
+                addrs.Add(a.Address.ToLowerInvariant());               
             }
             addrs.Sort();
             return addrs;
@@ -145,7 +145,7 @@ namespace Edu.Psu.Ist.DynamicMail
             List<String> names = new List<String>();
             foreach (Account a in Accounts)
             {
-                names.Add(a.Name);
+                names.Add(a.Name.ToLowerInvariant());
             }
             names.Sort();
             return names;
@@ -157,6 +157,7 @@ namespace Edu.Psu.Ist.DynamicMail
         /// </summary>
         public void Manage(Finishable finish)
         {
+
             this.finish = finish;
             this.editor = new NetworkEditorForm(null, this, this.manager);
         }

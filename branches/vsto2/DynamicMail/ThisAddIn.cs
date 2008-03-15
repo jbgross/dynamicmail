@@ -7,7 +7,6 @@ using Edu.Psu.Ist.DynamicMail.Interface;
 using System.Collections.Generic;
 using Edu.Psu.Ist.DynamicMail.Parse;
 using Edu.Psu.Ist.DynamicMail;
-using Edu.Psu.Ist.DynamicMail.Psu;
 
 namespace DynamicMail
 {
