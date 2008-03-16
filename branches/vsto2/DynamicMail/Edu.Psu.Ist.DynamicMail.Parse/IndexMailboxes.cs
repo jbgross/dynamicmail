@@ -21,6 +21,10 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         private InfoBox infoBox;
         private Indexes index;
         private Outlook.Explorer activeExplorer;
+        private int threadCount = 2;
+        private int threadsComplete = 0;
+        private DateTime start;
+        private int actuallyIndexed = 0;
 
         private string ignoreAddress;
 
@@ -49,7 +53,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             set { pib = value; }
         }
 
-        Outlook.MAPIFolder [] indexFolders;
+        List<Outlook.MAPIFolder> indexFolders;
         SelectFolders select = null;
 
         /// <summary>
@@ -74,10 +78,40 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             this.select = null;
 
             Pib = new ProgressInfoBox(totalCount, this);
-            ThreadStart job = new ThreadStart(Indexer);
-            Thread thread = new Thread(job);
-            thread.Priority = ThreadPriority.Normal;
-            thread.Start();
+            // for now, if Box or Contacts has not been set, do nothing
+            if (indexFolders == null || indexFolders.Count < 1)
+            {
+                // get rid of the progress bar box
+                Pib.Visible = false;
+                Pib.Refresh();
+                Pib = null;
+
+                return;
+            }
+            this.start = DateTime.Now;
+            Logger.Instance.LogMessage("Started Indexing - Thread Count:\t" + this.threadCount);
+            Logger.Instance.LogMessage("Folder Count:\t" + indexFolders.Count);
+            for (int i = 0; i < this.threadCount; i++)
+            {
+                ThreadStart job = new ThreadStart(Indexer);
+                Thread thread = new Thread(job);
+                thread.Priority = ThreadPriority.Normal;
+                thread.Start();
+            }
+        }
+
+        private Outlook.MAPIFolder GetNextFolder()
+        {
+            lock (this)
+            {
+                if(this.indexFolders.Count == 0) 
+                {
+                    return null;
+                }
+                Outlook.MAPIFolder folder = this.indexFolders[0];
+                this.indexFolders.RemoveAt(0);
+                return folder;
+            }
         }
 
         /// <summary>
@@ -86,27 +120,22 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         public void Indexer()
         {
 
-            Logger.Instance.LogMessage("Started Indexing");
-            Logger.Instance.LogMessage("Folder Count:\t" + indexFolders.Length);
-            // for now, if Box or Contacts has not been set, do nothing
-            if (indexFolders == null || indexFolders.Length < 1)
-            {
-                // get rid of the progress bar box
-                Pib.Visible = false;
-                Pib.Refresh();
-                Pib = null;
-                
-                return;
-            }
-
             int count = 0;
             int checkAt = (this.totalCount / 100) + 1;
             int lookedAtTotal = 0;
             int actuallyIndexed = 0;
             DateTime start = DateTime.Now;
-            foreach (Outlook.MAPIFolder mailbox in this.indexFolders)
+            while(true)
             {
-                // is this faster?
+                Outlook.MAPIFolder mailbox = this.GetNextFolder();
+                if (mailbox == null)
+                {
+                    break;
+                }
+
+                // is this faster? doesn't seem so, but it might for VSTO 1
+                // nope, doesn't seem to matter - speed difference between
+                // VSTO 1 and 2 (SE - second edition) is negligible overall
                 //this.activeExplorer.SelectFolder(mailbox);
 
                 Outlook.Items searchFolder = mailbox.Items;
@@ -189,21 +218,31 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 }
                 
             }
-
-            DateTime end = DateTime.Now;
-            TimeSpan duration = end - start;
-            Logger.Instance.LogMessage("Ended Indexing - Duration (sec):\t" + duration.Seconds);
-            Logger.Instance.LogMessage("Indexed Messages:\t" + actuallyIndexed);
-            Logger.Instance.LogMessage("Indexed Accounts:\t" + duration);
-
-            Pib.ChangeText("Writing index to disk...");
-            Pib.Refresh();
-
-            index.WriteIndexToXML();
-
-            // get rid of the progress bar box
-            Pib.Close();
+            // call when complete
+            this.Done();
         }
+
+        private void Done()
+        {
+            this.threadsComplete++;
+            if (this.threadsComplete == this.threadCount)
+            {
+                DateTime end = DateTime.Now;
+                TimeSpan duration = end - start;
+                Logger.Instance.LogMessage("Ended Indexing - Duration (sec):\t" + duration.Seconds);
+                Logger.Instance.LogMessage("Indexed Messages:\t" + actuallyIndexed);
+                Logger.Instance.LogMessage("Indexed Accounts:\t" + duration);
+
+                Pib.ChangeText("Writing index to disk...");
+                Pib.Refresh();
+
+                index.WriteIndexToXML();
+
+                // get rid of the progress bar box
+                Pib.Close();
+            }
+        }
+
 
         /// <summary>
         /// Parse addresses and add to List
@@ -224,7 +263,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             }
         }
 
-        private int GetTotalCount(Outlook.MAPIFolder[] folders)
+        private int GetTotalCount(List<Outlook.MAPIFolder> folders)
         {
             int total = 0;
             foreach(Outlook.MAPIFolder folder in folders) 
@@ -234,6 +273,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             }
             return total;
         }
+
         /// <summary>
         /// Add this email address to the index
         /// </summary>
@@ -241,33 +281,35 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         /// <param name="emailID"></param>
         public void addToReceivedEmailIndex(string address, string emailID)
         {
-
-            //Key = email address (senderAddress)
-            //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
-            ArrayList emailIDs = new ArrayList();
-
-
-            //if sender email address is NOT already in the index
-            if (this.index.receivedEmailIndex.Contains(address) == false)
+            lock (this)
             {
+                //Key = email address (senderAddress)
+                //Value = ArrayList of Email EntryIDs that were sent by the email address (emailIDs)
+                ArrayList emailIDs = new ArrayList();
 
-                //put the emailID into an ArrayList
-                emailIDs.Add(emailID);
-                //add sender email address (key) and ArrayList of Email Entry ID (value) to the index
-                this.index.receivedEmailIndex.Add(address, emailIDs);
 
-            }
-            else //sender email address is already in the index
-            {
-                //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
-                emailIDs = (ArrayList) this.index.receivedEmailIndex[address];
+                //if sender email address is NOT already in the index
+                if (this.index.receivedEmailIndex.Contains(address) == false)
+                {
 
-                //add the found Emails ID to the array
-                emailIDs.Add(emailID);
+                    //put the emailID into an ArrayList
+                    emailIDs.Add(emailID);
+                    //add sender email address (key) and ArrayList of Email Entry ID (value) to the index
+                    this.index.receivedEmailIndex.Add(address, emailIDs);
 
-                //put the array back into the index, overwriting the old one
-                this.index.receivedEmailIndex[address] = emailIDs;
+                }
+                else //sender email address is already in the index
+                {
+                    //get the ArrayList containg the Email Entry IDs for the key (sender Email address) 
+                    emailIDs = (ArrayList)this.index.receivedEmailIndex[address];
 
+                    //add the found Emails ID to the array
+                    emailIDs.Add(emailID);
+
+                    //put the array back into the index, overwriting the old one
+                    this.index.receivedEmailIndex[address] = emailIDs;
+
+                }
             }
         }
 
