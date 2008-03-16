@@ -25,12 +25,12 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
         /// <summary>
         /// Get an array of the selected folders
         /// </summary>
-        public Outlook.MAPIFolder[] SelectedFolders
+        public List<Outlook.MAPIFolder> SelectedFolders
         {
             get 
             {
                 this.GetSelectedFolders();
-                return (Outlook.MAPIFolder []) this.selectedFolders.ToArray(); 
+                return this.selectedFolders; 
             }
         }
 
