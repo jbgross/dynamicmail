@@ -70,13 +70,13 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
             this.managerForm = managerForm;
             InitializeComponent();
             this.PopulateAccounts(network.Accounts);
-            if (network.Name != null && !network.Name.Equals(""))
+            if (network.IsNew)
+            {
+                Logger.Instance.LogMessage("Editing New Network");
+            } 
+            else 
             {
                 this.nameBox.Text = network.Name;
-                Logger.Instance.LogMessage("Editing New Network");
-            }
-            else
-            {
                 Logger.Instance.LogMessage("Editing Existing Network Name:\t" + this.network.Name.GetHashCode());
             }
             Logger.Instance.LogMessage("Network Member Count:\t" + this.network.Accounts.Count);
@@ -124,15 +124,18 @@ namespace Edu.Psu.Ist.DynamicMail.Interface
 
             try
             {
-                this.network.Name = networkName;
                 if (this.network.IsNew)
                 {
+                    this.network.Name = networkName;
                     this.manager.AddNetwork(this.network);
-                    this.manager.Save();
-                    Logger.Instance.LogMessage("Saved Network:\t" + this.network.Name.GetHashCode());
-                    Logger.Instance.LogMessage("Member Count:\t" + this.network.Accounts.Count);
                 }
-                
+
+                this.manager.Save();
+                this.network.Name = networkName;
+
+                Logger.Instance.LogMessage("Saved Network:\t" + this.network.Name.GetHashCode());
+                Logger.Instance.LogMessage("Member Count:\t" + this.network.Accounts.Count);
+
                 // this is a hack; it would be better to use the NetworkManagerForm
                 // immediately after clustering, but...
                 if (this.managerForm != null)

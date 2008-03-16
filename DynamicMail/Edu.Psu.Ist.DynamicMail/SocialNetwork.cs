@@ -62,7 +62,7 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         /// <summary>
-        /// Public constructor
+        /// Public constructor for new social networks
         /// </summary>
         /// <param name="accounts"></param>
         public SocialNetwork(List<DataElement> accounts, Finishable finish, SocialNetworkManager manager)
@@ -86,7 +86,7 @@ namespace Edu.Psu.Ist.DynamicMail
         }
 
         /// <summary>
-        /// 
+        /// For existing social networks
         /// </summary>
         /// <param name="folderTree"></param>
         /// <param name="finish"></param>
@@ -96,7 +96,7 @@ namespace Edu.Psu.Ist.DynamicMail
             this.finish = finish;
             this.manager = manager;
             Accounts = new List<Account>();
-            IsNew = true;
+            IsNew = false;
         }
 
         /// <summary>
