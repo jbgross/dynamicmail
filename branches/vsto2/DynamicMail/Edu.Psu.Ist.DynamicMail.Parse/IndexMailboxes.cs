@@ -21,7 +21,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
         private InfoBox infoBox;
         private Indexes index;
         private Outlook.Explorer activeExplorer;
-        private int threadCount = 2;
+        private int threadCount = 1;
         private int threadsComplete = 0;
         private DateTime start;
         private int actuallyIndexed = 0;
@@ -123,7 +123,6 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             int count = 0;
             int checkAt = (this.totalCount / 100) + 1;
             int lookedAtTotal = 0;
-            int actuallyIndexed = 0;
             DateTime start = DateTime.Now;
             while(true)
             {
