@@ -91,13 +91,13 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             this.start = DateTime.Now;
             Logger.Instance.LogMessage("Started Indexing - Thread Count:\t" + this.threadCount);
             Logger.Instance.LogMessage("Folder Count:\t" + indexFolders.Count);
-            for (int i = 0; i < this.threadCount; i++)
-            {
+            //for (int i = 0; i < this.threadCount; i++)
+            //{
                 ThreadStart job = new ThreadStart(Indexer);
                 Thread thread = new Thread(job);
                 thread.Priority = ThreadPriority.Normal;
                 thread.Start();
-            }
+            //}
         }
 
         private Outlook.MAPIFolder GetNextFolder()
@@ -152,6 +152,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                     {
                         this.pib.Increment(this.totalCount - lookedAtTotal);
                         count = 0;
+                        index.WriteIndexToXML();
                     }
 
                     // stop if requested
@@ -230,8 +231,8 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 DateTime end = DateTime.Now;
                 TimeSpan duration = end - start;
                 Logger.Instance.LogMessage("Ended Indexing - Duration (sec):\t" + duration.Seconds);
-                Logger.Instance.LogMessage("Indexed Messages:\t" + actuallyIndexed);
-                Logger.Instance.LogMessage("Indexed Accounts:\t" + duration);
+                Logger.Instance.LogMessage("Indexed Messages:\t" + this.actuallyIndexed);
+                Logger.Instance.LogMessage("Indexed time:\t" + duration);
 
                 Pib.ChangeText("Writing index to disk...");
                 Pib.Refresh();
