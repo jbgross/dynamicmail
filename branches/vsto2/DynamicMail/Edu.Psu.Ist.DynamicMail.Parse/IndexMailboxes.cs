@@ -127,7 +127,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
             while(true)
             {
                 Outlook.MAPIFolder mailbox = this.GetNextFolder();
-                if (mailbox == null)
+                if (mailbox == null || ! ContinueParsing)
                 {
                     break;
                 }
@@ -135,7 +135,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                 // is this faster? doesn't seem so, but it might for VSTO 1
                 // nope, doesn't seem to matter - speed difference between
                 // VSTO 1 and 2 (SE - second edition) is negligible overall
-                //this.activeExplorer.SelectFolder(mailbox);
+                this.activeExplorer.SelectFolder(mailbox);
 
                 Outlook.Items searchFolder = mailbox.Items;
                 //variables to hold found email data
@@ -151,7 +151,7 @@ namespace Edu.Psu.Ist.DynamicMail.Parse
                     {
                         this.pib.Increment(this.totalCount - lookedAtTotal);
                         count = 0;
-                        index.WriteIndexToXML();
+                       index.WriteIndexToXML();
                     }
 
                     // stop if requested
